@@ -551,7 +551,7 @@ namespace Dynamo.Engine
         /// <summary>
         /// Creates CompilationServices.
         /// </summary>
-        /// <param name="core">Copilation core</param>
+        /// <param name="libraryServices"></param>
         public CompilationServices(LibraryServices libraryServices)
         {
             compilationCore = libraryServices.LibraryManagementCore;

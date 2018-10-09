@@ -71,10 +71,12 @@ namespace ProtoCore.DSASM
             Interfaces = new List<int>();
 
             // Set default allowed coerce types
-            CoerceTypes = new Dictionary<int, int>();
-            CoerceTypes.Add((int)ProtoCore.PrimitiveType.Var, (int)ProtoCore.DSASM.ProcedureDistance.CoerceScore);
-            CoerceTypes.Add((int)ProtoCore.PrimitiveType.Array, (int)ProtoCore.DSASM.ProcedureDistance.CoerceScore);
-            CoerceTypes.Add((int)ProtoCore.PrimitiveType.Null, (int)ProtoCore.DSASM.ProcedureDistance.CoerceScore);
+            CoerceTypes = new Dictionary<int, int>
+            {
+                { (int)ProtoCore.PrimitiveType.Var, (int)ProtoCore.DSASM.ProcedureDistance.CoerceScore },
+                { (int)ProtoCore.PrimitiveType.Array, (int)ProtoCore.DSASM.ProcedureDistance.CoerceScore },
+                { (int)ProtoCore.PrimitiveType.Null, (int)ProtoCore.DSASM.ProcedureDistance.CoerceScore }
+            };
         }
 
         public ClassNode(ClassNode rhs)

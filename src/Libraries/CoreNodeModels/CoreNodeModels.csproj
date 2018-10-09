@@ -26,6 +26,7 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
     <DocumentationFile>..\..\..\bin\AnyCPU\Debug\nodes\CoreNodeModels.XML</DocumentationFile>
+    <NoWarn>CS1591,CS1587,CS3001,CS3016,CS1572</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>

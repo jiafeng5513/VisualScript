@@ -1,9 +1,9 @@
 ![image](https://github.com/AngelaViVi/Expressior/blob/Expressior_master/src/DynamoCoreWpf/UI/Images/StartPage/dynamo-logo.png) 
 ====================================
 
-|分支|Expressior_master|Expressior_slim|RC2.0.0_master
+|分支|master|root1|root2
 |:--------:|:----------:|:-------------:|-------------:|
-|构建状态|[![Build status](https://ci.appveyor.com/api/projects/status/ke5nv5l0d33w5tl2/branch/Expressior_master?svg=true)](https://ci.appveyor.com/project/AngelaViVi/expressior/branch/Expressior_master)| 尚未构建|stopped
+|构建状态|[![Build status](https://ci.appveyor.com/api/projects/status/ke5nv5l0d33w5tl2/branch/Expressior_master?svg=true)](https://ci.appveyor.com/project/AngelaViVi/expressior/branch/Expressior_master)|尚未构建|尚未构建
 
 ### 这是一个可视化编程环境
 
@@ -26,19 +26,17 @@
 4. Microsoft DirectX (install from %GitHub%\Expressior\tools\install\Extra\DirectX\DXSETUP.exe)<br>
 
 ### 配置
-1. DynamoSandBox和LibraryViewExtension使用x64配置,其余使用AnyCpu配置.<br>
-2. 启动项目是DynamoSandBox.<br>
+1. Expressior和LibraryViewExtension使用x64配置,其余使用AnyCpu配置.<br>
+2. 启动项目是Expressior.<br>
 
 ### 其他说明
 1. [Draw.io](https://www.draw.io/)<br>
 2. 由于最终目标不同,这个程序在Dynamo的基础上进行了大幅度的删改,基础版本是Dynamo的RC2.0.0分支.<br>
 3. 如果您对这个程序有兴趣,在查阅文档的时候请注意,由于2的缘故,Dynamo的文档可能并不不适用于本程序,您可以向开发者询问感兴趣的问题.<br>
-4. 后续开发的默认分支是Expressior_master分支.<br>
-5. [新手参考](http://primer.dynamobim.org/en/)<br>
-6. [Dynamo BIM](http://dynamobim.org/)<br>
-7. [开发词典](http://dictionary.dynamobim.com/#/)<br>
-8. [Dynamo 论坛](https://forum.dynamobim.com/)<br>
-9. DynamoTeamEmail:`mailto:team@dynamobim.org`<br>
-### Working On:
-1. 清理工作基本完成.<br>
+4. [新手参考](http://primer.dynamobim.org/en/)<br>
+5. [Dynamo BIM](http://dynamobim.org/)<br>
+6. [开发词典](http://dictionary.dynamobim.com/#/)<br>
+7. [Dynamo 论坛](https://forum.dynamobim.com/)<br>
+8. DynamoTeamEmail:`mailto:team@dynamobim.org`<br>
+
 

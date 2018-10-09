@@ -126,8 +126,6 @@ namespace CoreNodeModelsWpf
         /// Called when Toggle button is clicked.
         /// Switches the combo box values
         /// </summary>
-        /// <param name="sender">The sender.</param>
-        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void OnToggleButtonClick(object obj)
         {
             var undoRecorder = nodeViewModel.WorkspaceViewModel.Model.UndoRecorder;

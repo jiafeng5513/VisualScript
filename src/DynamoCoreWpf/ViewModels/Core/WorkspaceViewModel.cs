@@ -527,6 +527,7 @@ namespace Dynamo.ViewModels
         /// then adds a View property to serialized Workspace, and sets its value to the serialized ViewModel.
         /// </summary>
         /// <param name="filePath"></param>
+        /// <param name="isBackup"></param>
         /// <param name="engine"></param>
         /// <exception cref="ArgumentNullException">Thrown when the file path is null.</exception>
         internal void Save(string filePath, bool isBackup = false, EngineController engine = null)

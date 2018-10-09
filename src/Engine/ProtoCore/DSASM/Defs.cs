@@ -256,10 +256,12 @@ namespace ProtoCore.DSASM
 
         private static void initUnaryOpCodeTable()
         {
-            unaryOpCodeTable = new Dictionary<UnaryOperator, OpCode>();
-            unaryOpCodeTable.Add(UnaryOperator.None, ProtoCore.DSASM.OpCode.NONE);
-            unaryOpCodeTable.Add(UnaryOperator.Not, ProtoCore.DSASM.OpCode.NOT);
-            unaryOpCodeTable.Add(UnaryOperator.Neg, ProtoCore.DSASM.OpCode.NEG);
+            unaryOpCodeTable = new Dictionary<UnaryOperator, OpCode>
+            {
+                { UnaryOperator.None, ProtoCore.DSASM.OpCode.NONE },
+                { UnaryOperator.Not, ProtoCore.DSASM.OpCode.NOT },
+                { UnaryOperator.Neg, ProtoCore.DSASM.OpCode.NEG }
+            };
         }
 
         private static void initUnaryOpNameTable()

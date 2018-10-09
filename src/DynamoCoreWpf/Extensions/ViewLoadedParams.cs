@@ -131,6 +131,7 @@ namespace Dynamo.Wpf.Extensions
         /// file menu, edit menu, view menu and help mebu bars.
         /// </summary>
         /// <param name="menuBarType">File, Edit, View or Help.</param>
+        /// <param name="type"></param>
         private MenuItem SearchForMenuItem(MenuBarType type)
         {
             var dynamoMenuItems = dynamoMenu.Items.OfType<MenuItem>();

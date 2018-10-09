@@ -219,10 +219,11 @@ namespace ProtoCore.DSASM
 
         public List<StackValue> GetRegisters()
         {
-            List<StackValue> registers = new List<StackValue>();
-
-            registers.Add(Frame[AbsoluteIndex.RX]);
-            registers.Add(Frame[AbsoluteIndex.TX]);
+            List<StackValue> registers = new List<StackValue>
+            {
+                Frame[AbsoluteIndex.RX],
+                Frame[AbsoluteIndex.TX]
+            };
 
             return registers;
         }

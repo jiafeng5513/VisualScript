@@ -20,6 +20,7 @@ namespace CoreNodeModels.Logic
         /// <summary>
         /// Private constructor used for serialization.
         /// </summary>
+        /// <param name="op"></param>
         /// <param name="inPorts">A collection of <see cref="PortModel"/> objects.</param>
         /// <param name="outPorts">A collection of <see cref="PortModel"/> objects.</param>
         protected BinaryLogic(Operator op, IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)

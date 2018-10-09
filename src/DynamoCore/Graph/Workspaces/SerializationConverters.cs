@@ -853,7 +853,7 @@ namespace Dynamo.Graph.Workspaces
         /// Add a reference to a newly created object, referencing
         /// an old id.
         /// </summary>
-        /// <param name="oldid">The old id of the object.</param>
+        /// <param name="oldId"></param>
         /// <param name="newObject">The new object which maps to the old id.</param>
         public void AddToReferenceMap(Guid oldId, object newObject)
         {

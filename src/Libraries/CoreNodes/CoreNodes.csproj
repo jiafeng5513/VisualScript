@@ -29,7 +29,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\..\..\bin\AnyCPU\Debug\$(UICulture)\DSCoreNodes.xml</DocumentationFile>
-    <NoWarn>1591</NoWarn>
+    <NoWarn>CS1591,CS1658,CS3001,CS3016,CS3008,CS3005,CS3016,CS3002,CS3003,CS1570,CS1572,CS1573</NoWarn>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">

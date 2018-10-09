@@ -28,6 +28,7 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
     <DocumentationFile>..\..\..\bin\AnyCPU\Debug\nodes\CoreNodeModelsWpf.XML</DocumentationFile>
+    <NoWarn>CS1591,CS3003</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>

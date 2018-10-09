@@ -1,1 +1,0 @@
-%~dp0\ExtractResources.bat Release

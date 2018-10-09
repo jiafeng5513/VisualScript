@@ -228,6 +228,7 @@ namespace Dynamo.ViewModels
         /// <summary>
         /// Construct a view and start drawing.
         /// </summary>
+        /// <param name="workspace"></param>
         /// <param name="port"></param>
         public ConnectorViewModel(WorkspaceViewModel workspace, PortModel port)
         {
@@ -256,7 +257,7 @@ namespace Dynamo.ViewModels
             Redraw();
         }
 
-        public virtual void Dispose()
+        public override void Dispose()
         {
             _model.PropertyChanged -= Model_PropertyChanged;
             _model.Start.Owner.PropertyChanged -= StartOwner_PropertyChanged;

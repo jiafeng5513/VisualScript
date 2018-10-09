@@ -227,9 +227,9 @@ namespace Dynamo.Graph.Workspaces
         /// <param name="presets">Preset collection of the workspace</param>
         /// <param name="elementResolver">ElementResolver responsible for resolving 
         /// a partial class name to its fully resolved name</param>
+        /// <param name="resolver"></param>
         /// <param name="info">Information for creating custom node workspace</param>
         /// <param name="verboseLogging">Indicates if detailed descriptions should be logged</param>
-        /// <param name="isTestMode">Indicates if current code is running in tests</param>
         public HomeWorkspaceModel(EngineController engine, 
             DynamoScheduler scheduler, 
             NodeFactory factory,

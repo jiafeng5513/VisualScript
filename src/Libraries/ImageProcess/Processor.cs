@@ -119,11 +119,13 @@ namespace ImageProc
             CvInvoke.GaussianBlur(mat, outMat,new Size(3,3),0.5,0.5);
             return outMat;
         }
+
         /// <summary>
         /// 二值化
         /// </summary>
         /// <param name="inMat"></param>
         /// <param name="Threshold"></param>
+        /// <param name="reverse"></param>
         /// <returns></returns>
         public static Mat Binnary(Mat inMat,double Threshold,bool reverse=true)
         {
