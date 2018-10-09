@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Processor</name>
+    </assembly>
+    <namespaces>
+      <namespace name="ImageProc">
+        <category>ImageProc</category>
+      </namespace>
+    </namespaces>
+</doc>

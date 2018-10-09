@@ -1,0 +1,16 @@
+
+/.vscode
+*.raw
+*.mhd
+*.npy
+*.hdf5
+*.pyc
+*.h5
+*.pb
+.idea/workspace.xml
+*.B234-ANNA
+*.txt
+/mnist/input_data
+/mnist/log
+/mnist/out
+/mnist/__pycache__
