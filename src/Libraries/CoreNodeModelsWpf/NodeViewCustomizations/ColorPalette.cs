@@ -3,7 +3,6 @@ using System.Windows.Media;
 using Dynamo.Controls;
 using Dynamo.Core;
 using Dynamo.Wpf;
-
 using CoreNodeModelsWpf.Controls;
 using CoreNodeModels.Input;
 using Dynamo.Graph.Workspaces;
