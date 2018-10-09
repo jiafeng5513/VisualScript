@@ -38,7 +38,7 @@ namespace Dynamo.Models
             if (CommandCompleted != null)
                 CommandCompleted(command);
         }
-        
+
         private PortModel[] activeStartPorts;
         private PortModel firstStartPort;
 
@@ -58,6 +58,11 @@ namespace Dynamo.Models
             if (model != null)
                 model.Run();
         }
+
+        //void ForceRunCancelImpl(ForceRunCancelCommand command)
+        //{
+        //    ForceRun();
+        //}
 
         void CreateNodeImpl(CreateNodeCommand command)
         {
@@ -82,8 +87,8 @@ namespace Dynamo.Models
                 newNode.X = command.X;
                 newNode.Y = command.Y;
                 var existingNode = CurrentWorkspace.GetModelInternal(command.ModelGuids.ElementAt(1)) as NodeModel;
-                
-                if(newNode == null || existingNode == null) return;
+
+                if (newNode == null || existingNode == null) return;
 
                 AddNodeToCurrentWorkspace(newNode, false, command.AddNewNodeToSelection);
                 CurrentWorkspace.UndoRecorder.RecordCreationForUndo(newNode);
@@ -212,7 +217,7 @@ namespace Dynamo.Models
         void CreateAnnotationImpl(CreateAnnotationCommand command)
         {
             AnnotationModel annotationModel = currentWorkspace.AddAnnotation(command.AnnotationText, command.ModelGuid);
-            
+
             CurrentWorkspace.RecordCreatedModel(annotationModel);
         }
 
@@ -280,7 +285,7 @@ namespace Dynamo.Models
         {
             bool isInPort = portType == PortType.Input;
             activeStartPorts = null;
-            
+
             var node = CurrentWorkspace.GetModelInternal(nodeId) as NodeModel;
             if (node == null)
                 return;
@@ -321,7 +326,7 @@ namespace Dynamo.Models
             var connectorsForDeletion = new List<ModelBase>();
             int numOfConnectors = selectedPort.Connectors.Count;
             if (numOfConnectors == 0) return;
-            
+
             activeStartPorts = new PortModel[numOfConnectors];
 
             for (int i = 0; i < numOfConnectors; i++)
@@ -350,7 +355,7 @@ namespace Dynamo.Models
             if (node == null) return;
 
             bool isInPort = portType == PortType.Input;
-            
+
             PortModel portModel = isInPort ? node.InPorts[portIndex] : node.OutPorts[portIndex];
 
             var models = GetConnectorsToAddAndDelete(portModel, activeStartPorts[0]);
@@ -368,7 +373,7 @@ namespace Dynamo.Models
             var node = CurrentWorkspace.GetModelInternal(nodeId) as NodeModel;
             if (node == null) return;
             PortModel selectedPort = node.OutPorts[portIndex];
-            
+
             var firstModel = GetConnectorsToAddAndDelete(selectedPort, activeStartPorts[0]);
             for (int i = 1; i < activeStartPorts.Count(); i++)
             {
@@ -387,14 +392,14 @@ namespace Dynamo.Models
         {
             if (portType == PortType.Output) return; // Only handle ctrl connections if selected port is an input port
             if (firstStartPort == null || activeStartPorts == null || activeStartPorts.Count() <= 0) return;
-            
+
             var node = CurrentWorkspace.GetModelInternal(nodeId) as NodeModel;
             if (node == null) return;
 
             PortModel portModel = node.InPorts[portIndex];
             var models = GetConnectorsToAddAndDelete(portModel, activeStartPorts[0]);
             WorkspaceModel.RecordModelsForUndo(models, CurrentWorkspace.UndoRecorder);
-            
+
             activeStartPorts = new PortModel[] { firstStartPort };
         }
 
@@ -533,7 +538,7 @@ namespace Dynamo.Models
             var workspace = CustomNodeManager.CreateCustomNode(
                 command.Name,
                 command.Category,
-                command.Description, 
+                command.Description,
                 command.ModelGuid);
 
             AddWorkspace(workspace);
@@ -548,7 +553,7 @@ namespace Dynamo.Models
 
         void CreatePresetStateImpl(AddPresetCommand command)
         {
-            var preset = this.CurrentWorkspace.AddPreset(command.PresetStateName,command.PresetStateDescription,command.ModelGuids);
+            var preset = this.CurrentWorkspace.AddPreset(command.PresetStateName, command.PresetStateDescription, command.ModelGuids);
 
             CurrentWorkspace.RecordCreatedModel(preset);
         }
@@ -561,7 +566,7 @@ namespace Dynamo.Models
             }
             var state = workspaceToSet.Presets.Where(x => x.GUID == command.StateID).FirstOrDefault();
 
-            workspaceToSet.ApplyPreset (state);
+            workspaceToSet.ApplyPreset(state);
         }
 
     }

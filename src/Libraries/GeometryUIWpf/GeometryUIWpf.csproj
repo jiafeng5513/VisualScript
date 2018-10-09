@@ -6,11 +6,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C068DE76-0651-4F6C-8807-B90EF749D104}</ProjectGuid>
+    <ProjectGuid>{54ABF959-07E2-4156-84C8-A6DA03031260}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ModelAnalyzer</RootNamespace>
-    <AssemblyName>ModelAnalyzer</AssemblyName>
+    <RootNamespace>GeometryUIWpf</RootNamespace>
+    <AssemblyName>GeometryUIWpf</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -37,19 +37,17 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.Prism, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\extern\prism\Microsoft.Practices.Prism.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
@@ -58,13 +56,11 @@
     <Compile Include="..\..\AssemblySharedInfoGenerator\AssemblySharedInfo.cs">
       <Link>Properties\AssemblySharedInfo.cs</Link>
     </Compile>
-    <Compile Include="AnalyzerDelegateCommands.cs" />
-    <Compile Include="AnalyzerView.xaml.cs">
-      <DependentUpon>AnalyzerView.xaml</DependentUpon>
+    <Compile Include="Controls\ExportWithUnitsControl.xaml.cs">
+      <DependentUpon>ExportWithUnitsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AnalyzerModel.cs" />
-    <Compile Include="AnalyzerViewModel.cs" />
-    <Compile Include="AnalyzerViewCustomization.cs" />
+    <Compile Include="ExportWithUnitsViewModel.cs" />
+    <Compile Include="NodeViewCustomizations\ExportWithUnitsNodeViewCustomization.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -78,7 +74,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="AnalyzerView.xaml">
+    <Page Include="Controls\ExportWithUnitsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -99,35 +95,38 @@
       <Name>DynamoUtilities</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\Engine\ProtoCore\ProtoCore.csproj">
-      <Project>{7a9e0314-966f-4584-baa3-7339cbb849d1}</Project>
-      <Name>ProtoCore</Name>
+    <ProjectReference Include="..\..\NodeServices\DynamoServices.csproj">
+      <Project>{ef879a10-041d-4c68-83e7-3192685f1bae}</Project>
+      <Name>DynamoServices</Name>
+      <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\Utilities\ProtobufTools\ProtobufTools.csproj">
-      <Project>{14b2adfe-54a0-46d3-b400-8f9333c1f96b}</Project>
-      <Name>ProtobufTools</Name>
+    <ProjectReference Include="..\CoreNodeModelsWpf\CoreNodeModelsWpf.csproj">
+      <Project>{f5932f7d-8e34-4787-80b8-e7f9d996edff}</Project>
+      <Name>CoreNodeModelsWpf</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\DynamoConversions\DynamoConversions.csproj">
-      <Project>{C5ADC05B-34E8-47BF-8E78-9C7BF96418C2}</Project>
+      <Project>{67cf6cf2-cd6a-442c-babe-864f896dd8ea}</Project>
       <Name>DynamoConversions</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\GeometryUI\GeometryUI.csproj">
+      <Project>{e674f1a1-be83-475a-9cc9-f55cadbec448}</Project>
+      <Name>GeometryUI</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.en-US.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.en-US.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProtoGeometryImages.resx" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterBuild">
     <!-- Get System.Drawing.dll -->
@@ -138,5 +137,8 @@
     <GetAssemblyIdentity AssemblyFiles="$(OutDir)..\ProtoGeometry.dll">
       <Output TaskParameter="Assemblies" ItemName="ProtoGeometryInfo" />
     </GetAssemblyIdentity>
+    <!-- Generate customization dll for ProtoGeometry -->
+    <GenerateResource UseSourcePath="true" Sources="$(ProjectDir)ProtoGeometryImages.resx" OutputResources="$(ProjectDir)ProtoGeometryImages.resources" References="$(FrameworkAssembliesPath)System.Drawing.dll" />
+    <AL TargetType="library" EmbedResources="$(ProjectDir)ProtoGeometryImages.resources" OutputAssembly="$(OutDir)..\ProtoGeometry.customization.dll" Version="%(ProtoGeometryInfo.Version)" />
   </Target>
 </Project>

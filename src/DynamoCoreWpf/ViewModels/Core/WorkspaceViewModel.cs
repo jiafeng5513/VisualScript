@@ -18,7 +18,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
-using Dynamo.Wpf.ViewModels.Watch3D;
 using Function = Dynamo.Graph.Nodes.CustomNodes.Function;
 using Newtonsoft.Json.Linq;
 using System.IO;
@@ -190,38 +189,31 @@ namespace Dynamo.ViewModels
         {
             get
             {
-                bool hasRunWithoutCrash = false;
-                string runType = RunType.Manual.ToString();
-                string runPeriod = RunSettings.DefaultRunPeriod.ToString();
-                HomeWorkspaceModel homeWorkspace = Model as HomeWorkspaceModel;
-                if (homeWorkspace != null)
-                {
-                    hasRunWithoutCrash = homeWorkspace.HasRunWithoutCrash;
-                    runType = homeWorkspace.RunSettings.RunType.ToString();
-                    runPeriod = homeWorkspace.RunSettings.RunPeriod.ToString();
-                }
+              bool hasRunWithoutCrash = false;
+              string runType = RunType.Manual.ToString();
+              string runPeriod = RunSettings.DefaultRunPeriod.ToString();
+              HomeWorkspaceModel homeWorkspace = Model as HomeWorkspaceModel;
+              if (homeWorkspace != null)
+              {
+                hasRunWithoutCrash = homeWorkspace.HasRunWithoutCrash;
+                runType = homeWorkspace.RunSettings.RunType.ToString();
+                runPeriod = homeWorkspace.RunSettings.RunPeriod.ToString();
+              }
 
-                bool isVisibleInDynamoLibrary = true;
-                CustomNodeWorkspaceModel customNodeWorkspace = Model as CustomNodeWorkspaceModel;
-                if (customNodeWorkspace != null)
-                    isVisibleInDynamoLibrary = customNodeWorkspace.IsVisibleInDynamoLibrary;
+              bool isVisibleInDynamoLibrary = true;
+              CustomNodeWorkspaceModel customNodeWorkspace = Model as CustomNodeWorkspaceModel;
+              if (customNodeWorkspace != null)
+                isVisibleInDynamoLibrary = customNodeWorkspace.IsVisibleInDynamoLibrary;
 
-                return new DynamoPreferencesData(
-                  Model.ScaleFactor,
-                  hasRunWithoutCrash,
-                  isVisibleInDynamoLibrary,
-                  AssemblyHelper.GetDynamoVersion().ToString(),
-                  runType,
-                  runPeriod);
+              return new DynamoPreferencesData(
+                Model.ScaleFactor,
+                hasRunWithoutCrash,
+                isVisibleInDynamoLibrary,
+                AssemblyHelper.GetDynamoVersion().ToString(),
+                runType,
+                runPeriod);
             }
         }
-
-        /// <summary>
-        /// Gets the Camera Data. This is used when serializing Camera Data in the View block
-        /// of Graph.Json.
-        /// </summary>
-        [JsonProperty("Camera")]
-        public CameraData Camera => DynamoViewModel.BackgroundPreviewViewModel.GetCameraInformation() ?? new CameraData();
 
         /// <summary>
         /// ViewModel that is used in InCanvasSearch in context menu and called by Shift+DoubleClick.
@@ -254,7 +246,7 @@ namespace Dynamo.ViewModels
         private CompositeCollection _workspaceElements = new CompositeCollection();
         [JsonIgnore]
         public CompositeCollection WorkspaceElements { get { return _workspaceElements; } }
-
+        
         ObservableCollection<ConnectorViewModel> _connectors = new ObservableCollection<ConnectorViewModel>();
         [JsonIgnore]
         public ObservableCollection<ConnectorViewModel> Connectors { get { return _connectors; } }
@@ -430,7 +422,7 @@ namespace Dynamo.ViewModels
             var errorsColl = new CollectionContainer { Collection = Errors };
             _workspaceElements.Add(errorsColl);
 
-            var annotationsColl = new CollectionContainer { Collection = Annotations };
+            var annotationsColl = new CollectionContainer {Collection = Annotations};
             _workspaceElements.Add(annotationsColl);
 
             //respond to collection changes on the model by creating new view models
@@ -453,7 +445,7 @@ namespace Dynamo.ViewModels
             Model.ConnectorDeleted += Connectors_ConnectorDeleted;
             Model.PropertyChanged += ModelPropertyChanged;
             Model.PopulateJSONWorkspace += Model_PopulateJSONWorkspace;
-
+            
             DynamoSelection.Instance.Selection.CollectionChanged += RefreshViewOnSelectionChange;
 
             DynamoViewModel.CopyCommand.CanExecuteChanged += CopyPasteChanged;
@@ -470,14 +462,14 @@ namespace Dynamo.ViewModels
             InCanvasSearchViewModel.Visible = true;
         }
         /// <summary>
-        /// This event is triggered from Workspace Model. Used in instrumentation
+        /// This event is triggred from Workspace Model. Used in instrumentation
         /// </summary>
         /// <param name="modelData"> Workspace model data as JSON </param>
         /// <returns>workspace model with view block in string format</returns>
         private string Model_PopulateJSONWorkspace(JObject modelData)
         {
-            var jsonData = AddViewBlockToJSON(modelData);
-            return jsonData.ToString();
+             var jsonData = AddViewBlockToJSON(modelData);
+             return jsonData.ToString();
         }
 
         public override void Dispose()
@@ -513,7 +505,7 @@ namespace Dynamo.ViewModels
             Nodes.Clear();
             Notes.Clear();
             Connectors.Clear();
-
+            
         }
 
         internal void ZoomInInternal()
@@ -594,8 +586,8 @@ namespace Dynamo.ViewModels
             var obj = JObject.Load(reader);
             var viewBlock = obj["View"];
             if (viewBlock == null)
-                return null;
-
+              return null;
+           
             var settings = new JsonSerializerSettings
             {
                 Error = (sender, args) =>
@@ -675,7 +667,7 @@ namespace Dynamo.ViewModels
 
         void Model_NodesCleared()
         {
-            foreach (var nodeViewModel in _nodes)
+            foreach(var nodeViewModel in _nodes)
             {
                 this.unsubscribeNodeEvents(nodeViewModel);
                 nodeViewModel.Dispose();
@@ -729,7 +721,7 @@ namespace Dynamo.ViewModels
         /// <param name="obj">The object.</param>
         public virtual void OnNodeModified(NodeModel obj)
         {
-
+            
         }
 
         internal void CheckAndSetPeriodicRunCapability()
@@ -746,7 +738,7 @@ namespace Dynamo.ViewModels
         {
             switch (portViewModel.EventType)
             {
-                case PortEventType.MouseEnter:
+                case PortEventType.MouseEnter:                    
                     IsSnapping = this.CheckActiveConnectorCompatibility(portViewModel);
                     this.portViewModel = portViewModel;
                     break;
@@ -774,7 +766,7 @@ namespace Dynamo.ViewModels
                     break;
 
             }
-
+            
         }
 
         void ModelPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -977,101 +969,101 @@ namespace Dynamo.ViewModels
             switch (alignType)
             {
                 case "HorizontalCenter":
-                    {
-                        var xAll = GetSelectionAverageX();
-                        toAlign.ForEach((x) => { x.CenterX = xAll; });
-                    }
+                {
+                    var xAll = GetSelectionAverageX();
+                    toAlign.ForEach((x) => { x.CenterX = xAll; });
+                }
                     break;
                 case "HorizontalLeft":
-                    {
-                        var xAll = GetSelectionMinX();
-                        toAlign.ForEach((x) => { x.X = xAll; });
-                    }
+                {
+                    var xAll = GetSelectionMinX();
+                    toAlign.ForEach((x) => { x.X = xAll; });
+                }
                     break;
                 case "HorizontalRight":
-                    {
-                        var xAll = GetSelectionMaxX();
-                        toAlign.ForEach((x) => { x.X = xAll - x.Width; });
-                    }
+                {
+                    var xAll = GetSelectionMaxX();
+                    toAlign.ForEach((x) => { x.X = xAll - x.Width; });
+                }
                     break;
                 case "VerticalCenter":
-                    {
-                        var yAll = GetSelectionAverageY();
-                        toAlign.ForEach((x) => { x.CenterY = yAll; });
-                    }
+                {
+                    var yAll = GetSelectionAverageY();
+                    toAlign.ForEach((x) => { x.CenterY = yAll; });
+                }
                     break;
                 case "VerticalTop":
-                    {
-                        var yAll = GetSelectionMinY();
-                        toAlign.ForEach((x) => { x.Y = yAll; });
-                    }
+                {
+                    var yAll = GetSelectionMinY();
+                    toAlign.ForEach((x) => { x.Y = yAll; });
+                }
                     break;
                 case "VerticalBottom":
-                    {
-                        var yAll = GetSelectionMaxY();
-                        toAlign.ForEach((x) => { x.Y = yAll - x.Height; });
-                    }
+                {
+                    var yAll = GetSelectionMaxY();
+                    toAlign.ForEach((x) => { x.Y = yAll - x.Height; });
+                }
                     break;
                 case "VerticalDistribute":
+                {
+                    if (DynamoSelection.Instance.Selection.Count <= 2) return;
+
+                    var yMin = GetSelectionMinY();
+                    var yMax = GetSelectionMaxY();
+
+                    var spacing = 0.0;
+                    var span = yMax - yMin;
+
+                    var nodeHeightSum =
+                        DynamoSelection.Instance.Selection.Where(y => y is ILocatable)
+                            .Cast<ILocatable>()
+                            .Sum((y) => y.Height);
+
+                    if (span > nodeHeightSum)
                     {
-                        if (DynamoSelection.Instance.Selection.Count <= 2) return;
-
-                        var yMin = GetSelectionMinY();
-                        var yMax = GetSelectionMaxY();
-
-                        var spacing = 0.0;
-                        var span = yMax - yMin;
-
-                        var nodeHeightSum =
-                            DynamoSelection.Instance.Selection.Where(y => y is ILocatable)
-                                .Cast<ILocatable>()
-                                .Sum((y) => y.Height);
-
-                        if (span > nodeHeightSum)
-                        {
-                            spacing = (span - nodeHeightSum)
-                                / (DynamoSelection.Instance.Selection.Count - 1);
-                        }
-
-                        var cursor = yMin;
-                        foreach (var node in toAlign.OrderBy(y => y.Y))
-                        {
-                            node.Y = cursor;
-                            cursor += node.Height + spacing;
-                        }
+                        spacing = (span - nodeHeightSum)
+                            /(DynamoSelection.Instance.Selection.Count - 1);
                     }
+
+                    var cursor = yMin;
+                    foreach (var node in toAlign.OrderBy(y => y.Y))
+                    {
+                        node.Y = cursor;
+                        cursor += node.Height + spacing;
+                    }
+                }
                     break;
                 case "HorizontalDistribute":
+                {
+                    if (DynamoSelection.Instance.Selection.Count <= 2) return;
+
+                    var xMin = GetSelectionMinX();
+                    var xMax = GetSelectionMaxX();
+
+                    var spacing = 0.0;
+                    var span = xMax - xMin;
+                    var nodeWidthSum =
+                        DynamoSelection.Instance.Selection.Where((x) => x is ILocatable)
+                            .Cast<ILocatable>()
+                            .Sum((x) => x.Width);
+
+                    // If there is more span than total node width,
+                    // distribute the nodes with a gap. If not, leave
+                    // the spacing at 0 and the nodes will distribute
+                    // up against each other.
+                    if (span > nodeWidthSum)
                     {
-                        if (DynamoSelection.Instance.Selection.Count <= 2) return;
-
-                        var xMin = GetSelectionMinX();
-                        var xMax = GetSelectionMaxX();
-
-                        var spacing = 0.0;
-                        var span = xMax - xMin;
-                        var nodeWidthSum =
-                            DynamoSelection.Instance.Selection.Where((x) => x is ILocatable)
-                                .Cast<ILocatable>()
-                                .Sum((x) => x.Width);
-
-                        // If there is more span than total node width,
-                        // distribute the nodes with a gap. If not, leave
-                        // the spacing at 0 and the nodes will distribute
-                        // up against each other.
-                        if (span > nodeWidthSum)
-                        {
-                            spacing = (span - nodeWidthSum)
-                                / (DynamoSelection.Instance.Selection.Count - 1);
-                        }
-
-                        var cursor = xMin;
-                        foreach (var node in toAlign.OrderBy(x => x.X))
-                        {
-                            node.X = cursor;
-                            cursor += node.Width + spacing;
-                        }
+                        spacing = (span - nodeWidthSum)
+                            /(DynamoSelection.Instance.Selection.Count - 1);
                     }
+
+                    var cursor = xMin;
+                    foreach (var node in toAlign.OrderBy(x => x.X))
+                    {
+                        node.X = cursor;
+                        cursor += node.Width + spacing;
+                    }
+                }
                     break;
             }
 
@@ -1082,7 +1074,7 @@ namespace Dynamo.ViewModels
         {
             return DynamoSelection.Instance.Selection.Count > 1;
         }
-
+        
         private void Paste(object param)
         {
             var point = InCanvasSearchViewModel.InCanvasSearchPosition;
@@ -1099,10 +1091,10 @@ namespace Dynamo.ViewModels
                 return;
 
             var command = new DynamoModel.UpdateModelValueCommand(Guid.Empty,
-                modelGuids, "IsVisible", (string)parameter);
+                modelGuids, "IsVisible", (string) parameter);
 
             DynamoViewModel.Model.ExecuteCommand(command);
-            RefreshViewOnSelectionChange(this, null);
+            RefreshViewOnSelectionChange(this,null);
         }
 
         private void SetArgumentLacing(object parameter)
@@ -1114,7 +1106,7 @@ namespace Dynamo.ViewModels
                 return;
 
             var command = new DynamoModel.UpdateModelValueCommand(Guid.Empty,
-                modelGuids, "ArgumentLacing", (string)parameter);
+                modelGuids, "ArgumentLacing", (string) parameter);
 
             DynamoViewModel.Model.ExecuteCommand(command);
             RaisePropertyChanged("SelectionArgumentLacing");
@@ -1189,7 +1181,7 @@ namespace Dynamo.ViewModels
 
         private bool CanZoom(double zoom)
         {
-            return (!(zoom < 0) || !(this.Zoom <= WorkspaceViewModel.ZOOM_MINIMUM)) && (!(zoom > 0)
+            return (!(zoom < 0) || !(this.Zoom <= WorkspaceViewModel.ZOOM_MINIMUM)) && (!(zoom > 0) 
                 || !(this.Zoom >= WorkspaceViewModel.ZOOM_MAXIMUM));
         }
 
@@ -1220,7 +1212,7 @@ namespace Dynamo.ViewModels
                 maxY = GetSelectionMaxY();
             }
             else
-            {
+            {   
                 // no selection, fitview all nodes and notes
                 var nodes = _nodes.Select(x => x.NodeModel);
                 var notes = _notes.Select(x => x.Model);
@@ -1244,7 +1236,7 @@ namespace Dynamo.ViewModels
                     minY = Math.Min(model.Y, minY);
                     maxY = Math.Max(model.Y + model.Height, maxY);
                 }
-
+                
             }
 
             var offset = new Point2D(minX, minY);
@@ -1331,8 +1323,6 @@ namespace Dynamo.ViewModels
         {
             Model.DoGraphAutoLayout();
             DynamoViewModel.RaiseCanExecuteUndoRedo();
-
-            //Dynamo.Logging.Analytics.TrackCommandEvent("GraphLayout");
         }
 
         private static bool CanDoGraphAutoLayout(object o)
@@ -1354,12 +1344,9 @@ namespace Dynamo.ViewModels
             var selectedNodes = DynamoSelection.Instance.Selection.OfType<NodeModel>();
             var selectedNotes = DynamoSelection.Instance.Selection.OfType<NoteModel>();
 
-            //DynamoViewModel.Model.AddCustomNodeWorkspace(
-            //    DynamoViewModel.Model.CustomNodeManager.Collapse(selectedNodes,
-            //    selectedNotes, Model, DynamoModel.IsTestMode, args));
-
-            //Dynamo.Logging.Analytics.TrackCommandEvent("NewCustomNode",
-            //    "NodeCount", selectedNodes.Count());
+            DynamoViewModel.Model.AddCustomNodeWorkspace(
+                DynamoViewModel.Model.CustomNodeManager.Collapse(selectedNodes,
+                selectedNotes, Model, args));
         }
 
         internal void Loaded()
@@ -1375,12 +1362,12 @@ namespace Dynamo.ViewModels
         {
             AlignSelectedCommand.RaiseCanExecuteChanged();
             ShowHideAllGeometryPreviewCommand.RaiseCanExecuteChanged();
-            SetArgumentLacingCommand.RaiseCanExecuteChanged();
+            SetArgumentLacingCommand.RaiseCanExecuteChanged();           
             RaisePropertyChanged("HasSelection");
             RaisePropertyChanged("IsGeometryOperationEnabled");
             RaisePropertyChanged("AnyNodeVisible");
             RaisePropertyChanged("AnyNodeUpstreamVisible");
-            RaisePropertyChanged("SelectionArgumentLacing");
+            RaisePropertyChanged("SelectionArgumentLacing");            
         }
     }
 

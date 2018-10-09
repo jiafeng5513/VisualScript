@@ -38,6 +38,7 @@ using DynamoUnits;
 using ProtoCore;
 using ProtoCore.Runtime;
 using Compiler = ProtoAssociative.Compiler;
+// Dynamo package manager
 using FunctionGroup = Dynamo.Engine.FunctionGroup;
 using Utils = Dynamo.Graph.Nodes.Utilities;
 
@@ -111,6 +112,7 @@ namespace Dynamo.Models
         private WorkspaceModel currentWorkspace;
         private Timer backupFilesTimer;
         private Dictionary<Guid, string> backupFilesDict = new Dictionary<Guid, string>();
+        internal readonly Stopwatch stopwatch = Stopwatch.StartNew();
         #endregion
 
         #region events
@@ -196,11 +198,11 @@ namespace Dynamo.Models
                 ShutdownCompleted(this);
         }
 
-         /// <summary>
-         /// This event is raised when Dynamo is ready for user interaction.
-         /// </summary>
-         public event Action<ReadyParams> DynamoReady;
-         private bool dynamoReady;
+        /// <summary>
+        /// This event is raised when Dynamo is ready for user interaction.
+        /// </summary>
+        public event Action<ReadyParams> DynamoReady;
+        private bool dynamoReady;
 
         #endregion
 
@@ -211,7 +213,7 @@ namespace Dynamo.Models
         /// with the assumption that the entire test will be wrapped in an
         /// idle thread call.
         /// </summary>
-        //public static bool IsTestMode { get; set; }
+        public static bool IsTestMode { get; set; }
 
         /// <summary>
         /// Flag to indicate that there is no UI on this process, and things
@@ -268,6 +270,7 @@ namespace Dynamo.Models
         /// </summary>
         public string HostName { get; set; }
 
+
         /// <summary>
         ///     The path manager that configures path information required for
         ///     Dynamo to function properly. See IPathManager interface for more
@@ -312,18 +315,6 @@ namespace Dynamo.Models
         ///     The Dynamo Node Library, complete with Search.
         /// </summary>
         public readonly NodeSearchModel SearchModel;
-
-        /// <summary>
-        ///     The application version string for analytics reporting APIs
-        /// </summary>
-        internal virtual string AppVersion
-        {
-            get
-            {
-                return Process.GetCurrentProcess().ProcessName + "-"
-                    + VersionManager.GetProductVersion();
-            }
-        }
 
         /// <summary>
         ///     Debugging settings for this instance of Dynamo.
@@ -479,8 +470,11 @@ namespace Dynamo.Models
             string DynamoHostPath { get; set; }
             IPreferences Preferences { get; set; }
             IPathResolver PathResolver { get; set; }
+            bool StartInTestMode { get; set; }
+            //IUpdateManager UpdateManager { get; set; }
             ISchedulerThread SchedulerThread { get; set; }
             string GeometryFactoryPath { get; set; }
+            //IAuthProvider AuthProvider { get; set; }
             IEnumerable<IExtension> Extensions { get; set; }
             TaskProcessMode ProcessMode { get; set; }
 
@@ -501,8 +495,11 @@ namespace Dynamo.Models
             public string DynamoHostPath { get; set; }
             public IPreferences Preferences { get; set; }
             public IPathResolver PathResolver { get; set; }
+            public bool StartInTestMode { get; set; }
+            //public IUpdateManager UpdateManager { get; set; }
             public ISchedulerThread SchedulerThread { get; set; }
             public string GeometryFactoryPath { get; set; }
+            //public IAuthProvider AuthProvider { get; set; }
             public IEnumerable<IExtension> Extensions { get; set; }
             public TaskProcessMode ProcessMode { get; set; }
             public bool IsHeadless { get; set; }
@@ -551,6 +548,7 @@ namespace Dynamo.Models
             pathManager.EnsureDirectoryExistence(exceptions);
 
             Context = config.Context;
+            IsTestMode = config.StartInTestMode;
             IsHeadless = config.IsHeadless;
 
             DebugSettings = new DebugSettings();
@@ -581,6 +579,32 @@ namespace Dynamo.Models
 
             InitializeInstrumentationLogger();
 
+            //if (!IsTestMode && PreferenceSettings.IsFirstRun)
+            //{
+            //    DynamoMigratorBase migrator = null;
+
+            //    try
+            //    {
+            //        var dynamoLookup = config.UpdateManager != null && config.UpdateManager.Configuration != null
+            //            ? config.UpdateManager.Configuration.DynamoLookUp : null;
+
+            //        migrator = DynamoMigratorBase.MigrateBetweenDynamoVersions(pathManager, dynamoLookup);
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        Logger.Log(e.Message);
+            //    }
+
+            //    if (migrator != null)
+            //    {
+            //        var isFirstRun = PreferenceSettings.IsFirstRun;
+            //        PreferenceSettings = migrator.PreferenceSettings;
+
+            //        // Preserve the preference settings for IsFirstRun as this needs to be set
+            //        // only by UsageReportingManager
+            //        PreferenceSettings.IsFirstRun = isFirstRun;
+            //    }
+            //}
             InitializePreferences(PreferenceSettings);
 
             // At this point, pathManager.PackageDirectories only has 1 element which is the directory
@@ -662,6 +686,28 @@ namespace Dynamo.Models
 
             AddHomeWorkspace();
 
+            //AuthenticationManager = new AuthenticationManager(config.AuthProvider);
+
+            //UpdateManager = config.UpdateManager ?? new DefaultUpdateManager(null);
+
+            //var hostUpdateManager = config.UpdateManager;
+
+            //if (hostUpdateManager != null)
+            //{
+            //    HostName = hostUpdateManager.HostName;
+            //    HostVersion = hostUpdateManager.HostVersion == null ? null : hostUpdateManager.HostVersion.ToString();
+            //}
+            //else
+            //{
+            //    HostName = string.Empty;
+            //    HostVersion = null;
+            //}
+
+            //UpdateManager.Log += UpdateManager_Log;
+            //if (!IsTestMode && !IsHeadless)
+            //{
+            //    DefaultUpdateManager.CheckForProductUpdate(UpdateManager);
+            //}
 
             Logger.Log(string.Format("Dynamo -- Build {0}",
                                         Assembly.GetExecutingAssembly().GetName().Version));
@@ -670,8 +716,8 @@ namespace Dynamo.Models
 
             if (extensions.Any())
             {
-                var startupParams = new StartupParams(pathManager, 
-                    new ExtensionLibraryLoader(this), CustomNodeManager,
+                var startupParams = new StartupParams(/*config.AuthProvider,*/
+                    pathManager, new ExtensionLibraryLoader(this), CustomNodeManager,
                     GetType().Assembly.GetName().Version, PreferenceSettings);
 
                 foreach (var ext in extensions)
@@ -685,11 +731,11 @@ namespace Dynamo.Models
                         ext.Startup(startupParams);
                         // if we are starting extension (A) which is a source of other extensions (like packageManager)
                         // then we can start the extension(s) (B) that it requested be loaded.
-                        if(ext is IExtensionSource)
+                        if (ext is IExtensionSource)
                         {
-                           foreach(var loadedExtension in((ext as IExtensionSource).RequestedExtensions))
+                            foreach (var loadedExtension in ((ext as IExtensionSource).RequestedExtensions))
                             {
-                                if(loadedExtension is IExtension)
+                                if (loadedExtension is IExtension)
                                 {
                                     (loadedExtension as IExtension).Startup(startupParams);
                                 }
@@ -712,10 +758,11 @@ namespace Dynamo.Models
 
             TraceReconciliationProcessor = this;
             // This event should only be raised at the end of this method.
-             DynamoReady(new ReadyParams(this));
+            DynamoReady(new ReadyParams(this));
         }
 
-        private void DynamoReadyExtensionHandler(ReadyParams readyParams, IEnumerable<IExtension> extensions) {
+        private void DynamoReadyExtensionHandler(ReadyParams readyParams, IEnumerable<IExtension> extensions)
+        {
 
             foreach (var ext in extensions)
             {
@@ -765,6 +812,15 @@ namespace Dynamo.Models
                 extensions.AddRange(ExtensionManager.ExtensionLoader.LoadDirectory(dir));
             }
             return extensions;
+        }
+
+        private void RemoveExtension(IExtension ext)
+        {
+            ExtensionManager.Remove(ext);
+
+            var logSource = ext as ILogSource;
+            if (logSource != null)
+                logSource.MessageLogged -= LogMessage;
         }
 
         private void EngineController_TraceReconcliationComplete(TraceReconciliationEventArgs obj)
@@ -834,6 +890,10 @@ namespace Dynamo.Models
             // Override in derived classes to deal with orphaned serializables.
         }
 
+        void UpdateManager_Log(LogEventArgs args)
+        {
+            Logger.Log(args.Message, args.Level);
+        }
 
         /// <summary>
         /// LibraryLoaded event handler.
@@ -874,6 +934,22 @@ namespace Dynamo.Models
                         long end = e.Task.ExecutionEndTime.TickCount;
                         var executionTimeSpan = new TimeSpan(end - start);
 
+                        //if (Logging.Analytics.ReportingAnalytics)
+                        //{
+                        //    var modifiedNodes = "";
+                        //    if (updateTask.ModifiedNodes != null && updateTask.ModifiedNodes.Any())
+                        //    {
+                        //        modifiedNodes = updateTask.ModifiedNodes
+                        //            .Select(n => n.GetOriginalName())
+                        //            .Aggregate((x, y) => string.Format("{0}, {1}", x, y));
+                        //    }
+
+                        //    Dynamo.Logging.Analytics.TrackTimedEvent(
+                        //        Categories.Performance,
+                        //        e.Task.GetType().Name,
+                        //        executionTimeSpan, modifiedNodes);
+                        //}
+
                         Debug.WriteLine(String.Format(Resources.EvaluationCompleted, executionTimeSpan));
 
                         ExecutionEvents.OnGraphPostExecution(new ExecutionSession(updateTask, this, geometryFactoryPath));
@@ -896,6 +972,7 @@ namespace Dynamo.Models
             LibraryServices.Dispose();
             LibraryServices.LibraryManagementCore.Cleanup();
 
+            //UpdateManager.Log -= UpdateManager_Log;
             Logger.Dispose();
 
             EngineController.Dispose();
@@ -933,12 +1010,12 @@ namespace Dynamo.Models
 
                 var elements = SearchModel.SearchEntries.OfType<CustomNodeSearchElement>().
                                 Where(x =>
-                                        {
-                                            // Search for common paths and get rid of empty paths.
-                                            // It can be empty just in case it's just created node.
-                                            return String.Compare(x.Path, info.Path, StringComparison.OrdinalIgnoreCase) == 0 &&
-                                                !String.IsNullOrEmpty(x.Path);
-                                        }).ToList();
+                                {
+                                    // Search for common paths and get rid of empty paths.
+                                    // It can be empty just in case it's just created node.
+                                    return String.Compare(x.Path, info.Path, StringComparison.OrdinalIgnoreCase) == 0 &&
+                                        !String.IsNullOrEmpty(x.Path);
+                                }).ToList();
 
                 if (elements.Any())
                 {
@@ -983,7 +1060,7 @@ namespace Dynamo.Models
         private void InitializeIncludedNodes()
         {
             var customNodeData = new TypeLoadData(typeof(Function));
-            NodeFactory.AddLoader(new CustomNodeLoader(CustomNodeManager));
+            NodeFactory.AddLoader(new CustomNodeLoader(CustomNodeManager/*, IsTestMode*/));
             NodeFactory.AddAlsoKnownAs(customNodeData.Type, customNodeData.AlsoKnownAs);
 
             var dsFuncData = new TypeLoadData(typeof(DSFunction));
@@ -1069,7 +1146,8 @@ namespace Dynamo.Models
 
             // Import Zero Touch libs
             var functionGroups = LibraryServices.GetAllFunctionGroups();
-            AddZeroTouchNodesToSearch(functionGroups);
+            if (!IsTestMode)
+                AddZeroTouchNodesToSearch(functionGroups);
 #if DEBUG_LIBRARY
             DumpLibrarySnapshot(functionGroups);
 #endif
@@ -1100,10 +1178,10 @@ namespace Dynamo.Models
                 }
 
                 // Otherwise it is a custom node
-                CustomNodeManager.AddUninitializedCustomNodesInPath(path);
+                CustomNodeManager.AddUninitializedCustomNodesInPath(path, IsTestMode);
             }
 
-            CustomNodeManager.AddUninitializedCustomNodesInPath(pathManager.CommonDefinitions);
+            CustomNodeManager.AddUninitializedCustomNodesInPath(pathManager.CommonDefinitions, IsTestMode);
         }
 
         internal void LoadNodeLibrary(Assembly assem)
@@ -1136,7 +1214,7 @@ namespace Dynamo.Models
 
         private void InitializeInstrumentationLogger()
         {
-            if (!IsHeadless)
+            if (!IsTestMode && !IsHeadless)
             {
                 //AnalyticsService.Start(this);
             }
@@ -1302,6 +1380,20 @@ namespace Dynamo.Models
                 RegisterCustomNodeDefinitionWithEngine(def);
         }
 
+        /// <summary>
+        ///     Forces an evaluation of the current workspace by resetting the DesignScript VM.
+        /// </summary>
+        public void ForceRun()
+        {
+            Logger.Log("Beginning engine reset");
+
+            ResetEngine(true);
+
+            Logger.Log("Reset complete");
+
+            ((HomeWorkspaceModel)CurrentWorkspace).Run();
+        }
+
         #endregion
 
         #region save/load
@@ -1425,17 +1517,18 @@ namespace Dynamo.Models
             {
                 //save the file before it is migrated to JSON.
                 //if in test mode, don't save the file in backup
-
-                if (!pathManager.BackupXMLFile(xmlDoc, filePath))
+                if (!IsTestMode)
                 {
-                    Logger.Log("File is not saved in the backup folder {0}: ", pathManager.BackupDirectory);
+                    if (!pathManager.BackupXMLFile(xmlDoc, filePath))
+                    {
+                        Logger.Log("File is not saved in the backup folder {0}: ", pathManager.BackupDirectory);
+                    }
                 }
-                
 
                 WorkspaceInfo workspaceInfo;
-                if (WorkspaceInfo.FromXmlDocument(xmlDoc, filePath, forceManualExecutionMode, Logger, out workspaceInfo))
+                if (WorkspaceInfo.FromXmlDocument(xmlDoc, filePath, /*IsTestMode,*/ forceManualExecutionMode, Logger, out workspaceInfo))
                 {
-                    if (MigrationManager.ProcessWorkspace(workspaceInfo, xmlDoc, NodeFactory))
+                    if (MigrationManager.ProcessWorkspace(workspaceInfo, xmlDoc, /*IsTestMode,*/ NodeFactory))
                     {
                         WorkspaceModel ws;
                         if (OpenXmlFile(workspaceInfo, xmlDoc, out ws))
@@ -1509,7 +1602,8 @@ namespace Dynamo.Models
           out WorkspaceModel workspace)
         {
             CustomNodeManager.AddUninitializedCustomNodesInPath(
-                Path.GetDirectoryName(filePath));
+                Path.GetDirectoryName(filePath),
+                IsTestMode);
 
             // TODO, QNTM-1108: WorkspaceModel.FromJson does not check a schema and so will not fail as long
             // as the fileContents are valid JSON, regardless of if all required data is present or not
@@ -1519,6 +1613,7 @@ namespace Dynamo.Models
                 EngineController,
                 Scheduler,
                 NodeFactory,
+                //IsTestMode,
                 false,
                 CustomNodeManager);
 
@@ -1558,10 +1653,11 @@ namespace Dynamo.Models
         private bool OpenXmlFile(WorkspaceInfo workspaceInfo, XmlDocument xmlDoc, out WorkspaceModel workspace)
         {
             CustomNodeManager.AddUninitializedCustomNodesInPath(
-                Path.GetDirectoryName(workspaceInfo.FileName));
+                Path.GetDirectoryName(workspaceInfo.FileName),
+                IsTestMode);
 
             var result = workspaceInfo.IsCustomNodeWorkspace
-                ? CustomNodeManager.OpenCustomNodeWorkspace(xmlDoc, workspaceInfo,out workspace)
+                ? CustomNodeManager.OpenCustomNodeWorkspace(xmlDoc, workspaceInfo, /*IsTestMode,*/ out workspace)
                 : OpenXmlHomeWorkspace(xmlDoc, workspaceInfo, out workspace);
 
             workspace.OnCurrentOffsetChanged(
@@ -1589,7 +1685,9 @@ namespace Dynamo.Models
                 nodeGraph.Presets,
                 nodeGraph.ElementResolver,
                 workspaceInfo,
-                DebugSettings.VerboseLogging);
+                DebugSettings.VerboseLogging/*,*/
+                //IsTestMode
+               );
 
             RegisterHomeWorkspace(newWorkspace);
 
@@ -1658,6 +1756,8 @@ namespace Dynamo.Models
         {
             // When running test cases, the dispatcher may be null which will cause the timer to
             // introduce a lot of threads. So the timer will not be started if test cases are running.
+            if (IsTestMode)
+                return;
 
             if (backupFilesTimer != null)
             {
@@ -1677,29 +1777,7 @@ namespace Dynamo.Models
         {
             Logger.Log(Resources.WelcomeMessage);
         }
-        /// <summary>
-        /// 隐藏或显示指定的命名空间
-        /// </summary>
-        /// <param name="hide"></param>
-        /// <param name="library"></param>
-        /// <param name="namespc"></param>
-        internal void HideUnhideNamespace(bool hide, string library, string namespc)
-        {
-            var str = library + ':' + namespc;
-            var namespaces = PreferenceSettings.NamespacesToExcludeFromLibrary;
 
-            if (hide)
-            {
-                if (!namespaces.Contains(str))
-                {
-                    namespaces.Add(str);
-                }
-            }
-            else // unhide
-            {
-                namespaces.Remove(str);
-            }
-        }
         internal void DeleteModelInternal(List<ModelBase> modelsToDelete)
         {
             if (null == CurrentWorkspace)
@@ -1800,6 +1878,21 @@ namespace Dynamo.Models
 
         }
 
+        //internal void DumpLibraryToXml(object parameter)
+        //{
+        //    string fileName = String.Format("LibrarySnapshot_{0}.xml", DateTime.Now.ToString("yyyyMMddHmmss"));
+        //    string fullFileName = Path.Combine(pathManager.LogDirectory, fileName);
+
+        //    SearchModel.DumpLibraryToXml(fullFileName, PathManager.DynamoCoreDirectory);
+
+        //    Logger.Log(string.Format(Resources.LibraryIsDumped, fullFileName));
+        //}
+
+        internal bool CanDumpLibraryToXml(object obj)
+        {
+            return true;
+        }
+
         #endregion
 
         #region public methods
@@ -1815,7 +1908,7 @@ namespace Dynamo.Models
                 Scheduler,
                 NodeFactory,
                 DebugSettings.VerboseLogging,
-                string.Empty);
+                /*IsTestMode,*/ string.Empty);
 
             RegisterHomeWorkspace(defaultWorkspace);
             AddWorkspace(defaultWorkspace);
@@ -1856,7 +1949,7 @@ namespace Dynamo.Models
         public bool OpenCustomNodeWorkspace(Guid guid)
         {
             CustomNodeWorkspaceModel customNodeWorkspace;
-            if (CustomNodeManager.TryGetFunctionWorkspace(guid, out customNodeWorkspace))
+            if (CustomNodeManager.TryGetFunctionWorkspace(guid, /*IsTestMode,*/ out customNodeWorkspace))
             {
                 if (!Workspaces.OfType<CustomNodeWorkspaceModel>().Contains(customNodeWorkspace))
                     AddWorkspace(customNodeWorkspace);
@@ -2192,6 +2285,32 @@ namespace Dynamo.Models
             SearchModel.Add(new NodeModelSearchElement(typeLoadData));
         }
 
+        /// <summary>
+        /// This method updates the node search library to either hide or unhide nodes that belong
+        /// to a specified assembly name and namespace. These nodes will be hidden from the node
+        /// library sidebar and from the node search.
+        /// </summary>
+        /// <param name="hide">Set to true to hide, set to false to unhide.</param>
+        /// <param name="library">The assembly name of the library.</param>
+        /// <param name="namespc">The namespace of the nodes to be hidden.</param>
+        internal void HideUnhideNamespace(bool hide, string library, string namespc)
+        {
+            var str = library + ':' + namespc;
+            var namespaces = PreferenceSettings.NamespacesToExcludeFromLibrary;
+
+            if (hide)
+            {
+                if (!namespaces.Contains(str))
+                {
+                    namespaces.Add(str);
+                }
+            }
+            else // unhide
+            {
+                namespaces.Remove(str);
+            }
+        }
+
         private void AddZeroTouchNodesToSearch(IEnumerable<FunctionGroup> functionGroups)
         {
             foreach (var funcGroup in functionGroups)
@@ -2247,14 +2366,21 @@ namespace Dynamo.Models
                   Resources.UnresolvedNodesWarningTitle,
                   Resources.UnresolvedNodesWarningShortMessage,
                   Resources.UnresolvedNodesWarningMessage);
-
-                  DisplayXmlDummyNodeWarning();
-                
+                if (!IsTestMode)
+                {
+                    DisplayXmlDummyNodeWarning();
+                }
                 //raise a window as well so the user is clearly alerted to this state.
             }
         }
         private void DisplayXmlDummyNodeWarning()
         {
+            var xmlDummyNodeCount = this.CurrentWorkspace.Nodes.OfType<DummyNode>().
+                 Where(node => node.OriginalNodeContent is XmlElement).Count();
+
+            //Logging.Analytics.LogPiiInfo("XmlDummyNodeWarning",
+            //    xmlDummyNodeCount.ToString());
+
             string summary = Resources.UnresolvedNodesWarningShortMessage;
             var description = Resources.UnresolvedNodesWarningMessage;
             const string imageUri = "/DynamoCoreWpf;component/UI/Images/task_dialog_future_file.png";
@@ -2284,6 +2410,13 @@ namespace Dynamo.Models
         /// <param name="currVersion">Current version of the Dynamo.</param>
         private void DisplayObsoleteFileMessage(string fullFilePath, Version fileVersion, Version currVersion)
         {
+            var fileVer = ((fileVersion != null) ? fileVersion.ToString() : "Unknown");
+            var currVer = ((currVersion != null) ? currVersion.ToString() : "Unknown");
+
+            //Logging.Analytics.LogPiiInfo(
+            //    "ObsoleteFileMessage",
+            //    fullFilePath + " :: fileVersion:" + fileVer + " :: currVersion:" + currVer);
+
             string summary = Resources.FileCannotBeOpened;
             var description =
                 string.Format(
@@ -2312,6 +2445,13 @@ namespace Dynamo.Models
         /// <param name="exception">The exception to display.</param>
         private TaskDialogEventArgs DisplayEngineFailureMessage(Exception exception)
         {
+            //Dynamo.Logging.Analytics.TrackEvent(Actions.EngineFailure, Categories.Stability);
+
+            //if (exception != null)
+            //{
+            //    Dynamo.Logging.Analytics.TrackException(exception, false);
+            //}
+
             string summary = Resources.UnhandledExceptionSummary;
 
             string description = Resources.DisplayEngineFailureMessageDescription;
@@ -2343,6 +2483,12 @@ namespace Dynamo.Models
         /// <returns> true if the file must be opened and false otherwise </returns>
         private bool DisplayFutureFileMessage(string fullFilePath, Version fileVersion, Version currVersion)
         {
+            var fileVer = ((fileVersion != null) ? fileVersion.ToString() : Resources.UnknownVersion);
+            var currVer = ((currVersion != null) ? currVersion.ToString() : Resources.UnknownVersion);
+
+            //Logging.Analytics.LogPiiInfo("FutureFileMessage", fullFilePath +
+            //    " :: fileVersion:" + fileVer + " :: currVersion:" + currVer);
+
             string summary = Resources.FutureFileSummary;
             var description = string.Format(Resources.FutureFileDescription, fullFilePath, fileVersion, currVersion);
 

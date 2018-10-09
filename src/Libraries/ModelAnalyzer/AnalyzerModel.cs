@@ -8,6 +8,9 @@ using Dynamo.Graph;
 using Dynamo.Graph.Nodes;
 using Newtonsoft.Json;
 using ModelAnalyzer;
+using ProtoCore.AST;
+using ProtoCore.SyntaxAnalysis;
+using ProtoCore.SyntaxAnalysis.Associative;
 using DynamoConversions;
 
 /*
@@ -40,9 +43,9 @@ namespace ModelAnalyzerUI
 
         public AnalyzerModel()
         {
-            InPorts.Add(new PortModel(PortType.Input, this, new PortData("Model_File", "输入1", new StringNode())));
-            InPorts.Add(new PortModel(PortType.Input, this, new PortData("Label_File", "输入2", new StringNode())));
-            InPorts.Add(new PortModel(PortType.Input, this, new PortData("Input_File", "输入3", new StringNode())));
+            InPorts.Add(new PortModel(PortType.Input, this, new PortData("Model_File", "输入1")));
+            InPorts.Add(new PortModel(PortType.Input, this, new PortData("Label_File", "输入2")));
+            InPorts.Add(new PortModel(PortType.Input, this, new PortData("Input_File", "输入3")));
             OutPorts.Add(new PortModel(PortType.Output, this, new PortData("Result", "输出")));
 
             ShouldDisplayPreviewCore = true;
@@ -67,6 +70,7 @@ namespace ModelAnalyzerUI
             var input1 = inputAstNodes[0];
             var input2 = inputAstNodes[1];
             var input3 = inputAstNodes[2];
+
             
 
             AssociativeNode node = null;
@@ -74,10 +78,14 @@ namespace ModelAnalyzerUI
                         new Func<string, string, string, string>(Conversions.TestFunc),
                         new List<AssociativeNode> { input1, input2, input3 });
 
+            //注意观察多输出怎么写
             return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node) };
         }
 
-
+        private static string TestFunc(int a, int b, int c)
+        {
+            return (a + b + c).ToString();
+        }
 
 
 

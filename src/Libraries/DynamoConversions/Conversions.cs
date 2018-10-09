@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-
+﻿using System;
+using System.Collections.Generic;
+using Autodesk.DesignScript.Geometry;
 using Autodesk.DesignScript.Runtime;
 
 namespace DynamoConversions
@@ -94,9 +95,14 @@ namespace DynamoConversions
             var returnval =  convertValue * conversion;
             return returnval;
         }
+
         public static string TestFunc(string a, string b, string c)
         {
             return "Fuckiing succeed!";
+        }
+        public static string FuncTestFuck(IEnumerable<Geometry> a, string b, double c)
+        {
+            return "Fucking succeed!";
         }
     }
 }

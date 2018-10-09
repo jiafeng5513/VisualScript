@@ -308,7 +308,7 @@ namespace Dynamo.Models
             /// This method provides derived class implementation of analytics
             /// tracking, and only gets called if analytics tracking is enabled.
             /// </summary>
-            //internal virtual void TrackAnalytics() { }
+            internal virtual void TrackAnalytics() { }
 
             #endregion
         }
@@ -602,6 +602,38 @@ namespace Dynamo.Models
             #endregion
         }
 
+        /// <summary>
+        /// A command used to force cancellation of execution.
+        /// </summary>
+        //[DataContract]
+        //public class ForceRunCancelCommand : RunCancelCommand
+        //{
+        //    /// <summary>
+        //    ///
+        //    /// </summary>
+        //    /// <param name="showErrors">Should errors be shown?</param>
+        //    /// <param name="cancelRun">True to cancel execution. False to execute.</param>
+        //    public ForceRunCancelCommand(bool showErrors, bool cancelRun)
+        //        : base(showErrors, cancelRun) { }
+
+        //    protected override void ExecuteCore(DynamoModel dynamoModel)
+        //    {
+        //        dynamoModel.ForceRunCancelImpl(this);
+        //    }
+        //}
+
+        /// <summary>
+        /// A command used to mutate commands during testing.
+        /// </summary>
+        public class MutateTestCommand : RecordableCommand
+        {
+            protected override void ExecuteCore(DynamoModel dynamoModel) { }
+
+            protected override void SerializeCore(XmlElement element)
+            {
+                var helper = new XmlElementHelper(element);
+            }
+        }
 
         /// <summary>
         /// A command used to create a node.
@@ -1565,7 +1597,7 @@ namespace Dynamo.Models
                 Value = value;
             }
 
-         
+
             public ModelEventCommand(string modelGuid, string eventName)
                 : base(new[] { Guid.Parse(modelGuid) })
             {
@@ -2176,8 +2208,8 @@ namespace Dynamo.Models
             /// <param name="name"></param>
             /// <param name="description"></param>
             /// <param name="currentSelectionIds"></param>
-            public AddPresetCommand(string name, string description, IEnumerable<Guid> currentSelectionIds )
-                :base(currentSelectionIds)
+            public AddPresetCommand(string name, string description, IEnumerable<Guid> currentSelectionIds)
+                : base(currentSelectionIds)
             {
                 PresetStateName = name;
                 PresetStateDescription = description;
@@ -2187,12 +2219,12 @@ namespace Dynamo.Models
             {
                 var helper = new XmlElementHelper(element);
                 var modelGuids = DeserializeGuid(element, helper);
-                if (modelGuids.Count()<1)
+                if (modelGuids.Count() < 1)
                 {
                     throw new ArgumentNullException("No IDs were deserialized during load of preset creation command");
                 }
 
-                return new AddPresetCommand(helper.ReadString("name"), helper.ReadString("description"),modelGuids);
+                return new AddPresetCommand(helper.ReadString("name"), helper.ReadString("description"), modelGuids);
             }
 
             #endregion
@@ -2203,7 +2235,7 @@ namespace Dynamo.Models
             internal string PresetStateName { get; set; }
             [DataMember]
             internal string PresetStateDescription { get; set; }
-             #endregion
+            #endregion
 
             #region Protected Overridable Methods
 
@@ -2221,7 +2253,7 @@ namespace Dynamo.Models
                 helper.SetAttribute("description", PresetStateDescription);
 
             }
-              #endregion
+            #endregion
         }
 
         /// <summary>
@@ -2279,4 +2311,37 @@ namespace Dynamo.Models
             #endregion
         }
     }
+
+    // public class XxxYyyCommand : RecordableCommand
+    // {
+    //     #region Public Class Methods
+    //
+    //     public XxxYyyCommand()
+    //     {
+    //     }
+    //
+    //     internal static XxxYyyCommand DeserializeCore(XmlElement element)
+    //     {
+    //         throw new NotImplementedException();
+    //     }
+    //
+    //     #endregion
+    //
+    //     #region Public Command Properties
+    //     #endregion
+    //
+    //     #region Protected Overridable Methods
+    //
+    //     protected override void ExecuteCore(DynamoModel dynamoModel)
+    //     {
+    //         throw new NotImplementedException();
+    //     }
+    //
+    //     protected override void SerializeCore(XmlElement element)
+    //     {
+    //         throw new NotImplementedException();
+    //     }
+    //
+    //     #endregion
+    // }
 }
