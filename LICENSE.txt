@@ -1,121 +1,125 @@
-## Dynamo License
+## Expressior Licence
 
-Copyright 2013-2016 Autodesk
+Copyright [2018] AngelaViVi
 
-Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
-
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.You may obtain a copy of the License at
 http://www.apache.org/licenses/LICENSE-2.0
 
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS,WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and limitations under the License.
 
+------
+
+## Dynamo License
+- https://github.com/DynamoDS/Dynamo
+- https://github.com/DynamoDS/Dynamo/blob/master/LICENSE.txt<br>
+(Apache License)
+------
 
 ## Third Party Licenses ##
 
-###Avalon Edit###
-http://www.codeproject.com/Articles/42490/Using-AvalonEdit-WPF-Text-Editor
-http://opensource.org/licenses/lgpl-3.0.html
+### Avalon Edit ###
+- http://www.codeproject.com/Articles/42490/Using-AvalonEdit-WPF-Text-Editor
+- http://opensource.org/licenses/lgpl-3.0.html
 
-###CSharpAnalytics###
-https://github.com/AttackPattern/CSharpAnalytics
-http://www.apache.org/licenses/LICENSE-2.0
+### CSharpAnalytics ###
+- https://github.com/AttackPattern/CSharpAnalytics
+- http://www.apache.org/licenses/LICENSE-2.0
 
-###Cyotek.Drawing.BitmapFont###
-https://github.com/cyotek/Cyotek.Drawing.BitmapFont
-https://github.com/cyotek/Cyotek.Drawing.BitmapFont/blob/master/LICENSE.txt 
+### Cyotek.Drawing.BitmapFont ###
+- https://github.com/cyotek/Cyotek.Drawing.BitmapFont
+- https://github.com/cyotek/Cyotek.Drawing.BitmapFont/blob/master/LICENSE.txt <br>
   (MIT license)
 
-###Fontawesome###
-https://www.nuget.org/packages/FontAwesome.WPF/
-https://github.com/charri/Font-Awesome-WPF/blob/master/LICENSE 
+### Fontawesome ###
+- https://www.nuget.org/packages/FontAwesome.WPF/
+- https://github.com/charri/Font-Awesome-WPF/blob/master/LICENSE <br>
   (MIT license)
 
-###GNU gettext (libintl)###
-https://www.gnu.org/software/gettext/
-https://www.gnu.org/software/gettext/manual/html_node/GNU-LGPL.html#GNU-LGPL
+### GNU gettext (libintl) ###
+- https://www.gnu.org/software/gettext/
+- https://www.gnu.org/software/gettext/manual/html_node/GNU-LGPL.html#GNU-LGPL
 
-###Helix Toolkit###
-https://helixtoolkit.codeplex.com/
-https://helixtoolkit.codeplex.com/license 
+### Helix Toolkit ###
+- https://helixtoolkit.codeplex.com/
+- https://helixtoolkit.codeplex.com/license <br>
   (MIT license)
 
-###Iron Python###
+### Iron Python ###
 http://ironpython.net/
 http://opensource.org/licenses/apache2.0.php
 
-###libiconv###
-https://www.gnu.org/software/libiconv/
-https://www.gnu.org/software/gettext/manual/html_node/GNU-LGPL.html#GNU-LGPL
+### libiconv ###
+- https://www.gnu.org/software/libiconv/
+- https://www.gnu.org/software/gettext/manual/html_node/GNU-LGPL.html#GNU-LGPL
 
-###libgcc, libstdc++, libgomp###
-https://gcc.gnu.org/onlinedocs/libgomp/
-https://gcc.gnu.org/onlinedocs/gcc-4.3.3/libgomp/Copying.html#Copying
+### libgcc, libstdc++, libgomp ###
+- https://gcc.gnu.org/onlinedocs/libgomp/
+- https://gcc.gnu.org/onlinedocs/gcc-4.3.3/libgomp/Copying.html#Copying<br>
   (GPL-3.0 license)
-https://gcc.gnu.org/libstdc++/ 
-https://gcc.gnu.org/onlinedocs/libstdc++/manual/license.html
+- https://gcc.gnu.org/libstdc++/ 
+- https://gcc.gnu.org/onlinedocs/libstdc++/manual/license.html<br>
   (GPL-3.0 license, w/ GCC Runtime Library Exception version 3.1, see below)
-https://gcc.gnu.org/onlinedocs/gccint/Libgcc.html
+- https://gcc.gnu.org/onlinedocs/gccint/Libgcc.html<br>
   (GPL-3.0 license, w/ GCC Runtime Library Exception version 3.1; see 
-  http://wiki.osdev.org/Libgcc#What_is_the_libgcc_license.3F and
-  see the runtime library exception below) 
-The GCC Runtime Library Exception, version 3.1:
-  (http://www.gnu.org/licenses/gcc-exception.html
+http://wiki.osdev.org/Libgcc#What_is_the_libgcc_license.3F and
+  see the runtime library exception below) <br>
+- The GCC Runtime Library Exception, version 3.1:<br>
+(http://www.gnu.org/licenses/gcc-exception.html
   see also http://www.gnu.org/licenses/gcc-exception-3.1-faq.en.html)
 
-###Lucene.Net###
-http://lucenenet.apache.org/
-http://www.apache.org/licenses/LICENSE-2.0
+### Lucene .Net ###
+- http://lucenenet.apache.org/
+- http://www.apache.org/licenses/LICENSE-2.0
 
-###Microsoft 2012 C Runtime DLLS, msvcp110.dll and msvcr110.dll###
-http://msdn.microsoft.com/en-us/vstudio/dn501987
+### Microsoft 2012 C Runtime DLLS, msvcp110.dll and msvcr110.dll ###
+- http://msdn.microsoft.com/en-us/vstudio/dn501987<br>
   (Not open source, but redistribution is permitted; see above)
 
-###Moq###
-http://www.nuget.org/packages/Moq/
-http://opensource.org/licenses/bsd-license.php
+### Moq ###
+- http://www.nuget.org/packages/Moq/
+- http://opensource.org/licenses/bsd-license.php
 
-###MiConvexHull###
-http://miconvexhull.codeplex.com/
-http://miconvexhull.codeplex.com/license
+### MiConvexHull ###
+- http://miconvexhull.codeplex.com/
+- http://miconvexhull.codeplex.com/license<br>
   (MIT license)
 
-###NCalc###
-http://ncalc.codeplex.com/
-http://ncalc.codeplex.com/license
+### NCalc ###
+- http://ncalc.codeplex.com/
+- http://ncalc.codeplex.com/license<br>
   (MIT license)
 
-###NDesk Options###
-http://ndesk.org/Options#License
+### NDesk Options ###
+- http://ndesk.org/Options#License<br>
   (MIT license)
 
-###Newtonsoft JSON###
-https://github.com/JamesNK/Newtonsoft.Json
-https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md
+### Newtonsoft JSON ###
+- https://github.com/JamesNK/Newtonsoft.Json
+- https://github.com/JamesNK/Newtonsoft.Json/blob/master/LICENSE.md<br>
   (MIT license)
 
-###NUnit####
-http://www.nunit.org/
-http://www.nunit.org/index.php?p=license&r=2.6.2
-  (Zlib license, https://opensource.org/licenses/Zlib)
+### NUnit ####
+- http://www.nunit.org/
+- http://www.nunit.org/index.php?p=license&r=2.6.2<br>
+  (Zlib license, - https://opensource.org/licenses/Zlib)
 
-###OpenSans font from Google###
-http://www.google.com/fonts/specimen/Open+Sans
-http://www.apache.org/licenses/LICENSE-2.0.html
+### OpenSans font from Google ###
+- http://www.google.com/fonts/specimen/Open+Sans
+- http://www.apache.org/licenses/LICENSE-2.0.html
 
-###Prism###
-http://msdn.microsoft.com/en-us/library/gg406140.aspx
-http://msdn.microsoft.com/en-us/library/gg405489(PandP.40).aspx
-  (Microsoft patterns & practices License.  Note that this is not
-   the same as https://opensource.org/licenses/MS-PL, the Microsoft
-   Public License, though clearly related.  The "patterns & practices"
-   license looks a lot like an open source license, it does not appear
-   to be OSI-approved as of 2016-02-24.)
+### Prism ###
+- http://msdn.microsoft.com/en-us/library/gg406140.aspx
+- http://msdn.microsoft.com/en-us/library/gg405489(PandP.40).aspx<br>
+  (Microsoft patterns & practices License.  Note that this is not the same as https://opensource.org/licenses/MS-PL, the Microsoft Public License, though clearly related.  
+  The "patterns & practices" license looks a lot like an open source license, it does not appear to be OSI-approved as of 2016-02-24.)
 
-###Revit Test Framework###
-https://github.com/DynamoDS/RevitTestFramework
-http://opensource.org/licenses/MIT
+### Revit Test Framework ###
+- https://github.com/DynamoDS/RevitTestFramework
+- http://opensource.org/licenses/MIT
 
-###Winpthreads###
-http://mingw-w64.sourceforge.net/
-http://www.mingw.org/license
+### Winpthreads ###
+- http://mingw-w64.sourceforge.net/
+- http://www.mingw.org/license<br>
   (Hybrid licensing -- different license terms for different parts.
   It ends up being a combination of MIT-style, GPL-2.0, and GPL-3.0)
