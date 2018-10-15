@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Librarie.js sample page</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            background-color: #353535;
+        }
+    </style>
+    </style>
+</head>
+
+<body>
+
+    <div id="libraryContainerPlaceholder"></div>
+
+    <!-- The main library view compoment -->
+    <script src='./dist/librarie.min.js'></script>
+
+    <script>
+        let jsonUrls = ["loadedTypes", "layoutSpecs"];
+        let downloader = LibraryEntryPoint.CreateJsonDownloader(jsonUrls, function (jsonUrl, jsonObject) {
+
+            let downloaded = downloader.getDownloadedJsonObjects();
+            let loadedTypesJson = downloaded["loadedTypes"];
+            let layoutSpecsJson = downloaded["layoutSpecs"];
+
+
+            if (!loadedTypesJson || (!layoutSpecsJson)) {
+                return; // Not fully downloaded yet, bail.
+            }
+
+            let libController = LibraryEntryPoint.CreateLibraryController();
+
+            libController.on(libController.ItemClickedEventName, function (item) {
+                console.log(item);
+            });
+
+            libController.on(libController.ItemMouseEnterEventName, function (arg) {
+                console.log("Data: " + arg.data);
+                console.log("Rect(top, left, bottom, right): " + arg.rect.top + "," + arg.rect.left + "," + arg.rect.bottom + "," + arg.rect.right);
+            });
+
+            libController.on(libController.ItemMouseLeaveEventName, function (arg) {
+                console.log("Data: " + arg.data);
+                console.log("Rect(top, left, bottom, right): " + arg.rect.top + "," + arg.rect.left + "," + arg.rect.bottom + "," + arg.rect.right);
+            });
+
+            libController.on(libController.ItemSummaryExpandedEventName, function (arg) {
+                console.log(arg.data);
+            });
+
+            libController.on(libController.SearchTextUpdatedEventName, function (searchText) {
+                console.log(searchText);
+                return null;
+            });
+
+            libController.on(libController.SectionIconClickedEventName, function (sectionText) {
+                console.log(sectionText, "icon clicked");
+                return null;
+            });
+
+            let libContainer = libController.createLibraryByElementId(
+                "libraryContainerPlaceholder", layoutSpecsJson, loadedTypesJson);
+
+            libController.on(libController.FilterCategoryEventName, function (item) {
+                console.log(item);
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>

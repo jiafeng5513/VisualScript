@@ -1,0 +1,1940 @@
+{
+  "sections": [
+    {
+      "text": "default",
+      "iconUrl": "",
+      "elementType": "section",
+      "showHeader": false,
+      "include": [],
+      "childElements": [
+        {
+          "text": "List",
+          "iconUrl": "/src/resources/icons/Category.List.svg",
+          "elementType": "category",
+          "include": [],
+          "childElements": [
+            {
+              "text": "Inspect",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "DSCore.List.AllFalse"
+                },
+                {
+                  "path": "DSCore.List.AllTrue"
+                },
+                {
+                  "path": "DSCore.List.SetIntersection"
+                },
+                {
+                  "path": "DSCore.List.SetUnion"
+                },
+                {
+                  "path": "DSCore.List.SetDifference"
+                },
+                {
+                  "path": "DSCore.List.Contains"
+                },
+                {
+                  "path": "Rank"
+                },
+                {
+                  "path": "DSCore.List.IsHomogeneous"
+                },
+                {
+                  "path": "DSCore.List.IsUniformDepth"
+                },
+                {
+                  "path": "DSCore.List.IsRectangular"
+                },
+                {
+                  "path": "List.TrueForAll"
+                },
+                {
+                  "path": "List.TrueForAny"
+                },
+                {
+                  "path": "DSCore.List.IsEmpty"
+                },
+                {
+                  "path": "DSCore.List.IndexOf"
+                },
+                {
+                  "path": "DSCore.List.FirstIndexOf"
+                },
+                {
+                  "path": "List.Equals"
+                },
+                {
+                  "path": "DSCore.List.CountTrue"
+                },
+                {
+                  "path": "DSCore.List.CountFalse"
+                },
+                {
+                  "path": "DSCore.List.MinimumItem"
+                },
+                {
+                  "path": "DSCore.List.MaximumItem"
+                },
+                {
+                  "path": "DSCore.List.DiagonalRight"
+                },
+                {
+                  "path": "DSCore.List.DiagonalLeft"
+                },
+                {
+                  "path": "DSCore.List.FirstItem"
+                },
+                {
+                  "path": "DSCore.List.GetItemAtIndex"
+                },
+                {
+                  "path": "DSCore.List.LastItem"
+                },
+                {
+                  "path": "DSCore.List.AllIndicesOf"
+                },
+                {
+                  "path": "DSCore.List.Count"
+                },
+                {
+                  "path": "DSCore.List.UniqueItems"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Modify",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "List.RemoveIfNot"
+                },
+                {
+                  "path": "Core.List.List.Reduce"
+                },
+                {
+                  "path": "Core.List.List.Scan"
+                },
+                {
+                  "path": "DSCore.List.RemoveItemAtIndex"
+                },
+                {
+                  "path": "DSCore.List.RestOfItems"
+                },
+                {
+                  "path": "DSCore.List.Flatten"
+                },
+                {
+                  "path": "DSCore.List.Deconstruct"
+                },
+                {
+                  "path": "DSCore.List.Sublists"
+                },
+                {
+                  "path": "DSCore.List.Chop"
+                },
+                {
+                  "path": "DSCore.List.Slice"
+                },
+                {
+                  "path": "DSCore.List.TakeItems"
+                },
+                {
+                  "path": "DSCore.List.Clean"
+                },
+                {
+                  "path": "DSCore.List.DropEveryNthItem"
+                },
+                {
+                  "path": "DSCore.List.DropItems"
+                },
+                {
+                  "path": "Core.List.List.Filter"
+                },
+                {
+                  "path": "DSCore.List.FilterByBoolMask"
+                },
+                {
+                  "path": "DSCore.List.TakeEveryNthItem"
+                },
+                {
+                  "path": "Core.List.ReplaceByCondition"
+                },
+                {
+                  "path": "DSCore.List.ReplaceItemAtIndex"
+                },
+                {
+                  "path": "DSCore.List.Insert"
+                },
+                {
+                  "path": "DSCore.List.AddItemToEnd"
+                },
+                {
+                  "path": "DSCore.List.AddItemToFront"
+                },
+                {
+                  "path": "DSCore.List.Transpose"
+                },
+                {
+                  "path": "DSCore.List.Reverse"
+                },
+                {
+                  "path": "DSCore.List.ShiftIndices"
+                },
+                {
+                  "path": "DSCore.List.Shuffle"
+                },
+                {
+                  "path": "DSCore.List.Sort"
+                },
+                {
+                  "path": "DSCore.List.NormalizeDepth"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Organize",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "List.GroupByFunction"
+                },
+                {
+                  "path": "DSCore.List.Reorder"
+                },
+                {
+                  "path": "List.SortByFunction"
+                },
+                {
+                  "path": "DSCore.List.SortIndexByValue"
+                }
+              ],
+              "childElements": [
+                {
+                  "text": "Keys",
+                  "iconUrl": "/src/resources/icons/Category.Keys.svg",
+                  "elementType": "category",
+                  "include": [
+                    {
+                      "path": "List.GetKeys"
+                    },
+                    {
+                      "path": "List.GetValues"
+                    },
+                    {
+                      "path": "List.MaximumItemByKey"
+                    },
+                    {
+                      "path": "List.MinimumItemByKey"
+                    },
+                    {
+                      "path": "List.ContainsKey"
+                    },
+                    {
+                      "path": "List.RemoveKey"
+                    },
+                    {
+                      "path": "DSCore.List.GroupByKey"
+                    },
+                    {
+                      "path": "DSCore.List.SortByKey"
+                    }
+                  ],
+                  "childItems": []
+                }
+              ]
+            },
+            {
+              "text": "Generate",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "Core.List.List.Create"
+                },
+                {
+                  "path": "DSCore.List.Join"
+                },
+                {
+                  "path": "Core.List.Range"
+                },
+                {
+                  "path": "Core.List.Sequence"
+                },
+                {
+                  "path": "DSCore.List.Combinations"
+                },
+                {
+                  "path": "DSCore.List.Permutations"
+                },
+                {
+                  "path": "DSCore.List.Empty"
+                },
+                {
+                  "path": "DSCore.List.OfRepeatedItem"
+                },
+                {
+                  "path": "DSCore.List.Cycle"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Match",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "Core.List.List.LaceShortest"
+                },
+                {
+                  "path": "Core.List.List.LaceLongest"
+                },
+                {
+                  "path": "Core.List.List.CartesianProduct"
+                },
+                {
+                  "path": "Core.List.List.Map"
+                },
+                {
+                  "path": "Core.List.List.Combine"
+                }
+              ],
+              "childElements": []
+            }
+          ]
+        },
+        {
+          "text": "Input",
+          "iconUrl": "/src/resources/icons/Category.Input.svg",
+          "elementType": "category",
+          "include": [],
+          "childElements": [
+            {
+              "text": "DateTime",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "Core.Input.Date Time"
+                },
+                {
+                  "path": "DSCore.DateTime.MinValue"
+                },
+                {
+                  "path": "DSCore.DateTime.MaxValue"
+                },
+                {
+                  "path": "DSCore.DateTime.Now"
+                },
+                {
+                  "path": "DSCore.DateTime.Today"
+                },
+                {
+                  "path": "DSCore.DateTime.ByDate"
+                },
+                {
+                  "path": "DSCore.DateTime.ByDateAndTime"
+                },
+                {
+                  "path": "DSCore.DateTime.SubtractTimeSpan"
+                },
+                {
+                  "path": "DSCore.DateTime.AddTimeSpan"
+                },
+                {
+                  "path": "DSCore.DateTime.DaysInMonth"
+                },
+                {
+                  "path": "DSCore.DateTime.IsDaylightSavingsTime"
+                },
+                {
+                  "path": "DSCore.DateTime.IsLeapYear"
+                },
+                {
+                  "path": "DSCore.DateTime.FromString"
+                },
+                {
+                  "path": "DSCore.DateTime.Date"
+                },
+                {
+                  "path": "DSCore.DateTime.Components"
+                },
+                {
+                  "path": "DSCore.DateTime.DayOfWeek"
+                },
+                {
+                  "path": "DSCore.DateTime.DayOfYear"
+                },
+                {
+                  "path": "DSCore.DateTime.TimeOfDay"
+                },
+                {
+                  "path": "DSCore.DateTime.Format"
+                },
+                {
+                  "path": "DSCore.DayOfWeek",
+                  "iconUrl": "/src/resources/icons/DSCore.DayOfWeek.png"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Location",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "DynamoUnits.Location.Name"
+                },
+                {
+                  "path": "DynamoUnits.Location.Latitude"
+                },
+                {
+                  "path": "DynamoUnits.Location.Longitude"
+                },
+                {
+                  "path": "DynamoUnits.Location.ByLatitudeAndLongitude"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Basic",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "Core.Input.Boolean"
+                },
+                {
+                  "path": "Core.Input.Integer Slider"
+                },
+                {
+                  "path": "Core.Input.Number Slider"
+                },
+                {
+                  "path": "Core.Input.String"
+                },
+                {
+                  "path": "Core.Input.Number"
+                },
+                {
+                  "path": "Core.Input.Code Block"
+                },
+                {
+                  "path": "Core.Input.Input"
+                },
+                {
+                  "path": "Core.Input.Output"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "TimeSpan",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "DSCore.TimeSpan.ByDateDifference"
+                },
+                {
+                  "path": "DSCore.TimeSpan.Zero"
+                },
+                {
+                  "path": "DSCore.TimeSpan.MaxValue"
+                },
+                {
+                  "path": "DSCore.TimeSpan.MinValue"
+                },
+                {
+                  "path": "DSCore.TimeSpan.Create"
+                },
+                {
+                  "path": "DSCore.TimeSpan.Scale"
+                },
+                {
+                  "path": "DSCore.TimeSpan.Negate"
+                },
+                {
+                  "path": "DSCore.TimeSpan.Add"
+                },
+                {
+                  "path": "DSCore.TimeSpan.Subtract"
+                },
+                {
+                  "path": "DSCore.TimeSpan.FromString"
+                },
+                {
+                  "path": "DSCore.TimeSpan.Components"
+                },
+                {
+                  "path": "DSCore.TimeSpan.TotalDays"
+                },
+                {
+                  "path": "DSCore.TimeSpan.TotalHours"
+                },
+                {
+                  "path": "DSCore.TimeSpan.TotalMinutes"
+                },
+                {
+                  "path": "DSCore.TimeSpan.TotalSeconds"
+                },
+                {
+                  "path": "DSCore.TimeSpan.TotalMilliseconds"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Object",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "DSCore.Object.IsNull"
+                },
+                {
+                  "path": "DSCore.Object.Identity"
+                },
+                {
+                  "path": "DSCore.Object.Type"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Thread",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "DSCore.Thread"
+                }
+              ],
+              "childElements": []
+            }
+          ]
+        },
+        {
+          "text": "Math",
+          "iconUrl": "/src/resources/icons/Category.Math.svg",
+          "elementType": "category",
+          "include": [],
+          "childElements": [
+            {
+              "text": "Functions",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "DSCore.Math.Random"
+                },
+                {
+                  "path": "DSCore.Math.RandomList"
+                },
+                {
+                  "path": "DSCore.Math.PiTimes2"
+                },
+                {
+                  "path": "DSCore.Math.Average"
+                },
+                {
+                  "path": "DSCore.Math.RemapRange"
+                },
+                {
+                  "path": "DSCore.Math.PI"
+                },
+                {
+                  "path": "DSCore.Math.E"
+                },
+                {
+                  "path": "DSCore.Math.GoldenRatio"
+                },
+                {
+                  "path": "DSCore.Math.Abs"
+                },
+                {
+                  "path": "DSCore.Math.Acos"
+                },
+                {
+                  "path": "DSCore.Math.Asin"
+                },
+                {
+                  "path": "DSCore.Math.Atan"
+                },
+                {
+                  "path": "DSCore.Math.Atan2"
+                },
+                {
+                  "path": "DSCore.Math.Ceiling"
+                },
+                {
+                  "path": "DSCore.Math.Cos"
+                },
+                {
+                  "path": "DSCore.Math.Cosh"
+                },
+                {
+                  "path": "DSCore.Math.DivRem"
+                },
+                {
+                  "path": "DSCore.Math.Exp"
+                },
+                {
+                  "path": "DSCore.Math.Floor"
+                },
+                {
+                  "path": "DSCore.Math.Log"
+                },
+                {
+                  "path": "DSCore.Math.Log10"
+                },
+                {
+                  "path": "DSCore.Math.Max"
+                },
+                {
+                  "path": "DSCore.Math.Min"
+                },
+                {
+                  "path": "DSCore.Math.Pow"
+                },
+                {
+                  "path": "DSCore.Math.Rand"
+                },
+                {
+                  "path": "DSCore.Math.Round"
+                },
+                {
+                  "path": "DSCore.Math.Sign"
+                },
+                {
+                  "path": "DSCore.Math.Sin"
+                },
+                {
+                  "path": "DSCore.Math.Sinh"
+                },
+                {
+                  "path": "DSCore.Math.Sqrt"
+                },
+                {
+                  "path": "DSCore.Math.Tan"
+                },
+                {
+                  "path": "DSCore.Math.Tanh"
+                },
+                {
+                  "path": "DSCore.Math.Sum"
+                },
+                {
+                  "path": "DSCore.Math.Factorial"
+                },
+                {
+                  "path": "DSCore.Math.Map"
+                },
+                {
+                  "path": "DSCore.Math.MapTo"
+                },
+                {
+                  "path": "Core.Scripting.Formula"
+                },
+                {
+                  "path": "DSCore.Math.EvaluateFormula"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Units",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "Core.Units.Convert Between Units"
+                },
+                {
+                  "path": "Core.Units.Number From Feet and Inches"
+                },
+                {
+                  "path": "Core.Units.Unit Types"
+                },
+                {
+                  "path": "DSCore.Math.RadiansToDegrees"
+                },
+                {
+                  "path": "DSCore.Math.DegreesToRadians"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Operators",
+              "iconUrl": "/src/resources/icons/Category.Operators.svg",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "+"
+                },
+                {
+                  "path": "-"
+                },
+                {
+                  "path": "*"
+                },
+                {
+                  "path": "/"
+                },
+                {
+                  "path": "=="
+                },
+                {
+                  "path": ">="
+                },
+                {
+                  "path": ">"
+                },
+                {
+                  "path": "%"
+                },
+                {
+                  "path": "<="
+                },
+                {
+                  "path": "<"
+                },
+                {
+                  "path": "&&"
+                },
+                {
+                  "path": "||"
+                },
+                {
+                  "path": "!="
+                },
+                {
+                  "path": "Not"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Logic",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "Core.Math.And"
+                },
+                {
+                  "path": "Core.Math.Or"
+                },
+                {
+                  "path": "Core.Logic.If"
+                }
+              ],
+              "childElements": []
+            }
+          ]
+        },
+        {
+          "text": "Script",
+          "iconUrl": "/src/resources/icons/Category.Script.svg",
+          "elementType": "category",
+          "include": [],
+          "childElements": [
+            {
+              "text": "Evaluate",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "Core.Evaluate.Function.Apply"
+                },
+                {
+                  "path": "Core.Evaluate.Function.Compose"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Control Flow",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "LoopWhile"
+                },
+                {
+                  "path": "Core.Logic.ScopeIf"
+                },
+                {
+                  "path": "DSCore.Math.Xor"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Editor",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "Core.Scripting.Python Script"
+                },
+                {
+                  "path": "Core.Scripting.Python Script From String"
+                },
+                {
+                  "path": "Core.Input.Code Block"
+                }
+              ],
+              "childElements": []
+            }
+          ]
+        },
+        {
+          "text": "Display",
+          "iconUrl": "/src/resources/icons/Category.Display.svg",
+          "elementType": "category",
+          "include": [],
+          "childElements": [
+            {
+              "text": "Color",
+              "iconUrl": "",
+              "elementType": "classType",
+              "include": [
+                {
+                  "path": "DSCore.Color.Red"
+                },
+                {
+                  "path": "DSCore.Color.Green"
+                },
+                {
+                  "path": "DSCore.Color.Blue"
+                },
+                {
+                  "path": "DSCore.Color.Alpha"
+                },
+                {
+                  "path": "DSCore.Color.ByARGB"
+                },
+                {
+                  "path": "DSCore.Color.Brightness"
+                },
+                {
+                  "path": "DSCore.Color.Saturation"
+                },
+                {
+                  "path": "DSCore.Color.Hue"
+                },
+                {
+                  "path": "DSCore.Color.Components"
+                },
+                {
+                  "path": "DSCore.Color.Add"
+                },
+                {
+                  "path": "DSCore.Color.Multiply"
+                },
+                {
+                  "path": "DSCore.Color.Divide"
+                },
+                {
+                  "path": "Core.Color.Color Palette"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Color Range",
+              "iconUrl": "",
+              "elementType": "classType",
+              "include": [
+                {
+                  "path": "Core.Color.Color Range"
+                },
+                {
+                  "path": "DSCore.ColorRange.ByColorsAndParameters"
+                },
+                {
+                  "path": "DSCore.ColorRange.GetColorAtParameter"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Watch",
+              "iconUrl": "",
+              "elementType": "classType",
+              "include": [
+                {
+                  "path": "Core.View.Watch"
+                },
+                {
+                  "path": "Core.View.Watch Image"
+                },
+                {
+                  "path": "Core.View.Watch 3D"
+                }
+              ],
+              "childElements": []
+            }
+          ]
+        },
+        {
+          "text": "ImportExport",
+          "iconUrl": "/src/resources/icons/Category.ImportExport.svg",
+          "elementType": "category",
+          "include": [],
+          "childElements": [
+            {
+              "text": "CAD",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "Dynamo.Translation.CAD.Import"
+                },
+                {
+                  "path": "Dynamo.Translation.CAD.Export"
+                },
+                {
+                  "path": "Dynamo.Translation.CAD.ConvertToGeometries"
+                },
+                {
+                  "path": "Dynamo.Translation.Models.Filter CAD Objects"
+                },
+                {
+                  "path": "Dynamo.Translation.Models.Select CAD Objects"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "File",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "Core.Input.File Path"
+                },
+                {
+                  "path": "Core.Input.Directory Path"
+                },
+                {
+                  "path": "Core.File.File.FromPath"
+                },
+                {
+                  "path": "Core.File.DirectoryFromPath"
+                },
+                {
+                  "path": "DSCore.IO.File.CombinePath"
+                },
+                {
+                  "path": "DSCore.IO.File.FileExtension"
+                },
+                {
+                  "path": "DSCore.IO.File.ChangePathExtension"
+                },
+                {
+                  "path": "DSCore.IO.File.DirectoryName"
+                },
+                {
+                  "path": "DSCore.IO.File.FileName"
+                },
+                {
+                  "path": "DSCore.IO.File.FileHasExtension"
+                },
+                {
+                  "path": "DSCore.IO.File.ReadText"
+                },
+                {
+                  "path": "DSCore.IO.File.Move"
+                },
+                {
+                  "path": "DSCore.IO.File.Delete"
+                },
+                {
+                  "path": "DSCore.IO.File.Copy"
+                },
+                {
+                  "path": "DSCore.IO.File.Exists"
+                },
+                {
+                  "path": "DSCore.IO.File.WriteText"
+                },
+                {
+                  "path": "DSCore.IO.File.MoveDirectory"
+                },
+                {
+                  "path": "DSCore.IO.File.CopyDirectory"
+                },
+                {
+                  "path": "DSCore.IO.File.DeleteDirectory"
+                },
+                {
+                  "path": "DSCore.IO.File.GetDirectoryContents"
+                },
+                {
+                  "path": "DSCore.IO.File.DirectoryExists"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Image",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "DSCore.IO.Image.ReadFromFile"
+                },
+                {
+                  "path": "DSCore.IO.Image.Pixels"
+                },
+                {
+                  "path": "DSCore.IO.Image.FromPixels"
+                },
+                {
+                  "path": "DSCore.IO.Image.Dimensions"
+                },
+                {
+                  "path": "DSCore.IO.Image.WriteToFile"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Data",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "DSOffice.Data.ImportExcel"
+                },
+                {
+                  "path": "DSOffice.Data.ExportExcel"
+                },
+                {
+                  "path": "DSOffice.Data.ImportCSV"
+                },
+                {
+                  "path": "DSOffice.Data.ExportCSV"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Web",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "Core.Web.Web Request"
+                }
+              ],
+              "childElements": []
+            }
+          ]
+        },
+        {
+          "text": "String",
+          "iconUrl": "/src/resources/icons/Category.String.svg",
+          "elementType": "category",
+          "include": [],
+          "childElements": [
+            {
+              "text": "Inspect",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "DSCore.String.Contains"
+                },
+                {
+                  "path": "DSCore.String.CountOccurrences"
+                },
+                {
+                  "path": "DSCore.String.Length"
+                },
+                {
+                  "path": "DSCore.String.IndexOf"
+                },
+                {
+                  "path": "DSCore.String.AllIndicesOf"
+                },
+                {
+                  "path": "DSCore.String.LastIndexOf"
+                },
+                {
+                  "path": "DSCore.String.EndsWith"
+                },
+                {
+                  "path": "DSCore.String.StartsWith"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Modify",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "DSCore.String.TrimWhitespace"
+                },
+                {
+                  "path": "DSCore.String.TrimLeadingWhitespace"
+                },
+                {
+                  "path": "DSCore.String.TrimTrailingWhitespace"
+                },
+                {
+                  "path": "DSCore.String.Replace"
+                },
+                {
+                  "path": "DSCore.String.PadLeft"
+                },
+                {
+                  "path": "DSCore.String.PadRight"
+                },
+                {
+                  "path": "DSCore.String.Center"
+                },
+                {
+                  "path": "DSCore.String.Insert"
+                },
+                {
+                  "path": "DSCore.String.Remove"
+                },
+                {
+                  "path": "DSCore.String.Substring"
+                },
+                {
+                  "path": "DSCore.String.Split"
+                },
+                {
+                  "path": "DSCore.String.ToUpper"
+                },
+                {
+                  "path": "DSCore.String.ToLower"
+                },
+                {
+                  "path": "DSCore.String.ToNumber"
+                },
+                {
+                  "path": "DSCore.String.ChangeCase"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Generate",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "Core.String.String from Object"
+                },
+                {
+                  "path": "Core.String.String from Array"
+                },
+                {
+                  "path": "DSCore.String.Concat"
+                },
+                {
+                  "path": "DSCore.String.Join"
+                }
+              ],
+              "childElements": []
+            }
+          ]
+        },
+        {
+          "text": "Geometry",
+          "iconUrl": "/src/resources/icons/Category.Geometry.svg",
+          "elementType": "category",
+          "include": [],
+          "childElements": [
+            {
+              "text": "Abstract",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "Autodesk.DesignScript.Geometry.BoundingBox",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.BoundingBox.png"
+                },
+                {
+                  "path": "Autodesk.DesignScript.Geometry.CoordinateSystem",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.CoordinateSystem.png"
+                },
+                {
+                  "path": "Autodesk.DesignScript.Geometry.Vector",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.Vector.png"
+                },
+                {
+                  "path": "Autodesk.DesignScript.Geometry.Edge",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.Edge.png"
+                },
+                {
+                  "path": "Autodesk.DesignScript.Geometry.Face",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.Face.png"
+                },
+                {
+                  "path": "Autodesk.DesignScript.Geometry.Plane",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.Plane.png"
+                },
+                {
+                  "path": "Autodesk.DesignScript.Geometry.Vertex",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.Vertex.png"
+                },
+                {
+                  "path": "Autodesk.DesignScript.Geometry.Topology",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.Topology.png"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Points",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "Autodesk.DesignScript.Geometry.Point",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.Point.png"
+                },
+                {
+                  "path": "Autodesk.DesignScript.Geometry.UV",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.UV.png"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Curves",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "Autodesk.DesignScript.Geometry.Arc",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.Arc.png"
+                },
+                {
+                  "path": "Autodesk.DesignScript.Geometry.Circle",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.Circle.png"
+                },
+                {
+                  "path": "Autodesk.DesignScript.Geometry.Curve",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.Curve.png"
+                },
+                {
+                  "path": "Autodesk.DesignScript.Geometry.Ellipse",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.Ellipse.png"
+                },
+                {
+                  "path": "Autodesk.DesignScript.Geometry.EllipseArc",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.EllipseArc.png"
+                },
+                {
+                  "path": "Autodesk.DesignScript.Geometry.Helix",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.Helix.png"
+                },
+                {
+                  "path": "Autodesk.DesignScript.Geometry.Line",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.Line.png"
+                },
+                {
+                  "path": "Autodesk.DesignScript.Geometry.NurbsCurve",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.NurbsCurve.png"
+                },
+                {
+                  "path": "Autodesk.DesignScript.Geometry.PolyCurve",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.PolyCurve.png"
+                },
+                {
+                  "path": "Autodesk.DesignScript.Geometry.Polygon",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.Polygon.png"
+                },
+                {
+                  "path": "Autodesk.DesignScript.Geometry.Rectangle",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.Rectangle.png"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Surfaces",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "Autodesk.DesignScript.Geometry.NurbsSurface",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.NurbsSurface.png"
+                },
+                {
+                  "path": "Autodesk.DesignScript.Geometry.PolySurface",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.PolySurface.png"
+                },
+                {
+                  "path": "Autodesk.DesignScript.Geometry.Surface",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.Surface.png"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Solids",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "Autodesk.DesignScript.Geometry.Cone",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.Cone.png"
+                },
+                {
+                  "path": "Autodesk.DesignScript.Geometry.Cuboid",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.Cuboid.png"
+                },
+                {
+                  "path": "Autodesk.DesignScript.Geometry.Cylinder",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.Cylinder.png"
+                },
+                {
+                  "path": "Autodesk.DesignScript.Geometry.Solid",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.Solid.png"
+                },
+                {
+                  "path": "Autodesk.DesignScript.Geometry.Sphere",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.Sphere.png"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Meshes",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "Autodesk.DesignScript.Geometry.IndexGroup",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.IndexGroup.png"
+                },
+                {
+                  "path": "Autodesk.DesignScript.Geometry.Mesh",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.Mesh.png"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Modifiers",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "Geometry.Geometry",
+                  "iconUrl": "/src/resources/icons/Geometry.Geometry.png"
+                },
+                {
+                  "path": "Autodesk.DesignScript.Geometry.Geometry",
+                  "iconUrl": "/src/resources/icons/Autodesk.DesignScript.Geometry.Geometry.png"
+                }
+              ],
+              "childElements": [
+                {
+                  "text": "Geometry Color",
+                  "iconUrl": "",
+                  "elementType": "group",
+                  "include": [
+                    {
+                      "path": "Modifiers.GeometryColor.ByGeometryColor"
+                    },
+                    {
+                      "path": "Modifiers.GeometryColor.BySurfaceColors"
+                    }
+                  ],
+                  "childElements": []
+                }
+              ]
+            },
+            {
+              "text": "Tessellation",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "Tessellation.ConvexHull",
+                  "iconUrl": "/src/resources/icons/Tessellation.ConvexHull.png"
+                },
+                {
+                  "path": "Tessellation.Delaunay",
+                  "iconUrl": "/src/resources/icons/Tessellation.Delaunay.png"
+                },
+                {
+                  "path": "Tessellation.Voronoi",
+                  "iconUrl": "/src/resources/icons/Tessellation.Voronoi.png"
+                }
+              ],
+              "childElements": []
+            }
+          ]
+        },
+        {
+          "text": "Revit",
+          "iconUrl": "/src/resources/icons/Category.Revit.svg",
+          "elementType": "category",
+          "include": [],
+          "childElements": [
+            {
+              "text": "Analyze",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "Analysis.Analysis",
+                  "inclusive": false
+                },
+                {
+                  "path": "SimpleRaaS.Analyze",
+                  "inclusive": false
+                }
+              ],
+              "childElements": [
+                {
+                  "text": "SiteLocation",
+                  "iconUrl": "",
+                  "elementType": "group",
+                  "include": [
+                    {
+                      "path": "Analyze.SiteLocation"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+                "text": "Selection",
+                "iconUrl": "",
+                "elementType": "group",
+                "include": [
+                  {
+                    "path": "Revit.Selection",
+                    "inclusive": false
+                  }
+                ]
+            },
+            {
+                "text": "Analysis",
+                "iconUrl": "",
+                "elementType": "group",
+                "include": [
+                  {
+                    "path": "RevitNodes.Revit.AnalysisDisplay",
+                    "inclusive": false
+                  }
+                ]
+            },
+            {
+                "text": "Application",
+                "iconUrl": "",
+                "elementType": "group",
+                "include": [
+                  {
+                    "path": "RevitNodes.Revit.Application.Document"
+                  }
+                ]
+            },
+            {
+                "text": "Elements",
+                "iconUrl": "",
+                "elementType": "group",
+                "include": [
+                  {
+                    "path": "RevitNodes.Revit.Elements.AdaptiveComponent"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.Category"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.Coordinates"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.CurtainPanel"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.CurtainSystem"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.CurtainSystemType"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.CurveByPoints"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.CurveElement"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.DetailCurve"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.Dimension"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.DimensionType"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.DividedSurface"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.Element"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.FailureMessage"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.Family"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.FamilyInstance"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.FamilyType"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.FilledRegion"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.Floor"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.FloorType"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.Form"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.GlobalParameter"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.Grid"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.ImportInstance"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.Level"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.Material"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.ModelCurve"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.ModelText"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.ModelTextType"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.Mullion"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.ReferencePlane"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.ReferencePoint"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.RevisionCloud"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.Roof"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.RoofType"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.Room"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.SketchPlane"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.StructuralFraming"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.StructuralType"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.SunSettings"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.Tag"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.TextNote"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.TextNoteType"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.Topography"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.WallType"
+                  }
+                ],
+                "childElements": [
+                  {
+                    "text": "DirectShape",
+                    "iconUrl": "",
+                    "elementType": "group",
+                    "include": [
+                      {
+                        "path": "RevitNodes.Revit.Elements.DirectShape",
+                        "inclusive": false
+                      },
+                      {
+                        "path": "Revit.Elements.DirectShape",
+                        "inclusive": false
+                      }
+                    ]
+                  },
+                  {
+                    "text": "DividedPath",
+                    "iconUrl": "",
+                    "elementType": "group",
+                    "include": [
+                      {
+                        "path": "RevitNodes.Revit.Elements.DividedPath",
+                        "inclusive": false
+                      },
+                      {
+                        "path": "Revit.Elements.DividedPath",
+                        "inclusive": false
+                      }
+                    ]
+                  },
+                  {
+                    "text": "FilledRegionType",
+                    "iconUrl": "",
+                    "elementType": "group",
+                    "include": [
+                      {
+                        "path": "RevitNodes.Revit.Elements.FillRegionType",
+                        "inclusive": false
+                      },
+                      {
+                        "path": "Revit.Elements.FilledRegionType",
+                        "inclusive": false
+                      }
+                    ]
+                  },
+                  {
+                    "text": "FilledPatternElement",
+                    "iconUrl": "",
+                    "elementType": "group",
+                    "include": [
+                      {
+                        "path": "RevitNodes.Revit.Elements.FillPatternElement",
+                        "inclusive": false
+                      },
+                      {
+                        "path": "Revit.Elements.FillPatternElement"
+                      }
+                    ]
+                  },
+                  {
+                    "text": "LinePatternElement",
+                    "iconUrl": "",
+                    "elementType": "group",
+                    "include": [
+                      {
+                        "path": "RevitNodes.Revit.Elements.LinePatternElement",
+                        "inclusive": false
+                      },
+                      {
+                        "path": "Revit.Elements.LinePatternElement",
+                        "inclusive": false
+                      }
+                    ]
+                  },
+                  {
+                    "text": "Parameter",
+                    "iconUrl": "",
+                    "elementType": "group",
+                    "include": [
+                      {
+                        "path": "RevitNodes.Revit.Elements.Parameter",
+                        "inclusive": false
+                      },
+                      {
+                        "path": "Revit.Elements.Parameter",
+                        "inclusive": false
+                      }
+                    ]
+                  },
+                  {
+                    "text": "PerformanceAdviserRule",
+                    "iconUrl": "",
+                    "elementType": "group",
+                    "include": [
+                      {
+                        "path": "RevitNodes.Revit.Elements.PerformanceAdviserRule",
+                        "inclusive": false
+                      },
+                      {
+                        "path": "Revit.Elements.PerformanceAdviserRule",
+                        "inclusive": false
+                      }
+                    ]
+                  },
+                  {
+                    "text": "Phase",
+                    "iconUrl": "",
+                    "elementType": "group",
+                    "include": [
+                      {
+                        "path": "RevitNodes.Revit.Elements.Phase",
+                        "inclusive": false
+                      },
+                      {
+                        "path": "Revit.Elements.Phase",
+                        "inclusive": false
+                      }
+                    ]
+                  },
+                  {
+                    "text": "Revision",
+                    "iconUrl": "",
+                    "elementType": "group",
+                    "include": [
+                      {
+                        "path": "RevitNodes.Revit.Elements.Revision",
+                        "inclusive": false
+                      },
+                      {
+                        "path": "Revit.Elements.Revision",
+                        "inclusive": false
+                      }
+                    ]
+                  },
+                  {
+                    "text": "Text",
+                    "iconUrl": "",
+                    "elementType": "group",
+                    "include": [
+                      {
+                        "path": "RevitNodes.Revit.Elements.Text",
+                        "inclusive": false
+                      },
+                      {
+                        "path": "Revit.Elements.Text",
+                        "inclusive": false
+                      }
+                    ]
+                  },
+                  {
+                    "text": "Wall",
+                    "iconUrl": "",
+                    "elementType": "group",
+                    "include": [
+                      {
+                        "path": "RevitNodes.Revit.Elements.Wall",
+                        "inclusive": false
+                      },
+                      {
+                        "path": "Revit.Elements.Wall",
+                        "inclusive": false
+                      }
+                    ]
+                  }
+                ]
+            },
+            {
+                "text": "Filter",
+                "iconUrl": "",
+                "elementType": "group",
+                "include": [
+                  {
+                    "path": "RevitNodes.Revit.Filter.FilterRule"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Filter.ParameterFilterElement"
+                  }
+                ],
+                "childElements": [
+                  {
+                    "text":"OverrideGraphicSettings",
+                    "iconUrl":"",
+                    "elementType":"group",
+                    "include":[
+                      {
+                        "path": "Revit.Filter.OverrideGraphicSettings.Detail Level"
+                      },
+                      {
+                        "path": "RevitNodes.Revit.Filter.OverrideGraphicSettings.ByProperties"
+                      }
+                    ]
+                  },
+                  {
+                    "text":"RuleType",
+                    "iconUrl":"",
+                    "elementType":"group",
+                    "include":[
+                      {
+                        "path": "Revit.Filter.RuleType.Select Rule Type"
+                      }
+                    ]
+                  }
+                ]
+            },
+            {
+                "text": "References",
+                "iconUrl": "",
+                "elementType": "group",
+                "include": [
+                  {
+                    "path": "RevitNodes.Revit.References",
+                    "inclusive": false
+                  }
+                ]
+            },
+            {
+                "text": "Schedules",
+                "iconUrl": "",
+                "elementType": "group",
+                "include": [
+                  {
+                    "path": "RevitNodes.Revit.Schedules",
+                    "inclusive": false
+                  }
+                ]
+            },
+            {
+                "text": "Transaction",
+                "iconUrl": "",
+                "elementType": "group",
+                "include": [
+                  {
+                    "path": "RevitNodes.Revit.Transaction",
+                    "inclusive": false
+                  }
+                ]
+            },
+            {
+                "text": "Views",
+                "iconUrl": "",
+                "elementType": "group",
+                "include": [
+                  {
+                    "path": "RevitNodes.Revit.Elements.Views.AreaPlanView"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.Views.AxonometricView"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.Views.CeilingPlanView"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.Views.DraftingView"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.Views.FloorPlanView"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.Views.PerspectiveView"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.Views.SectionView"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.Views.Sheet"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.Views.StructuralPlanView"
+                  },
+                  {
+                    "path": "RevitNodes.Revit.Elements.Views.View3D"
+                  }
+                ],
+                "childElements":[
+                  {
+                    "text": "ScheduleView",
+                    "iconUrl": "",
+                    "elementType": "group",
+                    "include": [
+                      {
+                        "path": "RevitNodes.Revit.Elements.Views.ScheduleView",
+                        "inclusive": false
+                      },
+                      {
+                        "path": "Revit.Views.ScheduleView",
+                        "inclusive": false
+                      }
+                    ]
+                  },
+                  {
+                    "text": "View",
+                    "iconUrl": "",
+                    "elementType": "group",
+                    "include": [
+                      {
+                        "path": "RevitNodes.Revit.Elements.Views.View",
+                        "inclusive": false
+                      },
+                      {
+                        "path": "Revit.View.All Elements In Active View",
+                        "inclusive": false
+                      }
+                    ]
+                  },
+                  {
+                    "text": "SunSettings",
+                    "iconUrl": "",
+                    "elementType": "group",
+                    "include": [
+                      {
+                        "path": "Revit.View.SunSettings",
+                        "inclusive": false
+                      }
+                    ]
+                  }
+                ]
+            }
+        ]
+        }
+      ]
+    },
+    {
+      "text": "Miscellaneous",
+      "iconUrl": "/src/resources/ui/add-on.svg",
+      "elementType": "section",
+      "showHeader": true,
+      "include": [],
+      "childElements": []
+    },
+    {
+      "text": "Add-ons",
+      "iconUrl": "/src/resources/ui/plus-symbol.svg",
+      "elementType": "section",
+      "showHeader": true,
+      "include": [
+        {
+          "path": "pkg://"
+        }
+      ],
+      "childElements": []
+    }
+  ]
+}

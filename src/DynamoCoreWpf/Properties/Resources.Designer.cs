@@ -4020,7 +4020,7 @@ namespace Dynamo.Wpf.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Search... 的本地化字符串。
+        ///   查找类似 Search...Fuck 的本地化字符串。
         /// </summary>
         public static string PackageSearchViewSearchTextBox {
             get {

@@ -172,6 +172,10 @@
   <ItemGroup>
     <EmbeddedResource Include="web\library\resources\Category.DeepLearning.svg" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="web\library\resources\indent-arrow-down-wo-lines.svg" />
+    <EmbeddedResource Include="web\library\resources\indent-arrow-right-wo-lines.svg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\cef.redist.x64.3.2623.1401\build\cef.redist.x64.targets" Condition="Exists('..\packages\cef.redist.x64.3.2623.1401\build\cef.redist.x64.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

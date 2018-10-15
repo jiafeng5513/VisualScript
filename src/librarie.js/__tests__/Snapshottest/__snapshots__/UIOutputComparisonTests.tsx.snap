@@ -1,0 +1,206 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LibraryContainer Demonstrate testing UIitems loads correctly from static data 1`] = `
+Array [
+  <div
+    className="LibraryItemText"
+>
+    Display
+</div>,
+  <div
+    className="LibraryItemText"
+>
+    Geometry
+</div>,
+  <div
+    className="LibraryItemText"
+>
+    ImportExport
+</div>,
+  <div
+    className="LibraryItemText"
+>
+    Input
+</div>,
+  <div
+    className="LibraryItemText"
+>
+    List
+</div>,
+  <div
+    className="LibraryItemText"
+>
+    Math
+</div>,
+  <div
+    className="LibraryItemText"
+>
+    Script
+</div>,
+  <div
+    className="LibraryItemText"
+>
+    String
+</div>,
+  <div
+    className="LibraryItemText"
+>
+    Clockwork
+</div>,
+  <div
+    className="LibraryItemText"
+>
+    DynamoText
+</div>,
+]
+`;
+
+exports[`LibraryContainer Test UI rendering of Library Item and child components 1`] = `
+<LibraryItem
+  data={
+    ItemData {
+      "childItems": Array [
+        ItemData {
+          "childItems": Array [],
+          "contextData": "",
+          "description": "",
+          "expanded": false,
+          "iconUrl": "",
+          "itemType": "category",
+          "keywords": Array [
+            "",
+          ],
+          "parameters": "",
+          "pathToItem": Array [],
+          "showHeader": true,
+          "text": "Child0",
+          "visible": true,
+          "weight": 0,
+        },
+        ItemData {
+          "childItems": Array [],
+          "contextData": "",
+          "description": "",
+          "expanded": false,
+          "iconUrl": "",
+          "itemType": "category",
+          "keywords": Array [
+            "",
+          ],
+          "parameters": "",
+          "pathToItem": Array [],
+          "showHeader": true,
+          "text": "Child1",
+          "visible": true,
+          "weight": 0,
+        },
+      ],
+      "contextData": "",
+      "description": "",
+      "expanded": false,
+      "iconUrl": "",
+      "itemType": "none",
+      "keywords": Array [
+        "",
+      ],
+      "parameters": "",
+      "pathToItem": Array [],
+      "showHeader": true,
+      "text": "TestItem",
+      "visible": true,
+      "weight": 0,
+    }
+  }
+  libraryContainer={
+    LibraryController {
+      "DefaultSectionName": "default",
+      "FilterCategoryEventName": "filterCategoryChange",
+      "ItemClickedEventName": "itemClicked",
+      "ItemMouseEnterEventName": "itemMouseEnter",
+      "ItemMouseLeaveEventName": "itemMouseLeave",
+      "ItemSummaryExpandedEventName": "itemSummaryExpanded",
+      "MiscSectionName": "Miscellaneous",
+      "RefreshLibraryViewRequestName": "refreshLibraryView",
+      "SearchTextUpdatedEventName": "searchTextUpdated",
+      "SectionIconClickedEventName": "sectionIconClicked",
+      "createLibraryByElementId": [Function],
+      "createLibraryContainer": [Function],
+      "on": [Function],
+      "raiseEvent": [Function],
+      "reactor": Reactor {
+        "events": Array [],
+      },
+      "refreshLibraryView": [Function],
+      "refreshLibraryViewHandler": null,
+      "registerRequestHandler": [Function],
+      "request": [Function],
+      "requestHandler": Object {},
+      "searchLibraryItemsHandler": null,
+      "setLayoutSpecsJson": [Function],
+      "setLayoutSpecsJsonHandler": null,
+      "setLoadedTypesJson": [Function],
+      "setLoadedTypesJsonHandler": null,
+    }
+  }
+>
+  <div
+    className="LibraryItemContainerNone"
+  >
+    <div
+      className="LibraryItemHeader"
+      onClick={[Function]}
+      onMouseLeave={[Function]}
+      onMouseOver={[Function]}
+    >
+      <img
+        className="Arrow"
+        onError={[Function]}
+        src="test-file-stub"
+      />
+      <div
+        className="LibraryItemText"
+      >
+        TestItem
+      </div>
+    </div>
+    <div
+      className="LibraryItemBodyContainer"
+    >
+      <div
+        className="LibraryItemBodyElements"
+      />
+    </div>
+  </div>
+</LibraryItem>
+`;
+
+exports[`LibraryContainer Test UI rendering of single component of Library Item 1`] = `
+<div
+  className="LibraryItemContainerNone"
+>
+  <div
+    className="LibraryItemHeader"
+    onClick={[Function]}
+    onMouseLeave={[Function]}
+    onMouseOver={[Function]}
+  >
+    <img
+      className="Arrow"
+      onError={[Function]}
+      src="test-file-stub"
+    />
+    <div
+      className="LibraryItemText"
+    >
+      TestItem
+    </div>
+  </div>
+  <div
+    className="LibraryItemBodyContainer"
+  >
+    <div
+      className="LibraryItemBodyElements"
+    />
+  </div>
+</div>
+`;
