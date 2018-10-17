@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Windows;
+using Dynamo.Applications;
 using Dynamo.Controls;
 using Dynamo.Models;
 using Dynamo.ViewModels;
 using Dynamo.Core;
-using Dynamo.DynamoSandbox;
+using Dynamo.Interfaces;
+using Dynamo.Scheduler;
 
 namespace DynamoSandbox
 {
@@ -16,11 +18,27 @@ namespace DynamoSandbox
 
         public DynamoCoreSetup(string[] args){}
 
+        public DynamoModel MakeModel()
+        {
+
+            var geometryFactoryPath = string.Empty;
+
+            var config = new DynamoModel.DefaultStartConfiguration()
+            {
+                GeometryFactoryPath = geometryFactoryPath,
+                ProcessMode = TaskProcessMode.Asynchronous
+            };
+
+            config.PathResolver = new SandboxPathResolver() as IPathResolver;
+
+            var model = DynamoModel.Start(config);
+            return model;
+        }
         public void RunApplication(Application app)
         {
             try
             {
-                var model = Dynamo.Applications.StartupUtils.MakeModel();
+                var model = MakeModel();
 
                 viewModel = DynamoViewModel.Start(
                     new DynamoViewModel.StartConfiguration()

@@ -14,7 +14,7 @@ namespace Dynamo.Applications
         private readonly List<string> additionalNodeDirectories;
         private readonly List<string> preloadedLibraryPaths;
 
-        public SandboxPathResolver(string preloaderLocation)
+        public SandboxPathResolver()
         {
             // If a suitable preloader cannot be found on the system, then do 
             // not add invalid path into additional resolution. The default 
@@ -22,9 +22,6 @@ namespace Dynamo.Applications
             // paths specified through "IPathResolver" implementation.
             // 
             additionalResolutionPaths = new List<string>();
-            if (Directory.Exists(preloaderLocation))
-                additionalResolutionPaths.Add(preloaderLocation);
-
             additionalNodeDirectories = new List<string>();
             preloadedLibraryPaths = new List<string>
             {

@@ -69,7 +69,6 @@
     </Compile>
     <Compile Include="DynamoCoreSetup.cs" />
     <Compile Include="PathResolvers.cs" />
-    <Compile Include="Preloader.cs" />
     <Compile Include="ProductLookUp.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -85,8 +84,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="StartupUtils.cs" />
-    <Compile Include="Utilities.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
