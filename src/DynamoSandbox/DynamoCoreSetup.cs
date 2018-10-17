@@ -11,7 +11,6 @@ namespace DynamoSandbox
 {
     class DynamoCoreSetup
     {
-        private SettingsMigrationWindow migrationWindow;
         private DynamoViewModel viewModel = null;
 
 
@@ -21,8 +20,6 @@ namespace DynamoSandbox
         {
             try
             {
-                DynamoModel.RequestMigrationStatusDialog += MigrationStatusDialogRequested;
-
                 var model = Dynamo.Applications.StartupUtils.MakeModel();
 
                 viewModel = DynamoViewModel.Start(
@@ -36,9 +33,6 @@ namespace DynamoSandbox
                 view.Loaded += OnDynamoViewLoaded;
 
                 app.Run(view);
-
-                DynamoModel.RequestMigrationStatusDialog -= MigrationStatusDialogRequested;
-
             }
 
             catch (Exception e)
@@ -74,32 +68,14 @@ namespace DynamoSandbox
                 Debug.WriteLine(e.StackTrace);
             }
         }
-
+        /// <summary>
+        /// 响应主界面加载完成事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void OnDynamoViewLoaded(object sender, RoutedEventArgs e)
         {
-            CloseMigrationWindow();
-        }
-
-        private void CloseMigrationWindow()
-        {
-            if (migrationWindow == null)
-                return;
-
-            migrationWindow.Close();
-            migrationWindow = null;
-        }
-
-        private void MigrationStatusDialogRequested(SettingsMigrationEventArgs args)
-        {
-            if (args.EventStatus == SettingsMigrationEventArgs.EventStatusType.Begin)
-            {
-                migrationWindow = new SettingsMigrationWindow();
-                migrationWindow.Show();
-            }
-            else if (args.EventStatus == SettingsMigrationEventArgs.EventStatusType.End)
-            {
-                CloseMigrationWindow();
-            }
+            //todo:主界面加载完毕回调
         }
 
     }
