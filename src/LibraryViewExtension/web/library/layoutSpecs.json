@@ -1311,17 +1311,6 @@
       ]
     },
     {
-      "text": "GUI Node Test",
-      "iconUrl": "./dist/resources/Category.UITest.svg",
-      "elementType": "category",
-      "include": [
-        {
-          "path": "GUINode.Sample.CustomNode"
-        }
-      ],
-      "childElements": []
-    },
-    {
       "text": "Miscellaneous",
       "elementType": "section",
       "showHeader": true,

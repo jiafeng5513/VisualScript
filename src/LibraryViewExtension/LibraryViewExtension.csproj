@@ -168,9 +168,6 @@
     <EmbeddedResource Include="web\library\resources\Category.DicomTools.svg" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="web\library\resources\Category.UITest.svg" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="web\library\resources\Category.DeepLearning.svg" />
   </ItemGroup>
   <ItemGroup>

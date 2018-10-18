@@ -31,9 +31,6 @@ namespace ModelAnalyzerUI
     [IsDesignScriptCompatible]
     public class AnalyzerModel : NodeModel
     {
-
-
-
         [JsonConstructor]
         private AnalyzerModel(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
         {
@@ -43,9 +40,9 @@ namespace ModelAnalyzerUI
 
         public AnalyzerModel()
         {
-            InPorts.Add(new PortModel(PortType.Input, this, new PortData("Model_File", "输入1")));
-            InPorts.Add(new PortModel(PortType.Input, this, new PortData("Label_File", "输入2")));
-            InPorts.Add(new PortModel(PortType.Input, this, new PortData("Input_File", "输入3")));
+            InPorts.Add(new PortModel(PortType.Input, this, new PortData("Model_File", "模型文件")));
+            InPorts.Add(new PortModel(PortType.Input, this, new PortData("Label_File", "标签文件")));
+            InPorts.Add(new PortModel(PortType.Input, this, new PortData("Input_File", "输入文件")));
             OutPorts.Add(new PortModel(PortType.Output, this, new PortData("Result", "输出")));
 
             ShouldDisplayPreviewCore = true;
@@ -65,7 +62,6 @@ namespace ModelAnalyzerUI
                 return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
             }
 
-            //double unitsMM = Conversions.ConversionDictionary[SelectedExportedUnit]*1000.0;
 
             var input1 = inputAstNodes[0];
             var input2 = inputAstNodes[1];
