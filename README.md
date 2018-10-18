@@ -1,9 +1,9 @@
 ![image](https://github.com/AngelaViVi/Expressior/blob/Expressior_master/src/DynamoCoreWpf/UI/Images/StartPage/dynamo-logo.png) 
 ====================================
 
-|分支|master|root1|root2
-|:--------:|:----------:|:-------------:|-------------:|
-|构建状态|[![Build status](https://ci.appveyor.com/api/projects/status/ke5nv5l0d33w5tl2/branch/Expressior_master?svg=true)](https://ci.appveyor.com/project/AngelaViVi/expressior/branch/Expressior_master)|尚未构建|尚未构建
+### 当前分支:RC1
+1. 阶段性稳定版本.<br>
+2. 现在
 
 ### 这是一个可视化编程环境
 
@@ -22,7 +22,7 @@
 ### build
 1. Microsoft Visual Studio 2017<br>
 2. GitHub for Windows<br>
-3. Microsoft .NET Framework 4.5.2<br>
+3. Microsoft .NET Framework 4.7<br>
 4. Microsoft DirectX (install from %GitHub%\Expressior\tools\install\Extra\DirectX\DXSETUP.exe)<br>
 
 ### 配置
