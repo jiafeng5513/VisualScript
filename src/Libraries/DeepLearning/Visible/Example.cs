@@ -39,5 +39,10 @@ namespace DeepLearning
 
             return resStr;
         }
+
+        public static string TestFunc(string a, string b, string c)
+        {
+            return "Fuckiing succeed!";
+        }
     }
 }

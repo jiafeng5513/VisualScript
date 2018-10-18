@@ -19,7 +19,10 @@ namespace DeepLearning
         {
             _status = status;
         }
-
+        public static string TestFunc(string a, string b, string c)
+        {
+            return "Fuckiing succeed!";
+        }
         //进行手动初始化
         public void Init(String[] modelFiles = null, String inputName = null, String outputName = null)
         {
