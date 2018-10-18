@@ -59,11 +59,11 @@ namespace ModelAnalyzerUI
         /// <returns></returns>
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            //if (!InPorts[0].IsConnected || !InPorts[1].IsConnected|| !InPorts[2].IsConnected)
-            //{
-            //    //如果在没有连接输入节点的情况下连接了输出节点,应当有默认输出
-            //    return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
-            //}
+            if (!InPorts[0].IsConnected || !InPorts[1].IsConnected || !InPorts[2].IsConnected)
+            {
+                //如果在没有连接输入节点的情况下连接了输出节点,应当有默认输出
+                return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
+            }
 
             //double unitsMM = Conversions.ConversionDictionary[SelectedExportedUnit]*1000.0;
 
@@ -71,21 +71,11 @@ namespace ModelAnalyzerUI
             var input2 = inputAstNodes[1];
             var input3 = inputAstNodes[2];
 
-            //var input1 = AstFactory.BuildStringNode("aa");
-            //var input2 = AstFactory.BuildStringNode("aa");
-            //var input3 = AstFactory.BuildStringNode("aa");
-
-            Func<double,double> tempFunc= DSCore.Math.Abs;
-
-
             AssociativeNode node = null;
 
-
             node = AstFactory.BuildFunctionCall(
-                        new Func<string, string, string, string>(DeepLearning.Example.TestFunc),
+                        new Func<string, string, string, string>(DeepLearning.Example.Predict),
                         new List<AssociativeNode> { input1, input2, input3 });
-
-
 
             return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node) };
         }

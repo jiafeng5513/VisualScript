@@ -10,58 +10,6 @@
   "Outputs": [],
   "Nodes": [
     {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "NodeType": "FunctionNode",
-      "FunctionSignature": "DeepLearning.Example.Predict@string,string,string",
-      "Id": "0ac7159ad62c4681980e81762ef23a1d",
-      "Inputs": [
-        {
-          "Id": "4fe0710e611742ff88f83747792fd10e",
-          "Name": "ModelFile",
-          "Description": "string\nDefault value : \" \"",
-          "UsingDefaultValue": true,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": true
-        },
-        {
-          "Id": "b25da9b6744e4d51aff6d6043ebd0bbf",
-          "Name": "LabelFile",
-          "Description": "string\nDefault value : \" \"",
-          "UsingDefaultValue": true,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": true
-        },
-        {
-          "Id": "f334fecca98f47ee8166d58987614a7a",
-          "Name": "inputFile",
-          "Description": "string\nDefault value : \" \"",
-          "UsingDefaultValue": true,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": true
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "e6a55a3aacb345948eb3d2fa96e04fc2",
-          "Name": "string",
-          "Description": "string",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": true
-        }
-      ],
-      "Replication": "Auto",
-      "Description": "Example.Predict (ModelFile: string = \" \", LabelFile: string = \" \", inputFile: string = \" \"): string"
-    },
-    {
       "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
       "HintPath": "E:\\VisualStudio\\VisualScript\\data\\flower.png",
       "InputValue": "..\\..\\..\\data\\flower.png",
@@ -345,38 +293,84 @@
       ],
       "Replication": "Disabled",
       "Description": "Visualize the output of node."
+    },
+    {
+      "ConcreteType": "ModelAnalyzerUI.AnalyzerModel, ModelAnalyzer",
+      "NodeType": "ExtensionNode",
+      "Id": "51388d998eb8408eb4245c747770a749",
+      "Inputs": [
+        {
+          "Id": "a32745dc0d0944bf865f10f391764a25",
+          "Name": "Model_File",
+          "Description": "输入1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "a9aa80ea09014829af90abe000375e9d",
+          "Name": "Label_File",
+          "Description": "输入2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "8753048f1f554445b90bb91fc41823df",
+          "Name": "Input_File",
+          "Description": "输入3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a58629f0e8ed40f9834af74845d2f397",
+          "Name": "Result",
+          "Description": "输出",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "ExportToSATDescripiton"
     }
   ],
   "Connectors": [
-    {
-      "Start": "e6a55a3aacb345948eb3d2fa96e04fc2",
-      "End": "3206597dc5284b8d8666782090daf626",
-      "Id": "729bf906768a43e083e87e555b245032"
-    },
-    {
-      "Start": "cbb9a1d86f5b4a779bc6e7fcdfe9c37b",
-      "End": "f334fecca98f47ee8166d58987614a7a",
-      "Id": "8f8b93105e5e4b6990c101334cbd48bb"
-    },
     {
       "Start": "cbb9a1d86f5b4a779bc6e7fcdfe9c37b",
       "End": "b894ec975f764fcd8d1e4ae44914a5f4",
       "Id": "c98bd2feaf3c4cd998a77ae97326ed1e"
     },
     {
-      "Start": "9112e3d5b1aa43fc8b66ddc511ff1723",
-      "End": "4fe0710e611742ff88f83747792fd10e",
-      "Id": "d68a85505b0b43c88ca484b351688377"
+      "Start": "cbb9a1d86f5b4a779bc6e7fcdfe9c37b",
+      "End": "8753048f1f554445b90bb91fc41823df",
+      "Id": "f2d65c7a3866453b907156dced6d72c3"
     },
     {
-      "Start": "fb91e9861bff47a6b17400c989a52d3b",
-      "End": "b25da9b6744e4d51aff6d6043ebd0bbf",
-      "Id": "3c9290edda6049aab636f39b4cfa46ac"
+      "Start": "9112e3d5b1aa43fc8b66ddc511ff1723",
+      "End": "a32745dc0d0944bf865f10f391764a25",
+      "Id": "9b5dd9c5b9c64ebaac243c76174f498d"
     },
     {
       "Start": "fb91e9861bff47a6b17400c989a52d3b",
       "End": "8462164185ba4e64b40c5e6dc54ee2d9",
       "Id": "d0304c1010d343eea284ade30b9d0830"
+    },
+    {
+      "Start": "fb91e9861bff47a6b17400c989a52d3b",
+      "End": "a9aa80ea09014829af90abe000375e9d",
+      "Id": "34e3c053e34e45ab87b0763a7e468702"
     },
     {
       "Start": "b8725ddcbf9a446e873f5aa46e721eb3",
@@ -397,6 +391,11 @@
       "Start": "e34fd66fcb264469b6d864f438813cf5",
       "End": "f0ba5258316c486fae57c867d747ac36",
       "Id": "d38fe12031434888962be260a60d9096"
+    },
+    {
+      "Start": "a58629f0e8ed40f9834af74845d2f397",
+      "End": "3206597dc5284b8d8666782090daf626",
+      "Id": "21a98bc20d204247ad86bfb95dedc3a3"
     }
   ],
   "Dependencies": [],
@@ -406,21 +405,11 @@
       "ScaleFactor": 1.0,
       "HasRunWithoutCrash": true,
       "IsVisibleInDynamoLibrary": true,
-      "Version": "2.0.0.5801",
+      "Version": "2.0.0.6544",
       "RunType": "Automatic",
       "RunPeriod": "1000"
     },
     "NodeViews": [
-      {
-        "ShowGeometry": true,
-        "Name": "Example.Predict",
-        "Id": "0ac7159ad62c4681980e81762ef23a1d",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 641.0,
-        "Y": 151.5
-      },
       {
         "ShowGeometry": true,
         "Name": "File Path",
@@ -458,8 +447,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1253.0,
-        "Y": 92.5
+        "X": 1282.6682495044424,
+        "Y": 79.3141113313589
       },
       {
         "ShowGeometry": true,
@@ -520,11 +509,21 @@
         "Excluded": false,
         "X": 779.0,
         "Y": 654.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "ModelAgent",
+        "Id": "51388d998eb8408eb4245c747770a749",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 605.47017633583994,
+        "Y": 84.721304065551763
       }
     ],
     "Annotations": [],
-    "X": -17.752500000000055,
-    "Y": 105.6825,
-    "Zoom": 0.8425
+    "X": 89.058785881247786,
+    "Y": -13.56875211539932,
+    "Zoom": 0.86797750764901571
   }
 }

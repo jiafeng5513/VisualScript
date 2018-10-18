@@ -5,6 +5,9 @@ using Buffer = Emgu.TF.Buffer;
 
 namespace DeepLearning
 {
+    /// <summary>
+    /// 这边放内部方法,不导出,在FunctionCall里面不能正常使用
+    /// </summary>
     class ModelDeploy
     {
         //private FileDownloadManager _downloadManager;
@@ -18,10 +21,6 @@ namespace DeepLearning
         public ModelDeploy(Status status = null)
         {
             _status = status;
-        }
-        public static string TestFunc(string a, string b, string c)
-        {
-            return "Fuckiing succeed!";
         }
         //进行手动初始化
         public void Init(String[] modelFiles = null, String inputName = null, String outputName = null)
