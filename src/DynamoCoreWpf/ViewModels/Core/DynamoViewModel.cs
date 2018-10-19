@@ -1039,13 +1039,13 @@ namespace Dynamo.ViewModels
             string ext, fltr;
             if (workspace == HomeSpace)
             {
-                ext = ".dyn";
-                fltr = string.Format(Resources.FileDialogDynamoWorkspace, BrandingResourceProvider.ProductName, "*.dyn");
+                ext = ".expm";
+                fltr = string.Format(Resources.FileDialogDynamoWorkspace, BrandingResourceProvider.ProductName, "*.expm");
             }
             else
             {
-                ext = ".dyf";
-                fltr = string.Format(Resources.FileDialogDynamoCustomNode, BrandingResourceProvider.ProductName, "*.dyf");
+                ext = ".expn";
+                fltr = string.Format(Resources.FileDialogDynamoCustomNode, BrandingResourceProvider.ProductName, "*.expn");
             }
             fltr += "|" + string.Format(Resources.FileDialogAllFiles, "*.*");
 
@@ -1187,7 +1187,7 @@ namespace Dynamo.ViewModels
             DynamoOpenFileDialog _fileDialog = new DynamoOpenFileDialog(this)
             {
                 Filter = string.Format(Resources.FileDialogDynamoDefinitions,
-                         BrandingResourceProvider.ProductName, "*.dyn;*.dyf") + "|" +
+                         BrandingResourceProvider.ProductName, "*.expm;*.expn") + "|" +
                          string.Format(Resources.FileDialogAllFiles, "*.*"),
                 Title = string.Format(Resources.OpenDynamoDefinitionDialogTitle, BrandingResourceProvider.ProductName)
             };

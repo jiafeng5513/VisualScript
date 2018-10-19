@@ -548,7 +548,7 @@ namespace Dynamo.Graph.Workspaces
                 writer.WriteValue((ws as CustomNodeWorkspaceModel).CustomNodeId.ToString());
             else
                 writer.WriteValue(ws.Guid.ToString());
-            // TODO: revisit IsCustomNode during DYN/DYF convergence
+            // TODO: revisit IsCustomNode during EXPM/EXPN convergence
             writer.WritePropertyName("IsCustomNode");
             writer.WriteValue(value is CustomNodeWorkspaceModel ? true : false);
             if (isCustomNode)

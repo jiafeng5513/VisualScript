@@ -311,7 +311,7 @@ namespace Dynamo.Core
 
 
         /// <summary>
-        ///     Import a dyf file for eventual initialization.  
+        ///     Import a expn file for eventual initialization.  
         /// </summary>
         /// <param name="file">Path to a custom node file on disk.</param>
         /// <param name="info">
@@ -399,7 +399,7 @@ namespace Dynamo.Core
             IEnumerable<string> dyfs;
             try
             {
-                dyfs = Directory.EnumerateFiles(dir, "*.dyf");
+                dyfs = Directory.EnumerateFiles(dir, "*.expn");
             }
             catch (Exception e)
             {

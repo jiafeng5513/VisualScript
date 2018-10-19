@@ -709,7 +709,7 @@ namespace Dynamo.Models
             //    DefaultUpdateManager.CheckForProductUpdate(UpdateManager);
             //}
 
-            Logger.Log(string.Format("Dynamo -- Build {0}",
+            Logger.Log(string.Format("Expressior -- Build {0}",
                                         Assembly.GetExecutingAssembly().GetName().Version));
 
             InitializeNodeLibrary(PreferenceSettings);

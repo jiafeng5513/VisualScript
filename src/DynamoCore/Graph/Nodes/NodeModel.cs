@@ -250,7 +250,7 @@ namespace Dynamo.Graph.Nodes
 
         /// <summary>
         /// This property is user-controllable via a checkbox and is set to true when a user wishes to include
-        /// this node in the OutputData block of the Dyn file.
+        /// this node in the OutputData block of the Expm file.
         /// </summary>
         [JsonIgnore]
         public bool IsSetAsOutput

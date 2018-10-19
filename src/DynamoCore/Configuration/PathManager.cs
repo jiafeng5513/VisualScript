@@ -407,11 +407,11 @@ namespace Dynamo.Core
             {
                 if (workspace is HomeWorkspaceModel)
                 {
-                    fileName = Configurations.BackupFileNamePrefix + ".DYN";
+                    fileName = Configurations.BackupFileNamePrefix + ".EXPM";
                 }
                 else
                 {
-                    fileName = workspace.Name + ".DYF";
+                    fileName = workspace.Name + ".EXPN";
                 }
             }
             else
@@ -487,7 +487,7 @@ namespace Dynamo.Core
                 return userDataDir; //Return the cached userDataDir if we have one.
 
             var folder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            return GetDynamoDataFolder(Path.Combine(folder, "Dynamo", "Dynamo Core"));
+            return GetDynamoDataFolder(Path.Combine(folder, "Expressior", "Core"));
         }
 
         private string GetCommonDataFolder(IPathResolver pathResolver)
@@ -496,7 +496,7 @@ namespace Dynamo.Core
                 return GetDynamoDataFolder(pathResolver.CommonDataRootFolder);
 
             var folder = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
-            return GetDynamoDataFolder(Path.Combine(folder, "Dynamo", "Dynamo Core"));
+            return GetDynamoDataFolder(Path.Combine(folder, "Expressior", "Core"));
         }
 
         private string GetDynamoDataFolder(string folder)
@@ -554,7 +554,7 @@ namespace Dynamo.Core
             var di = new DirectoryInfo(sampleDirectory);
             if (!Directory.Exists(sampleDirectory) ||
                 !di.GetDirectories().Any() ||
-                !di.GetFiles("*.dyn", SearchOption.AllDirectories).Any())
+                !di.GetFiles("*.expm", SearchOption.AllDirectories).Any())
             {
                 var neturalCommonSamples = Path.Combine(dataRootDirectory, SamplesDirectoryName, "en-US");
                 if (Directory.Exists(neturalCommonSamples))

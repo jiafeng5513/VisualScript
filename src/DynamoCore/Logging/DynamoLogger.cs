@@ -188,7 +188,7 @@ namespace Dynamo.Logging
                             try
                             {
                                 ConsoleWriter.AppendLine(string.Format("{0}", message));
-                                FileWriter.WriteLine(string.Format("{0} : {1}", DateTime.UtcNow.ToString("u"), message));
+                                FileWriter.WriteLine(string.Format("{0} : {1}", DateTime.Now.ToString("u"), message));
                                 FileWriter.Flush();
                                 RaisePropertyChanged("ConsoleWriter");
                             }
@@ -205,7 +205,7 @@ namespace Dynamo.Logging
                         {
                             try
                             {
-                                FileWriter.WriteLine(string.Format("{0} : {1}", DateTime.UtcNow.ToString("u"), message));
+                                FileWriter.WriteLine(string.Format("{0} : {1}", DateTime.Now.ToString("u"), message));
                                 FileWriter.Flush();
                             }
                             catch
@@ -346,14 +346,14 @@ namespace Dynamo.Logging
                 // We use a guid to uniquely identify the log name. This disambiguates log files
                 // so that parallel testing which needs to access the log files can be done, and
                 // so that services like Cloud Watch can match the dynamoLog_* pattern.
-                _logPath = Path.Combine(logDirectory, string.Format("dynamoLog_{0}.txt", Guid.NewGuid()));
+                _logPath = Path.Combine(logDirectory, string.Format("ExpressiorLog_{0}.txt", Guid.NewGuid()));
 
-                var date = DateTime.UtcNow.ToString("u");
+                var date = DateTime.Now.ToString("u");
                 FileWriter = new StreamWriter(_logPath);
-                FileWriter.WriteLine("Dynamo log started " + date);
+                FileWriter.WriteLine("Expressior log started " + date);
 
                 ConsoleWriter = new StringBuilder();
-                ConsoleWriter.AppendLine("Dynamo log started " + date);
+                ConsoleWriter.AppendLine("Expressior log started " + date);
             }
 
         }

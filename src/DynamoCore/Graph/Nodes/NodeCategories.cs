@@ -101,8 +101,8 @@ namespace Dynamo.Graph.Nodes
                 return fullyQualifiedName;
             }
 
-            // Remove prefix of 'dyn' from older files.
-            if (className.StartsWith("dyn"))
+            // Remove prefix of 'expm' from older files.
+            if (className.StartsWith("expm"))
                 className = className.Remove(0, 3);
 
             // Older files will have nodes that use "XYZ" and "UV" 

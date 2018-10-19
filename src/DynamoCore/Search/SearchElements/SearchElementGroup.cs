@@ -24,7 +24,7 @@
         /// </summary>
         ZeroTouch = 0x00000001,
         /// <summary>
-        /// Type for all the DYFs (both loose DYF files and packaged)
+        /// Type for all the EXPNs (both loose EXPN files and packaged)
         /// </summary>
         CustomNode = 0x00000002,
         /// <summary>

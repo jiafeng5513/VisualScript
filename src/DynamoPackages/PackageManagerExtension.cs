@@ -21,7 +21,7 @@ namespace Dynamo.PackageManager
 
         public event Action<ILogMessage> MessageLogged;
 
-        public string Name { get { return "DynamoPackageManager"; } }
+        public string Name { get { return "PackageManager"; } }
 
         public string UniqueId
         {
@@ -73,19 +73,19 @@ namespace Dynamo.PackageManager
         {
             var path = this.GetType().Assembly.Location;
             var config = ConfigurationManager.OpenExeConfiguration(path);
-            var key = config.AppSettings.Settings["packageManagerAddress"];
-            string url = null;
-            if (key != null)
-            {
-                url = key.Value;
-            }
+            //var key = config.AppSettings.Settings["packageManagerAddress"];
+            //string url = null;
+            //if (key != null)
+            //{
+            //    url = key.Value;
+            //}
 
-            OnMessageLogged(LogMessage.Info("Dynamo will use the package manager server at : " + url));
+            //OnMessageLogged(LogMessage.Info("Dynamo will use the package manager server at : " + url));
 
-            if (!Uri.IsWellFormedUriString(url, UriKind.Absolute))
-            {
-                throw new ArgumentException("Incorrectly formatted URL provided for Package Manager address.", "url");
-            }
+            //if (!Uri.IsWellFormedUriString(url, UriKind.Absolute))
+            //{
+            //    throw new ArgumentException("Incorrectly formatted URL provided for Package Manager address.", "url");
+            //}
 
             PackageLoader = new PackageLoader(startupParams.PathManager.PackagesDirectories);
             PackageLoader.MessageLogged += OnMessageLogged;

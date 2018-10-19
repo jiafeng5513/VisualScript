@@ -359,7 +359,7 @@ namespace Dynamo.Graph
         /// <param name="context">Context in which object is saved</param>
         /// <returns>xml node</returns>
         [Obsolete(@"Use this method only for runtime saving/loading of node state during undo/redo and copy/paste 
-                  - data saved here will not be saved to the .dyn or.dyf file. This method will be removed in the future to use json")]
+                  - data saved here will not be saved to the .expm or.expn file. This method will be removed in the future to use json")]
         public XmlElement Serialize(XmlDocument xmlDocument, SaveContext context)
         {
             var element = CreateElement(xmlDocument, context);
@@ -373,7 +373,7 @@ namespace Dynamo.Graph
         /// <param name="element">Xml node</param>
         /// <param name="context">Save context. E.g. save in file, copy node etc.</param>
         [Obsolete(@"Use this method only for runtime saving/loading of node state during undo/redo and copy/paste 
-                  - data saved here will not be saved to the .dyn or.dyf file. This method will be removed in the future to use json")]
+                  - data saved here will not be saved to the .expm or.expn file. This method will be removed in the future to use json")]
         public void Deserialize(XmlElement element, SaveContext context)
         {
             DeserializeCore(element, context);
@@ -387,11 +387,11 @@ namespace Dynamo.Graph
         }
 
         [Obsolete(@"Use this method only for runtime saving/loading of node state during undo/redo and copy/paste 
-                  - data saved here will not be saved to the .dyn or.dyf file. This method will be removed in the future to use json")]
+                  - data saved here will not be saved to the .exom or.expn file. This method will be removed in the future to use json")]
         protected abstract void SerializeCore(XmlElement element, SaveContext context);
 
         [Obsolete(@"Use this method only for runtime saving/loading of node state during undo/redo and copy/paste 
-                  - data saved here will not be saved to the .dyn or.dyf file. This method will be removed in the future to use json")]
+                  - data saved here will not be saved to the .expm or.expn file. This method will be removed in the future to use json")]
         protected abstract void DeserializeCore(XmlElement nodeElement, SaveContext context);
 
         #endregion

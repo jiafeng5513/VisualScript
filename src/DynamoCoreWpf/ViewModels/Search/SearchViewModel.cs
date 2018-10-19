@@ -738,7 +738,7 @@ namespace Dynamo.ViewModels
             category.RequestBitmapSource += SearchViewModelRequestBitmapSource; 
             // Check if the category exists already. 
             // ex : clockwork package. For clockwork 
-            // package the category names in dyf is different from what we show it 
+            // package the category names in expn is different from what we show it 
             // on the tree view. so when you click on the category to populate it 
             // triggers an update to category name. on the same instance when you uninstall
             // and insall the clockwork package, the categories are named correctly but 

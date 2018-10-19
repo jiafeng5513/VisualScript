@@ -1602,7 +1602,7 @@ namespace Dynamo.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Welcome to Dynamo! 的本地化字符串。
+        ///   查找类似 Welcome to Expressior! 的本地化字符串。
         /// </summary>
         public static string WelcomeMessage {
             get {

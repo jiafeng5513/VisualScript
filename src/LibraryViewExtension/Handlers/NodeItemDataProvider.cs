@@ -95,7 +95,7 @@ namespace Dynamo.LibraryUI.Handlers
             else if (element.ElementType.HasFlag(ElementTypes.CustomNode))
             {
                 //Use FullCategory and name as read from _customization.xml file
-                return string.Format("{0}{1}", "dyf://", element.FullName);
+                return string.Format("{0}{1}", "expn://", element.FullName);
             }
             return element.FullName;
         }

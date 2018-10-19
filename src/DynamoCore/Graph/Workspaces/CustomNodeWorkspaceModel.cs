@@ -157,7 +157,7 @@ namespace Dynamo.Graph.Workspaces
             try
             {
                 string[] splited = this.FileName.Split(new string[] {@"\"}, StringSplitOptions.None);
-                result = splited[splited.Length - 1].Replace(".dyf", "");
+                result = splited[splited.Length - 1].Replace(".expn", "");
             }
             catch
             {

@@ -198,7 +198,7 @@ namespace Dynamo.Graph.Workspaces
             {
                 fileName = Path.GetFileName(filePath);
                 string extension = Path.GetExtension(filePath);
-                if (extension == ".dyn" || extension == ".dyf")
+                if (extension == ".expm" || extension == ".expn")
                 {
                     fileName = Path.GetFileNameWithoutExtension(filePath);
                 }
@@ -820,7 +820,7 @@ namespace Dynamo.Graph.Workspaces
         /// The geometry scale factor specific to the workspace obtained from user input
         /// when selecting the scale of the model with which he/she is working. 
         /// This is used by ProtoGeometry to scale geometric values appropriately before passing them to ASM.
-        /// This property is set either when reading the setting from a DYN file or when the setting is updated from the UI.
+        /// This property is set either when reading the setting from a EXPM file or when the setting is updated from the UI.
         /// </summary>
         public double ScaleFactor
         {
@@ -1459,7 +1459,7 @@ namespace Dynamo.Graph.Workspaces
                     annotationList.AppendChild(annotation);
                 }
 
-                //save the presets into the dyn file as a seperate element on the root
+                //save the presets into the EXPM file as a seperate element on the root
                 var presetsElement = xmlDoc.CreateElement("Presets");
                 root.AppendChild(presetsElement);
                 foreach (var preset in Presets)

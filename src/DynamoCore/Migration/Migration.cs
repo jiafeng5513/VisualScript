@@ -337,10 +337,10 @@ namespace Dynamo.Migration
         }
 
         /// <summary>
-        /// Call this method to backup the DYN file specified by originalPath. The 
+        /// Call this method to backup the expm file specified by originalPath. The 
         /// new file will be backed up to a location where Dynamo has write access to.
         /// </summary>
-        /// <param name="originalPath">Path of the original DYN file to be backed up.</param>
+        /// <param name="originalPath">Path of the original expm file to be backed up.</param>
         /// <param name="backupPath">Path of the backed up file. This value will be a valid 
         /// file path only if this method returns true.</param>
         /// <returns>Returns true if the backup was successful, or false otherwise.</returns>
@@ -537,7 +537,7 @@ namespace Dynamo.Migration
 
         /// <summary>
         /// Call this method to determine if migration should take place 
-        /// for the input DYN/DYF file based on the given version numbers.
+        /// for the input EXPM/EXPN file based on the given version numbers.
         /// </summary>
         /// <param name="fileVersion">The version of input file.</param>
         /// <param name="currVersion">The version of Dynamo software.</param>

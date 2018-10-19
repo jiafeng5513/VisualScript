@@ -188,8 +188,8 @@ namespace Dynamo.Graph.Nodes.CustomNodes
 
         /// <summary>
         ///   Return if the custom node instance is in sync with its definition.
-        ///   It may be out of sync if .dyf file is opened and updated and then
-        ///   .dyn file is opened. 
+        ///   It may be out of sync if .expn file is opened and updated and then
+        ///   .expm file is opened. 
         /// </summary>
         public bool IsInSyncWithNode(NodeModel model)
         {

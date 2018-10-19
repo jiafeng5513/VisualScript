@@ -110,7 +110,7 @@ namespace Dynamo.Graph.Workspaces
                     }
                 }
 
-                // we have a dyf and it lacks an ID field, we need to assign it
+                // we have a expn and it lacks an ID field, we need to assign it
                 // a deterministic guid based on its name.  By doing it deterministically,
                 // files remain compatible
                 if (string.IsNullOrEmpty(id) && !string.IsNullOrEmpty(funName) && funName != dynamo1HomeWorkspaceNameString)
@@ -178,7 +178,7 @@ namespace Dynamo.Graph.Workspaces
                 string id = jObject.TryGetValue("Uuid", out value) ? value.ToString() : "";
                 string category = jObject.TryGetValue("Category", out value) ? value.ToString() : "";
                 string description = jObject.TryGetValue("Description", out value) ? value.ToString() : "";
-                // we have a dyf and it lacks an ID field, we need to assign it
+                // we have a expn and it lacks an ID field, we need to assign it
                 // a deterministic guid based on its name.  By doing it deterministically,
                 // files remain compatible
                 //TODO(mjk) we should get rid of this and throw instead or use the isCustomNode flag to determine this

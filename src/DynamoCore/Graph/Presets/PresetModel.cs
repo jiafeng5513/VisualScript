@@ -173,7 +173,7 @@ namespace Dynamo.Graph.Presets
                 else
                 {   //add the deserialized version anyway so we dont lose this node from all states.
                     deserialzedNodes.Add(node);
-                    this.Log(nodename + nodeID.ToString() + " could not be found in the loaded .dyn");
+                    this.Log(nodename + nodeID.ToString() + " could not be found in the loaded .expm");
                 }
             }
 
