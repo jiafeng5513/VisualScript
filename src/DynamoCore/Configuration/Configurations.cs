@@ -50,41 +50,6 @@ namespace Dynamo.Configuration
         #region Usage Reporting Error Message
 
         /// <summary>
-        /// Link to Dynamo site
-        /// </summary>
-        public static string DynamoSiteLink = "http://dynamobim.org/";
-
-        /// <summary>
-        /// Link to Dynamo wiki
-        /// </summary>
-        //public static string DynamoWikiLink = "https://github.com/DynamoDS/Dynamo/wiki";
-
-        /// <summary>
-        /// Link to Dynamo forum
-        /// </summary>
-        public static string DynamoBimForum = "http://dynamobim.org/forums/forum/dyn/";
-
-        /// <summary>
-        /// DynamoTeam email
-        /// </summary>
-        public static string DynamoTeamEmail = "mailto:team@dynamobim.org";
-
-        /// <summary>
-        /// Link to Dynamo video tutorials
-        /// </summary>
-        public static string DynamoVideoTutorials = "http://dynamobim.org/learn/#161";
-
-        ///// <summary>
-        ///// Link to Dynamo dictionary
-        ///// </summary>
-        public static string DynamoDictionary = "http://dictionary.dynamobim.com/";
-
-        /// <summary>
-        /// Link to Dynamo primer
-        /// </summary>
-        //public static string DynamoPrimer = "http://dynamoprimer.com/";
-
-        /// <summary>
         /// Link to Dynamo download page
         /// </summary>
         public static string DynamoDownloadLink = "http://dynamobim.org/download/";
@@ -92,12 +57,12 @@ namespace Dynamo.Configuration
         /// <summary>
         /// Link to Dynamo's github repo
         /// </summary>
-        public static string GitHubDynamoLink = "https://github.com/AngelaViVi/Expressior/";
+        public static string GitHubDynamoLink = "https://github.com/AngelaViVi/VisualScript";
 
         /// <summary>
         /// Link to Dynamo's issues on github
         /// </summary>
-        public static string GitHubBugReportingLink = "https://github.com/DynamoDS/Dynamo/issues";
+        public static string GitHubBugReportingLink = "https://github.com/AngelaViVi/VisualScript/issues";
         #endregion
 
         #region Canvas Configurations

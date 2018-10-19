@@ -103,7 +103,6 @@ namespace Dynamo.UI.Controls
     {
         // Static lists that gets created only during creation.
         List<StartPageListItem> fileOperations = new List<StartPageListItem>();
-        List<StartPageListItem> communityLinks = new List<StartPageListItem>();
         List<StartPageListItem> contributeLinks = new List<StartPageListItem>();
 
         // Dynamic lists that update views on the fly.
@@ -143,19 +142,6 @@ namespace Dynamo.UI.Controls
 
             #region Community Links
 
-            communityLinks.Add(new StartPageListItem(Resources.StartPageDiscussionForum, "icon-discussion.png")
-            {
-                ContextData = Configurations.DynamoBimForum,
-                ClickAction = StartPageListItem.Action.ExternalUrl
-            });
-
-            communityLinks.Add(new StartPageListItem(
-                string.Format(Resources.StartPageVisitWebsite, dynamoViewModel.BrandingResourceProvider.ProductName),
-                "icon-dynamobim.png")
-            {
-                ContextData = Configurations.DynamoSiteLink,
-                ClickAction = StartPageListItem.Action.ExternalUrl
-            });
 
             #endregion
 
