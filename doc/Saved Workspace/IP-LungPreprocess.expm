@@ -579,8 +579,8 @@
     },
     {
       "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
-      "HintPath": "E:\\VisualStudio\\Expressior\\data\\IMG-0003-00001.dcm",
-      "InputValue": "..\\..\\..\\data\\IMG-0003-00001.dcm",
+      "HintPath": "E:\\VisualStudio\\VisualScript\\data\\IMG-0003-00001.dcm",
+      "InputValue": "..\\..\\data\\IMG-0003-00001.dcm",
       "NodeType": "ExtensionNode",
       "Id": "66c2ab8073f147868cf0e2b37d9a7022",
       "Inputs": [],
@@ -898,8 +898,8 @@
       }
     ],
     "Annotations": [],
-    "X": 606.50968026679743,
-    "Y": 128.64359494768979,
+    "X": 546.50968026679743,
+    "Y": 181.64359494768979,
     "Zoom": 0.54332592245027134
   }
 }

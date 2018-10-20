@@ -4,9 +4,13 @@ from __future__ import print_function
 
 import argparse
 import sys
-
-from tensorflow.examples.tutorials.mnist import input_data
+import input_data
+#from tensorflow.examples.tutorials.mnist import input_data
 from tensorflow.python.framework import graph_util
+#official/mnist/dataset.py from tensorflow/models
+
+
+
 import tensorflow as tf
 from plot_weight import plot_conv_weights,plot_conv_output
 import GlobalVariable
