@@ -7,30 +7,24 @@ using System.Threading.Tasks;
 using org.tensorflow.framework;
 
 namespace ProtobufTools
-{                
+{
     //借助Dictionary,实现链接存储
     /*==================================================================================================
     * 第一阶段:图约减
-    * 1.遍历所有的Node
-    * 2.读取一个Node的名字,观察名字中是否含有"/",如果含有/,则把/前的部分子串取出,命名为<id>,
-    *   并查找所有名字中以<id>为前缀或等于<id>的Node:
-    *      2.1.如果不存在这样的节点,则直接读取下一个节点;
-    *      2.2.存在这样的节点:
-    *          2.2.1.把所有符合条件的节点移动到一个集合[zoo]中;
-    *          2.2.2.如果集合中的node满足如下条件,标记为"可约减":
-    *              ① 这个node没有input节点
-    *              ② 这个node的全部input节点在[zoo]内
-    *              <标记结束后,剩下的节点有两种,一种是这块子图的入口,另一种是拥有盲端输入的节点>
-    *          2.2.3.查找所有未被标记为"可约减"的节点,并放入[缓存],然后遍历[缓存]
-    *              2.2.3.1.查看该节点的输入:
-    *                  2.2.3.1.1.如果输入中存在非盲端节点输入,则该节点标记为"入口";
-    *                  2.2.3.1.2.如果输入中全部是盲端节点,则把该盲端节点加入到"入口"节点的输入中,
-    *                            并将该节点标记为"可约减";
-    *          2.2.4.删除所有的"可约减"节点,并把"入口"节点更名为<id>,然后把<id>加入到[id缓存]中;
-    *          2.2.5.读取下一个节点,返回2;
-    * 3.全部Node处理完,再进行一次遍历
-    *      3.1.如果当前节点的input中出现了前缀为[id缓存]中的id的项目,则把这条input改成对应的id
-    * 4.约减完成.
+     * 1.若[map]中还有下一个节点node,访问它:
+     * 2.如果node的name总含有"/"则取出第一个/之前的字串,记为<id>;
+     *      2.1.找出[map]中所有name带有<id>的node,从[map]中删除他们,并放到[submap]中
+     *      2.2.找出[map]中剩下的node中,inputname带有<id>的node,把他们含有<id>的那个input直接改成<id>
+     *      2.3.复制一个[submap]的副本[submap2]
+     *      2.4.从[submap2]中删除没有input的节点和input都在[submap]中的节点
+     *      2.5.遍历[submap2]:
+     *          2.5.0.如果此时[submap2]为空,说明[submap]中读入了W节点,这时我们只需找到刚刚被排除的盲端节点,
+     *                把他直接放回map中,并越过2.5.1-2.5.4;
+     *          2.5.1.把所有node的input中的盲端点找到,放到[buffer]中
+     *          2.5.2.如果发现一个node,他拥有不在[submap]中且不是盲端的输入,记这个node为<inputnode>
+     *          2.5.3.把[buffer]中的节点加入到<inputnode>的输入中
+     *          2.5.4.给<inputnode>改名为<id>,放回map中;
+     *      2.6.如果发生了约减,那么对于map的这次遍历就此中断并从头开始
     * ==================================================================================================
     * 第二阶段:链接存储
     *
@@ -87,13 +81,84 @@ namespace ProtobufTools
                 }
             }
         }
-
+        /// <summary>
+        /// 判断一个节点的输入是否在给定的集合范围内取值
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="set"></param>
+        /// <returns></returns>
+        private bool isClosed(NodeDef node, Dictionary<string, NodeDef>set)
+        {
+            for (int i = 0; i < node.Input.Count; i++)
+            {
+                if (!set.ContainsKey(node.Input[i]))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         /// <summary>
         /// 图约减
         /// </summary>
+        ///   1.若[map] 中还有下一个节点node, 访问它:
+        ///   2.如果node的name总含有"/"则取出第一个/之前的字串,记为<id>;
+        ///     2.1.找出[map] 中所有name带有<id>的node, 从[map] 中删除他们, 并放到[submap] 中
+        ///     2.2.找出[map] 中剩下的node中, inputname带有<id> 的node, 把他们含有<id> 的那个input直接改成<id>
+        ///     2.3.复制一个[submap] 的副本[submap2]
+        ///     2.4.从[submap2] 中删除没有input的节点和input都在[submap]中的节点
+        ///     2.5.遍历[submap2]:
+        ///         2.5.0.如果此时[submap2] 为空, 说明[submap] 中读入了W节点, 这时我们只需找到刚刚被排除的盲端节点,
+        ///               把他直接放回map中, 并越过2.5.1-2.5.4;
+        ///         2.5.1.把所有node的input中的盲端点找到,放到[buffer] 中
+        ///         2.5.2.如果发现一个node,他拥有不在[submap] 中且不是盲端的输入, 记这个node为<inputnode>
+        ///         2.5.3.把[buffer] 中的节点加入到<inputnode>的输入中
+        ///         2.5.4.给<inputnode> 改名为<id>, 放回map中;
+        ///         2.6.如果发生了约减,那么对于map的这次遍历就此中断并从头开始
         public void MapCut()
         {
             var _map = this.map;
+            bool flag = true;
+            while (flag)
+            {
+                foreach (var node in _map)
+                {
+                    if (node.Key.Contains("/"))
+                    {
+                        string id = node.Key.Split('/')[0];
+                        Dictionary<string, NodeDef> submap = new Dictionary<string, NodeDef>();
+                        foreach (var t_node in _map)
+                        {
+                            if (t_node.Key.Contains(id))
+                            {
+                                submap.Add(t_node.Key, t_node.Value);
+                                _map.Remove(t_node.Key);
+                            }
+                        }
+
+                        foreach (var r_node in _map)
+                        {
+                            for (int i = 0; i < r_node.Value.Input.Count; i++)
+                            {
+                                if (r_node.Value.Input[i].Contains(id))
+                                {
+                                    r_node.Value.Input[i] = id;
+                                }
+                            }
+                        }
+
+                        var submap2 = submap;
+                        foreach (var s_node in submap2)
+                        {
+                            if (s_node.Value.Input.Count==0||isClosed(s_node.Value,submap))
+                            {
+                                submap2.Remove(s_node.Key);
+                            }
+                        }
+
+                    }
+                }
+            }
             foreach (var node in _map)
             {
                 if (node.Key.Contains("/"))
@@ -109,13 +174,30 @@ namespace ProtobufTools
                         }
                     }
 
-                    var CanNotCut = submap.Keys;
+                    var CanNotCut = submap;
                     foreach (var p_node in submap)
                     {
                         if (p_node.Value.Input.Count==0/*或者p节点的所有输入都在submap之内*/)
                         {
                             //从CanNotBeCut中删除这个节点的Key
-
+                            CanNotCut.Remove(p_node.Key);
+                        }
+                    }
+                    //此时CanNotCut中只剩下不可约减的节点
+                    KeyValuePair<string,NodeDef> inputNode=new KeyValuePair<string, NodeDef>();
+                    foreach (var c_node in CanNotCut)
+                    {
+                        if (true/*c_node的输入中存在非盲端节点*/)
+                        {
+                            //标记为输入节点
+                            inputNode = c_node;
+                        }
+                        else
+                        {
+                            //把当前c_node的input加入到输入节点的输入中
+                            //这个操作相当于越过了盲端节点和子图之间的中介,
+                            //由于最终所有的子图节点都要规约到输入节点上,
+                            //这里提前规约并没有问题
                         }
                     }
                 }
