@@ -14,6 +14,7 @@ namespace ProtobufTools
      * 1.若[map]中还有下一个节点node,访问它:
      * 2.如果node的name总含有"/"则取出第一个/之前的字串,记为<id>;
      *      2.1.找出[map]中所有name带有<id>的node,从[map]中删除他们,并放到[submap]中
+     *          但是,如果在当前的
      *      2.2.找出[map]中剩下的node中,inputname带有<id>的node,把他们含有<id>的那个input直接改成<id>
      *      2.3.复制一个[submap]的副本[submap2]
      *      2.4.从[submap2]中删除没有input的节点和input都在[submap]中的节点
@@ -117,17 +118,20 @@ namespace ProtobufTools
                     if (node.Key.Contains("/"))
                     {
                         string id = node.Key.Split('/')[0];
+                        if (id == "reshape")
+                        {
+                            //reshape节点不需要规约(这是一个瑕疵)
+                            continue;
+                        }
                         Dictionary<string, NodeDef> submap = new Dictionary<string, NodeDef>();
                         //找出[_map] 中所有name带有<id>的node, 从[_map] 中删除他们, 并放到[submap] 中
                         foreach (var t_node in _map)
                         {
                             if (t_node.Key.Contains(id))
                             {
-                                submap.Add(t_node.Key, t_node.Value);
-                                
+                                submap.Add(t_node.Key, t_node.Value);  
                             }
                         }
-
                         foreach (var d_node in submap)
                         {
                             _map.Remove(d_node.Key);
@@ -197,7 +201,7 @@ namespace ProtobufTools
                                             && (inputNodeOfs_node.Input.Count != 0|| inputNodeOfs_node.Name==rootNodeName))
                                         {
                                             //发现iNode
-                                            iNode = inputNodeOfs_node;
+                                            iNode = s_node.Value;
                                         }
                                     }
                                 }
