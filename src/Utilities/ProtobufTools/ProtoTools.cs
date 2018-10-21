@@ -21,9 +21,9 @@ namespace ProtobufTools
      *          2.5.0.如果此时[submap2]为空,说明[submap]中读入了W节点,这时我们只需找到刚刚被排除的盲端节点,
      *                把他直接放回map中,并越过2.5.1-2.5.4;
      *          2.5.1.把所有node的input中的盲端点找到,放到[buffer]中
-     *          2.5.2.如果发现一个node,他拥有不在[submap]中且不是盲端的输入,记这个node为<inputnode>
-     *          2.5.3.把[buffer]中的节点加入到<inputnode>的输入中
-     *          2.5.4.给<inputnode>改名为<id>,放回map中;
+     *          2.5.2.如果发现一个node,他拥有不在[submap]中且不是盲端的输入,记这个node为<inode>
+     *          2.5.3.把[buffer]中的节点加入到<inode>的输入中
+     *          2.5.4.给<inode>改名为<id>,放回map中;
      *      2.6.如果发生了约减,那么对于map的这次遍历就此中断并从头开始
     * ==================================================================================================
     * 第二阶段:链接存储
@@ -52,6 +52,9 @@ namespace ProtobufTools
     public class ProtoTools
     {
         Dictionary<string, NodeDef> map = new Dictionary<string, NodeDef>();
+        private string rootNodeName = "";
+        public Dictionary<string, NodeDef> Map { get => map; set => map = value; }
+
         /// <summary>
         /// dump GraphDef into Json File
         /// </summary>
@@ -101,41 +104,35 @@ namespace ProtobufTools
         /// <summary>
         /// 图约减
         /// </summary>
-        ///   1.若[map] 中还有下一个节点node, 访问它:
-        ///   2.如果node的name总含有"/"则取出第一个/之前的字串,记为<id>;
-        ///     2.1.找出[map] 中所有name带有<id>的node, 从[map] 中删除他们, 并放到[submap] 中
-        ///     2.2.找出[map] 中剩下的node中, inputname带有<id> 的node, 把他们含有<id> 的那个input直接改成<id>
-        ///     2.3.复制一个[submap] 的副本[submap2]
-        ///     2.4.从[submap2] 中删除没有input的节点和input都在[submap]中的节点
-        ///     2.5.遍历[submap2]:
-        ///         2.5.0.如果此时[submap2] 为空, 说明[submap] 中读入了W节点, 这时我们只需找到刚刚被排除的盲端节点,
-        ///               把他直接放回map中, 并越过2.5.1-2.5.4;
-        ///         2.5.1.把所有node的input中的盲端点找到,放到[buffer] 中
-        ///         2.5.2.如果发现一个node,他拥有不在[submap] 中且不是盲端的输入, 记这个node为<inputnode>
-        ///         2.5.3.把[buffer] 中的节点加入到<inputnode>的输入中
-        ///         2.5.4.给<inputnode> 改名为<id>, 放回map中;
-        ///         2.6.如果发生了约减,那么对于map的这次遍历就此中断并从头开始
         public void MapCut()
         {
             var _map = this.map;
             bool flag = true;
             while (flag)
             {
+                flag = false;
                 foreach (var node in _map)
                 {
+                    //如果node的name总含有"/"则取出第一个/之前的字串,记为<id>;
                     if (node.Key.Contains("/"))
                     {
                         string id = node.Key.Split('/')[0];
                         Dictionary<string, NodeDef> submap = new Dictionary<string, NodeDef>();
+                        //找出[_map] 中所有name带有<id>的node, 从[_map] 中删除他们, 并放到[submap] 中
                         foreach (var t_node in _map)
                         {
                             if (t_node.Key.Contains(id))
                             {
                                 submap.Add(t_node.Key, t_node.Value);
-                                _map.Remove(t_node.Key);
+                                
                             }
                         }
 
+                        foreach (var d_node in submap)
+                        {
+                            _map.Remove(d_node.Key);
+                        }
+                        //找出[_map] 中剩下的node中, inputname带有<id> 的node, 把他们含有< id > 的那个input直接改成 < id >
                         foreach (var r_node in _map)
                         {
                             for (int i = 0; i < r_node.Value.Input.Count; i++)
@@ -146,67 +143,82 @@ namespace ProtobufTools
                                 }
                             }
                         }
-
+                        //复制一个[submap] 的副本[submap2]
                         var submap2 = submap;
+                        //从[submap2] 中删除没有input的节点和input都在[submap]中的节点
+                        var recycleBin =new Dictionary<string, NodeDef>();//回收站
                         foreach (var s_node in submap2)
                         {
                             if (s_node.Value.Input.Count==0||isClosed(s_node.Value,submap))
                             {
-                                submap2.Remove(s_node.Key);
+                                recycleBin.Add(s_node.Key, s_node.Value);
                             }
                         }
 
-                    }
-                }
-            }
-            foreach (var node in _map)
-            {
-                if (node.Key.Contains("/"))
-                {
-                    string id = node.Key.Split('/')[0];
-                    Dictionary<string, NodeDef> submap=new Dictionary<string, NodeDef>();
-                    foreach (var t_node in _map)
-                    {
-                        if (t_node.Key.Contains(id))
+                        foreach (var r_node in recycleBin)
                         {
-                            submap.Add(t_node.Key, t_node.Value);
-                            _map.Remove(t_node.Key);
+                            submap2.Remove(r_node.Key);
                         }
-                    }
-
-                    var CanNotCut = submap;
-                    foreach (var p_node in submap)
-                    {
-                        if (p_node.Value.Input.Count==0/*或者p节点的所有输入都在submap之内*/)
+                        //如果此时[submap2] 为空, 说明[submap] 中读入了W节点, 这时我们只需找到刚刚被排除的盲端节点,把他直接放回map中
+                        if (submap2.Count==0)
                         {
-                            //从CanNotBeCut中删除这个节点的Key
-                            CanNotCut.Remove(p_node.Key);
-                        }
-                    }
-                    //此时CanNotCut中只剩下不可约减的节点
-                    KeyValuePair<string,NodeDef> inputNode=new KeyValuePair<string, NodeDef>();
-                    foreach (var c_node in CanNotCut)
-                    {
-                        if (true/*c_node的输入中存在非盲端节点*/)
-                        {
-                            //标记为输入节点
-                            inputNode = c_node;
+                            //这种情况是由于约减到了W项导致的,基于不重名假设,我们直接把权重项拉回来
+                            foreach (var r_node in recycleBin)
+                            {
+                                if (r_node.Value.Input.Count==0)
+                                {
+                                    _map.Add(r_node.Key, r_node.Value);
+                                    break;
+                                }
+                            }
                         }
                         else
                         {
-                            //把当前c_node的input加入到输入节点的输入中
-                            //这个操作相当于越过了盲端节点和子图之间的中介,
-                            //由于最终所有的子图节点都要规约到输入节点上,
-                            //这里提前规约并没有问题
+                            //把所有s_node的input中的盲端点找到,放到[buffer] 中
+                            var buffer= new Dictionary<string, NodeDef>();
+                            var iNode= new NodeDef();
+                            foreach (var s_node in submap2)
+                            {
+                                for (int i = 0; i < s_node.Value.Input.Count; i++)
+                                {
+                                    var inputNodeOfs_node = new NodeDef();
+                                    if (submap.TryGetValue(s_node.Value.Input[i], out inputNodeOfs_node))
+                                    {
+                                        if (inputNodeOfs_node.Input.Count == 0)
+                                        {
+                                            buffer.Add(inputNodeOfs_node.Name, inputNodeOfs_node);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        //如果发现一个node,他拥有不在[submap] 中且不是盲端的输入, 记这个node为<inode>
+                                        //注意,由于这个节点在[submap]中找不到,所以要扩大寻找范围
+                                        if (map.TryGetValue(s_node.Value.Input[i], out inputNodeOfs_node)
+                                            && (inputNodeOfs_node.Input.Count != 0|| inputNodeOfs_node.Name==rootNodeName))
+                                        {
+                                            //发现iNode
+                                            iNode = inputNodeOfs_node;
+                                        }
+                                    }
+                                }
+                            }
+                            //把[buffer] 中的节点加入到<inode>的输入中
+                            foreach (var b_node in buffer)
+                            {
+                                iNode.Input.Add(b_node.Value.Name);
+                            }
+                            //给<inputnode> 改名为<id>, 放回_map中
+                            iNode.Name = id;
+                            _map.Add(iNode.Name,iNode);
                         }
+                        //如果发生了约减,那么对于_map的这次遍历就此中断并从头开始
+                        flag = true;
+                        break;
                     }
-                }
-                else
-                {
-                    continue;
-                }
-                Console.WriteLine(node.Key + node.Value);
-            }
+                }//end of foreach (var node in _map)
+            }//end of while (flag)
+            //到这里已经完成约减
+            map = _map;
         }
         /// <summary>
         /// 
@@ -218,12 +230,12 @@ namespace ProtobufTools
             {
                 GraphDef st = GraphDef.Parser.ParseFrom(s);
                 //遍历所有节点,转储到一个Dictionary中
-                var tttt = st.Node;
                 for (int i = 0; i < st.Node.Count; i++)
                 {
                     map.Add(st.Node[i].Name, st.Node[i]);
                 }
-                
+
+                rootNodeName = st.Node[0].Name;//标记起点
 
             }
         }
