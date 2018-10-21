@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using org.tensorflow.framework;
 using ProtobufTools;
 
 namespace ModelDecompileTest
@@ -37,6 +39,12 @@ namespace ModelDecompileTest
                 {
                     Console.WriteLine("---" + node.Value.Input[i]);
                 }
+            }
+            m_testprotoTool.BuildLinkedList();
+            Console.WriteLine("最简支撑图");
+            foreach (var node in m_testprotoTool.SimpleMap)
+            {
+                Console.WriteLine(node.Name);
             }
         }
     }

@@ -28,33 +28,35 @@ namespace ProtobufTools
      *      2.6.如果发生了约减,那么对于map的这次遍历就此中断并从头开始
     * ==================================================================================================
     * 第二阶段:链接存储
-    *
-    * 0.为了加快交换速度,链接存储只是存储节点的名字,节点的真正信息存放在[Dictionary]中
-    *
-    * -----------------
-    * |     Node      |
-    * -----------------
-    * |  string name  |
-    * -----------------
-    * |  Node next    |
-    * -----------------
-    * 1.创建一个[盲端表].初始化为空表
-    * 2.遍历所有的Node
-    * 3.每读取一个新的Node,判断他有没有input
-    *      3.1.如果没有input.压到[盲端表]中,直接读取下一个节点;
-    *      3.2.如果有input,证明这个节点会在将来被链接到某个节点的后面,压入[缓存]中;
-    *          3.2.1.从[盲端表]和[缓存]中查找该节点的input,把找到的节点指向该节点;
-    *          3.2.2.如果一个[缓存]中的节点指向了其他节点,则从[缓存]中删除他;
-    *          3.2.3.处理完该节点所有的input,读取下一个节点;
-    * 4.全部节点处理完,将[盲端表]的第一个节点标记为root节点;
-    *
-    *
+     * 1.创建一个[盲端表].初始化为空表
+     * 2.Node存储在[map]中
+     * 3.map遍历完毕?是:转4,否:去当前项,标记为node,转3.1:
+     *  3.1.判断node有没有输入,如果没有,转3.2,如果有,转3.3;
+     *  3.2.把node压入[盲端表],返回3;
+     *  3.3.把node压入[缓存],转入3.3.1:
+     *      3.3.1.如果已经处理过node的所有input,则转3,否则,去当前输入项,记作input,转3.3.2;
+     *      3.3.2.如果从[盲端表]和[缓存]中查找input,把找到的节点指向node,
+     *      3.3.3.如果一个[缓存]中的节点指向了其他节点,则从[缓存]中删除他;
+     * 4.将[盲端表]的第一个节点标记为root节点,清空缓存,此时从root节点依次访问能找到主线上的全部节点
+     *   而除了root外,盲端表中的其他节点就是网络的常量输入
+     *
     */
+    public class simpleNode<T>{      
+        public T value;              
+        public simpleNode<T> next;
+
+        public simpleNode(T value, simpleNode<T> next=null)
+        {
+            this.value = value;
+            this.next = next;
+        }
+    }
     public class ProtoTools
     {
         Dictionary<string, NodeDef> map = new Dictionary<string, NodeDef>();
-        private string rootNodeName = "";
         public Dictionary<string, NodeDef> Map { get => map; set => map = value; }
+        private string rootNodeName = "";
+        public LinkedList<NodeDef> SimpleMap=new LinkedList<NodeDef>();
 
         /// <summary>
         /// dump GraphDef into Json File
@@ -65,26 +67,7 @@ namespace ProtobufTools
         {
 
         }
-        /// <summary>
-        /// for UnitTest
-        /// </summary>
-        public static void Decompile()
-        {
-            string InputFile = "E:/VisualStudio/VisualScript/utils/mnist/out/model/saved_model.pb";
-            using (Stream s = new FileStream(InputFile, FileMode.Open))
-            {
-                GraphDef st = GraphDef.Parser.ParseFrom(s);
-                for (int i = 0; i < st.Node.Count; i++)
-                {
-                    Console.WriteLine(st.Node[i].Name);
-                }
-                Console.WriteLine("全部节点名输出结束,下面是reshpe的input");
-                for (int i = 0; i < st.Node[2].Input.Count; i++)
-                {
-                    Console.WriteLine(st.Node[2].Input[i]);
-                }
-            }
-        }
+
         /// <summary>
         /// 判断一个节点的输入是否在给定的集合范围内取值
         /// </summary>
@@ -223,6 +206,66 @@ namespace ProtobufTools
             }//end of while (flag)
             //到这里已经完成约减
             map = _map;
+        }
+        /// <summary>
+        /// 创建链接存储
+        /// </summary>
+        /// 1.创建一个[盲端表].初始化为空表
+        /// 2.Node存储在[map] 中
+        /// 3.map遍历完毕? 是:转4,否:去当前项,标记为node,转3.1:
+        ///  3.1.判断node有没有输入,如果没有,转3.2,如果有,转3.3;
+        ///  3.2.把node压入[盲端表],返回3;
+        ///  3.3.把node压入[缓存],转入3.3.1:
+        ///      3.3.1.如果已经处理过node的所有input,则转3,否则,去当前输入项,记作input,转3.3.2;
+        ///      3.3.2.如果从[盲端表] 和[缓存]中查找input,把找到的节点指向node,
+        ///      3.3.3.如果一个[缓存] 中的节点指向了其他节点, 则从[缓存]中删除他;
+        /// 4.将[盲端表] 的第一个节点标记为root节点, 清空缓存, 此时从root节点依次访问能找到主线上的全部节点
+        ///   而除了root外,盲端表中的其他节点就是网络的常量输入
+        public void BuildLinkedList()
+        {
+            var rootNode = new NodeDef();
+            var BlindEndList = new Dictionary<string, simpleNode<NodeDef>>();
+            var Buffer= new Dictionary<string, simpleNode<NodeDef>>();
+
+            foreach (var node in map)
+            {
+                if (node.Value.Input.Count==0)
+                {
+                    BlindEndList.Add(node.Key,new simpleNode<NodeDef>(node.Value));
+                }
+                else
+                {
+                    Buffer.Add(node.Key, new simpleNode<NodeDef>(node.Value));
+                    for (int i = 0; i < node.Value.Input.Count; i++)
+                    {
+                        if (BlindEndList.ContainsKey(node.Value.Input[i]))
+                        {
+                            BlindEndList[node.Value.Input[i]].next = Buffer[node.Key];
+                        }
+                        else if (Buffer.ContainsKey(node.Value.Input[i]))
+                        {
+                            Buffer[node.Value.Input[i]].next = Buffer[node.Key];
+                            Buffer.Remove(node.Value.Input[i]);
+                        }
+                    }
+                }                
+            }
+
+            
+            var tempLList_head = new simpleNode<NodeDef>(BlindEndList[rootNodeName].value);
+            var tempLList_current= tempLList_head.next;
+
+            SimpleMap.AddFirst(BlindEndList[rootNodeName].value);
+            LinkedListNode<NodeDef> SimpleMap_current = SimpleMap.First;
+
+            while (tempLList_current!=null)
+            {
+                SimpleMap.AddAfter(SimpleMap_current, tempLList_current.value);
+                tempLList_current = tempLList_current.next;
+                SimpleMap_current = SimpleMap_current.Next;
+            }
+
+
         }
         /// <summary>
         /// 
