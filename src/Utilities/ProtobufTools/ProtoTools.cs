@@ -252,7 +252,7 @@ namespace ProtobufTools
             }
 
             
-            var tempLList_head = new simpleNode<NodeDef>(BlindEndList[rootNodeName].value);
+            var tempLList_head = BlindEndList[rootNodeName];
             var tempLList_current= tempLList_head.next;
 
             SimpleMap.AddFirst(BlindEndList[rootNodeName].value);
