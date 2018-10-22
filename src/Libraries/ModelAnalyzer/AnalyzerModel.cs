@@ -31,6 +31,38 @@ namespace ModelAnalyzerUI
     [IsDesignScriptCompatible]
     public class AnalyzerModel : NodeModel
     {
+        private List<string> exportableNodeSource;
+        private string selectedExportableNode;
+        /// <summary>
+        /// Combox数据源,填充可展开节点的名字(key)
+        /// 此处存储实际数据
+        /// </summary>
+        public List<string> ExportableNodeSource
+        {
+            get => exportableNodeSource;
+            set
+            {
+                exportableNodeSource = value;
+                RaisePropertyChanged("SelectedExportableNodeSource");
+            }
+        }
+        /// <summary>
+        /// Combox当前选中项
+        /// 此处存储实际数据
+        /// </summary>
+        public string SelectedExportableNode
+        {
+            get => selectedExportableNode;
+            set
+            {
+                selectedExportableNode = value;
+                //this.OnNodeModified();//会触发节点重绘
+                RaisePropertyChanged("SelectedExportableNode");
+            }
+        }
+
+        
+
         [JsonConstructor]
         private AnalyzerModel(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
         {
@@ -40,6 +72,11 @@ namespace ModelAnalyzerUI
 
         public AnalyzerModel()
         {
+            exportableNodeSource = new List<string>();
+            ExportableNodeSource.Add("测试0");
+            ExportableNodeSource.Add("测试1");
+            ExportableNodeSource.Add("测试2");
+
             InPorts.Add(new PortModel(PortType.Input, this, new PortData("Model_File", "模型文件")));
             InPorts.Add(new PortModel(PortType.Input, this, new PortData("Label_File", "标签文件")));
             InPorts.Add(new PortModel(PortType.Input, this, new PortData("Input_File", "输入文件")));
@@ -56,6 +93,7 @@ namespace ModelAnalyzerUI
         /// <returns></returns>
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
+
             if (!InPorts[0].IsConnected || !InPorts[1].IsConnected || !InPorts[2].IsConnected)
             {
                 //如果在没有连接输入节点的情况下连接了输出节点,应当有默认输出

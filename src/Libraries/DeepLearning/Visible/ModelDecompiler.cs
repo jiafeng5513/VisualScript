@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtobufTools;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,8 @@ namespace DeepLearning.Visible
     {
         public static void Decompile(string ModelFile = " ", string LabelFile = " ", string inputFile = " ")
         {
-
+            ProtoTools _protoTools=new ProtoTools(ModelFile);
+            
         }
     }
 }

@@ -113,6 +113,7 @@ namespace Dynamo.Models
         private Timer backupFilesTimer;
         private Dictionary<Guid, string> backupFilesDict = new Dictionary<Guid, string>();
         internal readonly Stopwatch stopwatch = Stopwatch.StartNew();
+        private static DynamoModel uniqueInstance;
         #endregion
 
         #region events
@@ -524,10 +525,19 @@ namespace Dynamo.Models
             // where necessary, assign defaults
             if (string.IsNullOrEmpty(configuration.Context))
                 configuration.Context = Configuration.Context.NONE;
-
-            return new DynamoModel(configuration);
+            uniqueInstance= new DynamoModel(configuration);
+            return uniqueInstance;
         }
 
+        public static DynamoModel getInstance()
+        {
+            if (uniqueInstance==null)
+            {
+                Start();
+            }
+
+            return uniqueInstance;
+        }
         /// <summary>
         /// Default constructor for DynamoModel
         /// </summary>

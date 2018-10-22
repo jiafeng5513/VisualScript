@@ -53,10 +53,25 @@ namespace ProtobufTools
     }
     public class ProtoTools
     {
-        Dictionary<string, NodeDef> map = new Dictionary<string, NodeDef>();
-        public Dictionary<string, NodeDef> Map { get => map; set => map = value; }
+        private Dictionary<string, NodeDef> map = new Dictionary<string, NodeDef>();
+        private GraphDef m_GraphDef =new GraphDef();
+        private LinkedList<NodeDef> simpleMap = new LinkedList<NodeDef>();
         private string rootNodeName = "";
-        public LinkedList<NodeDef> SimpleMap=new LinkedList<NodeDef>();
+
+        /// <summary>
+        /// Map使用<name,NodeDef>存储约减过的计算图
+        /// </summary>
+        public Dictionary<string, NodeDef> Map { get => map;  }
+
+        /// <summary>
+        /// GraphDef存储原始计算图
+        /// </summary>
+        public GraphDef GraphDef { get => m_GraphDef;  }
+
+        /// <summary>
+        /// SimpleMap使用双向链表存储最简支撑图
+        /// </summary>
+        public LinkedList<NodeDef> SimpleMap { get => simpleMap; }
 
         /// <summary>
         /// dump GraphDef into Json File
@@ -85,6 +100,7 @@ namespace ProtobufTools
             }
             return true;
         }
+
         /// <summary>
         /// 图约减
         /// </summary>
@@ -207,43 +223,37 @@ namespace ProtobufTools
             //到这里已经完成约减
             map = _map;
         }
+
         /// <summary>
         /// 创建链接存储
         /// </summary>
-        /// 1.创建一个[盲端表].初始化为空表
-        /// 2.Node存储在[map] 中
-        /// 3.map遍历完毕? 是:转4,否:去当前项,标记为node,转3.1:
-        ///  3.1.判断node有没有输入,如果没有,转3.2,如果有,转3.3;
-        ///  3.2.把node压入[盲端表],返回3;
-        ///  3.3.把node压入[缓存],转入3.3.1:
-        ///      3.3.1.如果已经处理过node的所有input,则转3,否则,去当前输入项,记作input,转3.3.2;
-        ///      3.3.2.如果从[盲端表] 和[缓存]中查找input,把找到的节点指向node,
-        ///      3.3.3.如果一个[缓存] 中的节点指向了其他节点, 则从[缓存]中删除他;
-        /// 4.将[盲端表] 的第一个节点标记为root节点, 清空缓存, 此时从root节点依次访问能找到主线上的全部节点
-        ///   而除了root外,盲端表中的其他节点就是网络的常量输入
         public void BuildLinkedList()
         {
-            var rootNode = new NodeDef();
             var BlindEndList = new Dictionary<string, simpleNode<NodeDef>>();
             var Buffer= new Dictionary<string, simpleNode<NodeDef>>();
 
             foreach (var node in map)
             {
+                //判断node有没有输入
                 if (node.Value.Input.Count==0)
                 {
+                    //把node压入[盲端表]
                     BlindEndList.Add(node.Key,new simpleNode<NodeDef>(node.Value));
                 }
                 else
                 {
+                    //把node压入[缓存]
                     Buffer.Add(node.Key, new simpleNode<NodeDef>(node.Value));
                     for (int i = 0; i < node.Value.Input.Count; i++)
                     {
                         if (BlindEndList.ContainsKey(node.Value.Input[i]))
                         {
+                            //如果从[盲端表] 和[缓存]中查找input,把找到的节点指向node
                             BlindEndList[node.Value.Input[i]].next = Buffer[node.Key];
                         }
                         else if (Buffer.ContainsKey(node.Value.Input[i]))
                         {
+                            //如果一个[缓存] 中的节点指向了其他节点, 则从[缓存]中删除他
                             Buffer[node.Value.Input[i]].next = Buffer[node.Key];
                             Buffer.Remove(node.Value.Input[i]);
                         }
@@ -251,10 +261,10 @@ namespace ProtobufTools
                 }                
             }
 
-            
+            //将[盲端表] 的第一个节点标记为root节点, 清空缓存, 此时从root节点依次访问能找到主线上的全部节点
             var tempLList_head = BlindEndList[rootNodeName];
+            //把数据转移到LinkList双向链表中
             var tempLList_current= tempLList_head.next;
-
             SimpleMap.AddFirst(BlindEndList[rootNodeName].value);
             LinkedListNode<NodeDef> SimpleMap_current = SimpleMap.First;
 
@@ -264,27 +274,28 @@ namespace ProtobufTools
                 tempLList_current = tempLList_current.next;
                 SimpleMap_current = SimpleMap_current.Next;
             }
-
-
         }
+
         /// <summary>
-        /// 
+        /// 构造函数,解析protocol buffer 序列化文件
         /// </summary>
         /// <param name="InputFile"></param>
-        public void Decompile(string InputFile)
+        public ProtoTools(string InputFile)
         {
             using (Stream s = new FileStream(InputFile, FileMode.Open))
             {
-                GraphDef st = GraphDef.Parser.ParseFrom(s);
+                m_GraphDef = GraphDef.Parser.ParseFrom(s);
                 //遍历所有节点,转储到一个Dictionary中
-                for (int i = 0; i < st.Node.Count; i++)
+                for (int i = 0; i < m_GraphDef.Node.Count; i++)
                 {
-                    map.Add(st.Node[i].Name, st.Node[i]);
+                    map.Add(m_GraphDef.Node[i].Name, m_GraphDef.Node[i]);
                 }
 
-                rootNodeName = st.Node[0].Name;//标记起点
-
+                rootNodeName = m_GraphDef.Node[0].Name;//标记起点
             }
+
+            MapCut();//先做图约减
+            BuildLinkedList();//再转换为双向链表
         }
     }
 }

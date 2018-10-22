@@ -49,8 +49,10 @@
             Height ="{x:Static configuration:Configurations.PortHeightInPixels}"/>
 
 
-            <ComboBox Name="SelectExportedUnit"
+            <ComboBox Name="SelectExportableNode"
                 Grid.Column="1"
+                ItemsSource="{Binding ExportableNodeSource}"
+                SelectedItem="{Binding SelectedExportableNode}"
                 Height ="{x:Static configuration:Configurations.PortHeightInPixels}"
                 Margin="0,2,6,3">
             </ComboBox>

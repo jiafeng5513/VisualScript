@@ -18,8 +18,7 @@ namespace ModelDecompileTest
         [TestMethod]
         public void TestMapCut()
         {
-            ProtoTools m_testprotoTool=new ProtoTools();
-            m_testprotoTool.Decompile("E:/VisualStudio/VisualScript/utils/mnist/out/model/saved_model.pb");
+            ProtoTools m_testprotoTool=new ProtoTools("E:/VisualStudio/VisualScript/utils/mnist/out/model/saved_model.pb");
 
             foreach (var node in m_testprotoTool.Map)
             {
