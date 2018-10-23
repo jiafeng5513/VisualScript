@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Windows;
+using DeepLearning.Visible;
 using Dynamo.Controls;
 using Dynamo.Core;
 using Dynamo.Graph.Nodes;
@@ -8,6 +12,7 @@ using Dynamo.UI.Commands;
 using Dynamo.ViewModels;
 
 using ModelAnalyzerUI;
+using ProtobufTools;
 
 namespace Dynamo.Wpf
 {
@@ -21,7 +26,7 @@ namespace Dynamo.Wpf
         /// Combox数据源,填充可展开节点的名字(key)
         /// 此处负责数据绑定
         /// </summary>
-        public List<string> ExportableNodeSource
+        public ObservableCollection<string> ExportableNodeSource
         {
             get => _analyzerModel.ExportableNodeSource;
             set => _analyzerModel.ExportableNodeSource= value;
@@ -50,8 +55,8 @@ namespace Dynamo.Wpf
         {
             switch (e.PropertyName)
             {
-                case "SelectedExportableNodeSource":
-                    RaisePropertyChanged("SelectedExportableNodeSource");
+                case "ExportableNodeSource":
+                    RaisePropertyChanged("ExportableNodeSource");
                     break;
                 case "SelectedExportableNode":
                     RaisePropertyChanged("SelectedExportableNode");
@@ -71,8 +76,19 @@ namespace Dynamo.Wpf
         }
         private void Predict(object parameters)
         {
-            var cmd = new DynamoModel.CreateNodeCommand(Guid.NewGuid().ToString(), "String", -1, -1, true, false);
-            cmd.Execute(DynamoModel.getInstance());
+            CanSeeProgressBar = !CanSeeProgressBar;
+            using (StreamReader sw = new StreamReader("F:\\ModelDecompilerParams.txt"))
+            {
+                var ModelFile = sw.ReadLine();
+                var LabelFile = sw.ReadLine();
+                var inputFile = sw.ReadLine();
+                ProtoTools _protoTools = new ProtoTools(ModelFile);
+                foreach (var node in _protoTools.Map)
+                {
+                    ExportableNodeSource.Add(node.Value.Name);
+                }
+            }
+
             CanSeeProgressBar = !CanSeeProgressBar;
         }
         #endregion

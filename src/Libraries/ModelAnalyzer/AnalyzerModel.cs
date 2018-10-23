@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Dynamo.Utilities;
 using ModelAnalyzer.Properties;
 using ProtoCore.AST.AssociativeAST;
 using System.Xml;
+using DeepLearning.Visible;
 using Dynamo.Graph;
 using Dynamo.Graph.Nodes;
 using Newtonsoft.Json;
@@ -31,19 +33,23 @@ namespace ModelAnalyzerUI
     [IsDesignScriptCompatible]
     public class AnalyzerModel : NodeModel
     {
-        private List<string> exportableNodeSource;
+        private ObservableCollection<string> exportableNodeSource;
         private string selectedExportableNode;
         /// <summary>
         /// Combox数据源,填充可展开节点的名字(key)
         /// 此处存储实际数据
         /// </summary>
-        public List<string> ExportableNodeSource
+        public ObservableCollection<string> ExportableNodeSource
         {
-            get => exportableNodeSource;
+            get
+            {
+                return exportableNodeSource;
+            }
             set
             {
                 exportableNodeSource = value;
-                RaisePropertyChanged("SelectedExportableNodeSource");
+                //this.OnNodeModified();
+                RaisePropertyChanged("ExportableNodeSource");
             }
         }
         /// <summary>
@@ -68,15 +74,12 @@ namespace ModelAnalyzerUI
         {
             //TODO:内部变量的初始化
             ShouldDisplayPreviewCore = true;
+            exportableNodeSource = new ObservableCollection<string>();
+            selectedExportableNode = "";
         }
 
         public AnalyzerModel()
         {
-            exportableNodeSource = new List<string>();
-            ExportableNodeSource.Add("测试0");
-            ExportableNodeSource.Add("测试1");
-            ExportableNodeSource.Add("测试2");
-
             InPorts.Add(new PortModel(PortType.Input, this, new PortData("Model_File", "模型文件")));
             InPorts.Add(new PortModel(PortType.Input, this, new PortData("Label_File", "标签文件")));
             InPorts.Add(new PortModel(PortType.Input, this, new PortData("Input_File", "输入文件")));

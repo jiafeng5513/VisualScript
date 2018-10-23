@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using DeepLearning.Visible;
 using Emgu.TF;
 using Emgu.TF.Models;
 
@@ -11,6 +12,7 @@ namespace DeepLearning
 
         public static string Predict(string ModelFile = " ", string LabelFile=" ", string inputFile=" ")
         {
+            ModelDecompiler.ParamGet(ModelFile, LabelFile, inputFile);
             ModelDeploy modelDecoderGraph = new ModelDeploy(  );
             modelDecoderGraph.Init(new string[] { ModelFile, LabelFile }, "Mul", "final_result");
 
