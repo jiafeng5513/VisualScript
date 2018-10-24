@@ -11,6 +11,8 @@
   "Nodes": [
     {
       "ConcreteType": "ModelAnalyzerUI.AnalyzerModel, ModelAnalyzer",
+      "ExportableNodeSource": [],
+      "SelectedExportableNode": "",
       "NodeType": "ExtensionNode",
       "Id": "7b2d27724f434d79b8a5f3facb16016b",
       "Inputs": [
@@ -62,8 +64,8 @@
     },
     {
       "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
-      "HintPath": "E:\\VisualStudio\\VisualScript\\data\\optimized_graph.pb",
-      "InputValue": "E:\\VisualStudio\\VisualScript\\data\\optimized_graph.pb",
+      "HintPath": "E:\\VisualStudio\\VisualScript\\data\\flower\\optimized_graph.pb",
+      "InputValue": "..\\..\\data\\flower\\optimized_graph.pb",
       "NodeType": "ExtensionNode",
       "Id": "489ad47d345e46ad9ad90b3c158fab7b",
       "Inputs": [],
@@ -147,8 +149,8 @@
     },
     {
       "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
-      "HintPath": "E:\\VisualStudio\\VisualScript\\data\\output_labels.txt",
-      "InputValue": "E:\\VisualStudio\\VisualScript\\data\\output_labels.txt",
+      "HintPath": "E:\\VisualStudio\\VisualScript\\data\\flower\\output_labels.txt",
+      "InputValue": "..\\..\\data\\flower\\output_labels.txt",
       "NodeType": "ExtensionNode",
       "Id": "8f2923dab8a74f44b9bb9e5084c82b32",
       "Inputs": [],
@@ -169,8 +171,8 @@
     },
     {
       "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
-      "HintPath": "E:\\VisualStudio\\VisualScript\\data\\flower.png",
-      "InputValue": "E:\\VisualStudio\\VisualScript\\data\\flower.png",
+      "HintPath": "E:\\VisualStudio\\VisualScript\\data\\flower\\flower.png",
+      "InputValue": "..\\..\\data\\flower\\flower.png",
       "NodeType": "ExtensionNode",
       "Id": "61fe74ea1ceb4268aa7ef0c4177d5063",
       "Inputs": [],
@@ -418,7 +420,7 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "X": 532.5,
-        "Y": 57.0
+        "Y": 51.0
       },
       {
         "ShowGeometry": true,
@@ -522,8 +524,8 @@
       }
     ],
     "Annotations": [],
-    "X": 0.0,
-    "Y": 0.0,
-    "Zoom": 1.0
+    "X": 23.484065384882911,
+    "Y": 17.325817319179691,
+    "Zoom": 0.9540429248828125
   }
 }
