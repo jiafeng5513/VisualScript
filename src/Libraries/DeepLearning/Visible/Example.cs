@@ -55,7 +55,7 @@ namespace DeepLearning
             ModelDeploy modelDecoderGraph = new ModelDeploy();
             modelDecoderGraph.Init(new string[] { ModelFile, LabelFile }, "input", "out");
             
-            Tensor imageTensor = ImageIO.ReadTensorFromImageFile(inputFile, 28, 28, 0, 1);
+            Tensor imageTensor = ImageIO.ReadTensorFromImageFile(inputFile, 28, 28, 0, 1/255f);
             
             //modelDecoderGraph.ImportGraph();
             Stopwatch sw = Stopwatch.StartNew();

@@ -13,4 +13,5 @@
 /mnist/input_data
 /mnist/log
 /mnist/out
+/mnist/out_without_dropout
 /mnist/__pycache__

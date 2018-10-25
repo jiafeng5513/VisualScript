@@ -10,6 +10,8 @@ from tensorflow.python.framework import graph_util
 import tensorflow as tf
 from plot_weight import plot_conv_weights,plot_conv_output
 import GlobalVariable
+from PIL import Image
+from tensorflow.python.platform import gfile
 FLAGS = None
 
 
@@ -65,6 +67,13 @@ def deepnn(x):
 
     return y_conv, keep_prob
 
+def imageprepare(filepath):
+    im = Image.open(filepath)
+    im = im.convert('L')
+    tv = list(im.getdata())
+    tva = [(255-x)*1.0/255.0 for x in tv]
+    return tva
+
 
 def main(_):
     # Import data
@@ -107,19 +116,21 @@ def main(_):
             x: mnist.test.images, y_: mnist.test.labels, keep_prob: 1.0}))
 
         print('Save Model in File...')
-        var_list = ["w1","b1","conv1","activation1","pool1","w3","b3",
+
+        # 保存方法1
+        var_list = ["input","w1","b1","conv1","activation1","pool1","w3","b3",
                     "conv2","activation2","pool2","w5","b5","fc1","Keep_prob",
                    "w6","b6","fc2","out"]
-        # print(var_list)
-        # constant_graph = graph_util.convert_variables_to_constants(sess, sess.graph_def, ["out"])
-        # 保存图表并保存变量参数
         constant_graph = graph_util.convert_variables_to_constants(sess, sess.graph_def,
                                                                    output_node_names=
                                                                    [var_list[i] for i in range(len(var_list))])
-        # with tf.gfile.FastGFile(GlobalVariable.model_location, mode='wb') as f:
-        #     f.write(constant_graph.SerializeToString())
-        tf.train.write_graph(constant_graph, './out/model/', 'saved_model.pb', as_text=False)
+        tf.train.write_graph(constant_graph, './out/model/', 'model_needcut.pb', as_text=False)
+        # 保存方法2
+        constant_graph = graph_util.convert_variables_to_constants(sess, sess.graph_def, ["out"])
 
+        tf.train.write_graph(constant_graph, './out/model/', 'model_minimal.pb', as_text=False)
+
+        ""
         "将事先收集的信息画出来,画权重不需要给出输入信息,画输出需要给出输入信息"
         conv_weights = sess.run([tf.get_collection('conv1_weights')])
         for i, c in enumerate(conv_weights[0]):

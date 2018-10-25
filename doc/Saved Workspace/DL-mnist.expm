@@ -64,8 +64,8 @@
     },
     {
       "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
-      "HintPath": "E:\\VisualStudio\\VisualScript\\data\\mnist\\saved_model_without_dropout.pb",
-      "InputValue": "E:\\VisualStudio\\VisualScript\\data\\mnist\\saved_model_without_dropout.pb",
+      "HintPath": "E:\\VisualStudio\\VisualScript\\utils\\mnist\\out_without_dropout\\model\\model_minimal.pb",
+      "InputValue": "..\\..\\utils\\mnist\\out_without_dropout\\model\\model_minimal.pb",
       "NodeType": "ExtensionNode",
       "Id": "35345e23aa244199b0d246ef8603472f",
       "Inputs": [],
@@ -171,8 +171,8 @@
     },
     {
       "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
-      "HintPath": "E:\\VisualStudio\\VisualScript\\data\\mnist\\mnist_train_1.jpg",
-      "InputValue": "E:\\VisualStudio\\VisualScript\\data\\mnist\\mnist_train_1.jpg",
+      "HintPath": "E:\\VisualStudio\\VisualScript\\data\\mnist\\8.png",
+      "InputValue": "..\\..\\data\\mnist\\8.png",
       "NodeType": "ExtensionNode",
       "Id": "ab36522706a34753bbc48439a644e0ab",
       "Inputs": [],
@@ -357,7 +357,7 @@
     {
       "Start": "f1b5cfc111e14e22b1b8ef8afd2f2638",
       "End": "c413747642ae405d9ec25d8d8e24924d",
-      "Id": "03452c139d11496c97cd158c66ff2934"
+      "Id": "46da2e74ad3445bba2dadbfca2cf7944"
     },
     {
       "Start": "550f8b12ca7346b082a60a1c96820666",
@@ -419,8 +419,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1314.481884057971,
-        "Y": 454.02898550724638
+        "X": 1303.4951690821256,
+        "Y": 326.18357487922708
       },
       {
         "ShowGeometry": true,
@@ -429,8 +429,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 826.5,
-        "Y": 464.0
+        "X": 853.467391304348,
+        "Y": 353.1340579710145
       },
       {
         "ShowGeometry": true,
@@ -439,8 +439,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1572.5,
-        "Y": 674.0
+        "X": 1513.5712560386473,
+        "Y": 569.12681159420288
       },
       {
         "ShowGeometry": true,
@@ -449,8 +449,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1391.5,
-        "Y": 664.0
+        "X": 1311.5966183574878,
+        "Y": 645.02294685990341
       },
       {
         "ShowGeometry": true,
@@ -479,8 +479,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1862.4528985507247,
-        "Y": 359.14855072463769
+        "X": 1849.4685990338166,
+        "Y": 327.18719806763283
       },
       {
         "ShowGeometry": true,
@@ -489,8 +489,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1994.3876811594203,
-        "Y": 470.22584541062804
+        "X": 1883.5217391304348,
+        "Y": 454.24516908212559
       },
       {
         "ShowGeometry": true,
@@ -499,8 +499,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1789.5,
-        "Y": 828.0
+        "X": 1820.4625603864733,
+        "Y": 696.15942028985512
       },
       {
         "ShowGeometry": true,
@@ -509,8 +509,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1288.5,
-        "Y": 825.0
+        "X": 1271.5205314009663,
+        "Y": 788.04468599033817
       },
       {
         "ShowGeometry": true,
