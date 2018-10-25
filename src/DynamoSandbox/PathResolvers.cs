@@ -32,8 +32,8 @@ namespace Dynamo.Applications
                 "FunctionObject.ds",
                 "BuiltIn.ds",
                 "ImageProcess.dll",//注意这个dll的名字
-                "DicomTools.dll",
-                "DeepLearning.dll"
+                //"DicomTools.dll",
+                //"DeepLearning.dll"
             };
 
         }

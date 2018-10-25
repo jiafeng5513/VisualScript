@@ -5,16 +5,9 @@ using Dynamo.Utilities;
 using ModelAnalyzer.Properties;
 using ProtoCore.AST.AssociativeAST;
 using System.Xml;
-using DeepLearning.Visible;
 using Dynamo.Graph;
 using Dynamo.Graph.Nodes;
 using Newtonsoft.Json;
-using ModelAnalyzer;
-using ProtoCore.AST;
-using ProtoCore.SyntaxAnalysis;
-using ProtoCore.SyntaxAnalysis.Associative;
-using DynamoConversions;
-
 /*
 * 带客制化界面的元素的节点API
 * 1.输出到bin/node中.
