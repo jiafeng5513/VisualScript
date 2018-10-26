@@ -39,7 +39,8 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Expressior.snk.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -78,13 +79,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
-    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.ValueTuple.4.4.0\lib\net47\System.ValueTuple.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml" />
-    <Reference Include="TensorFlowSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\TensorFlowSharp.1.11.0\lib\netstandard2.0\TensorFlowSharp.dll</HintPath>
-    </Reference>
     <Reference Include="ZedGraph, Version=5.1.7.430, Culture=neutral, PublicKeyToken=02a83cbd123fcd60, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ZedGraph.5.1.7\lib\net35-Client\ZedGraph.dll</HintPath>
     </Reference>
@@ -99,7 +94,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Expressior.snk.pfx" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -107,9 +101,10 @@
       <Project>{14B2ADFE-54A0-46D3-B400-8F9333C1F96B}</Project>
       <Name>ProtobufTools</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="License-LGPL.txt" />
+    <ProjectReference Include="..\..\Utilities\TensorflowSharp\TensorflowSharp.csproj">
+      <Project>{c3116cdf-9bf4-4a72-9a05-1b8db1b5138b}</Project>
+      <Name>TensorflowSharp</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="MsBuildAL1073WarningWorkaround.targets" />
@@ -119,9 +114,7 @@
       <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\..\packages\EMGU.TF.1.10.0.229\build\EMGU.TF.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\EMGU.TF.1.10.0.229\build\EMGU.TF.targets'))" />
-    <Error Condition="!Exists('..\..\packages\TensorFlowSharp.1.11.0\build\net45\TensorFlowSharp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\TensorFlowSharp.1.11.0\build\net45\TensorFlowSharp.targets'))" />
     <Error Condition="!Exists('..\..\packages\EMGU.CV.3.4.3.3016\build\EMGU.CV.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\EMGU.CV.3.4.3.3016\build\EMGU.CV.targets'))" />
   </Target>
-  <Import Project="..\..\packages\TensorFlowSharp.1.11.0\build\net45\TensorFlowSharp.targets" Condition="Exists('..\..\packages\TensorFlowSharp.1.11.0\build\net45\TensorFlowSharp.targets')" />
   <Import Project="..\..\packages\EMGU.CV.3.4.3.3016\build\EMGU.CV.targets" Condition="Exists('..\..\packages\EMGU.CV.3.4.3.3016\build\EMGU.CV.targets')" />
 </Project>
