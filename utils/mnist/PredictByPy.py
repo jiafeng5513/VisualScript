@@ -19,7 +19,7 @@ class Predict(object):
         self.sess.run(tf.global_variables_initializer())
 
         # 加载模型到sess中
-        self.restore_mode_pb('E:/VisualStudio/VisualScript/utils/mnist/out/model/saved_model.pb')
+        self.restore_mode_pb('E:/VisualStudio/VisualScript/utils/mnist/out/model/model_minimal.pb')
         print('load susess')
 
 
@@ -50,6 +50,6 @@ class Predict(object):
 
 if __name__ == '__main__':
     model = Predict()
-    model.predict2('E:/VisualStudio/VisualScript/utils/mnist/input_data/raw/2.png')
-    model.predict2('E:/VisualStudio/VisualScript/utils/mnist/input_data/raw/4.png')
-    model.predict2('E:/VisualStudio/VisualScript/utils/mnist/input_data/raw/8.png')
+    model.predict2('E:/VisualStudio/VisualScript/utils/mnist/raw/2.png')
+    model.predict2('E:/VisualStudio/VisualScript/utils/mnist/raw/4.png')
+    model.predict2('E:/VisualStudio/VisualScript/utils/mnist/raw/8.png')

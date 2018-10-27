@@ -70,6 +70,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExplodeProto.cs" />
     <Compile Include="TensorProto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
