@@ -27,6 +27,7 @@
     <WarningLevel>4</WarningLevel>
     <NoWarn>CS1591,CS3001</NoWarn>
     <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>..\..\bin\x64\Debug\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
     <DebugType>pdbonly</DebugType>

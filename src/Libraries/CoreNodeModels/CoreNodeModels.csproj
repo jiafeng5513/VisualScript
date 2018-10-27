@@ -40,6 +40,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <PlatformTarget>x64</PlatformTarget>
     <NoWarn>CS1591,CS1587,CS3001,CS3016,CS1572</NoWarn>
+    <OutputPath>..\..\..\bin\x64\Debug\nodes\</OutputPath>
+    <DocumentationFile>..\..\..\bin\x64\Debug\nodes\CoreNodeModels.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>..\..\..\bin\x64\Release\nodes\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NCalc, Version=1.3.8.0, Culture=neutral, PublicKeyToken=973cde3f1cafed03, processorArchitecture=MSIL">

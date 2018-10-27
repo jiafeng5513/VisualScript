@@ -104,7 +104,7 @@ namespace ModelAnalyzerUI
             AssociativeNode node = null;
 
             node = AstFactory.BuildFunctionCall(
-                        new Func<string, string, string, string>(DeepLearning.Example.Predict),
+                        new Func<string, string, string, string>(DeepLearning.Example.request),
                         new List<AssociativeNode> { input1, input2, input3 });
 
             return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node) };

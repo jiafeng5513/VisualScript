@@ -42,8 +42,9 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <NoWarn>CS1591</NoWarn>
-    <DocumentationFile>..\..\bin\AnyCPU\Debug\DynamoServices.xml</DocumentationFile>
+    <DocumentationFile>..\..\bin\x64\Debug\DynamoServices.xml</DocumentationFile>
     <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>..\..\bin\x64\Debug\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

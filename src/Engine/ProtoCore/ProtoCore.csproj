@@ -36,6 +36,7 @@
     <Prefer32Bit>false</Prefer32Bit>
     <NoWarn>CS3008,CS3003,CS1591,CS3005,CS0660</NoWarn>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <OutputPath>..\..\..\bin\x64\Debug\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <Optimize>true</Optimize>
@@ -50,6 +51,7 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
     <DefineConstants>_USE_FREE_LIST</DefineConstants>
     <Prefer32Bit>false</Prefer32Bit>
+    <OutputPath>..\..\..\bin\x64\Release\</OutputPath>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />

@@ -40,7 +40,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <PlatformTarget>x64</PlatformTarget>
     <NoWarn>CS1591,CS3001</NoWarn>
-    <DocumentationFile>..\..\..\bin\AnyCPU\Debug\DynamoConversions.xml</DocumentationFile>
+    <DocumentationFile>..\..\..\bin\x64\Debug\DynamoConversions.xml</DocumentationFile>
+    <OutputPath>..\..\..\bin\x64\Debug\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ProtoGeometry">

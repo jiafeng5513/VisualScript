@@ -37,9 +37,9 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\..\..\bin\AnyCPU\Debug\</OutputPath>
+    <OutputPath>..\..\..\bin\x64\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DocumentationFile>..\..\..\bin\AnyCPU\Debug\DicomTools.XML</DocumentationFile>
+    <DocumentationFile>..\..\..\bin\x64\Debug\DicomTools.XML</DocumentationFile>
     <NoWarn>CS1591</NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>

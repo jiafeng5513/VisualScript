@@ -41,6 +41,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <PlatformTarget>x64</PlatformTarget>
     <NoWarn>CS1591</NoWarn>
+    <OutputPath>..\..\..\bin\x64\Debug\nodes\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Google.Protobuf, Version=3.6.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604" />
@@ -151,7 +152,7 @@
       <Output TaskParameter="FullFrameworkReferenceAssemblyPaths" PropertyName="FrameworkAssembliesPath" />
     </GetReferenceAssemblyPaths>
     <!-- Get ProtoGeometry -->
-    <GetAssemblyIdentity AssemblyFiles="$(OutDir)ProtoGeometry.dll">
+    <GetAssemblyIdentity AssemblyFiles="$(OutDir)..\ProtoGeometry.dll">
       <Output TaskParameter="Assemblies" ItemName="ProtoGeometryInfo" />
     </GetAssemblyIdentity>
   </Target>
