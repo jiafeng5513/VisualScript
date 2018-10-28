@@ -5,16 +5,16 @@ from __future__ import print_function
 import argparse
 import sys
 import input_data
-#from tensorflow.examples.tutorials.mnist import input_data
-from tensorflow.python.framework import graph_util
-#official/mnist/dataset.py from tensorflow/models
-
-
-
 import tensorflow as tf
-from plot_weight import plot_conv_weights,plot_conv_output
-import GlobalVariable
+from tensorflow.python.framework import graph_util
+
 FLAGS = None
+input_dir = './input_data'
+summary_location = './out_without_dropout/summary'
+model_save_location = './out_without_dropout/model/'
+full_var_model_name = 'model_needcut.pb'
+out_var_only_model_name = 'model_minimal.pb'
+
 """
 不带dropout
 """
@@ -40,10 +40,6 @@ def deepnn(x):
     pre_activation1 = tf.nn.conv2d(x_image, w_conv1, strides=[1, 1, 1, 1], padding='SAME', name='conv1')
     h_conv1 = tf.nn.relu(pre_activation1 + b_conv1, name='activation1')
 
-    "收集一些信息用于画出内部结构,此处是第一卷积层的权重和输出"
-    tf.add_to_collection('conv1_weights', w_conv1)
-    tf.add_to_collection('conv1_output', h_conv1)
-
     "第二层:池化"
     h_pool1 = tf.nn.max_pool(h_conv1, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME', name='pool1')
     "第三层:卷积+relu"
@@ -58,16 +54,14 @@ def deepnn(x):
     b_fc1 = bias_variable([1024], name='b5')
     h_pool2_flat = tf.reshape(h_pool2, [-1, 7 * 7 * 64])
     h_fc1 = tf.nn.relu(tf.matmul(h_pool2_flat, w_fc1) + b_fc1, name='fc1')
-    "dropout"
-    # keep_prob = tf.placeholder(tf.float32, name='Keep_prob')
-    # h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob, name='dropout')
+
     "第六层:全连接"
     W_fc2 = weight_variable([1024, 10], name='w6')
     b_fc2 = bias_variable([10], name='b6')
     h_fc2 = tf.matmul(h_fc1, W_fc2, name='fc2')
+
     "第七层:softmax 输出"
     y_conv = tf.nn.softmax(h_fc2 + b_fc2, name='out')
-
 
     return y_conv
 
@@ -94,8 +88,8 @@ def main(_):
     correct_prediction = tf.cast(correct_prediction, tf.float32)
     accuracy = tf.reduce_mean(correct_prediction, name='accuracy')
 
-    print('Saving graph to: %s' % GlobalVariable.summary_location_without_dropout)
-    train_writer = tf.summary.FileWriter(GlobalVariable.summary_location)
+    print('Saving graph to: %s' % summary_location)
+    train_writer = tf.summary.FileWriter(summary_location)
     train_writer.add_graph(tf.get_default_graph())
 
     with tf.Session() as sess:
@@ -120,24 +114,17 @@ def main(_):
         constant_graph = graph_util.convert_variables_to_constants(sess, sess.graph_def,
                                                                    output_node_names=
                                                                    [var_list[i] for i in range(len(var_list))])
-        tf.train.write_graph(constant_graph, './out_without_dropout/model/', 'model_needcut.pb', as_text=False)
+        tf.train.write_graph(constant_graph, model_save_location, full_var_model_name, as_text=False)
         # 保存方法2
         constant_graph = graph_util.convert_variables_to_constants(sess, sess.graph_def, ["out"])
 
-        tf.train.write_graph(constant_graph, './out_without_dropout/model/', 'model_minimal.pb', as_text=False)
+        tf.train.write_graph(constant_graph, model_save_location, out_var_only_model_name, as_text=False)
 
-        "将事先收集的信息画出来,画权重不需要给出输入信息,画输出需要给出输入信息"
-        conv_weights = sess.run([tf.get_collection('conv1_weights')])
-        for i, c in enumerate(conv_weights[0]):
-            plot_conv_weights(c, 'conv{}'.format(i))
 
-        conv_out = sess.run([tf.get_collection('conv1_output')], feed_dict={x: mnist.test.images[:1]})
-        for i, c in enumerate(conv_out[0]):
-            plot_conv_output(c, 'conv{}'.format(i))
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--data_dir', type=str, default='./input_data', help='Directory for storing input data')
+    parser.add_argument('--data_dir', type=str, default=input_dir, help='Directory for storing input data')
     FLAGS, unparsed = parser.parse_known_args()
     tf.app.run(main=main, argv=[sys.argv[0]] + unparsed)

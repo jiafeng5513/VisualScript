@@ -1,26 +1,39 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using CoreNodeModels;
 using Dynamo.Controls;
 using Dynamo.Graph.Nodes;
 using Dynamo.Utilities;
-using Image = System.Windows.Controls.Image;
 using Dynamo.Wpf;
+using Image = System.Windows.Controls.Image;
 
-namespace CoreNodeModelsWpf.Nodes
+namespace WatchImage
 {
-    internal class WatchImageNodeViewCustomization : INodeViewCustomization<WatchImageCore>
+    class WatchImageCustomization : INodeViewCustomization<WatchImageModel>
     {
         private Image image;
         private NodeModel nodeModel;
         private NodeView nodeView;
 
-        public void CustomizeView(WatchImageCore nodeModel, NodeView nodeView)
+        private WatchImageView imageView;  //未初始化,未得到正确的值
+        private WatchImageModel imageModel;//未初始化,未得到正确的值
+
+        public void CustomizeView(WatchImageModel nodeModel, NodeView nodeView)
         {
-            this.nodeModel = nodeModel;
+            this.imageModel = nodeModel;
             this.nodeView = nodeView;
+
+            imageView = new WatchImageView()
+            {
+                DataContext = new WatchImageViewModel(),
+            };
 
             image = new Image
             {
@@ -32,18 +45,18 @@ namespace CoreNodeModelsWpf.Nodes
             };
 
             // Update the image when the property is updated
-            
+
             nodeModel.PropertyChanged += NodeModelOnPropertyChanged;
 
-            nodeView.PresentationGrid.Children.Add(image);
-            nodeView.PresentationGrid.Visibility = Visibility.Visible;
+            imageView.PresentationGrid.Children.Add(image);
+            imageView.PresentationGrid.Visibility = Visibility.Visible;
 
             HandleMirrorData();
         }
 
         private void NodeModelOnPropertyChanged(object sender, PropertyChangedEventArgs args)
         {
-            if (args.PropertyName != "CachedValue") 
+            if (args.PropertyName != "CachedValue")
                 return;
 
             HandleMirrorData();
@@ -51,14 +64,14 @@ namespace CoreNodeModelsWpf.Nodes
 
         private void HandleMirrorData()
         {
-            var data = nodeModel.CachedValue;
+            var data = imageModel.CachedValue;
             if (data == null)
                 return;
 
             var bitmap = data.Data as Bitmap;
             if (bitmap != null)
             {
-                nodeView.Dispatcher.Invoke(new Action<Bitmap>(SetImageSource), new object[] { bitmap });
+                imageView.Dispatcher.Invoke(new Action<Bitmap>(SetImageSource), new object[] { bitmap });
             }
         }
 

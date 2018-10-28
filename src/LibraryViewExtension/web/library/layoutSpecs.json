@@ -871,6 +871,9 @@
                 },
                 {
                   "path": "Core.View.Watch 3D"
+                },
+                {
+                  "path": "Watch.Watch Image"
                 }
               ],
               "childElements": []

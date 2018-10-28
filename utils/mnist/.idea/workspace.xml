@@ -2,21 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1afde0d0-ed5c-4b7a-bc69-1449992feea2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../doc/Saved Workspace/DL-predict.expm" beforeDir="false" afterPath="$PROJECT_DIR$/../../doc/Saved Workspace/DL-predict.expm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../src/Libraries/DeepLearning/DeepLearning.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/Libraries/DeepLearning/DeepLearning.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../src/Libraries/DeepLearning/Visible/Example.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/Libraries/DeepLearning/Visible/Example.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../src/Libraries/DeepLearning/Visible/ImgToTensor.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../src/Libraries/DeepLearning/Visible/ModelDecompiler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/Libraries/DeepLearning/Visible/ModelDecompiler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../src/Libraries/ImageProcess/Processor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/Libraries/ImageProcess/Processor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../src/Libraries/ModelAnalyzer/AnalyzerDelegateCommands.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/Libraries/ModelAnalyzer/AnalyzerDelegateCommands.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../src/Libraries/ModelAnalyzer/AnalyzerModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/Libraries/ModelAnalyzer/AnalyzerModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../src/Libraries/ModelAnalyzer/AnalyzerViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/Libraries/ModelAnalyzer/AnalyzerViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../src/Libraries/ModelAnalyzer/ModelAnalyzer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/Libraries/ModelAnalyzer/ModelAnalyzer.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../src/Libraries/ModelAnalyzer/packages.config" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/Libraries/ModelAnalyzer/packages.config" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../src/Libraries/CoreNodeModelsWpf/NodeViewCustomizations/WatchImage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/Libraries/CoreNodeModelsWpf/NodeViewCustomizations/WatchImage.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../src/LibraryViewExtension/web/library/layoutSpecs.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/LibraryViewExtension/web/library/layoutSpecs.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../src/Utilities/TensorProtocol/TensorProtocol.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/Utilities/TensorProtocol/TensorProtocol.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../src/Utilities/TensorServer/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../../src/Utilities/TensorServer/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExportFromPB.py" beforeDir="false" afterPath="$PROJECT_DIR$/ExportFromPB.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GlobalVariable.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/PredictByPy.py" beforeDir="false" afterPath="$PROJECT_DIR$/PredictByPy.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/input_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mnist_deep.py" beforeDir="false" afterPath="$PROJECT_DIR$/mnist_with_drop.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mnist_deep_ndp.py" beforeDir="false" afterPath="$PROJECT_DIR$/mnist_without_drop.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/modelRebuild.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/plot_weight.py" beforeDir="false" afterPath="$PROJECT_DIR$/plot_weight.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,14 +21,16 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/mnist$mnist_with_drop.coverage" NAME="mnist_with_drop Coverage Results" MODIFIED="1540736893493" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/mnist$mnist_deep_ndp.coverage" NAME="mnist_deep_ndp Coverage Results" MODIFIED="1540454644895" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/mnist$mnist_to_jpg.coverage" NAME="mnist_to_jpg Coverage Results" MODIFIED="1540344064951" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/mnist$modelRebuild.coverage" NAME="modelRebuild Coverage Results" MODIFIED="1537428065931" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/mnist$PredictByPy.coverage" NAME="PredictByPy Coverage Results" MODIFIED="1540647914972" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/mnist$PredictByPy.coverage" NAME="PredictByPy Coverage Results" MODIFIED="1540733524447" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/mnist$mnist_with_summaries.coverage" NAME="mnist_with_summaries Coverage Results" MODIFIED="1537320348303" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/mnist$ExportFromPB.coverage" NAME="ExportFromPB Coverage Results" MODIFIED="1540653063912" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/mnist$predictBypy_2.coverage" NAME="predictBypy_2 Coverage Results" MODIFIED="1540453025650" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/mnist$mnist_deep.coverage" NAME="mnist_deep Coverage Results" MODIFIED="1540454323169" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/mnist$mnist_without_drop.coverage" NAME="mnist_without_drop Coverage Results" MODIFIED="1540737401996" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FUSProjectUsageTrigger">
     <session id="-690852269">
@@ -76,31 +74,33 @@
     <session id="-1725773806">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.4" value="1" />
-          <entry key="project.open.time.6" value="1" />
+          <entry key="project.open.time.6" value="2" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="16" />
+          <entry key="py" value="24" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="16" />
+          <entry key="Python" value="24" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="736" />
+          <entry key="dummy" value="21" />
+          <entry key="py" value="1010" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="736" />
+          <entry key="PLAIN_TEXT" value="21" />
+          <entry key="Python" value="1010" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts" />
@@ -109,53 +109,35 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mnist_deep.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mnist_with_drop.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="10" selection-start-line="10" selection-end-line="10" selection-end-column="58" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PredictByPy.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+            <state relative-caret-position="1239">
+              <caret line="122" column="58" lean-forward="true" selection-start-line="122" selection-start-column="58" selection-end-line="122" selection-end-column="58" />
               <folding>
-                <element signature="e#108#131#0" expanded="true" />
+                <element signature="e#0#38#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GlobalVariable.py">
+        <entry file="file://$PROJECT_DIR$/mnist_without_drop.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
+            <state relative-caret-position="1998">
+              <caret line="107" lean-forward="true" selection-start-line="107" selection-end-line="107" />
+              <folding>
+                <element signature="e#0#38#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ExportFromPB.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="171" column="45" lean-forward="true" selection-start-line="171" selection-start-column="45" selection-end-line="171" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/plot_weight.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
-              <folding>
-                <element signature="e#0#37#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="276">
+              <caret line="15" column="78" lean-forward="true" selection-start-line="14" selection-start-column="8" selection-end-line="15" selection-end-column="78" />
             </state>
           </provider>
         </entry>
@@ -169,6 +151,13 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>GlobalVariable</find>
+      <find>imageprepare</find>
+      <find>PLOT_DIR</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
@@ -177,16 +166,17 @@
       <list>
         <option value="$PROJECT_DIR$/mnist_with_summaries.py" />
         <option value="$PROJECT_DIR$/utils.py" />
-        <option value="$PROJECT_DIR$/plot_weight.py" />
-        <option value="$PROJECT_DIR$/modelRebuild.py" />
-        <option value="$PROJECT_DIR$/GlobalVariable.py" />
-        <option value="$PROJECT_DIR$/input_data.py" />
         <option value="$PROJECT_DIR$/mnist_to_jpg.py" />
         <option value="$PROJECT_DIR$/predictBypy_2.py" />
+        <option value="$PROJECT_DIR$/PredictByPy.py" />
+        <option value="$PROJECT_DIR$/GlobalVariable.py" />
+        <option value="$PROJECT_DIR$/ExportFromPB.py" />
         <option value="$PROJECT_DIR$/mnist_deep.py" />
         <option value="$PROJECT_DIR$/mnist_deep_ndp.py" />
-        <option value="$PROJECT_DIR$/PredictByPy.py" />
-        <option value="$PROJECT_DIR$/ExportFromPB.py" />
+        <option value="$PROJECT_DIR$/modelRebuild.py" />
+        <option value="$PROJECT_DIR$/plot_weight.py" />
+        <option value="$PROJECT_DIR$/input_data.py" />
+        <option value="$PROJECT_DIR$/mnist_with_drop.py" />
       </list>
     </option>
   </component>
@@ -197,8 +187,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="80" />
-    <option name="y" value="250" />
+    <option name="x" value="277" />
+    <option name="y" value="108" />
     <option name="width" value="1400" />
     <option name="height" value="863" />
   </component>
@@ -210,7 +200,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -222,6 +211,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -229,7 +219,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="settings.editor.selected.configurable" value="preferences.externalTools" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -248,7 +238,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.ExportFromPB">
+  <component name="RunManager" selected="Python.mnist_without_drop">
     <configuration name="ExportFromPB" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="mnist" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -293,28 +283,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="mnist_deep" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="mnist" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mnist_deep.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="mnist_deep_ndp" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="mnist" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -328,7 +296,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mnist_deep_ndp.py" />
+      <option name="SCRIPT_NAME" value="E:\VisualStudio\VisualScript\utils\mnist\mnist_without_drop.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -337,7 +305,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="predictBypy_2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="mnist_with_drop" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="mnist" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -350,7 +318,29 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/predictBypy_2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mnist_with_drop.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="mnist_without_drop" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="mnist" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mnist_without_drop.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -360,19 +350,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.mnist_deep" />
       <item itemvalue="Python.mnist_deep_ndp" />
       <item itemvalue="Python.PredictByPy" />
-      <item itemvalue="Python.predictBypy_2" />
       <item itemvalue="Python.ExportFromPB" />
+      <item itemvalue="Python.mnist_with_drop" />
+      <item itemvalue="Python.mnist_without_drop" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.ExportFromPB" />
+        <item itemvalue="Python.mnist_without_drop" />
+        <item itemvalue="Python.mnist_with_drop" />
         <item itemvalue="Python.PredictByPy" />
+        <item itemvalue="Python.ExportFromPB" />
         <item itemvalue="Python.mnist_deep_ndp" />
-        <item itemvalue="Python.mnist_deep" />
-        <item itemvalue="Python.predictBypy_2" />
       </list>
     </recent_temporary>
   </component>
@@ -390,10 +380,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="80" y="250" width="1400" height="863" extended-state="0" />
+    <frame x="277" y="108" width="1400" height="863" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24701492" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25074628" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -479,27 +469,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mnist_to_jpg.py" />
-    <entry file="file://$PROJECT_DIR$/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1702">
-          <caret line="77" column="23" selection-start-line="77" selection-start-column="23" selection-end-line="77" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/Libraries/Anaconda3/Lib/site-packages/tensorflow/python/training/saver.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="290">
           <caret line="1747" column="6" selection-start-line="1747" selection-start-column="6" selection-end-line="1747" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/input_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="154" column="46" lean-forward="true" selection-start-line="154" selection-start-column="46" selection-end-line="154" selection-end-column="46" />
-          <folding>
-            <element signature="e#746#784#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -539,61 +512,95 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/predictBypy_2.py" />
-    <entry file="file://$PROJECT_DIR$/modelRebuild.py">
+    <entry file="file://$PROJECT_DIR$/utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="23" column="9" lean-forward="true" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mnist_deep_ndp.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="135" column="51" selection-start-line="135" selection-start-column="51" selection-end-line="135" selection-end-column="51" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mnist_deep.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="10" selection-start-line="10" selection-end-line="10" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plot_weight.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="11" column="28" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#37#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1630">
+          <caret line="77" column="23" selection-start-line="77" selection-start-column="23" selection-end-line="77" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PredictByPy.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+        <state relative-caret-position="690">
+          <caret line="30" column="40" lean-forward="true" selection-start-line="30" selection-start-column="40" selection-end-line="30" selection-end-column="40" />
           <folding>
             <element signature="e#108#131#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/modelRebuild.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/GlobalVariable.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
+        <state relative-caret-position="483">
+          <caret line="21" column="41" lean-forward="true" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/input_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#746#784#0" expanded="true" />
+            <element signature="e#1488#1595#0" />
+            <element signature="e#1696#2497#0" />
+            <element signature="e#2606#2903#0" />
+            <element signature="e#3035#3854#0" />
+            <element signature="e#3195#7163#0" />
+            <element signature="e#3642#5115#0" />
+            <element signature="e#5448#7163#0" />
+            <element signature="e#7582#9657#0" />
+            <element signature="e#9820#9852#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plot_weight.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="109" lean-forward="true" selection-start-line="109" selection-end-line="109" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+            <element signature="e#342#1882#0" />
+            <element signature="e#1927#3178#0" />
+            <element signature="e#3078#3413#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ExportFromPB.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="171" column="45" lean-forward="true" selection-start-line="171" selection-start-column="45" selection-end-line="171" selection-end-column="45" />
+        <state relative-caret-position="276">
+          <caret line="15" column="78" lean-forward="true" selection-start-line="14" selection-start-column="8" selection-end-line="15" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mnist_without_drop.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1998">
+          <caret line="107" lean-forward="true" selection-start-line="107" selection-end-line="107" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mnist_with_drop.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1239">
+          <caret line="122" column="58" lean-forward="true" selection-start-line="122" selection-start-column="58" selection-end-line="122" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

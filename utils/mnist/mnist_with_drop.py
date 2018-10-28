@@ -4,15 +4,17 @@ from __future__ import print_function
 
 import argparse
 import sys
-
+import tensorflow as tf
 from tensorflow.examples.tutorials.mnist import input_data
 from tensorflow.python.framework import graph_util
-import tensorflow as tf
-from plot_weight import plot_conv_weights,plot_conv_output
-import GlobalVariable
-from PIL import Image
-from tensorflow.python.platform import gfile
+
+
 FLAGS = None
+input_dir = './input_data'
+summary_location = './out/summary'
+model_save_location = './out/model/'
+full_var_model_name = 'model_needcut.pb'
+out_var_only_model_name = 'model_minimal.pb'
 
 
 def weight_variable(shape, name):
@@ -35,10 +37,6 @@ def deepnn(x):
     b_conv1 = bias_variable([32], name='b1')
     pre_activation1 = tf.nn.conv2d(x_image, w_conv1, strides=[1, 1, 1, 1], padding='SAME', name='conv1')
     h_conv1 = tf.nn.relu(pre_activation1 + b_conv1, name='activation1')
-
-    "收集一些信息用于画出内部结构,此处是第一卷积层的权重和输出"
-    tf.add_to_collection('conv1_weights', w_conv1)
-    tf.add_to_collection('conv1_output', h_conv1)
 
     "第二层:池化"
     h_pool1 = tf.nn.max_pool(h_conv1, ksize=[1, 2, 2, 1], strides=[1, 2, 2, 1], padding='SAME', name='pool1')
@@ -67,13 +65,6 @@ def deepnn(x):
 
     return y_conv, keep_prob
 
-def imageprepare(filepath):
-    im = Image.open(filepath)
-    im = im.convert('L')
-    tv = list(im.getdata())
-    tva = [(255-x)*1.0/255.0 for x in tv]
-    return tva
-
 
 def main(_):
     # Import data
@@ -97,11 +88,12 @@ def main(_):
     correct_prediction = tf.cast(correct_prediction, tf.float32)
     accuracy = tf.reduce_mean(correct_prediction, name='accuracy')
 
-    print('Saving graph to: %s' % GlobalVariable.summary_location)
-    train_writer = tf.summary.FileWriter(GlobalVariable.summary_location)
+    print('Saving graph to: %s' % summary_location)
+    train_writer = tf.summary.FileWriter(summary_location)
     train_writer.add_graph(tf.get_default_graph())
 
-    with tf.Session() as sess:
+    gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.9)
+    with tf.Session(config=tf.ConfigProto(gpu_options=gpu_options)) as sess:
         sess.run(tf.global_variables_initializer())
 
         for i in range(20000):
@@ -124,25 +116,15 @@ def main(_):
         constant_graph = graph_util.convert_variables_to_constants(sess, sess.graph_def,
                                                                    output_node_names=
                                                                    [var_list[i] for i in range(len(var_list))])
-        tf.train.write_graph(constant_graph, './out/model/', 'model_needcut.pb', as_text=False)
+        tf.train.write_graph(constant_graph, model_save_location, full_var_model_name, as_text=False)
         # 保存方法2
         constant_graph = graph_util.convert_variables_to_constants(sess, sess.graph_def, ["out"])
 
-        tf.train.write_graph(constant_graph, './out/model/', 'model_minimal.pb', as_text=False)
-
-        ""
-        "将事先收集的信息画出来,画权重不需要给出输入信息,画输出需要给出输入信息"
-        conv_weights = sess.run([tf.get_collection('conv1_weights')])
-        for i, c in enumerate(conv_weights[0]):
-            plot_conv_weights(c, 'conv{}'.format(i))
-
-        conv_out = sess.run([tf.get_collection('conv1_output')], feed_dict={x: mnist.test.images[:1]})
-        for i, c in enumerate(conv_out[0]):
-            plot_conv_output(c, 'conv{}'.format(i))
+        tf.train.write_graph(constant_graph, model_save_location, out_var_only_model_name, as_text=False)
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--data_dir', type=str, default='./input_data', help='Directory for storing input data')
+    parser.add_argument('--data_dir', type=str, default=input_dir, help='Directory for storing input data')
     FLAGS, unparsed = parser.parse_known_args()
     tf.app.run(main=main, argv=[sys.argv[0]] + unparsed)
