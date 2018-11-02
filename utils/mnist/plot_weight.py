@@ -1,18 +1,12 @@
 from __future__ import print_function
-
-import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
 import os
 import utils
-import GlobalVariable
-# Import MNIST data
-from tensorflow.examples.tutorials.mnist import input_data
-
-PLOT_DIR = GlobalVariable.plot_location
+import tensorflow as tf
 
 
-def plot_conv_weights(weights, name, channels_all=True):
+def plot_conv_weights(weights, name, PLOT_DIR ,channels_all=True):
     """
     Plots convolutional filters
     :param weights: numpy array of rank 4
@@ -60,11 +54,12 @@ def plot_conv_weights(weights, name, channels_all=True):
         plt.savefig(os.path.join(plot_dir, '{}-{}.png'.format(name, channel)), bbox_inches='tight')
 
 
-def plot_conv_output(conv_img, name):
+def plot_conv_output(conv_img, name,PLOT_DIR):
     """
     Makes plots of results of performing convolution
     :param conv_img: numpy array of rank 4
     :param name: string, name of convolutional layer
+    :param PLOT_DIR:输出位置
     :return: nothing, plots are saved on the disk
     """
     # make path to output folder
@@ -100,15 +95,15 @@ def plot_conv_output(conv_img, name):
     plt.savefig(os.path.join(plot_dir, '{}.png'.format(name)), bbox_inches='tight')
 
 
-
-
-
-
-
-
-
-
-
-
-
+def ShowInTensorBoard(modelname,outdir):
+    """
+    用TensorBoard显示模型结构
+    :param modelname:  pb文件的绝对文件名
+    :param outdir:  输出summary的目录
+    """
+    graph = tf.get_default_graph()
+    graph_def = graph.as_graph_def()
+    graph_def.ParseFromString(tf.gfile.FastGFile(modelname, 'rb').read())
+    tf.import_graph_def(graph_def, name='graph')
+    summaryWriter = tf.summary.FileWriter(outdir, graph)
 

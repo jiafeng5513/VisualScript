@@ -24,15 +24,15 @@ namespace CoreNodeModelsWpf.Nodes
 
             image = new Image
             {
-                MaxWidth = 400,
-                MaxHeight = 400,
+                MaxWidth = 200,
+                MaxHeight = 200,
                 HorizontalAlignment = System.Windows.HorizontalAlignment.Center,
                 Name = "image1",
                 VerticalAlignment = System.Windows.VerticalAlignment.Center
             };
 
             // Update the image when the property is updated
-            // TODO(Peter): This is a hack written a long time ago, should be cleaned up
+            
             nodeModel.PropertyChanged += NodeModelOnPropertyChanged;
 
             nodeView.PresentationGrid.Children.Add(image);

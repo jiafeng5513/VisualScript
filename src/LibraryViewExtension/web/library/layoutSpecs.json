@@ -871,6 +871,9 @@
                 },
                 {
                   "path": "Core.View.Watch 3D"
+                },
+                {
+                  "path": "Watch.Watch Image"
                 }
               ],
               "childElements": []
@@ -1175,6 +1178,9 @@
                 },
                 {
                   "path": "ImageProcess.ImageProc.Processor.MaxRegion"
+                },
+                {
+                  "path": "ImageProcess.ImageProc.Processor.BgrToGary"
                 }
               ],
               "childElements": []
@@ -1275,7 +1281,7 @@
                 }
               ],
               "childElements": []
-            },
+            },            
             {
               "text": "Model Analysis",
               "iconUrl": "",

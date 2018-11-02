@@ -5,16 +5,10 @@ using Dynamo.Utilities;
 using ModelAnalyzer.Properties;
 using ProtoCore.AST.AssociativeAST;
 using System.Xml;
-using DeepLearning.Visible;
 using Dynamo.Graph;
 using Dynamo.Graph.Nodes;
+using Emgu.CV;
 using Newtonsoft.Json;
-using ModelAnalyzer;
-using ProtoCore.AST;
-using ProtoCore.SyntaxAnalysis;
-using ProtoCore.SyntaxAnalysis.Associative;
-using DynamoConversions;
-
 /*
 * 带客制化界面的元素的节点API
 * 1.输出到bin/node中.
@@ -82,7 +76,7 @@ namespace ModelAnalyzerUI
         {
             InPorts.Add(new PortModel(PortType.Input, this, new PortData("Model_File", "模型文件")));
             InPorts.Add(new PortModel(PortType.Input, this, new PortData("Label_File", "标签文件")));
-            InPorts.Add(new PortModel(PortType.Input, this, new PortData("Input_File", "输入文件")));
+            InPorts.Add(new PortModel(PortType.Input, this, new PortData("Input_Mat", "输入图片")));
             OutPorts.Add(new PortModel(PortType.Output, this, new PortData("Result", "输出")));
 
             ShouldDisplayPreviewCore = true;
@@ -111,7 +105,7 @@ namespace ModelAnalyzerUI
             AssociativeNode node = null;
 
             node = AstFactory.BuildFunctionCall(
-                        new Func<string, string, string, string>(DeepLearning.Example.Predict),
+                        new Func<string, string, Mat, string>(DeepLearning.Visible.Predict.request),
                         new List<AssociativeNode> { input1, input2, input3 });
 
             return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node) };

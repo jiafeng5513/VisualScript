@@ -12,7 +12,9 @@ using Dynamo.UI.Commands;
 using Dynamo.ViewModels;
 
 using ModelAnalyzerUI;
+using Newtonsoft.Json;
 using ProtobufTools;
+using TensorProtocol;
 
 namespace Dynamo.Wpf
 {
@@ -68,20 +70,26 @@ namespace Dynamo.Wpf
         /// 网络展开
         /// </summary>
         /// <param name="parameters"></param>
-        private void Explore(object parameters)
+        private void Explode(object parameters)
         {
             var cmd = new DynamoModel.CreateNodeCommand(Guid.NewGuid().ToString(), "String", -1, -1, true, false);
             cmd.Execute(DynamoModel.getInstance());
 
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="parameters"></param>
         private void Predict(object parameters)
         {
             CanSeeProgressBar = !CanSeeProgressBar;
-            using (StreamReader sw = new StreamReader("F:\\ModelDecompilerParams.txt"))
+            using (StreamReader sw = new StreamReader(System.Environment.CurrentDirectory+"\\ModelDecompilerParams.json"))
             {
-                var ModelFile = sw.ReadLine();
-                var LabelFile = sw.ReadLine();
-                var inputFile = sw.ReadLine();
+                string json = sw.ReadToEnd();
+                ExplodeProto param=JsonConvert.DeserializeObject<ExplodeProto>(json);
+                var ModelFile = param.ModelFile;
+                var LabelFile = param.LabelFile;
+                var inputMat = param.inMat;
                 ProtoTools _protoTools = new ProtoTools(ModelFile);
                 foreach (var node in _protoTools.Map)
                 {

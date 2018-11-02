@@ -1,19 +1,28 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
+using System.Net.Sockets;
 using DeepLearning.Visible;
+using Emgu.CV;
+using Emgu.CV.Structure;
 using Emgu.TF;
 using Emgu.TF.Models;
+using Newtonsoft.Json;
+using TensorProtocol;
 
 namespace DeepLearning
 {
+    /// <summary>
+    /// 用EmguTF实现的一个小例子
+    /// </summary>
     public class Example
     {
         private Example() { }
 
-        public static string Predict(string ModelFile = " ", string LabelFile=" ", string inputFile=" ")
+        public static string Predict(string ModelFile = " ", string LabelFile = " ", string inputFile = " ")
         {
-            ModelDecompiler.ParamGet(ModelFile, LabelFile, inputFile);
-            ModelDeploy modelDecoderGraph = new ModelDeploy(  );
+            
+            ModelDeploy modelDecoderGraph = new ModelDeploy();
             modelDecoderGraph.Init(new string[] { ModelFile, LabelFile }, "Mul", "final_result");
 
             Tensor imageTensor = ImageIO.ReadTensorFromImageFile(inputFile, 299, 299, 128.0f, 1.0f / 128.0f);
@@ -40,11 +49,6 @@ namespace DeepLearning
             }
 
             return resStr;
-        }
-
-        public static string TestFunc(string a, string b, string c)
-        {
-            return "Fuckiing succeed!";
         }
     }
 }
