@@ -34,6 +34,9 @@
     <CodeAnalysisRuleDirectories>;C:\VS2010\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
     <Prefer32Bit>false</Prefer32Bit>
+    <NoWarn>CS3008,CS3003,CS1591,CS3005,CS0660</NoWarn>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <OutputPath>..\..\..\bin\x64\Debug\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <Optimize>true</Optimize>
@@ -48,6 +51,7 @@
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
     <DefineConstants>_USE_FREE_LIST</DefineConstants>
     <Prefer32Bit>false</Prefer32Bit>
+    <OutputPath>..\..\..\bin\x64\Release\</OutputPath>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -97,6 +101,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="MsBuildAL1073WarningWorkaround.targets" />
   <ItemGroup>
     <Compile Include="..\..\AssemblySharedInfoGenerator\AssemblySharedInfo.cs">
       <Link>Properties\AssemblySharedInfo.cs</Link>

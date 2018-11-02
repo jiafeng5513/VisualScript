@@ -10,7 +10,7 @@ namespace Dynamo.Wpf
     {
         private void InitializeDelegateCommands()
         {
-            ExploreCommand = new DelegateCommand(Explore, o => true);
+            ExploreCommand = new DelegateCommand(Explode, o => true);
             PredictCommand = new DelegateCommand(Predict, o => true);
         }
         public DelegateCommand ExploreCommand { get; set; }
