@@ -79,6 +79,7 @@ namespace DeepLearning.Visible
                         bw.Write("stop");
                         run = false;
                         returnStr = "Server Crash with code 001!";
+                        return returnStr;
                     }
                     TensorProto result = JsonConvert.DeserializeObject<TensorProto>(receive);
                     returnStr = result.outputString;

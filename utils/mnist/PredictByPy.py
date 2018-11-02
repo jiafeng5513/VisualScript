@@ -19,7 +19,7 @@ class Predict(object):
         self.sess.run(tf.global_variables_initializer())
 
         # 加载模型到sess中
-        self.restore_mode_pb('./out/model/model_minimal.pb')
+        self.restore_mode_pb('./out_without_dropout/model/model_minimal.pb')
         print('load susess')
 
 
@@ -40,10 +40,11 @@ class Predict(object):
 
         out = self.sess.graph.get_tensor_by_name('out:0')
         input_x = self.sess.graph.get_tensor_by_name('input:0')
-        Keep_prob = self.sess.graph.get_tensor_by_name('Keep_prob:0')
+        #Keep_prob = self.sess.graph.get_tensor_by_name('Keep_prob:0')
 
         prediction = tf.argmax(out, 1)
-        predint = prediction.eval(feed_dict={input_x: x, Keep_prob: 1.0}, session=self.sess)
+        #predint = prediction.eval(feed_dict={input_x: x, Keep_prob: 1.0}, session=self.sess)
+        predint = prediction.eval(feed_dict={input_x: x}, session=self.sess)
 
         print(image_path)
         print(' Predict digit', predint[0])

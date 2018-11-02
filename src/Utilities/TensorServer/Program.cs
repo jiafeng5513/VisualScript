@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Emgu.CV;
 using Newtonsoft.Json;
@@ -57,9 +58,12 @@ namespace TensorServer
 
 
                     TensorProto stu2 = JsonConvert.DeserializeObject<TensorProto>(receive);
+                    Console.WriteLine("解序列化成功");
+                    Console.WriteLine("pbFile:"+stu2.pbFileName);
+
                     //TODO:如果要处理多种任务,在此处进行任务分发
                     var mmm = PredictFromImage(stu2);
-
+                    Console.WriteLine("计算结果:"+mmm);
                     bw = new BinaryWriter(clientStream);
                     //向客户端回传计算结果
                     bw.Write(mmm);
@@ -86,14 +90,15 @@ namespace TensorServer
             {
                 graph.Import(File.ReadAllBytes(msg.pbFileName));
                 var session = new TFSession(graph);
+                Console.WriteLine("图载入成功");
                 var runner = session.GetRunner();
 
                 var tensor = CreateTensorFromMat(msg.imgIN);
-
+                Console.WriteLine("张量转换成功");
 
                 runner.AddInput(graph["input"][0], tensor);
                 runner.Fetch(graph["out"][0]);
-
+                Console.WriteLine("Fetch成功");
                 var output = runner.Run();
 
                 // Fetch the results from output:
@@ -112,6 +117,7 @@ namespace TensorServer
                 TensorProto returnvalue = new TensorProto();
                 returnvalue.outputString =
                     "result is :" + msg.Labels[bestIdx] + "\n with " + probabilities[bestIdx]+ "of probability";
+                Console.WriteLine("计算完毕"+ returnvalue.outputString);
 
                 string returnjson = JsonConvert.SerializeObject(returnvalue);
 
@@ -166,6 +172,7 @@ namespace TensorServer
             Program m_server = new Program();
             m_server.ListenProcess();
             Console.WriteLine("监听退出,服务器关闭");
+            Thread.Sleep(2000);
         }
     }
 }

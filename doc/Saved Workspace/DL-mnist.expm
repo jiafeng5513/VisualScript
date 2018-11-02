@@ -64,8 +64,8 @@
     },
     {
       "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
-      "HintPath": "E:\\VisualStudio\\VisualScript\\utils\\mnist\\out_without_dropout\\model\\model_minimal.pb",
-      "InputValue": "..\\..\\utils\\mnist\\out_without_dropout\\model\\model_minimal.pb",
+      "HintPath": "E:\\VisualStudio\\VisualScript\\data\\mnist\\model_minimal.pb",
+      "InputValue": "..\\..\\data\\mnist\\model_minimal.pb",
       "NodeType": "ExtensionNode",
       "Id": "35345e23aa244199b0d246ef8603472f",
       "Inputs": [],
@@ -150,7 +150,7 @@
     {
       "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
       "HintPath": "E:\\VisualStudio\\VisualScript\\data\\mnist\\labels.txt",
-      "InputValue": "E:\\VisualStudio\\VisualScript\\data\\mnist\\labels.txt",
+      "InputValue": "..\\..\\data\\mnist\\labels.txt",
       "NodeType": "ExtensionNode",
       "Id": "d60e80b534ea4753a1dbcf6a5080594a",
       "Inputs": [],
@@ -278,7 +278,7 @@
           "Level": 2,
           "UseLevels": false,
           "KeepListStructure": false,
-          "IsConnected": false
+          "IsConnected": true
         }
       ],
       "Replication": "Disabled",
@@ -346,6 +346,70 @@
       ],
       "Replication": "Auto",
       "Description": "Loads the file as a bitmap.\n\nImage.ReadFromFile (file: var): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "ImageProc.Converter.BitmapToMat@var",
+      "Id": "3e3624a898314a5aa14ddd170338a7fc",
+      "Inputs": [
+        {
+          "Id": "a5b87b0781a1412c9103d02539b4b943",
+          "Name": "bitmap",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4bd8c0d41825451b8d754bbeeff27005",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "利用Emgu的Image转换构造函数将bitmap转换为mat\n\nConverter.BitmapToMat (bitmap: var): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "ImageProc.Processor.BgrToGary@var",
+      "Id": "244ffd2a4924470ebabf7fb2b69972b9",
+      "Inputs": [
+        {
+          "Id": "3affb7b00dc94d92827635ae2c316252",
+          "Name": "inMat",
+          "Description": "输入图片\n\nvar",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "49aa8f740fe44cbab034409bde201b3b",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "从RGB三通道图片转换为单通道灰度图片\n\nProcessor.BgrToGary (inMat: var): var"
     }
   ],
   "Connectors": [
@@ -385,9 +449,9 @@
       "Id": "169a605f63084f899ae9860dd0575975"
     },
     {
-      "Start": "9eeaea651081433c9d9fed8ba70373da",
-      "End": "6407a078d6624f1baad9f2f0fb90da4f",
-      "Id": "0005c3e74ebb4f7e96d828b33fa6790d"
+      "Start": "0210e2c4c05e48c38b72e8f4236e0111",
+      "End": "a5b87b0781a1412c9103d02539b4b943",
+      "Id": "8dbfee93ca7546908989dad032b4a626"
     },
     {
       "Start": "ca7ffafcd1834a6bb9c8d6fc7647f49f",
@@ -398,6 +462,16 @@
       "Start": "438b873cee9f48009bc464e16d519fd1",
       "End": "6ac79d3fa0644449a8ff0340c0c607ee",
       "Id": "d705cf558cae40de81c45d7f80cf9699"
+    },
+    {
+      "Start": "4bd8c0d41825451b8d754bbeeff27005",
+      "End": "3affb7b00dc94d92827635ae2c316252",
+      "Id": "6bdb80bb0cbe4659b1987a4bf9717cc7"
+    },
+    {
+      "Start": "49aa8f740fe44cbab034409bde201b3b",
+      "End": "6407a078d6624f1baad9f2f0fb90da4f",
+      "Id": "c1db833e95194bc5ada67ff3363b46b8"
     }
   ],
   "Dependencies": [],
@@ -419,8 +493,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1303.4951690821256,
-        "Y": 326.18357487922708
+        "X": 1572.1702898550725,
+        "Y": 279.24033816425123
       },
       {
         "ShowGeometry": true,
@@ -429,8 +503,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 853.467391304348,
-        "Y": 353.1340579710145
+        "X": 915.3925120772949,
+        "Y": 283.21859903381642
       },
       {
         "ShowGeometry": true,
@@ -439,8 +513,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1513.5712560386473,
-        "Y": 569.12681159420288
+        "X": 1764.2681159420292,
+        "Y": 420.3067632850242
       },
       {
         "ShowGeometry": true,
@@ -449,8 +523,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1311.5966183574878,
-        "Y": 645.02294685990341
+        "X": 1582.2693236714974,
+        "Y": 453.25483091787441
       },
       {
         "ShowGeometry": true,
@@ -459,8 +533,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 826.5,
-        "Y": 579.0
+        "X": 828.49758454106279,
+        "Y": 447.15942028985512
       },
       {
         "ShowGeometry": true,
@@ -479,8 +553,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1849.4685990338166,
-        "Y": 327.18719806763283
+        "X": 2012.2717391304352,
+        "Y": 297.22342995169078
       },
       {
         "ShowGeometry": true,
@@ -489,8 +563,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1883.5217391304348,
-        "Y": 454.24516908212559
+        "X": 2124.2306763285023,
+        "Y": 432.27173913043475
       },
       {
         "ShowGeometry": true,
@@ -499,8 +573,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1820.4625603864733,
-        "Y": 696.15942028985512
+        "X": 1450.9094202898548,
+        "Y": 694.16183574879233
       },
       {
         "ShowGeometry": true,
@@ -509,8 +583,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1271.5205314009663,
-        "Y": 788.04468599033817
+        "X": 1026.8164251207729,
+        "Y": 560.32004830917879
       },
       {
         "ShowGeometry": true,
@@ -519,8 +593,28 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1447.5,
-        "Y": 871.0
+        "X": 1203.7946859903382,
+        "Y": 677.23429951690832
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Converter.BitmapToMat",
+        "Id": "3e3624a898314a5aa14ddd170338a7fc",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1359.1256038647346,
+        "Y": 514.87801932367165
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Processor.BgrToGary",
+        "Id": "244ffd2a4924470ebabf7fb2b69972b9",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1743.6606280193237,
+        "Y": 659.70289855072474
       }
     ],
     "Annotations": [],
