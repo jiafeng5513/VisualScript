@@ -27,8 +27,8 @@ namespace ModelAnalyzerUI
     [IsDesignScriptCompatible]
     public class AnalyzerModel : NodeModel
     {
-        private ObservableCollection<string> exportableNodeSource;
-        private string selectedExportableNode;
+        private ObservableCollection<string> exportableNodeSource = new ObservableCollection<string>();
+        private string selectedExportableNode=string.Empty;
         /// <summary>
         /// Combox数据源,填充可展开节点的名字(key)
         /// 此处存储实际数据
@@ -74,6 +74,9 @@ namespace ModelAnalyzerUI
 
         public AnalyzerModel()
         {
+            exportableNodeSource = new ObservableCollection<string>();
+            selectedExportableNode = "";
+
             InPorts.Add(new PortModel(PortType.Input, this, new PortData("Model_File", "模型文件")));
             InPorts.Add(new PortModel(PortType.Input, this, new PortData("Label_File", "标签文件")));
             InPorts.Add(new PortModel(PortType.Input, this, new PortData("Input_Mat", "输入图片")));
@@ -116,16 +119,16 @@ namespace ModelAnalyzerUI
         {
             base.SerializeCore(element, context); // Base implementation must be called.
 
-            var helper = new XmlElementHelper(element);
-            helper.SetAttribute("UINodeExample",0);//把slider的值存起来
+            //var helper = new XmlElementHelper(element);
+            //helper.SetAttribute("ExportableNodeSource","");//把slider的值存起来
         }
 
         protected override void DeserializeCore(XmlElement element, SaveContext context)
         {
             base.DeserializeCore(element, context); //Base implementation must be called.
             var helper = new XmlElementHelper(element);
-            var exportedUnit = helper.ReadString("UINodeExample");
-
+            //var exportedUnit = helper.ReadString("ExportableNodeSource","");
+            ExportableNodeSource = new ObservableCollection<string>();
             //valueofslider = int.Parse(exportedUnit) is int ? int.Parse(exportedUnit) : 0;
         }
 

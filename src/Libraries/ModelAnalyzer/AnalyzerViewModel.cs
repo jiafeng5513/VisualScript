@@ -91,9 +91,16 @@ namespace Dynamo.Wpf
                 var LabelFile = param.LabelFile;
                 var inputMat = param.inMat;
                 ProtoTools _protoTools = new ProtoTools(ModelFile);
+                ExportableNodeSource=new ObservableCollection<string>();
+                /**
+                 *此处的初始化时权宜之计
+                 * 如果节点是第一次构造,初始化时正常的,
+                 * 但是如果是从文件中加载之前连接好的图,那么这个变量就是没有初始化的.
+                 */
                 foreach (var node in _protoTools.Map)
                 {
-                    ExportableNodeSource.Add(node.Value.Name);
+                    var s = node.Value.Name;
+                    ExportableNodeSource.Add(s);
                 }
             }
 

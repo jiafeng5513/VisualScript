@@ -85,69 +85,6 @@
       "Description": "Allows you to select a file on the system to get its filename"
     },
     {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "NodeType": "FunctionNode",
-      "FunctionSignature": "DSCore.IO.FileSystem.ReadText@var",
-      "Id": "06e20ef276694b758e160c9fdb73a747",
-      "Inputs": [
-        {
-          "Id": "994c989f0f254ebb9b45203435f299a0",
-          "Name": "file",
-          "Description": "var",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": true
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "550f8b12ca7346b082a60a1c96820666",
-          "Name": "str",
-          "Description": "Contents of the text file.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": true
-        }
-      ],
-      "Replication": "Auto",
-      "Description": "Reads a text file and returns the contents as a string.\n\nFileSystem.ReadText (file: var): string"
-    },
-    {
-      "ConcreteType": "CoreNodeModels.Input.FileObject, CoreNodeModels",
-      "NodeType": "ExtensionNode",
-      "Id": "902295f79f2b4478bf80d04e728e7fcb",
-      "Inputs": [
-        {
-          "Id": "42df8331a68e46baba8d99b38f99d405",
-          "Name": "path",
-          "Description": "Path to the file.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": true
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "044a7bca53d34089a5f849b031fd2343",
-          "Name": "file",
-          "Description": "File object",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": true
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Creates a file object from a path."
-    },
-    {
       "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
       "HintPath": "E:\\VisualStudio\\VisualScript\\data\\mnist\\labels.txt",
       "InputValue": "..\\..\\data\\mnist\\labels.txt",
@@ -223,37 +160,6 @@
       "Description": "Visualize the output of node."
     },
     {
-      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
-      "NodeType": "ExtensionNode",
-      "Id": "9dbc953d0f4c4b9d92823340665deda3",
-      "Inputs": [
-        {
-          "Id": "76b8595e7d3947ee8232b600bc480625",
-          "Name": "",
-          "Description": "Node to evaluate.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": true
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "3c5e7bfd32254acaba091978d95c90f8",
-          "Name": "",
-          "Description": "Watch contents.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Visualize the output of node."
-    },
-    {
       "ConcreteType": "CoreNodeModels.WatchImageCore, CoreNodeModels",
       "NodeType": "ExtensionNode",
       "Id": "0b03a362feb040a6a0a7b4baf4d68601",
@@ -278,7 +184,7 @@
           "Level": 2,
           "UseLevels": false,
           "KeepListStructure": false,
-          "IsConnected": true
+          "IsConnected": false
         }
       ],
       "Replication": "Disabled",
@@ -424,21 +330,6 @@
       "Id": "46da2e74ad3445bba2dadbfca2cf7944"
     },
     {
-      "Start": "550f8b12ca7346b082a60a1c96820666",
-      "End": "76b8595e7d3947ee8232b600bc480625",
-      "Id": "253e6f55218744b389899217c504563b"
-    },
-    {
-      "Start": "044a7bca53d34089a5f849b031fd2343",
-      "End": "994c989f0f254ebb9b45203435f299a0",
-      "Id": "2c61475ec1754ed1b19008d71d465a9c"
-    },
-    {
-      "Start": "0ab25fa411194cdf812ad7a1356316f9",
-      "End": "42df8331a68e46baba8d99b38f99d405",
-      "Id": "f339bdca3a1c46b8a15cb4b2141c2a1d"
-    },
-    {
       "Start": "0ab25fa411194cdf812ad7a1356316f9",
       "End": "7a883629f5eb4c969eb8f640d4017181",
       "Id": "9241d0d6bdb74fdebebb64eac3040e1c"
@@ -447,11 +338,6 @@
       "Start": "9eeaea651081433c9d9fed8ba70373da",
       "End": "f3c51d5d6fd64c7aa3b5fba3a36a905f",
       "Id": "169a605f63084f899ae9860dd0575975"
-    },
-    {
-      "Start": "0210e2c4c05e48c38b72e8f4236e0111",
-      "End": "a5b87b0781a1412c9103d02539b4b943",
-      "Id": "8dbfee93ca7546908989dad032b4a626"
     },
     {
       "Start": "ca7ffafcd1834a6bb9c8d6fc7647f49f",
@@ -464,6 +350,11 @@
       "Id": "d705cf558cae40de81c45d7f80cf9699"
     },
     {
+      "Start": "438b873cee9f48009bc464e16d519fd1",
+      "End": "a5b87b0781a1412c9103d02539b4b943",
+      "Id": "3818b7d6c554472d8abccf688d11f145"
+    },
+    {
       "Start": "4bd8c0d41825451b8d754bbeeff27005",
       "End": "3affb7b00dc94d92827635ae2c316252",
       "Id": "6bdb80bb0cbe4659b1987a4bf9717cc7"
@@ -471,7 +362,7 @@
     {
       "Start": "49aa8f740fe44cbab034409bde201b3b",
       "End": "6407a078d6624f1baad9f2f0fb90da4f",
-      "Id": "c1db833e95194bc5ada67ff3363b46b8"
+      "Id": "200d275674844b618c7c7e077a5a79f2"
     }
   ],
   "Dependencies": [],
@@ -508,33 +399,13 @@
       },
       {
         "ShowGeometry": true,
-        "Name": "FileSystem.ReadText",
-        "Id": "06e20ef276694b758e160c9fdb73a747",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 1764.2681159420292,
-        "Y": 420.3067632850242
-      },
-      {
-        "ShowGeometry": true,
-        "Name": "File From Path",
-        "Id": "902295f79f2b4478bf80d04e728e7fcb",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 1582.2693236714974,
-        "Y": 453.25483091787441
-      },
-      {
-        "ShowGeometry": true,
         "Name": "File Path",
         "Id": "d60e80b534ea4753a1dbcf6a5080594a",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 828.49758454106279,
-        "Y": 447.15942028985512
+        "X": 1308.9166666666667,
+        "Y": 331.29951690821258
       },
       {
         "ShowGeometry": true,
@@ -543,8 +414,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 826.5,
-        "Y": 695.0
+        "X": 915.39251207729478,
+        "Y": 374.38768115942014
       },
       {
         "ShowGeometry": true,
@@ -553,18 +424,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 2012.2717391304352,
-        "Y": 297.22342995169078
-      },
-      {
-        "ShowGeometry": true,
-        "Name": "Watch",
-        "Id": "9dbc953d0f4c4b9d92823340665deda3",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 2124.2306763285023,
-        "Y": 432.27173913043475
+        "X": 1703.6449275362324,
+        "Y": 446.04347826086951
       },
       {
         "ShowGeometry": true,
@@ -573,8 +434,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1450.9094202898548,
-        "Y": 694.16183574879233
+        "X": 1139.286231884058,
+        "Y": 566.31642512077292
       },
       {
         "ShowGeometry": true,
@@ -583,8 +444,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1026.8164251207729,
-        "Y": 560.32004830917879
+        "X": 1079.7524154589373,
+        "Y": 375.54347826086973
       },
       {
         "ShowGeometry": true,
@@ -593,8 +454,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1203.7946859903382,
-        "Y": 677.23429951690832
+        "X": 911.14855072463774,
+        "Y": 467.48792270531408
       },
       {
         "ShowGeometry": true,
@@ -603,8 +464,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1359.1256038647346,
-        "Y": 514.87801932367165
+        "X": 1140.3900966183573,
+        "Y": 468.93357487922731
       },
       {
         "ShowGeometry": true,
@@ -613,13 +474,13 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1743.6606280193237,
-        "Y": 659.70289855072474
+        "X": 1346.1413043478258,
+        "Y": 460.943236714976
       }
     ],
     "Annotations": [],
-    "X": -803.32950423216437,
-    "Y": -268.56106408706165,
-    "Zoom": 1.0012091898428053
+    "X": -1317.9895666607385,
+    "Y": -390.32548856877509,
+    "Zoom": 1.5052463097990396
   }
 }
