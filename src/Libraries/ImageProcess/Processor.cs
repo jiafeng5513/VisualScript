@@ -328,6 +328,17 @@ namespace ImageProc
             src = src - cannyOut;
             return src.Mat;
         }
+
+        /// <summary>
+        /// 从RGB三通道图片转换为单通道灰度图片
+        /// </summary>
+        /// <param name="inMat">输入图片</param>
+        /// <returns></returns>
+        public static Mat BgrToGary(Mat inMat)
+        {
+            Image<Gray, Single> outImg = inMat.ToImage<Gray, Single>();
+            return outImg.Mat;
+        }
         /*
          * dcm file name ->Mat
          * 二值化

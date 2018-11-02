@@ -871,6 +871,9 @@
                 },
                 {
                   "path": "Core.View.Watch 3D"
+                },
+                {
+                  "path": "Watch.Watch Image"
                 }
               ],
               "childElements": []
@@ -1175,6 +1178,9 @@
                 },
                 {
                   "path": "ImageProcess.ImageProc.Processor.MaxRegion"
+                },
+                {
+                  "path": "ImageProcess.ImageProc.Processor.BgrToGary"
                 }
               ],
               "childElements": []
@@ -1275,35 +1281,7 @@
                 }
               ],
               "childElements": []
-            },
-            {
-              "text": "DateType",
-              "iconUrl": "",
-              "elementType": "group",
-              "include": [
-                {
-                  "path": "DeepLearning.DeepLearning.Visible.ImgToTensor.FLoat"
-                },
-                {
-                  "path": "DeepLearning.DeepLearning.Visible.ImgToTensor.Double"
-                },
-                {
-                  "path": "DeepLearning.DeepLearning.Visible.ImgToTensor.UInt8"
-                }
-              ],
-              "childElements": []
-            },
-            {
-              "text": "Tensor",
-              "iconUrl": "",
-              "elementType": "group",
-              "include": [
-                {
-                  "path": "DeepLearning.DeepLearning.Visible.ImgToTensor.MatToTensor"
-                }
-              ],
-              "childElements": []
-            },
+            },            
             {
               "text": "Model Analysis",
               "iconUrl": "",

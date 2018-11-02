@@ -37,12 +37,13 @@ namespace TensorServer
             myListener.Start(); //start
             newClient = myListener.AcceptTcpClient(); //等待客户端连接
             //客户端连接成功后往下执行
+            NetworkStream clientStream;
             Console.WriteLine("连接成功");
             while (run)
             {
                 try
                 {
-                    NetworkStream clientStream = newClient.GetStream(); //利用TcpClient对象GetStream方法得到网络流
+                    clientStream = newClient.GetStream(); //利用TcpClient对象GetStream方法得到网络流
 
                     br = new BinaryReader(clientStream);
                     string receive = null;
@@ -67,6 +68,10 @@ namespace TensorServer
                 catch
                 {
                     Console.WriteLine("接收失败");
+                    clientStream = newClient.GetStream();
+                    bw = new BinaryWriter(clientStream);
+                    //向客户端回传计算结果
+                    bw.Write("crash");
                 }
             }
         }
@@ -106,7 +111,7 @@ namespace TensorServer
                 }
                 TensorProto returnvalue = new TensorProto();
                 returnvalue.outputString =
-                    "result is :" + msg.Labels[bestIdx] + " with the probability of " + probabilities[bestIdx];
+                    "result is :" + msg.Labels[bestIdx] + "\n with " + probabilities[bestIdx]+ "of probability";
 
                 string returnjson = JsonConvert.SerializeObject(returnvalue);
 
