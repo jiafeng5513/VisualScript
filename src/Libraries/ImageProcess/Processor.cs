@@ -339,24 +339,123 @@ namespace ImageProc
             Image<Gray, Single> outImg = inMat.ToImage<Gray, Single>();
             return outImg.Mat;
         }
-        /*
-         * dcm file name ->Mat
-         * 二值化
-         *
-         * clear_border
-         *
-         * label
-         *
-         * 保留两个最大联通
-         *
-         * 半径为2的腐蚀
-         *
-         * 半径为10的闭
-         *
-         * 填充小洞
-         *
-         * 掩码提取
-         */
-        
+
+        /// <summary>
+        /// 空洞填充
+        /// </summary>
+        /// <param name="inMat"></param>
+        /// <returns></returns>
+        public static Mat HoleFilling(Mat inMat)
+        {
+            return null;
+        }
+        /// <summary>
+        /// 漫水填充
+        /// </summary>
+        /// <param name="inMat">输入图像</param>
+        /// <param name="color">填充颜色</param>
+        /// <param name="x">种子点横坐标</param>
+        /// <param name="y">种子点纵坐标</param>
+        /// <returns></returns>
+        public static Mat FloodFill(Mat inMat, Color color, int x = 1, int y = 1)
+        {
+            Mat src = inMat.Clone();
+            //边缘延拓
+            Image<Gray, byte> mask = new Image<Gray, byte>(new Size(src.Width + 2, src.Height + 2));
+            mask.SetZero();
+            
+            Rectangle rect = new Rectangle();
+            CvInvoke.FloodFill(
+                src,                            //1 原图像
+                mask,                           //2 掩码
+                new Point(x, x),               //3 种子点
+                new MCvScalar(color.Blue, color.Green, color.Red),   //4 填充颜色值
+                out rect,                       //5
+                new MCvScalar(25, 25, 25),      //6
+                new MCvScalar(0, 0, 0),         //7
+                Connectivity.EightConnected,    //8 连通性设置
+                FloodFillType.FixedRange        //9 
+            );
+            return src;
+        }
+        /// <summary>
+        /// 图像按位与
+        /// </summary>
+        /// <param name="in_1"></param>
+        /// <param name="in_2"></param>
+        /// <returns></returns>
+        public static Mat And(Mat in_1, Mat in_2)
+        {
+            Mat outMat=new Mat();
+            CvInvoke.BitwiseAnd(in_1,in_2,outMat);
+            return outMat;
+        }
+        /// <summary>
+        /// 图像按位或
+        /// </summary>
+        /// <param name="in_1"></param>
+        /// <param name="in_2"></param>
+        /// <returns></returns>
+        public static Mat Or(Mat in_1, Mat in_2)
+        {
+            //Mat outMat = new Mat();
+            //CvInvoke.BitwiseOr(in_1, in_2, outMat);
+
+            Image<Bgr, byte> src_1 = in_1.ToImage<Bgr, byte>();
+            Image<Bgr, byte> src_2 = in_2.ToImage<Bgr, byte>();
+
+            return (src_1| src_2).Mat;
+        }
+        /// <summary>
+        /// 图像按位取反
+        /// </summary>
+        /// <param name="inMat"></param>
+        /// <returns></returns>
+        public static Mat Not(Mat inMat)
+        {
+            Mat outMat = new Mat();
+            CvInvoke.BitwiseNot(inMat, outMat);
+            return outMat;
+        }
+        /// <summary>
+        /// 图像按位取异或
+        /// </summary>
+        /// <param name="in_1"></param>
+        /// <param name="in_2"></param>
+        /// <returns></returns>
+        public static Mat Xor(Mat in_1, Mat in_2)
+        {
+            Mat outMat=new Mat();
+            CvInvoke.BitwiseXor(in_1,in_2,outMat);
+            return outMat;
+        }
+        /// <summary>
+        /// 掩码运算
+        /// </summary>
+        /// <param name="target">目标图像</param>
+        /// <param name="mask">掩码</param>
+        /// <returns></returns>
+        public static Mat Mask(Mat target, Mat Mask)
+        {
+            Image<Bgr, byte> result = new Image<Bgr, byte>(target.Size);
+            Image<Bgr, byte> src = target.ToImage<Bgr, byte>();
+            Image<Gray, byte> mask = Mask.ToImage<Gray, byte>();
+
+            for (int i = 0; i < mask.Width; i++)
+            {
+                for (int j = 0; j < mask.Height; j++)
+                {
+                    if (mask[i, j].Equals(new Gray(0)))
+                    {
+                        result[i, j] = new Bgr(System.Drawing.Color.Black);
+                    }
+                    else
+                    {
+                        result[i, j] = src[i, j];
+                    }
+                }
+            }
+            return result.Mat;
+        }
     }//end of class
 }//end of namespace

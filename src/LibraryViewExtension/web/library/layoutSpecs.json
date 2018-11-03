@@ -1181,6 +1181,24 @@
                 },
                 {
                   "path": "ImageProcess.ImageProc.Processor.BgrToGary"
+                },
+                {
+                  "path": "ImageProcess.ImageProc.Processor.And"
+                },
+                {
+                  "path": "ImageProcess.ImageProc.Processor.Or"
+                },
+                {
+                  "path": "ImageProcess.ImageProc.Processor.Not"
+                },
+                {
+                  "path": "ImageProcess.ImageProc.Processor.Xor"
+                },
+                {
+                  "path": "ImageProcess.ImageProc.Processor.Mask"
+                },
+                {
+                  "path": "ImageProcess.ImageProc.Processor.FloodFill"
                 }
               ],
               "childElements": []
