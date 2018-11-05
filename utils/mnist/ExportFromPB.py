@@ -62,7 +62,7 @@ class Predict(object):
 
 if __name__ == '__main__':
     model = Predict()
-    model.predict2('./raw/2.png')
+    #model.predict2('./raw/2.png')
     # model.predict2('./raw/4.png')
-    # model.predict2('./raw/8.png')
+    model.predict2('./raw/8.png')
 
