@@ -25,17 +25,13 @@ namespace DicomTools
         private DicomReader(){}
         private DicomFile _file;
         /// <summary>
-        /// 导出函数
-        /// 
-        /// 输入文件路径,返回Mat对象
-        ///     前期采用方案1,后期换成方案3
-        /// 方案1:固定窗宽窗位,全部动态范围
-        /// 方案2:使用多输入值节点,用int给出窗宽窗位
-        /// 方案3:使用自定义UI节点,通过自带控件直接给出窗宽窗位
+        /// 读取Dicom图像
         /// </summary>
-        /// <param name="filepath"></param>
+        /// <param name="filepath">dicom图像路径</param>
+        /// <param name="windowWidth">double[]</param>
+        /// <param name="windowCenter">double[]</param>
         /// <returns></returns>
-        public static Mat ReadDicomFromPath(string filepath)
+        public static Mat ReadDicomFromPath(string filepath,double windowWidth,double windowCenter)
         {
             DicomFile _file = DicomFile.Open(filepath);
             bool _grayscale;
@@ -43,9 +39,9 @@ namespace DicomTools
             double _windowCenter;
 
             DicomImage _image = new DicomImage(_file.Dataset);
-            _image.WindowWidth = 4096;
+            _image.WindowWidth = windowWidth;
             
-            _image.WindowCenter = 1024;
+            _image.WindowCenter = windowCenter;
             _grayscale = !_image.PhotometricInterpretation.IsColor;
             if (_grayscale)
             {

@@ -1,0 +1,161 @@
+{
+  "Uuid": "bcbe6d3a-9fab-47ca-8a4a-ab93f7900518",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "IP-LungPreprocAllInOne",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.WatchImageCore, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "17508d68fb5d4b58a7b7d9318cbc8f5b",
+      "Inputs": [
+        {
+          "Id": "9368b2efe73845d2a463ea8957d2c823",
+          "Name": "image",
+          "Description": "image",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0b8027054b764f5289deb170f997e4a4",
+          "Name": "image",
+          "Description": "image",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Previews an image"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "55308c4e-4da9-4600-8aa7-376449e96332",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "f89f89f20f9d430997dc225190c7d04e",
+      "Inputs": [
+        {
+          "Id": "2594291fdca1469f96ba770ba74d6c51",
+          "Name": "Dicom File Path",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e5757de16e37479089b9cfad8cac5466",
+          "Name": "Result Image",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "HintPath": "E:\\VisualStudio\\VisualScript\\data\\dicom\\IMG-0003-00001.dcm",
+      "InputValue": "E:\\VisualStudio\\VisualScript\\data\\dicom\\IMG-0003-00001.dcm",
+      "NodeType": "ExtensionNode",
+      "Id": "a473aa66d5d14426941a313b753c81f1",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "41b1eb8109dd42098d8c16301eb02051",
+          "Name": "",
+          "Description": "Filename",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows you to select a file on the system to get its filename"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "e5757de16e37479089b9cfad8cac5466",
+      "End": "9368b2efe73845d2a463ea8957d2c823",
+      "Id": "3ffd5168c1ea4e779e2a54b49cc6511e"
+    },
+    {
+      "Start": "41b1eb8109dd42098d8c16301eb02051",
+      "End": "2594291fdca1469f96ba770ba74d6c51",
+      "Id": "cab45ec206e64646a94688f72fd43c54"
+    }
+  ],
+  "Dependencies": [
+    "55308c4e-4da9-4600-8aa7-376449e96332"
+  ],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.0.0.6544",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Result",
+        "Id": "17508d68fb5d4b58a7b7d9318cbc8f5b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 770.5,
+        "Y": 298.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Preprocess",
+        "Id": "f89f89f20f9d430997dc225190c7d04e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 422.5,
+        "Y": 503.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "File Path",
+        "Id": "a473aa66d5d14426941a313b753c81f1",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 422.5,
+        "Y": 291.0
+      }
+    ],
+    "Annotations": [],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}

@@ -1,14 +1,15 @@
 {
-  "Uuid": "bcbe6d3a-9fab-47ca-8a4a-ab93f7900518",
-  "IsCustomNode": false,
-  "Description": null,
-  "Name": "IP-LungForPaper",
+  "Uuid": "55308c4e-4da9-4600-8aa7-376449e96332",
+  "IsCustomNode": true,
+  "Category": "Image Prcoess",
+  "Description": "",
+  "Name": "Preprocess",
   "ElementResolver": {
     "ResolutionMap": {}
   },
   "Inputs": [
     {
-      "Id": "8d487fb045bd4bac98d1f87fa72a02ae",
+      "Id": "cfb9f1fb65bc41948c063ca0634d40a3",
       "Name": "Integer Slider",
       "Type": "number",
       "Value": "9",
@@ -19,7 +20,7 @@
       "Description": "A slider that produces integer values."
     },
     {
-      "Id": "75656faeb4e94718bea1280a6a9a6c20",
+      "Id": "5f563571c2a447fd99015eec136fbbed",
       "Name": "Integer Slider",
       "Type": "number",
       "Value": "15",
@@ -30,7 +31,7 @@
       "Description": "A slider that produces integer values."
     },
     {
-      "Id": "e2b19182a3a24bf49856f8bcc152da4e",
+      "Id": "9a86502da4f744cc90fbc1b3d44c9257",
       "Name": "Integer Slider",
       "Type": "number",
       "Value": "0",
@@ -41,14 +42,14 @@
       "Description": "A slider that produces integer values."
     },
     {
-      "Id": "2bb4195fc5544d4aab53903bc44eeac0",
+      "Id": "082a2be76e154360a93c4d2484709fc9",
       "Name": "Boolean",
       "Type": "boolean",
       "Value": "true",
       "Description": "Selection between a true and false."
     },
     {
-      "Id": "18bc25efb57c45d4b1a99686494fa8ae",
+      "Id": "435a625ecf0c426b86cacc2c944d54cc",
       "Name": "Number Slider",
       "Type": "number",
       "Value": "50.4",
@@ -62,37 +63,6 @@
   "Outputs": [],
   "Nodes": [
     {
-      "ConcreteType": "CoreNodeModels.WatchImageCore, CoreNodeModels",
-      "NodeType": "ExtensionNode",
-      "Id": "b4365552a03e4e8fa792d41909916ca7",
-      "Inputs": [
-        {
-          "Id": "cb54ac51f893479e8667a4499542049d",
-          "Name": "image",
-          "Description": "image",
-          "UsingDefaultValue": true,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": true
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "0f4cdcf2e12d44bb9e6ba6db3b7e5168",
-          "Name": "image",
-          "Description": "image",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Previews an image"
-    },
-    {
       "ConcreteType": "CoreNodeModels.Input.ColorPalette, CoreNodeModels",
       "InputValue": {
         "R": 0,
@@ -101,11 +71,11 @@
         "A": 255
       },
       "NodeType": "ColorInputNode",
-      "Id": "34a49fb27500429fa4e8cdf082f45526",
+      "Id": "fe97f2eeb0f7433fa4d658475a17e8b0",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "500685717fb14859890defec9fc97dae",
+          "Id": "b63a37e085dd46a7b1b63f633c7c5090",
           "Name": "Color",
           "Description": "Selected Color.",
           "UsingDefaultValue": false,
@@ -119,69 +89,6 @@
       "Description": "Select a Color from the palette"
     },
     {
-      "ConcreteType": "CoreNodeModels.WatchImageCore, CoreNodeModels",
-      "NodeType": "ExtensionNode",
-      "Id": "1694ee5c70cc44a796fae8da1f81d772",
-      "Inputs": [
-        {
-          "Id": "4a4450b4c4154b5889744ee321b12d8c",
-          "Name": "image",
-          "Description": "image",
-          "UsingDefaultValue": true,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": true
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "85a0f6f633184fe29d407ba080580876",
-          "Name": "image",
-          "Description": "image",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Previews an image"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "NodeType": "FunctionNode",
-      "FunctionSignature": "ImageProc.Converter.MatToBitmap@var",
-      "Id": "d6d0eadc80b240418c1b3d9c2b97ca60",
-      "Inputs": [
-        {
-          "Id": "67a0d31977444a448d9b8ddd0c8b2916",
-          "Name": "mat",
-          "Description": "var",
-          "UsingDefaultValue": true,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": true
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "1e021400f9b5489e90589688f6656296",
-          "Name": "var",
-          "Description": "var",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": true
-        }
-      ],
-      "Replication": "Auto",
-      "Description": "Mat转换为BitMap\n\nConverter.MatToBitmap (mat: var): var"
-    },
-    {
       "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
       "NodeType": "NumberInputNode",
       "NumberType": "Integer",
@@ -189,11 +96,11 @@
       "MaximumValue": 100,
       "MinimumValue": 0,
       "StepValue": 1,
-      "Id": "8d487fb045bd4bac98d1f87fa72a02ae",
+      "Id": "cfb9f1fb65bc41948c063ca0634d40a3",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "e435b4df78984e0fa01c4eb78f9477da",
+          "Id": "313f7b0b1d0f41549acf8ab967e363eb",
           "Name": "",
           "Description": "Int32",
           "UsingDefaultValue": false,
@@ -210,12 +117,12 @@
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
       "FunctionSignature": "ImageProc.Processor.MaxRegion@var,int",
-      "Id": "265879d31def4215abd7f0a6326ed271",
+      "Id": "4fd81d78d5d645f89b76567946b63f3f",
       "Inputs": [
         {
-          "Id": "5f2562b328c846eb9d39113ea82cffd6",
+          "Id": "9079a316889a4c6c9270b2600ee26770",
           "Name": "inMat",
-          "Description": "输入图片:Mat\n\nvar",
+          "Description": "var",
           "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
@@ -223,9 +130,9 @@
           "IsConnected": true
         },
         {
-          "Id": "d1097382048742a7bd463a0bb37698ed",
+          "Id": "e9acce96986c43a98041b9d60878dbdc",
           "Name": "Num",
-          "Description": "要保留的最大区域数量\n\nint",
+          "Description": "int",
           "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
@@ -235,7 +142,7 @@
       ],
       "Outputs": [
         {
-          "Id": "adf21fe1315048dab368a899d6d93eac",
+          "Id": "055450da4e7d4984bbc66299e0c29fcd",
           "Name": "var",
           "Description": "var",
           "UsingDefaultValue": false,
@@ -246,7 +153,7 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "保留最大联通\n\nProcessor.MaxRegion (inMat: var, Num: int): var"
+      "Description": "Processor.MaxRegion (inMat: var, Num: int): var"
     },
     {
       "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
@@ -256,11 +163,11 @@
       "MaximumValue": 100,
       "MinimumValue": 0,
       "StepValue": 1,
-      "Id": "75656faeb4e94718bea1280a6a9a6c20",
+      "Id": "5f563571c2a447fd99015eec136fbbed",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "cc7eb025e4834a78b4575ee3e391f369",
+          "Id": "892d1860a3bd48e2bd84b9c02c3e9130",
           "Name": "",
           "Description": "Int32",
           "UsingDefaultValue": false,
@@ -277,12 +184,12 @@
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
       "FunctionSignature": "ImageProc.Processor.Close@var,int",
-      "Id": "f7521200a28840d7973cbb03784f7523",
+      "Id": "da41546d10e3460db36998468874dc9b",
       "Inputs": [
         {
-          "Id": "c47761ec29fc491c9a6bc8fbd1323cd8",
+          "Id": "8c184135bf664006885665b2d97ed1c8",
           "Name": "inMat",
-          "Description": "输入图片:Mat\n\nvar",
+          "Description": "var",
           "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
@@ -290,9 +197,9 @@
           "IsConnected": true
         },
         {
-          "Id": "5aa2b5918bfb411095af0e3037233307",
+          "Id": "920bacb1ebb949e5aae0854b8dc14ea3",
           "Name": "Size",
-          "Description": "内核尺寸:int\n\nint",
+          "Description": "int",
           "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
@@ -302,7 +209,7 @@
       ],
       "Outputs": [
         {
-          "Id": "62a69639043b4edbbff6df4e604638a0",
+          "Id": "7ffe5d94482446c8955c3afb8569e57d",
           "Name": "var",
           "Description": "var",
           "UsingDefaultValue": false,
@@ -313,7 +220,7 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "形态学:闭\n\nProcessor.Close (inMat: var, Size: int): var"
+      "Description": "Processor.Close (inMat: var, Size: int): var"
     },
     {
       "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
@@ -323,11 +230,11 @@
       "MaximumValue": 100,
       "MinimumValue": 0,
       "StepValue": 1,
-      "Id": "e2b19182a3a24bf49856f8bcc152da4e",
+      "Id": "9a86502da4f744cc90fbc1b3d44c9257",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "972e93e819f64f45a4a314b671cd8ede",
+          "Id": "4421650b3d1b40b9adaabaa66fdc7366",
           "Name": "",
           "Description": "Int32",
           "UsingDefaultValue": false,
@@ -344,12 +251,12 @@
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
       "FunctionSignature": "ImageProc.Processor.Erode@var,int",
-      "Id": "44db284b60c646ac83dfc7aabb001c86",
+      "Id": "2a5f72d79f2a4646b34d067739bf825e",
       "Inputs": [
         {
-          "Id": "d0d5b1d009854191bff66a6cc863e5fb",
+          "Id": "b9c12c24d18448f785317549df23458e",
           "Name": "inMat",
-          "Description": "输入图片:Mat\n\nvar",
+          "Description": "var",
           "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
@@ -357,9 +264,9 @@
           "IsConnected": true
         },
         {
-          "Id": "ab140631cddd41faa89c9352191369b5",
+          "Id": "a750e0c58958495980505a6151b088eb",
           "Name": "Size",
-          "Description": "内核尺寸:int\n\nint",
+          "Description": "int",
           "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
@@ -369,7 +276,7 @@
       ],
       "Outputs": [
         {
-          "Id": "a92326cc29af46e8bfadb201adfe913d",
+          "Id": "e90a331ed20c461ea0dc1eb164879da9",
           "Name": "var",
           "Description": "var",
           "UsingDefaultValue": false,
@@ -380,18 +287,18 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "形态学:腐蚀\n\nProcessor.Erode (inMat: var, Size: int): var"
+      "Description": "Processor.Erode (inMat: var, Size: int): var"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
       "FunctionSignature": "ImageProc.Processor.ClearBorder@var,DSCore.Color",
-      "Id": "1f9e1701129d4ad88b86d01685096865",
+      "Id": "741f0e4b4c934409988fde7c0ac60e01",
       "Inputs": [
         {
-          "Id": "5a4184de6bfd450aa4f1d19d5443eee6",
+          "Id": "4a924f586dfe4c13a99f7940c619e85f",
           "Name": "inMat",
-          "Description": "输入图片:Mat\n\nvar",
+          "Description": "var",
           "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
@@ -399,9 +306,9 @@
           "IsConnected": true
         },
         {
-          "Id": "2b4ca755301141dcb9c7c073b4151a6c",
+          "Id": "bcc0fd8b6fab4b5a90f5ba01dd1b71af",
           "Name": "color",
-          "Description": "填充颜色\n\nColor",
+          "Description": "Color",
           "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
@@ -411,7 +318,7 @@
       ],
       "Outputs": [
         {
-          "Id": "c29fd567ef6246f1ad47bda07b600673",
+          "Id": "f97c5a488fd14e13a9a0fb740b0cbfc8",
           "Name": "var",
           "Description": "var",
           "UsingDefaultValue": false,
@@ -422,17 +329,17 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "移除与图像边缘联通的区域\n\nProcessor.ClearBorder (inMat: var, color: Color): var"
+      "Description": "Processor.ClearBorder (inMat: var, color: Color): var"
     },
     {
       "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
       "NodeType": "BooleanInputNode",
       "InputValue": true,
-      "Id": "2bb4195fc5544d4aab53903bc44eeac0",
+      "Id": "082a2be76e154360a93c4d2484709fc9",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "4f9420724a7e4fd4bcc39fcc5c1710ac",
+          "Id": "d83ea5a0b73049e5813e021c998c255d",
           "Name": "",
           "Description": "Boolean",
           "UsingDefaultValue": false,
@@ -453,11 +360,11 @@
       "MinimumValue": 0.0,
       "StepValue": 0.1,
       "InputValue": 50.4,
-      "Id": "18bc25efb57c45d4b1a99686494fa8ae",
+      "Id": "435a625ecf0c426b86cacc2c944d54cc",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "4cd31dd2ecc044839087f19ca1423a23",
+          "Id": "02293237054b479a98421b553b09aa25",
           "Name": "",
           "Description": "Double",
           "UsingDefaultValue": false,
@@ -474,10 +381,10 @@
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
       "FunctionSignature": "ImageProc.Processor.Binnary@var,double,bool",
-      "Id": "7732648443804b47a3162709fcfd1a5b",
+      "Id": "29850bec579746bea70198916141edbe",
       "Inputs": [
         {
-          "Id": "66ea26769562414baeac36b88ee659b5",
+          "Id": "fd8bdf817b004106a8d4529418797164",
           "Name": "inMat",
           "Description": "var",
           "UsingDefaultValue": true,
@@ -487,7 +394,7 @@
           "IsConnected": true
         },
         {
-          "Id": "9c45c2ca07ac4a59b55e6068c17cc3e2",
+          "Id": "2777a3ade8e84ab1a61b99c74df27585",
           "Name": "Threshold",
           "Description": "double",
           "UsingDefaultValue": true,
@@ -497,7 +404,7 @@
           "IsConnected": true
         },
         {
-          "Id": "c3dab339bbb54abeaf5cddc43ff89cb8",
+          "Id": "6858fe944a0346278699607611c82a16",
           "Name": "reverse",
           "Description": "bool\nDefault value : true",
           "UsingDefaultValue": true,
@@ -509,7 +416,7 @@
       ],
       "Outputs": [
         {
-          "Id": "1374762bd5cc4e50b8ec8dad39efffe8",
+          "Id": "da973c01584a4bc1b19f57a7a92fb26a",
           "Name": "var",
           "Description": "var",
           "UsingDefaultValue": false,
@@ -520,104 +427,18 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "二值化\n\nProcessor.Binnary (inMat: var, Threshold: double, reverse: bool = true): var"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "NodeType": "FunctionNode",
-      "FunctionSignature": "ImageProc.Converter.MatToBitmap@var",
-      "Id": "982232e570a14a738935011414218e35",
-      "Inputs": [
-        {
-          "Id": "578c5cf22aaf429f94f3bd9c82f00239",
-          "Name": "mat",
-          "Description": "var",
-          "UsingDefaultValue": true,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": true
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "78bbe5059d7a4130b2210c0fd8ba472c",
-          "Name": "var",
-          "Description": "var",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": true
-        }
-      ],
-      "Replication": "Auto",
-      "Description": "Mat转换为BitMap\n\nConverter.MatToBitmap (mat: var): var"
-    },
-    {
-      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
-      "HintPath": "E:\\VisualStudio\\VisualScript\\data\\dicom\\IMG-0003-00001.dcm",
-      "InputValue": "..\\..\\data\\dicom\\IMG-0003-00001.dcm",
-      "NodeType": "ExtensionNode",
-      "Id": "1cbff82f48cd4d948ff9fe09a3f1334f",
-      "Inputs": [],
-      "Outputs": [
-        {
-          "Id": "bdaea3ff26d9421bb8954b43a477eaa4",
-          "Name": "",
-          "Description": "Filename",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": true
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Allows you to select a file on the system to get its filename"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "NodeType": "FunctionNode",
-      "FunctionSignature": "DicomTools.DicomReader.ReadDicomFromPath@string",
-      "Id": "178b9813005243db948f9a2139b4c49c",
-      "Inputs": [
-        {
-          "Id": "b87092749db641ae8cb4f72164b5cd41",
-          "Name": "filepath",
-          "Description": "string",
-          "UsingDefaultValue": true,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": true
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "d49f774da8a2409fa07aa1c14629772a",
-          "Name": "var",
-          "Description": "var",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": true
-        }
-      ],
-      "Replication": "Auto",
-      "Description": "导出函数 输入文件路径,返回Mat对象 前期采用方案1,后期换成方案3 方案1:固定窗宽窗位,全部动态范围 方案2:使用多输入值节点,用int给出窗宽窗位 方案3:使用自定义UI节点,通过自带控件直接给出窗宽窗位\n\nDicomReader.ReadDicomFromPath (filepath: string): var"
+      "Description": "Processor.Binnary (inMat: var, Threshold: double, reverse: bool = true): var"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
       "FunctionSignature": "DSCore.Color.ByARGB@int,int,int,int",
-      "Id": "8861551aa07544f6be0dee4b8fa13b4c",
+      "Id": "08df1678cb314093bcf9182400b79c7a",
       "Inputs": [
         {
-          "Id": "4083fed6fa984b50934d01dc148ed3e7",
+          "Id": "8616ce4a21c2488e8d4a2a3485514744",
           "Name": "a",
-          "Description": "The alpha value.\n\nint\nDefault value : 255",
+          "Description": "int\nDefault value : 255",
           "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
@@ -625,9 +446,9 @@
           "IsConnected": true
         },
         {
-          "Id": "b277835b32664373b6e4d926f6363d6d",
+          "Id": "365bdcfe488c47139cbd8a87d5188afc",
           "Name": "r",
-          "Description": "The red value.\n\nint\nDefault value : 0",
+          "Description": "int\nDefault value : 0",
           "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
@@ -635,9 +456,9 @@
           "IsConnected": true
         },
         {
-          "Id": "50cbb867f6e14eda81968916e6c09ac7",
+          "Id": "ecab39d4e3344132984c2281b0d25263",
           "Name": "g",
-          "Description": "The green value.\n\nint\nDefault value : 0",
+          "Description": "int\nDefault value : 0",
           "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
@@ -645,9 +466,9 @@
           "IsConnected": true
         },
         {
-          "Id": "f215355e89254e3f86e673efe2b7a09d",
+          "Id": "9f51c175d983444c87fd33f3b3e10b93",
           "Name": "b",
-          "Description": "The blue value.\n\nint\nDefault value : 0",
+          "Description": "int\nDefault value : 0",
           "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
@@ -657,9 +478,9 @@
       ],
       "Outputs": [
         {
-          "Id": "679abe7ece734911bf6add0ced741dfa",
-          "Name": "color",
-          "Description": "Color.",
+          "Id": "4193a1a803784a78961889c2bc9b2f59",
+          "Name": "Color",
+          "Description": "Color",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -668,18 +489,18 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Construct a color by alpha, red, green, and blue components.\n\nColor.ByARGB (a: int = 255, r: int = 0, g: int = 0, b: int = 0): Color"
+      "Description": "Color.ByARGB (a: int = 255, r: int = 0, g: int = 0, b: int = 0): Color"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
       "FunctionSignature": "ImageProc.Processor.FloodFill@var,DSCore.Color,int,int",
-      "Id": "5ef3d46490e2462093186e5a81621a30",
+      "Id": "87a1ec00ca6e40d9872359f27e1d577c",
       "Inputs": [
         {
-          "Id": "aa298892d91a4d618c18483d7494bb56",
+          "Id": "813b47f3f8414bd7b9dff42afbc1570a",
           "Name": "inMat",
-          "Description": "输入图像\n\nvar",
+          "Description": "var",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -687,9 +508,9 @@
           "IsConnected": true
         },
         {
-          "Id": "925eda6803e04fb98e7fa25bef500167",
+          "Id": "bbc84ddae3074597a7fbaa4b720db72a",
           "Name": "color",
-          "Description": "填充颜色\n\nColor",
+          "Description": "Color",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -697,9 +518,9 @@
           "IsConnected": true
         },
         {
-          "Id": "a329fb5053074c74a76cfba5ee5a5086",
+          "Id": "ee265d553b3c4906b0c0a3603a347ea8",
           "Name": "x",
-          "Description": "种子点横坐标\n\nint\nDefault value : 1",
+          "Description": "int\nDefault value : 1",
           "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
@@ -707,9 +528,9 @@
           "IsConnected": true
         },
         {
-          "Id": "a4c6598495d848aa9481f05fbb33b592",
+          "Id": "52cbdf6fd7c4488f9ef6d986f5f925a6",
           "Name": "y",
-          "Description": "种子点纵坐标\n\nint\nDefault value : 1",
+          "Description": "int\nDefault value : 1",
           "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
@@ -719,7 +540,7 @@
       ],
       "Outputs": [
         {
-          "Id": "bb4dddd65482440f8de046fe72fb8864",
+          "Id": "9c7361cbd6bf46299518984edb7f26db",
           "Name": "var",
           "Description": "var",
           "UsingDefaultValue": false,
@@ -730,18 +551,18 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "漫水填充\n\nProcessor.FloodFill (inMat: var, color: Color, x: int = 1, y: int = 1): var"
+      "Description": "Processor.FloodFill (inMat: var, color: Color, x: int = 1, y: int = 1): var"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
       "FunctionSignature": "DSCore.Color.ByARGB@int,int,int,int",
-      "Id": "815cdceab1b64733afa472e21371a6c9",
+      "Id": "2a849f4d47954f3c86d77d0fca7a6c78",
       "Inputs": [
         {
-          "Id": "8425c05cb47a48af8d2996d11d31e49d",
+          "Id": "d4af246d03fc4f459653d8603807d08e",
           "Name": "a",
-          "Description": "The alpha value.\n\nint\nDefault value : 255",
+          "Description": "int\nDefault value : 255",
           "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
@@ -749,9 +570,9 @@
           "IsConnected": true
         },
         {
-          "Id": "b67b7a5170a04038bd4f879d0d713d51",
+          "Id": "ba699e639046456fbb6e4988daf76187",
           "Name": "r",
-          "Description": "The red value.\n\nint\nDefault value : 0",
+          "Description": "int\nDefault value : 0",
           "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
@@ -759,9 +580,9 @@
           "IsConnected": true
         },
         {
-          "Id": "1828c8068dbc4e71bc40ac62f8365b6f",
+          "Id": "dbe79ebe9d6847e09eef2285c0a722ec",
           "Name": "g",
-          "Description": "The green value.\n\nint\nDefault value : 0",
+          "Description": "int\nDefault value : 0",
           "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
@@ -769,9 +590,9 @@
           "IsConnected": true
         },
         {
-          "Id": "6cbe823cec0342669bad0d0d951d2525",
+          "Id": "9438f453dd9d420eab1ed532a1ffa206",
           "Name": "b",
-          "Description": "The blue value.\n\nint\nDefault value : 0",
+          "Description": "int\nDefault value : 0",
           "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
@@ -781,9 +602,9 @@
       ],
       "Outputs": [
         {
-          "Id": "0d9f68522aa7461387bf3904b3586ebe",
-          "Name": "color",
-          "Description": "Color.",
+          "Id": "6f8a63d4a54249e39cd92ecee24f1652",
+          "Name": "Color",
+          "Description": "Color",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -792,7 +613,7 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Construct a color by alpha, red, green, and blue components.\n\nColor.ByARGB (a: int = 255, r: int = 0, g: int = 0, b: int = 0): Color"
+      "Description": "Color.ByARGB (a: int = 255, r: int = 0, g: int = 0, b: int = 0): Color"
     },
     {
       "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
@@ -802,11 +623,11 @@
       "MaximumValue": 255,
       "MinimumValue": 0,
       "StepValue": 1,
-      "Id": "ca84580c4247414b97d5e6d347dfeaf4",
+      "Id": "4e067c2885d04456bd642efe28b70df2",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "f7f412fb41c64aacbcee9da5ba3ccd65",
+          "Id": "b614cfee03c94af48d3a7bcd7f64722e",
           "Name": "",
           "Description": "Int32",
           "UsingDefaultValue": false,
@@ -827,11 +648,11 @@
       "MaximumValue": 100,
       "MinimumValue": 0,
       "StepValue": 1,
-      "Id": "2dce24fa91ef4727b6804546de2b354f",
+      "Id": "9b8ca4ade1714954835a6a03c4cad64f",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "85e3fbfab9e7409c9b44cd9b3d00934a",
+          "Id": "fc77bcf44d014b9f92a8ba228c974da5",
           "Name": "",
           "Description": "Int32",
           "UsingDefaultValue": false,
@@ -852,11 +673,11 @@
       "MaximumValue": 100,
       "MinimumValue": 0,
       "StepValue": 1,
-      "Id": "d055974f7eb245419fd19677fdec55ee",
+      "Id": "8ade672d6c2940ea8000c28494f1a76a",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "302e7ed69312454a8f06d25ce496366e",
+          "Id": "85151f3f0e1d48098a3a8e7c7ca11c1e",
           "Name": "",
           "Description": "Int32",
           "UsingDefaultValue": false,
@@ -868,78 +689,15 @@
       ],
       "Replication": "Disabled",
       "Description": "A slider that produces integer values."
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "NodeType": "FunctionNode",
-      "FunctionSignature": "ImageProc.Converter.MatToBitmap@var",
-      "Id": "ad14a3245bf44d3fac6ca489d79834d2",
-      "Inputs": [
-        {
-          "Id": "72ffec67d13e4a289c703284f530abfa",
-          "Name": "mat",
-          "Description": "var",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": true
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "6dbf2536212048af890b2c41ff6789c0",
-          "Name": "var",
-          "Description": "var",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": true
-        }
-      ],
-      "Replication": "Auto",
-      "Description": "Mat转换为BitMap\n\nConverter.MatToBitmap (mat: var): var"
-    },
-    {
-      "ConcreteType": "CoreNodeModels.WatchImageCore, CoreNodeModels",
-      "NodeType": "ExtensionNode",
-      "Id": "4432e8df14b346a9ab5a99a1cb86d710",
-      "Inputs": [
-        {
-          "Id": "e6766bf3b04e42f894e7d056ce180afa",
-          "Name": "image",
-          "Description": "image",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": true
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "aa025dae2bf84c74b7118ccfbdc4784c",
-          "Name": "image",
-          "Description": "image",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Previews an image"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
       "FunctionSignature": "ImageProc.Processor.Not@var",
-      "Id": "0c25c94b841547528d6418f6f84e1078",
+      "Id": "ccf978da0fa34513b2b791afcec7dc70",
       "Inputs": [
         {
-          "Id": "5d4b70855f6b4aaeb664e9407e2bffcc",
+          "Id": "5d0cc5d9f3d24671a2fed44e823a7aae",
           "Name": "inMat",
           "Description": "var",
           "UsingDefaultValue": false,
@@ -951,7 +709,7 @@
       ],
       "Outputs": [
         {
-          "Id": "7b435cafef744dff90b159d822bdddc9",
+          "Id": "67f962928fb44064a84273c342d08e73",
           "Name": "var",
           "Description": "var",
           "UsingDefaultValue": false,
@@ -962,16 +720,16 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "图像按位取反\n\nProcessor.Not (inMat: var): var"
+      "Description": "Processor.Not (inMat: var): var"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
       "FunctionSignature": "ImageProc.Converter.MatToBitmap@var",
-      "Id": "626c3488e9db4975b2db6f8d72dd3996",
+      "Id": "ae95687981404e3ea3c7e324e81af62b",
       "Inputs": [
         {
-          "Id": "d389c43de12e48d0b424ea4c0123b3cd",
+          "Id": "7fd0212927154dd8b899ab0498622c52",
           "Name": "mat",
           "Description": "var",
           "UsingDefaultValue": false,
@@ -983,7 +741,7 @@
       ],
       "Outputs": [
         {
-          "Id": "2c2255d8743f4b17b3d377d3100b9c91",
+          "Id": "5e715a3a62ce4ce1bfa1f0dc7738a966",
           "Name": "var",
           "Description": "var",
           "UsingDefaultValue": false,
@@ -994,15 +752,15 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Mat转换为BitMap\n\nConverter.MatToBitmap (mat: var): var"
+      "Description": "Converter.MatToBitmap (mat: var): var"
     },
     {
       "ConcreteType": "CoreNodeModels.WatchImageCore, CoreNodeModels",
       "NodeType": "ExtensionNode",
-      "Id": "d1a45a2f7bbe40dfb9b8178d1386d93b",
+      "Id": "034bb281847f4c5895604dfd08190b36",
       "Inputs": [
         {
-          "Id": "2081c3d708a74b7f9be34023530951c6",
+          "Id": "97d2c2ca7af04f978513fe2ba30cf9d3",
           "Name": "image",
           "Description": "image",
           "UsingDefaultValue": false,
@@ -1014,7 +772,7 @@
       ],
       "Outputs": [
         {
-          "Id": "d91e6cb8dba44f6cbb49f9da35745426",
+          "Id": "c31246663cb4414684e886ff35577dc3",
           "Name": "image",
           "Description": "image",
           "UsingDefaultValue": false,
@@ -1031,10 +789,10 @@
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
       "FunctionSignature": "ImageProc.Processor.Or@var,var",
-      "Id": "941c4c2e17e44e83bf59e492e7004a5b",
+      "Id": "d8d9385e9c0e414fa26e912bb3c23c10",
       "Inputs": [
         {
-          "Id": "7976b5768c7e4c909fa491d814c93f8c",
+          "Id": "ead6013135354d42851851f0f6e1b7d0",
           "Name": "in_1",
           "Description": "var",
           "UsingDefaultValue": false,
@@ -1044,7 +802,7 @@
           "IsConnected": true
         },
         {
-          "Id": "0c22454512b044a3965e617b6dac85ed",
+          "Id": "89c3222dcddd475d83763ecdef4844f9",
           "Name": "in_2",
           "Description": "var",
           "UsingDefaultValue": false,
@@ -1056,7 +814,7 @@
       ],
       "Outputs": [
         {
-          "Id": "a375b86027cf4914bb1ab1c68848818f",
+          "Id": "8099ce93bb1d4363ab8dd0b51fe4fe25",
           "Name": "var",
           "Description": "var",
           "UsingDefaultValue": false,
@@ -1067,81 +825,18 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "图像按位或\n\nProcessor.Or (in_1: var, in_2: var): var"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "NodeType": "FunctionNode",
-      "FunctionSignature": "ImageProc.Converter.MatToBitmap@var",
-      "Id": "3ccdaecbb9864127b45855ba2093e310",
-      "Inputs": [
-        {
-          "Id": "738700dd4fae4ec897e9c6e544e94756",
-          "Name": "mat",
-          "Description": "var",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": true
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "c5e72d44061342369070e93c0b98b4b8",
-          "Name": "var",
-          "Description": "var",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": true
-        }
-      ],
-      "Replication": "Auto",
-      "Description": "Mat转换为BitMap\n\nConverter.MatToBitmap (mat: var): var"
-    },
-    {
-      "ConcreteType": "CoreNodeModels.WatchImageCore, CoreNodeModels",
-      "NodeType": "ExtensionNode",
-      "Id": "bfb970ef74644af69d94b170ef026d73",
-      "Inputs": [
-        {
-          "Id": "1d94f78a5ecf4bc8bbb6d5a87c9f6708",
-          "Name": "image",
-          "Description": "image",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": true
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "e37e83efb16a45d481aff752e3809d3b",
-          "Name": "image",
-          "Description": "image",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Previews an image"
+      "Description": "Processor.Or (in_1: var, in_2: var): var"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
       "FunctionSignature": "ImageProc.Processor.Mask@var,var",
-      "Id": "31c527d440794c61988eefc0d477207a",
+      "Id": "a92858b7f5aa4fc08f2003fc4853952c",
       "Inputs": [
         {
-          "Id": "dd386dad750840ee8487db4dcf34c05b",
+          "Id": "58c235a8ddef4b6aafc4bb23c13b1df5",
           "Name": "target",
-          "Description": "目标图像\n\nvar",
+          "Description": "var",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -1149,7 +844,7 @@
           "IsConnected": true
         },
         {
-          "Id": "a5e937f4f83a4c59a116444a59742b02",
+          "Id": "c3d61f07098548ad99a3430ca6393ace",
           "Name": "Mask",
           "Description": "var",
           "UsingDefaultValue": false,
@@ -1161,7 +856,7 @@
       ],
       "Outputs": [
         {
-          "Id": "6ae240df9d6c49b4aaf4bd8d8540d04f",
+          "Id": "9ca0fce881b74ec58cb60e8ba565a133",
           "Name": "var",
           "Description": "var",
           "UsingDefaultValue": false,
@@ -1172,18 +867,18 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "掩码运算\n\nProcessor.Mask (target: var, Mask: var): var"
+      "Description": "Processor.Mask (target: var, Mask: var): var"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
       "FunctionSignature": "ImageProc.Processor.FloodFill@var,DSCore.Color,int,int",
-      "Id": "fa74cf5fa32c40a19ada9fbad0a5fffa",
+      "Id": "83a2090c8f4f4fe09f81eee0d2f6d4d0",
       "Inputs": [
         {
-          "Id": "38c97e34567a482b85e36438307ee8e6",
+          "Id": "ab4a86c43e904fdba6e0e19dac05ec29",
           "Name": "inMat",
-          "Description": "输入图像\n\nvar",
+          "Description": "var",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -1191,9 +886,9 @@
           "IsConnected": true
         },
         {
-          "Id": "900ac35b8721413b81c4c560691a91c2",
+          "Id": "b61f3885270443b3ab09b50794a59ee2",
           "Name": "color",
-          "Description": "填充颜色\n\nColor",
+          "Description": "Color",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -1201,9 +896,9 @@
           "IsConnected": true
         },
         {
-          "Id": "d31cc659e8e74e24a7960b8c610842cd",
+          "Id": "05932b855ac34671b34ac6d2ce5e2856",
           "Name": "x",
-          "Description": "种子点横坐标\n\nint\nDefault value : 1",
+          "Description": "int\nDefault value : 1",
           "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
@@ -1211,9 +906,9 @@
           "IsConnected": true
         },
         {
-          "Id": "e573cc7899ff4a50a133b0734d30a5fe",
+          "Id": "2da5feb5a20848069c51d6b7604d5837",
           "Name": "y",
-          "Description": "种子点纵坐标\n\nint\nDefault value : 1",
+          "Description": "int\nDefault value : 1",
           "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
@@ -1223,7 +918,7 @@
       ],
       "Outputs": [
         {
-          "Id": "9289a25aa88048c9b61df17bd04096c9",
+          "Id": "0b299241b22e4d379223995732fb7f28",
           "Name": "var",
           "Description": "var",
           "UsingDefaultValue": false,
@@ -1234,18 +929,18 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "漫水填充\n\nProcessor.FloodFill (inMat: var, color: Color, x: int = 1, y: int = 1): var"
+      "Description": "Processor.FloodFill (inMat: var, color: Color, x: int = 1, y: int = 1): var"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
       "FunctionSignature": "DSCore.Color.ByARGB@int,int,int,int",
-      "Id": "62b5ee05418d4e1bbda50e7b7487803b",
+      "Id": "dc6647e3df7949efa21bbb0a0ca303f6",
       "Inputs": [
         {
-          "Id": "f3c4289dc2b74a74b61cd2212b49cc0d",
+          "Id": "954c1d181299494d9ba4c0a4a65ba128",
           "Name": "a",
-          "Description": "The alpha value.\n\nint\nDefault value : 255",
+          "Description": "int\nDefault value : 255",
           "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
@@ -1253,9 +948,9 @@
           "IsConnected": true
         },
         {
-          "Id": "6c24bcc170c94760bb41e878697a488c",
+          "Id": "e20b636d2cfe496783506fe6d70dce2d",
           "Name": "r",
-          "Description": "The red value.\n\nint\nDefault value : 0",
+          "Description": "int\nDefault value : 0",
           "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
@@ -1263,9 +958,9 @@
           "IsConnected": true
         },
         {
-          "Id": "7bcdf4833bd146f89af4a293fa8f9d89",
+          "Id": "7d5d15aeadd9497097c7c775447cf8c6",
           "Name": "g",
-          "Description": "The green value.\n\nint\nDefault value : 0",
+          "Description": "int\nDefault value : 0",
           "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
@@ -1273,9 +968,9 @@
           "IsConnected": true
         },
         {
-          "Id": "5f7c4e5a8b4b4d0298b0de2937abfbdb",
+          "Id": "6543cdbfee6a450e8b7ad2fe149675a9",
           "Name": "b",
-          "Description": "The blue value.\n\nint\nDefault value : 0",
+          "Description": "int\nDefault value : 0",
           "UsingDefaultValue": true,
           "Level": 2,
           "UseLevels": false,
@@ -1285,9 +980,9 @@
       ],
       "Outputs": [
         {
-          "Id": "853b1bfe19e4430caac2e54890e6e457",
-          "Name": "color",
-          "Description": "Color.",
+          "Id": "5c3c89c2792e4ee8a6cf7235a2377d40",
+          "Name": "Color",
+          "Description": "Color",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -1296,7 +991,7 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Construct a color by alpha, red, green, and blue components.\n\nColor.ByARGB (a: int = 255, r: int = 0, g: int = 0, b: int = 0): Color"
+      "Description": "Color.ByARGB (a: int = 255, r: int = 0, g: int = 0, b: int = 0): Color"
     },
     {
       "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
@@ -1306,11 +1001,11 @@
       "MaximumValue": 100,
       "MinimumValue": 0,
       "StepValue": 1,
-      "Id": "5a7459884a1e407da2b2395bee32e39e",
+      "Id": "0149ee3c8d1e421abd142cf7450246b1",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "5bf5f859e818424a995603013888c84d",
+          "Id": "4040a959f13e415aa24b10215f7608ee",
           "Name": "",
           "Description": "Int32",
           "UsingDefaultValue": false,
@@ -1331,11 +1026,11 @@
       "MaximumValue": 100,
       "MinimumValue": 0,
       "StepValue": 1,
-      "Id": "13eafc05d7284707b42e9dbca585e041",
+      "Id": "a1fd22c4c6f744dba6a1cfea4044c5bc",
       "Inputs": [],
       "Outputs": [
         {
-          "Id": "e64e1aae374547ac9adcbccc933ddd60",
+          "Id": "e20ab3fe754f4c63afcae685d777cc7a",
           "Name": "",
           "Description": "Int32",
           "UsingDefaultValue": false,
@@ -1352,10 +1047,10 @@
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
       "FunctionSignature": "ImageProc.Converter.MatToBitmap@var",
-      "Id": "c88c4249c3ed4a3181640157d5b99ebd",
+      "Id": "ef6cae543adb424ba144b925ffa4248a",
       "Inputs": [
         {
-          "Id": "03952fbed3644b7296405ae4af5a81cd",
+          "Id": "92a232f651194fae8ebdadd1b4fe9e2c",
           "Name": "mat",
           "Description": "var",
           "UsingDefaultValue": false,
@@ -1367,7 +1062,7 @@
       ],
       "Outputs": [
         {
-          "Id": "d8e30c107dcb44f5983e79c6209c85e3",
+          "Id": "bd9fb04b725b4221b60cad86b67b95c7",
           "Name": "var",
           "Description": "var",
           "UsingDefaultValue": false,
@@ -1378,49 +1073,38 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Mat转换为BitMap\n\nConverter.MatToBitmap (mat: var): var"
-    },
-    {
-      "ConcreteType": "CoreNodeModels.WatchImageCore, CoreNodeModels",
-      "NodeType": "ExtensionNode",
-      "Id": "956169c501204dec850682596d510173",
-      "Inputs": [
-        {
-          "Id": "22bbd8ef4e8348ae9874a5c456aebb66",
-          "Name": "image",
-          "Description": "image",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": true
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "b7abe033baba47789fc44558e25862c6",
-          "Name": "image",
-          "Description": "image",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Previews an image"
+      "Description": "Converter.MatToBitmap (mat: var): var"
     },
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
-      "FunctionSignature": "ImageProc.Converter.MatToBitmap@var",
-      "Id": "427d00eb092a47b39f0f127d0fcd6633",
+      "FunctionSignature": "DicomTools.DicomReader.ReadDicomFromPath@string,double,double",
+      "Id": "f770d0e7d2884ebfaca1fb5a8fe4bf00",
       "Inputs": [
         {
-          "Id": "5f84a5af61d24e2e8d367495e8e5fef7",
-          "Name": "mat",
-          "Description": "var",
+          "Id": "33688b816f3549a7bb427a5b740f8581",
+          "Name": "filepath",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "4cc234defcbd48d0987ad01e0f92c1d0",
+          "Name": "windowWidth",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "d2f91955476142b7b8ab66498e21bf3d",
+          "Name": "windowCenter",
+          "Description": "double",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -1430,7 +1114,7 @@
       ],
       "Outputs": [
         {
-          "Id": "cd575e1b07b24696a68d69bcc6a4ddd2",
+          "Id": "6922061d314147c690fed560e67553f6",
           "Name": "var",
           "Description": "var",
           "UsingDefaultValue": false,
@@ -1441,17 +1125,88 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Mat转换为BitMap\n\nConverter.MatToBitmap (mat: var): var"
+      "Description": "DicomReader.ReadDicomFromPath (filepath: string, windowWidth: double, windowCenter: double): var"
     },
     {
-      "ConcreteType": "CoreNodeModels.WatchImageCore, CoreNodeModels",
-      "NodeType": "ExtensionNode",
-      "Id": "1fc0e5ea03c247a48f9bc688c3aa0bd8",
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "MaximumValue": 4096.0,
+      "MinimumValue": -2000.0,
+      "StepValue": 1.0,
+      "InputValue": 2506.0,
+      "Id": "ba309a6242b04b73bd17785a607ca662",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "dab2595cb9c64218b3bbd0b7985e9733",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces numeric values."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "MaximumValue": 2048.0,
+      "MinimumValue": -364.0,
+      "StepValue": 0.1,
+      "InputValue": -364.0,
+      "Id": "01a7a9f437734276b4b2a8f0325e8387",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b0411882832446728b92a7cd5ac096d2",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces numeric values."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DicomTools.DicomReader.ReadDicomFromPath@string,double,double",
+      "Id": "9b7b8c5072084fdfaebee8aedd62761a",
       "Inputs": [
         {
-          "Id": "01341f85a110458caec3fac3b199e091",
-          "Name": "image",
-          "Description": "image",
+          "Id": "faad7911799a41f9b4c5198c611d7d8d",
+          "Name": "filepath",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "603277a18726432880c67022904838e4",
+          "Name": "windowWidth",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "7e91043a770f4d8eb7aaef2ed5831d78",
+          "Name": "windowCenter",
+          "Description": "double",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -1461,220 +1216,293 @@
       ],
       "Outputs": [
         {
-          "Id": "50f1b5f830f448d59541a3ee46d634ba",
-          "Name": "image",
-          "Description": "image",
+          "Id": "c05e56906d7f410a9a6471eb26c733a8",
+          "Name": "var",
+          "Description": "var",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
           "KeepListStructure": false,
-          "IsConnected": false
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "DicomReader.ReadDicomFromPath (filepath: string, windowWidth: double, windowCenter: double): var"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "MaximumValue": 4096.0,
+      "MinimumValue": -2000.0,
+      "StepValue": 1.0,
+      "InputValue": 634.0,
+      "Id": "d973903878be47d68bf8d42d872fb607",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "cd3d830d86d5472fb09da5396a93007d",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
         }
       ],
       "Replication": "Disabled",
-      "Description": "Previews an image"
+      "Description": "A slider that produces numeric values."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "MaximumValue": 2048.0,
+      "MinimumValue": -364.0,
+      "StepValue": 0.1,
+      "InputValue": -128.4,
+      "Id": "0f524cc2b24b40e0a7a40df0d95abc06",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5e7863f4a31e4e8eb6d87a75b48f58a3",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces numeric values."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Output, DynamoCore",
+      "NodeType": "OutputNode",
+      "ElementResolver": null,
+      "Symbol": "Result Image",
+      "Id": "890ee34b74bf4e3d9ce7549ac0798f1a",
+      "Inputs": [
+        {
+          "Id": "a98547e1dc3f425fbd0df47be91fbbbd",
+          "Name": "",
+          "Description": "",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [],
+      "Replication": "Disabled",
+      "Description": "A function output, use with custom nodes"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "NodeType": "InputNode",
+      "Parameter": {
+        "Name": "Dicom File Path",
+        "TypeName": "var",
+        "TypeRank": -1,
+        "DefaultValue": null
+      },
+      "Id": "db53113f5f364fad9981cbd0fe7fb72b",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "13169d7cdca14d30b5d6981f5bcb533e",
+          "Name": "",
+          "Description": "Symbol",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A function parameter, use with custom nodes.\r\n\r\nYou can specify the type and default value for parameter. E.g.,\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
     }
   ],
   "Connectors": [
     {
-      "Start": "1e021400f9b5489e90589688f6656296",
-      "End": "4a4450b4c4154b5889744ee321b12d8c",
-      "Id": "9f46549b9b794ddcaf6eee0e18e9717d"
+      "Start": "313f7b0b1d0f41549acf8ab967e363eb",
+      "End": "e9acce96986c43a98041b9d60878dbdc",
+      "Id": "aba57bcdbcc442c39f61929efe13b5cd"
     },
     {
-      "Start": "e435b4df78984e0fa01c4eb78f9477da",
-      "End": "d1097382048742a7bd463a0bb37698ed",
-      "Id": "d7f21ea06ddb46988f6fcd2e53317c91"
+      "Start": "055450da4e7d4984bbc66299e0c29fcd",
+      "End": "813b47f3f8414bd7b9dff42afbc1570a",
+      "Id": "0d9996b194ab463a9a637a5381bb0bb3"
     },
     {
-      "Start": "adf21fe1315048dab368a899d6d93eac",
-      "End": "578c5cf22aaf429f94f3bd9c82f00239",
-      "Id": "9ce20d256a704d67bbeaa6d82e5dbfcb"
+      "Start": "055450da4e7d4984bbc66299e0c29fcd",
+      "End": "ead6013135354d42851851f0f6e1b7d0",
+      "Id": "1de02c81b43b4e98a8f80d6d5761f250"
     },
     {
-      "Start": "adf21fe1315048dab368a899d6d93eac",
-      "End": "aa298892d91a4d618c18483d7494bb56",
-      "Id": "731fa72ff95246beaf8f6c5c7559fc4b"
+      "Start": "892d1860a3bd48e2bd84b9c02c3e9130",
+      "End": "920bacb1ebb949e5aae0854b8dc14ea3",
+      "Id": "7b51faaecc9049159afcc5597ab966be"
     },
     {
-      "Start": "adf21fe1315048dab368a899d6d93eac",
-      "End": "7976b5768c7e4c909fa491d814c93f8c",
-      "Id": "82deb8af5ae344a4af39d338d78d0029"
+      "Start": "7ffe5d94482446c8955c3afb8569e57d",
+      "End": "9079a316889a4c6c9270b2600ee26770",
+      "Id": "54910c80a116490d986b17c6a53098c7"
     },
     {
-      "Start": "cc7eb025e4834a78b4575ee3e391f369",
-      "End": "5aa2b5918bfb411095af0e3037233307",
-      "Id": "e71efbb2deb24e94a8df95acc64b31d3"
+      "Start": "4421650b3d1b40b9adaabaa66fdc7366",
+      "End": "a750e0c58958495980505a6151b088eb",
+      "Id": "801e42503ed14936a425ea7c69b7fcc0"
     },
     {
-      "Start": "62a69639043b4edbbff6df4e604638a0",
-      "End": "5f2562b328c846eb9d39113ea82cffd6",
-      "Id": "fa821ac2f943480d82f605f2b14e9e00"
+      "Start": "e90a331ed20c461ea0dc1eb164879da9",
+      "End": "8c184135bf664006885665b2d97ed1c8",
+      "Id": "c7a58bc3b6444247a9a5c66bd225c323"
     },
     {
-      "Start": "972e93e819f64f45a4a314b671cd8ede",
-      "End": "ab140631cddd41faa89c9352191369b5",
-      "Id": "8b5061fc1b7c4378b1958ef6c051e338"
+      "Start": "f97c5a488fd14e13a9a0fb740b0cbfc8",
+      "End": "b9c12c24d18448f785317549df23458e",
+      "Id": "f5fc1baca1dc44d888b111e65000fb14"
     },
     {
-      "Start": "a92326cc29af46e8bfadb201adfe913d",
-      "End": "c47761ec29fc491c9a6bc8fbd1323cd8",
-      "Id": "c8370e0ae8f84ca8bc81bdd032fb6245"
+      "Start": "d83ea5a0b73049e5813e021c998c255d",
+      "End": "6858fe944a0346278699607611c82a16",
+      "Id": "de4466b5f73648df89d95d62bc056b4d"
     },
     {
-      "Start": "c29fd567ef6246f1ad47bda07b600673",
-      "End": "d0d5b1d009854191bff66a6cc863e5fb",
-      "Id": "6919b64e1e26440d98c5304ae4085b32"
+      "Start": "02293237054b479a98421b553b09aa25",
+      "End": "2777a3ade8e84ab1a61b99c74df27585",
+      "Id": "07ffaa8c12c1455399103143ce5a0028"
     },
     {
-      "Start": "4f9420724a7e4fd4bcc39fcc5c1710ac",
-      "End": "c3dab339bbb54abeaf5cddc43ff89cb8",
-      "Id": "d3a742071b204f5aadca3dfb7935264c"
+      "Start": "da973c01584a4bc1b19f57a7a92fb26a",
+      "End": "4a924f586dfe4c13a99f7940c619e85f",
+      "Id": "12664c182f5c4c93af9912b67ded2023"
     },
     {
-      "Start": "4cd31dd2ecc044839087f19ca1423a23",
-      "End": "9c45c2ca07ac4a59b55e6068c17cc3e2",
-      "Id": "d1140dba90434e2c95aa07ac6ca56fbe"
+      "Start": "4193a1a803784a78961889c2bc9b2f59",
+      "End": "bcc0fd8b6fab4b5a90f5ba01dd1b71af",
+      "Id": "fea8cbc902094be0bc31620fb9c4c08a"
     },
     {
-      "Start": "1374762bd5cc4e50b8ec8dad39efffe8",
-      "End": "5a4184de6bfd450aa4f1d19d5443eee6",
-      "Id": "399793c6aedf44a98142cb1bf92bb41d"
+      "Start": "9c7361cbd6bf46299518984edb7f26db",
+      "End": "5d0cc5d9f3d24671a2fed44e823a7aae",
+      "Id": "b873e339317e4968a57cfd78144e878a"
     },
     {
-      "Start": "78bbe5059d7a4130b2210c0fd8ba472c",
-      "End": "cb54ac51f893479e8667a4499542049d",
-      "Id": "151f613c129840bfa7af85ce3a23a906"
+      "Start": "6f8a63d4a54249e39cd92ecee24f1652",
+      "End": "bbc84ddae3074597a7fbaa4b720db72a",
+      "Id": "5669cf0a25fb4be3ba8450e25fa1cbb9"
     },
     {
-      "Start": "bdaea3ff26d9421bb8954b43a477eaa4",
-      "End": "b87092749db641ae8cb4f72164b5cd41",
-      "Id": "2ead1c1516294568b226b06538638968"
+      "Start": "b614cfee03c94af48d3a7bcd7f64722e",
+      "End": "dbe79ebe9d6847e09eef2285c0a722ec",
+      "Id": "38193eb9455245b1b55438e5e15ca95c"
     },
     {
-      "Start": "d49f774da8a2409fa07aa1c14629772a",
-      "End": "67a0d31977444a448d9b8ddd0c8b2916",
-      "Id": "1454546a70de4a85883f87d20f1613fb"
+      "Start": "fc77bcf44d014b9f92a8ba228c974da5",
+      "End": "ee265d553b3c4906b0c0a3603a347ea8",
+      "Id": "7dde282e00844e709ca5bfb16702c24c"
     },
     {
-      "Start": "d49f774da8a2409fa07aa1c14629772a",
-      "End": "66ea26769562414baeac36b88ee659b5",
-      "Id": "608b5c228fa44a35aab66679ee34e8e1"
+      "Start": "85151f3f0e1d48098a3a8e7c7ca11c1e",
+      "End": "52cbdf6fd7c4488f9ef6d986f5f925a6",
+      "Id": "f936f48e229a436d829fed63ecb0e34b"
     },
     {
-      "Start": "d49f774da8a2409fa07aa1c14629772a",
-      "End": "dd386dad750840ee8487db4dcf34c05b",
-      "Id": "5554bec00ded41589bfaec04ddf22a51"
+      "Start": "67f962928fb44064a84273c342d08e73",
+      "End": "7fd0212927154dd8b899ab0498622c52",
+      "Id": "9e840dd453dd49ef9ca18a8b4342d494"
     },
     {
-      "Start": "679abe7ece734911bf6add0ced741dfa",
-      "End": "2b4ca755301141dcb9c7c073b4151a6c",
-      "Id": "3ceaa309d51142049bc91c65111ed7ea"
+      "Start": "67f962928fb44064a84273c342d08e73",
+      "End": "89c3222dcddd475d83763ecdef4844f9",
+      "Id": "8ec790ca1c09483baac0279e55e87436"
     },
     {
-      "Start": "bb4dddd65482440f8de046fe72fb8864",
-      "End": "72ffec67d13e4a289c703284f530abfa",
-      "Id": "04e7c7a1a7344c9faf69a3e110e7bb6b"
+      "Start": "5e715a3a62ce4ce1bfa1f0dc7738a966",
+      "End": "97d2c2ca7af04f978513fe2ba30cf9d3",
+      "Id": "9f5cd633f3ae46598f70254efcf8086a"
     },
     {
-      "Start": "bb4dddd65482440f8de046fe72fb8864",
-      "End": "5d4b70855f6b4aaeb664e9407e2bffcc",
-      "Id": "0f29af0927d84a3f92ba5155d606862c"
+      "Start": "8099ce93bb1d4363ab8dd0b51fe4fe25",
+      "End": "ab4a86c43e904fdba6e0e19dac05ec29",
+      "Id": "4f8b4694b09a4b7b89b592fa3b11afe0"
     },
     {
-      "Start": "0d9f68522aa7461387bf3904b3586ebe",
-      "End": "925eda6803e04fb98e7fa25bef500167",
-      "Id": "72d5c057c1534b42b78bbef288322d16"
+      "Start": "9ca0fce881b74ec58cb60e8ba565a133",
+      "End": "92a232f651194fae8ebdadd1b4fe9e2c",
+      "Id": "42275fa33cbe4edfa67368ba2d1c5dfa"
     },
     {
-      "Start": "f7f412fb41c64aacbcee9da5ba3ccd65",
-      "End": "6cbe823cec0342669bad0d0d951d2525",
-      "Id": "4ef913adf7094c699a1f86e31f51df41"
+      "Start": "0b299241b22e4d379223995732fb7f28",
+      "End": "c3d61f07098548ad99a3430ca6393ace",
+      "Id": "94f20f5886274ef19391dff011908c06"
     },
     {
-      "Start": "85e3fbfab9e7409c9b44cd9b3d00934a",
-      "End": "a329fb5053074c74a76cfba5ee5a5086",
-      "Id": "3e124bc372774aea928f34bc310e95bf"
+      "Start": "5c3c89c2792e4ee8a6cf7235a2377d40",
+      "End": "b61f3885270443b3ab09b50794a59ee2",
+      "Id": "eae45b743913403f863a4de3c511f2e3"
     },
     {
-      "Start": "302e7ed69312454a8f06d25ce496366e",
-      "End": "a4c6598495d848aa9481f05fbb33b592",
-      "Id": "f6a67141cb3d49d3a05ed7a76903619b"
+      "Start": "4040a959f13e415aa24b10215f7608ee",
+      "End": "05932b855ac34671b34ac6d2ce5e2856",
+      "Id": "984498fd9ea24884820882c14aabd08b"
     },
     {
-      "Start": "6dbf2536212048af890b2c41ff6789c0",
-      "End": "e6766bf3b04e42f894e7d056ce180afa",
-      "Id": "405ff39b44e44872b8f8093c3dd51d37"
+      "Start": "e20ab3fe754f4c63afcae685d777cc7a",
+      "End": "2da5feb5a20848069c51d6b7604d5837",
+      "Id": "b99a1a94fada4295a302103360e2b1c9"
     },
     {
-      "Start": "7b435cafef744dff90b159d822bdddc9",
-      "End": "d389c43de12e48d0b424ea4c0123b3cd",
-      "Id": "0cb96682613144959867b13349e03276"
+      "Start": "bd9fb04b725b4221b60cad86b67b95c7",
+      "End": "a98547e1dc3f425fbd0df47be91fbbbd",
+      "Id": "da435e0dacf44b95ba51585cd86204bd"
     },
     {
-      "Start": "7b435cafef744dff90b159d822bdddc9",
-      "End": "0c22454512b044a3965e617b6dac85ed",
-      "Id": "d35a98ebf60b4f6e9260a12e72f668e3"
+      "Start": "6922061d314147c690fed560e67553f6",
+      "End": "58c235a8ddef4b6aafc4bb23c13b1df5",
+      "Id": "aaa8008c799546f49f510e0ab2900dad"
     },
     {
-      "Start": "2c2255d8743f4b17b3d377d3100b9c91",
-      "End": "2081c3d708a74b7f9be34023530951c6",
-      "Id": "c92bd42de35246839848ab3d2afb4bbb"
+      "Start": "dab2595cb9c64218b3bbd0b7985e9733",
+      "End": "4cc234defcbd48d0987ad01e0f92c1d0",
+      "Id": "afa80950ba8d4279ba702cb7a130ae0f"
     },
     {
-      "Start": "a375b86027cf4914bb1ab1c68848818f",
-      "End": "738700dd4fae4ec897e9c6e544e94756",
-      "Id": "48705cf4b8174388852b1052054fe054"
+      "Start": "b0411882832446728b92a7cd5ac096d2",
+      "End": "d2f91955476142b7b8ab66498e21bf3d",
+      "Id": "4356f611af0241e9a0b8e925aa84f74f"
     },
     {
-      "Start": "a375b86027cf4914bb1ab1c68848818f",
-      "End": "38c97e34567a482b85e36438307ee8e6",
-      "Id": "182c7224822542f1892995449cad0d3b"
+      "Start": "c05e56906d7f410a9a6471eb26c733a8",
+      "End": "fd8bdf817b004106a8d4529418797164",
+      "Id": "04fee2f64d064bb792779869bfe2a4c1"
     },
     {
-      "Start": "c5e72d44061342369070e93c0b98b4b8",
-      "End": "1d94f78a5ecf4bc8bbb6d5a87c9f6708",
-      "Id": "1f096c3442c74d708028431c7277a3a0"
+      "Start": "cd3d830d86d5472fb09da5396a93007d",
+      "End": "603277a18726432880c67022904838e4",
+      "Id": "350a025625e742019154f9b9fd866f51"
     },
     {
-      "Start": "6ae240df9d6c49b4aaf4bd8d8540d04f",
-      "End": "5f84a5af61d24e2e8d367495e8e5fef7",
-      "Id": "560427ee087642d7a9e595860c1dddee"
+      "Start": "5e7863f4a31e4e8eb6d87a75b48f58a3",
+      "End": "7e91043a770f4d8eb7aaef2ed5831d78",
+      "Id": "c3d242b7875e42a28d5bcc73d6d7ee7e"
     },
     {
-      "Start": "9289a25aa88048c9b61df17bd04096c9",
-      "End": "03952fbed3644b7296405ae4af5a81cd",
-      "Id": "1b6ff23e5e1a4cb0a4e6c0482fb50108"
+      "Start": "13169d7cdca14d30b5d6981f5bcb533e",
+      "End": "faad7911799a41f9b4c5198c611d7d8d",
+      "Id": "11d61934670844d6b8cb4638d1536129"
     },
     {
-      "Start": "9289a25aa88048c9b61df17bd04096c9",
-      "End": "a5e937f4f83a4c59a116444a59742b02",
-      "Id": "95df810aa7044285b5b086b7041805cf"
-    },
-    {
-      "Start": "853b1bfe19e4430caac2e54890e6e457",
-      "End": "900ac35b8721413b81c4c560691a91c2",
-      "Id": "bb46f6b2f3ee4fc89e6f42e0813bdca7"
-    },
-    {
-      "Start": "5bf5f859e818424a995603013888c84d",
-      "End": "d31cc659e8e74e24a7960b8c610842cd",
-      "Id": "97a086f6b1854e7b985a4c0cfca030d5"
-    },
-    {
-      "Start": "e64e1aae374547ac9adcbccc933ddd60",
-      "End": "e573cc7899ff4a50a133b0734d30a5fe",
-      "Id": "374382fdadc0474d967e91aef147905e"
-    },
-    {
-      "Start": "d8e30c107dcb44f5983e79c6209c85e3",
-      "End": "22bbd8ef4e8348ae9874a5c456aebb66",
-      "Id": "53c18ea4fd3b41ba9337672f0a27b614"
-    },
-    {
-      "Start": "cd575e1b07b24696a68d69bcc6a4ddd2",
-      "End": "01341f85a110458caec3fac3b199e091",
-      "Id": "06f4b7de11ec4b73b810adac7664c35d"
+      "Start": "13169d7cdca14d30b5d6981f5bcb533e",
+      "End": "33688b816f3549a7bb427a5b740f8581",
+      "Id": "ea65034f5d5940bd982dd085d6306a91"
     }
   ],
   "Dependencies": [],
@@ -1682,417 +1510,367 @@
   "View": {
     "Dynamo": {
       "ScaleFactor": 1.0,
-      "HasRunWithoutCrash": true,
+      "HasRunWithoutCrash": false,
       "IsVisibleInDynamoLibrary": true,
       "Version": "2.0.0.6544",
-      "RunType": "Automatic",
+      "RunType": "Manual",
       "RunPeriod": "1000"
     },
     "NodeViews": [
       {
         "ShowGeometry": true,
-        "Name": "Watch Image",
-        "Id": "b4365552a03e4e8fa792d41909916ca7",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 3968.43003231101,
-        "Y": 837.113459010308
-      },
-      {
-        "ShowGeometry": true,
         "Name": "Color Palette",
-        "Id": "34a49fb27500429fa4e8cdf082f45526",
+        "Id": "fe97f2eeb0f7433fa4d658475a17e8b0",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1484.0,
-        "Y": 945.0
-      },
-      {
-        "ShowGeometry": true,
-        "Name": "Watch Image",
-        "Id": "1694ee5c70cc44a796fae8da1f81d772",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 3573.51225058505,
-        "Y": 413.436327598169
-      },
-      {
-        "ShowGeometry": true,
-        "Name": "Converter.MatToBitmap",
-        "Id": "d6d0eadc80b240418c1b3d9c2b97ca60",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 3267.0,
-        "Y": 533.158932620029
+        "X": 1526.36099272158,
+        "Y": 1778.565957428108
       },
       {
         "ShowGeometry": true,
         "Name": "Integer Slider",
-        "Id": "8d487fb045bd4bac98d1f87fa72a02ae",
+        "Id": "cfb9f1fb65bc41948c063ca0634d40a3",
         "IsSetAsInput": true,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 2595.0,
-        "Y": 907.158932620029
+        "X": 2637.3609927215803,
+        "Y": 1740.724890048137
       },
       {
         "ShowGeometry": true,
         "Name": "Processor.MaxRegion",
-        "Id": "265879d31def4215abd7f0a6326ed271",
+        "Id": "4fd81d78d5d645f89b76567946b63f3f",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 2994.0,
-        "Y": 827.158932620029
+        "X": 3036.3609927215803,
+        "Y": 1660.724890048137
       },
       {
         "ShowGeometry": true,
         "Name": "Integer Slider",
-        "Id": "75656faeb4e94718bea1280a6a9a6c20",
+        "Id": "5f563571c2a447fd99015eec136fbbed",
         "IsSetAsInput": true,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 2196.0,
-        "Y": 854.158932620029
+        "X": 2238.3609927215803,
+        "Y": 1687.724890048137
       },
       {
         "ShowGeometry": true,
         "Name": "Processor.Close",
-        "Id": "f7521200a28840d7973cbb03784f7523",
+        "Id": "da41546d10e3460db36998468874dc9b",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 2595.0,
-        "Y": 773.158932620029
+        "X": 2637.3609927215803,
+        "Y": 1606.724890048137
       },
       {
         "ShowGeometry": true,
         "Name": "Integer Slider",
-        "Id": "e2b19182a3a24bf49856f8bcc152da4e",
+        "Id": "9a86502da4f744cc90fbc1b3d44c9257",
         "IsSetAsInput": true,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1797.0,
-        "Y": 798.158932620029
+        "X": 1839.36099272158,
+        "Y": 1631.724890048137
       },
       {
         "ShowGeometry": true,
         "Name": "Processor.Erode",
-        "Id": "44db284b60c646ac83dfc7aabb001c86",
+        "Id": "2a5f72d79f2a4646b34d067739bf825e",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 2196.0,
-        "Y": 718.158932620029
+        "X": 2238.3609927215803,
+        "Y": 1551.724890048137
       },
       {
         "ShowGeometry": true,
         "Name": "Processor.ClearBorder",
-        "Id": "1f9e1701129d4ad88b86d01685096865",
+        "Id": "741f0e4b4c934409988fde7c0ac60e01",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1797.0,
-        "Y": 664.158932620029
+        "X": 1839.36099272158,
+        "Y": 1497.724890048137
       },
       {
         "ShowGeometry": true,
         "Name": "Boolean",
-        "Id": "2bb4195fc5544d4aab53903bc44eeac0",
+        "Id": "082a2be76e154360a93c4d2484709fc9",
         "IsSetAsInput": true,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1099.0,
-        "Y": 703.158932620029
+        "X": 1141.36099272158,
+        "Y": 1536.724890048137
       },
       {
         "ShowGeometry": true,
         "Name": "Number Slider",
-        "Id": "18bc25efb57c45d4b1a99686494fa8ae",
+        "Id": "435a625ecf0c426b86cacc2c944d54cc",
         "IsSetAsInput": true,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1099.0,
-        "Y": 620.158932620029
+        "X": 1141.36099272158,
+        "Y": 1453.724890048137
       },
       {
         "ShowGeometry": true,
         "Name": "Processor.Binnary",
-        "Id": "7732648443804b47a3162709fcfd1a5b",
+        "Id": "29850bec579746bea70198916141edbe",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1498.0,
-        "Y": 596.158932620029
-      },
-      {
-        "ShowGeometry": true,
-        "Name": "Converter.MatToBitmap",
-        "Id": "982232e570a14a738935011414218e35",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 3590.58564122928,
-        "Y": 832.640378425517
-      },
-      {
-        "ShowGeometry": true,
-        "Name": "File Path",
-        "Id": "1cbff82f48cd4d948ff9fe09a3f1334f",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 766.0,
-        "Y": 511.658932620029
-      },
-      {
-        "ShowGeometry": true,
-        "Name": "DicomReader.ReadDicomFromPath",
-        "Id": "178b9813005243db948f9a2139b4c49c",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 1099.0,
-        "Y": 511.658932620029
+        "X": 1540.36099272158,
+        "Y": 1429.724890048137
       },
       {
         "ShowGeometry": true,
         "Name": "Color.ByARGB",
-        "Id": "8861551aa07544f6be0dee4b8fa13b4c",
+        "Id": "08df1678cb314093bcf9182400b79c7a",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1498.0,
-        "Y": 758.158932620029
+        "X": 1540.36099272158,
+        "Y": 1591.724890048137
       },
       {
         "ShowGeometry": true,
         "Name": "Processor.FloodFill",
-        "Id": "5ef3d46490e2462093186e5a81621a30",
+        "Id": "87a1ec00ca6e40d9872359f27e1d577c",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 3530.70948839172,
-        "Y": 1196.63028092376
+        "X": 3474.01052103827,
+        "Y": 2032.736237328148
       },
       {
         "ShowGeometry": true,
         "Name": "Color.ByARGB",
-        "Id": "815cdceab1b64733afa472e21371a6c9",
+        "Id": "2a849f4d47954f3c86d77d0fca7a6c78",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 3076.37755138569,
-        "Y": 1221.18876400517
+        "X": 3039.9985758425,
+        "Y": 2036.974728599298
       },
       {
         "ShowGeometry": true,
         "Name": "Integer Slider",
-        "Id": "ca84580c4247414b97d5e6d347dfeaf4",
+        "Id": "4e067c2885d04456bd642efe28b70df2",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 2658.88333900177,
-        "Y": 1299.46892882716
+        "X": 2622.50436345858,
+        "Y": 2120.3348913738582
       },
       {
         "ShowGeometry": true,
         "Name": "Integer Slider",
-        "Id": "2dce24fa91ef4727b6804546de2b354f",
+        "Id": "9b8ca4ade1714954835a6a03c4cad64f",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 3047.21435272652,
-        "Y": 1397.70286115278
+        "X": 2863.5154365589196,
+        "Y": 2236.3488165334584
       },
       {
         "ShowGeometry": true,
         "Name": "Integer Slider",
-        "Id": "d055974f7eb245419fd19677fdec55ee",
+        "Id": "8ade672d6c2940ea8000c28494f1a76a",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 3045.67944753393,
-        "Y": 1471.37831039701
-      },
-      {
-        "ShowGeometry": true,
-        "Name": "Converter.MatToBitmap",
-        "Id": "ad14a3245bf44d3fac6ca489d79834d2",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 3891.41220864988,
-        "Y": 1198.16518611635
-      },
-      {
-        "ShowGeometry": true,
-        "Name": "Watch Image",
-        "Id": "4432e8df14b346a9ab5a99a1cb86d710",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 4255.18473929323,
-        "Y": 1112.21049533143
+        "X": 2859.44053239005,
+        "Y": 2322.724260659098
       },
       {
         "ShowGeometry": true,
         "Name": "Processor.Not",
-        "Id": "0c25c94b841547528d6418f6f84e1078",
+        "Id": "ccf978da0fa34513b2b791afcec7dc70",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 3770.15469843544,
-        "Y": 1574.2169583004
+        "X": 3832.8356829672803,
+        "Y": 2400.1629187996577
       },
       {
         "ShowGeometry": true,
         "Name": "Converter.MatToBitmap",
-        "Id": "626c3488e9db4975b2db6f8d72dd3996",
+        "Id": "ae95687981404e3ea3c7e324e81af62b",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 4012.66971886433,
-        "Y": 1572.68205310781
+        "X": 4049.9507136333405,
+        "Y": 2556.107950136608
       },
       {
         "ShowGeometry": true,
         "Name": "Watch Image",
-        "Id": "d1a45a2f7bbe40dfb9b8178d1386d93b",
+        "Id": "034bb281847f4c5895604dfd08190b36",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 4238.30078217476,
-        "Y": 1611.05468292251
+        "X": 4280.66177489634,
+        "Y": 2444.620640350618
       },
       {
         "ShowGeometry": true,
         "Name": "Processor.Or",
-        "Id": "941c4c2e17e44e83bf59e492e7004a5b",
+        "Id": "d8d9385e9c0e414fa26e912bb3c23c10",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 4261.13376304085,
-        "Y": 1431.27958254283
-      },
-      {
-        "ShowGeometry": true,
-        "Name": "Converter.MatToBitmap",
-        "Id": "3ccdaecbb9864127b45855ba2093e310",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 4563.7006830034,
-        "Y": 1423.79624942678
-      },
-      {
-        "ShowGeometry": true,
-        "Name": "Watch Image",
-        "Id": "bfb970ef74644af69d94b170ef026d73",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 4827.70437612853,
-        "Y": 1426.86605981196
+        "X": 4303.49475576243,
+        "Y": 2264.8455399709383
       },
       {
         "ShowGeometry": true,
         "Name": "Processor.Mask",
-        "Id": "31c527d440794c61988eefc0d477207a",
+        "Id": "a92858b7f5aa4fc08f2003fc4853952c",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 5167.03765436975,
-        "Y": 1309.29604807492
+        "X": 5347.33026238477,
+        "Y": 1775.044364720522
       },
       {
         "ShowGeometry": true,
         "Name": "Processor.FloodFill",
-        "Id": "fa74cf5fa32c40a19ada9fbad0a5fffa",
+        "Id": "83a2090c8f4f4fe09f81eee0d2f6d4d0",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 4893.55702393949,
-        "Y": 1741.67004718877
+        "X": 4964.49683299129,
+        "Y": 2695.9021180111281
       },
       {
         "ShowGeometry": true,
         "Name": "Color.ByARGB",
-        "Id": "62b5ee05418d4e1bbda50e7b7487803b",
+        "Id": "dc6647e3df7949efa21bbb0a0ca303f6",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 4489.48228010754,
-        "Y": 1694.79939245186
+        "X": 4666.24328577682,
+        "Y": 2724.7961380343081
       },
       {
         "ShowGeometry": true,
         "Name": "Integer Slider",
-        "Id": "5a7459884a1e407da2b2395bee32e39e",
+        "Id": "0149ee3c8d1e421abd142cf7450246b1",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 4313.63545646845,
-        "Y": 1917.74878751825
+        "X": 4375.0489934101706,
+        "Y": 2998.9978198082381
       },
       {
         "ShowGeometry": true,
         "Name": "Integer Slider",
-        "Id": "13eafc05d7284707b42e9dbca585e041",
+        "Id": "a1fd22c4c6f744dba6a1cfea4044c5bc",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 4318.07255532661,
-        "Y": 1987.26333629605
+        "X": 4373.13524419495,
+        "Y": 3065.3369445493481
       },
       {
         "ShowGeometry": true,
         "Name": "Converter.MatToBitmap",
-        "Id": "c88c4249c3ed4a3181640157d5b99ebd",
+        "Id": "ef6cae543adb424ba144b925ffa4248a",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 5178.86973380921,
-        "Y": 1747.65999795553
+        "X": 5604.47476220499,
+        "Y": 1769.7104272193092
       },
       {
         "ShowGeometry": true,
-        "Name": "Watch Image",
-        "Id": "956169c501204dec850682596d510173",
+        "Name": "DicomReader.ReadDicomFromPath",
+        "Id": "f770d0e7d2884ebfaca1fb5a8fe4bf00",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 5440.65856644051,
-        "Y": 1752.09709681369
+        "X": 2027.4877838356,
+        "Y": 484.27685279649808
       },
       {
         "ShowGeometry": true,
-        "Name": "Converter.MatToBitmap",
-        "Id": "427d00eb092a47b39f0f127d0fcd6633",
+        "Name": "Number Slider",
+        "Id": "ba309a6242b04b73bd17785a607ca662",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 5392.52172994019,
-        "Y": 1309.34984619616
+        "X": 1581.68635822758,
+        "Y": 636.89343034187709
       },
       {
         "ShowGeometry": true,
-        "Name": "Watch Image",
-        "Id": "1fc0e5ea03c247a48f9bc688c3aa0bd8",
+        "Name": "Number Slider",
+        "Id": "01a7a9f437734276b4b2a8f0325e8387",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 5617.12046827381,
-        "Y": 1308.02187688083
+        "X": 1587.11853384595,
+        "Y": 722.83191684524809
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "DicomReader.ReadDicomFromPath",
+        "Id": "9b7b8c5072084fdfaebee8aedd62761a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2027.44443485904,
+        "Y": 805.57781079435517
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Number Slider",
+        "Id": "d973903878be47d68bf8d42d872fb607",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1589.75869826591,
+        "Y": 856.058130234538
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Number Slider",
+        "Id": "0f524cc2b24b40e0a7a40df0d95abc06",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1590.09420930846,
+        "Y": 931.81879363903477
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Output",
+        "Id": "890ee34b74bf4e3d9ce7549ac0798f1a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 5992.42919736678,
+        "Y": 1802.1764024650697
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Input",
+        "Id": "db53113f5f364fad9981cbd0fe7fb72b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 787.91189774322663,
+        "Y": 574.665836650234
       }
     ],
     "Annotations": [],
-    "X": -1850.8259558038176,
-    "Y": -421.59249743625026,
-    "Zoom": 0.56666446518541558
+    "X": 179.59508795755983,
+    "Y": 146.14129527734508,
+    "Zoom": 0.17795850239762925
   }
 }
