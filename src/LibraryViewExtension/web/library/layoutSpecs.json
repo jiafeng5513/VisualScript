@@ -873,7 +873,7 @@
                   "path": "Core.View.Watch 3D"
                 },
                 {
-                  "path": "Watch.Watch Image"
+                  "path": "Core.View.See Image"
                 }
               ],
               "childElements": []
@@ -1159,7 +1159,7 @@
                   "path": "ImageProcess.ImageProc.Processor.GaussianBlur"
                 },
                 {
-                  "path": "ImageProcess.ImageProc.Processor.Binnary"
+                  "path": "ImageProcess.ImageProc.Processor.Binary"
                 },
                 {
                   "path": "ImageProcess.ImageProc.Processor.ClearBorder"
@@ -1180,7 +1180,7 @@
                   "path": "ImageProcess.ImageProc.Processor.MaxRegion"
                 },
                 {
-                  "path": "ImageProcess.ImageProc.Processor.BgrToGary"
+                  "path": "ImageProcess.ImageProc.Processor.BgrToGray"
                 },
                 {
                   "path": "ImageProcess.ImageProc.Processor.And"

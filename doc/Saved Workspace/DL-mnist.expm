@@ -288,11 +288,11 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
-      "FunctionSignature": "ImageProc.Processor.BgrToGary@var",
-      "Id": "244ffd2a4924470ebabf7fb2b69972b9",
+      "FunctionSignature": "ImageProc.Processor.BgrToGray@var",
+      "Id": "a71ce474c8724f46b362bad00ccfcd8f",
       "Inputs": [
         {
-          "Id": "3affb7b00dc94d92827635ae2c316252",
+          "Id": "7dcdaa2bfd42473ab166b75a1dc70e16",
           "Name": "inMat",
           "Description": "输入图片\n\nvar",
           "UsingDefaultValue": false,
@@ -304,7 +304,7 @@
       ],
       "Outputs": [
         {
-          "Id": "49aa8f740fe44cbab034409bde201b3b",
+          "Id": "5b4927b7dbe2460392fe4953f82e162b",
           "Name": "var",
           "Description": "var",
           "UsingDefaultValue": false,
@@ -315,7 +315,7 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "从RGB三通道图片转换为单通道灰度图片\n\nProcessor.BgrToGary (inMat: var): var"
+      "Description": "从RGB三通道图片转换为单通道灰度图片\n\nProcessor.BgrToGray (inMat: var): var"
     }
   ],
   "Connectors": [
@@ -356,13 +356,13 @@
     },
     {
       "Start": "4bd8c0d41825451b8d754bbeeff27005",
-      "End": "3affb7b00dc94d92827635ae2c316252",
-      "Id": "6bdb80bb0cbe4659b1987a4bf9717cc7"
+      "End": "7dcdaa2bfd42473ab166b75a1dc70e16",
+      "Id": "d9bafb13bae14daf8a53e3ad6faad192"
     },
     {
-      "Start": "49aa8f740fe44cbab034409bde201b3b",
+      "Start": "5b4927b7dbe2460392fe4953f82e162b",
       "End": "6407a078d6624f1baad9f2f0fb90da4f",
-      "Id": "200d275674844b618c7c7e077a5a79f2"
+      "Id": "c5276aa2e21041649020fce5ab1c2212"
     }
   ],
   "Dependencies": [],
@@ -384,8 +384,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1696.659420289855,
-        "Y": 395.27838164251204
+        "X": 1679.179346713292,
+        "Y": 319.00169694478126
       },
       {
         "ShowGeometry": true,
@@ -394,8 +394,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1382.659420289855,
-        "Y": 312.27838164251204
+        "X": 1352.4665659303364,
+        "Y": 317.04567443612024
       },
       {
         "ShowGeometry": true,
@@ -404,8 +404,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1382.659420289855,
-        "Y": 421.27838164251204
+        "X": 1306.3827355921242,
+        "Y": 404.59285686488352
       },
       {
         "ShowGeometry": true,
@@ -415,7 +415,7 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "X": 1119.0394268795387,
-        "Y": 320.75162244842437
+        "Y": 317.57342725268558
       },
       {
         "ShowGeometry": true,
@@ -424,8 +424,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1836.3108578574959,
-        "Y": 536.43449964691183
+        "X": 1845.0508946457778,
+        "Y": 535.63995084797727
       },
       {
         "ShowGeometry": true,
@@ -434,8 +434,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1305.8726331690871,
-        "Y": 607.16478716044014
+        "X": 1649.1177143088755,
+        "Y": 550.75182243607674
       },
       {
         "ShowGeometry": true,
@@ -444,8 +444,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1118.7926498894089,
-        "Y": 414.88707490557692
+        "X": 1129.9163330744946,
+        "Y": 509.43838197880575
       },
       {
         "ShowGeometry": true,
@@ -454,8 +454,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1110.2229337595679,
-        "Y": 502.83992302938606
+        "X": 1119.7575193467842,
+        "Y": 653.80419482697812
       },
       {
         "ShowGeometry": true,
@@ -464,18 +464,18 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1299.7211743079065,
-        "Y": 506.10182950885326
+        "X": 1288.5974911228204,
+        "Y": 531.52739107476361
       },
       {
         "ShowGeometry": true,
-        "Name": "Processor.BgrToGary",
-        "Id": "244ffd2a4924470ebabf7fb2b69972b9",
+        "Name": "Processor.BgrToGray",
+        "Id": "a71ce474c8724f46b362bad00ccfcd8f",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1496.103241840101,
-        "Y": 507.0316968986092
+        "X": 1482.6445659035444,
+        "Y": 460.91558137618586
       }
     ],
     "Annotations": [],

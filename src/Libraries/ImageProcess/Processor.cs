@@ -127,7 +127,7 @@ namespace ImageProc
         /// <param name="Threshold"></param>
         /// <param name="reverse"></param>
         /// <returns></returns>
-        public static Mat Binnary(Mat inMat,double Threshold,bool reverse=true)
+        public static Mat Binary(Mat inMat,double Threshold,bool reverse=true)
         {
             Mat outMat =new Mat();
             if (reverse)
@@ -334,7 +334,7 @@ namespace ImageProc
         /// </summary>
         /// <param name="inMat">输入图片</param>
         /// <returns></returns>
-        public static Mat BgrToGary(Mat inMat)
+        public static Mat BgrToGray(Mat inMat)
         {
             Image<Gray, Single> outImg = inMat.ToImage<Gray, Single>();
             return outImg.Mat;

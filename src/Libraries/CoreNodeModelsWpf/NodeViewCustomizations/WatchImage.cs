@@ -24,8 +24,8 @@ namespace CoreNodeModelsWpf.Nodes
 
             image = new Image
             {
-                MaxWidth = 300,
-                MaxHeight = 300,
+                MaxWidth = 150,
+                MaxHeight = 150,
                 HorizontalAlignment = System.Windows.HorizontalAlignment.Center,
                 Name = "image1",
                 VerticalAlignment = System.Windows.VerticalAlignment.Center

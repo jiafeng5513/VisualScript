@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using System.Windows;
 using Dynamo.Controls;
 using Dynamo.Graph;
 using Dynamo.Graph.Nodes;
@@ -34,17 +34,12 @@ namespace Dynamo.Wpf.NodeViewCustomizations
             };
 
             exporterViewModel = exporterControl.DataContext as AnalyzerViewModel;
-            nodeView.inputGrid.Children.Add(exporterControl);
+            nodeView.inputGrid.Children.Add(exporterControl);//inputGrid
+            nodeView.inputGrid.Visibility = Visibility.Visible;
+
             exporterControl.Loaded += converterControl_Loaded;
             //exporterControl.SelectExportedUnit.PreviewMouseUp += SelectExportedUnit_PreviewMouseUp;
         }
-
-        //private void SelectExportedUnit_PreviewMouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        //{
-        //    nodeViewModel.WorkspaceViewModel.HasUnsavedChanges = true;
-        //    var undoRecorder = nodeViewModel.WorkspaceViewModel.Model.UndoRecorder;
-        //    WorkspaceModel.RecordModelForModification(nodeModel, undoRecorder);
-        //}
 
         private void converterControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
