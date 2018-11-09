@@ -73,7 +73,6 @@ namespace Dynamo.Wpf.NodeViewCustomizations
 
         private void SetImageSource(Bitmap bmp)
         {
-            //image.Source = ResourceUtilities.ConvertToImageSource(bmp);
             seeImageView.imageBox2.Source = ResourceUtilities.ConvertToImageSource(bmp);
         }
 

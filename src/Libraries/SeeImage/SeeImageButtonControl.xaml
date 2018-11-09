@@ -40,7 +40,8 @@
                     HorizontalAlignment="Center"
                     BorderThickness="0"
                     Name="ZoomOutButton" 
-                    ToolTip="Zoom Out">
+                    ToolTip="Zoom Out"
+                    Command="{Binding ZoomOutCommand}">
                 <Image Stretch="Fill" Width="20" Height="20" Source="/SeeImage;component/ico/plus.ico"/>
             </Button>
 
@@ -48,7 +49,8 @@
                     HorizontalAlignment="Center"
                     BorderThickness="0"
                     Name="ZoomInButton" 
-                    ToolTip="Zoom In">
+                    ToolTip="Zoom In"
+                    Command="{Binding ZoomInCommand}">
                 <Image Stretch="Fill" Width="20" Height="20" Source="/SeeImage;component/ico/minus.ico" />
             </Button>
 
@@ -56,7 +58,8 @@
                     HorizontalAlignment="Center"
                     BorderThickness="0"
                     Name="RealSizeButton" 
-                    ToolTip="Zoom to real size">
+                    ToolTip="Zoom to real size"
+                    Command="{Binding ZoomToRealSizeCommand}">
                 <Image Stretch="Fill" Width="20" Height="20" Source="/SeeImage;component/ico/fit.ico" />
             </Button>
 
@@ -64,7 +67,8 @@
                     HorizontalAlignment="Center"
                     BorderThickness="0"
                     Name="DefaultSizeButton" 
-                    ToolTip="Default Size">
+                    ToolTip="Default Size"
+                    Command="{Binding ZoomToDefaultSizeCommand}">
                 <Image Stretch="Fill" Width="20" Height="20" Source="/SeeImage;component/ico/refresh.ico" />
             </Button>
         </Grid>
