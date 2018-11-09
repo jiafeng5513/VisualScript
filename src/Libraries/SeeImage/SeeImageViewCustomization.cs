@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
 using System.Text;
 using System.Windows;
 using Dynamo.Controls;
@@ -7,6 +9,7 @@ using Dynamo.Graph;
 using Dynamo.Graph.Nodes;
 using Dynamo.Graph.Workspaces;
 using Dynamo.Models;
+using Dynamo.Utilities;
 using Dynamo.ViewModels;
 using Dynamo.Wpf.Controls;
 using Image = System.Windows.Controls.Image;
@@ -42,17 +45,37 @@ namespace Dynamo.Wpf.NodeViewCustomizations
 
             nodeView.inputGrid.Children.Add(seeImageButtonControl);
             nodeView.inputGrid.Visibility = Visibility.Visible;
-
+            nodeModel.PropertyChanged += NodeModelOnPropertyChanged;
             seeImageView.Loaded += converterControl_Loaded;
-            //exporterControl.SelectExportedUnit.PreviewMouseUp += SelectExportedUnit_PreviewMouseUp;
+            HandleMirrorData();
         }
 
-        //private void SelectExportedUnit_PreviewMouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        //{
-        //    nodeViewModel.WorkspaceViewModel.HasUnsavedChanges = true;
-        //    var undoRecorder = nodeViewModel.WorkspaceViewModel.Model.UndoRecorder;
-        //    WorkspaceModel.RecordModelForModification(nodeModel, undoRecorder);
-        //}
+        private void NodeModelOnPropertyChanged(object sender, PropertyChangedEventArgs args)
+        {
+            if (args.PropertyName != "CachedValue")
+                return;
+
+            HandleMirrorData();
+        }
+
+        private void HandleMirrorData()
+        {
+            var data = nodeModel.CachedValue;
+            if (data == null)
+                return;
+
+            var bitmap = data.Data as Bitmap;
+            if (bitmap != null)
+            {
+                seeImageView.Dispatcher.Invoke(new Action<Bitmap>(SetImageSource), new object[] { bitmap });
+            }
+        }
+
+        private void SetImageSource(Bitmap bmp)
+        {
+            //image.Source = ResourceUtilities.ConvertToImageSource(bmp);
+            seeImageView.imageBox2.Source = ResourceUtilities.ConvertToImageSource(bmp);
+        }
 
         private void converterControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
@@ -60,7 +83,7 @@ namespace Dynamo.Wpf.NodeViewCustomizations
 
         public void Dispose()
         {
-            //exporterControl.SelectExportedUnit.PreviewMouseUp -= SelectExportedUnit_PreviewMouseUp;
+            nodeModel.PropertyChanged -= NodeModelOnPropertyChanged;
         }
     }
 }

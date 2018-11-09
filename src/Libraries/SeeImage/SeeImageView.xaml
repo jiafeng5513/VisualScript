@@ -23,17 +23,22 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Width="Auto" Height="Auto">
+    <Grid Name="userGrid" Width="Auto" Height="Auto">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <!--row 0-->
         <Grid Grid.Row="0" HorizontalAlignment="Right" Width="Auto">
-            <WindowsFormsHost Width="Auto" Height="Auto" x:Name="windowsFormsHost1">
-                <!-- ReSharper disable once Xaml.InvalidType -->
+            <!--<WindowsFormsHost Width="Auto" Height="Auto" x:Name="windowsFormsHost1">
+                --><!-- ReSharper disable once Xaml.InvalidType --><!--
                 <ui3:ImageBox x:Name="imageBox" FunctionalMode="Everything" />
-            </WindowsFormsHost>
+            </WindowsFormsHost>-->
+            <Image Name="imageBox2" HorizontalAlignment="Left" 
+                   Height="Auto" 
+                   Width="Auto"
+                   VerticalAlignment="Top" />
+
         </Grid>
     </Grid>
 </UserControl>

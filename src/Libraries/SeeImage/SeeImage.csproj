@@ -50,6 +50,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
@@ -153,9 +154,16 @@
     <None Include="Resources\refresh.ico" />
     <None Include="Resources\plus.ico" />
     <None Include="Resources\minus.ico" />
-    <EmbeddedResource Include="ico\minus.ico" />
-    <EmbeddedResource Include="ico\plus.ico" />
-    <EmbeddedResource Include="ico\refresh.ico" />
+    <Resource Include="ico\minus.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ico\plus.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ico\refresh.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ico\fit.ico" />
     <Content Include="License-LGPL.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
