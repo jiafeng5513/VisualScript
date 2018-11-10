@@ -202,8 +202,7 @@ namespace Dynamo.Manipulation
 
         public void UnhighlightGizmo()
         {
-            // Delete all transient geometry used to highlight gizmo
-            DeleteTransientGraphics();
+
         }
 
         public void Dispose()

@@ -5,19 +5,14 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Media3D;
 using System.Xml;
 using Dynamo.Core;
-using Dynamo.Graph.Connectors;
 using Dynamo.Graph.Nodes;
-using Dynamo.Graph.Workspaces;
 using Dynamo.Interfaces;
 using Dynamo.Logging;
 using Dynamo.Models;
 using Dynamo.Scheduler;
-using Dynamo.Selection;
-using Dynamo.UI.Commands;
 using Dynamo.ViewModels;
 using Dynamo.Visualization;
 using Dynamo.Wpf.Properties;
@@ -31,12 +26,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         public ILogger Logger { get; set; }
         public IPreferences Preferences { get; set; }
         public IEngineControllerManager EngineControllerManager { get; set; }
-
-        //public Watch3DViewModelStartupParams()
-        //{
-            
-        //}
-
         public Watch3DViewModelStartupParams(DynamoModel model)
         {
             Model = model;
@@ -67,7 +56,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
 
         protected List<NodeModel> recentlyAddedNodes = new List<NodeModel>();
         protected bool active;
-        //protected bool isGridVisible;
 
         /// <summary>
         /// Represents the name of current Watch3DViewModel which will be saved in preference settings
@@ -205,22 +193,12 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             this.renderPackageFactory = renderPackageFactory;
         }
 
-        protected virtual void OnShutdown()
-        {
-            // Override in inherited classes.
-        }
-
         
         protected virtual void OnClear()
         {
             // Override in inherited classes.
         }
 
-        //protected virtual void OnActiveStateChanged()
-        //{
-        //    UnregisterEventHandlers();
-        //    OnClear();
-        //}
 
         /// <summary>
         /// Event to be handled when the background preview is toggled on or off
@@ -231,18 +209,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         protected virtual void OnIsolationModeRequestUpdate()
         {
             // Override in inherited classes.
-        }
-
-        private void UnregisterWorkspaceEventHandlers(IDynamoModel model)
-        {
-            model.WorkspaceAdded -= OnWorkspaceAdded;
-            model.WorkspaceRemoved -= OnWorkspaceRemoved;
-            model.WorkspaceOpening -= OnWorkspaceOpening;
-
-            foreach (var ws in model.Workspaces)
-            {
-                ws.Saving -= OnWorkspaceSaving;
-            }
         }
 
         /// <summary>
@@ -264,46 +230,10 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             // Override in derived classes.
         }
 
-        private void OnWorkspaceAdded(WorkspaceModel workspace)
-        {
-            workspace.Saving += OnWorkspaceSaving;
-            workspace.NodeAdded += OnNodeAddedToWorkspace;
-            workspace.NodeRemoved += OnNodeRemovedFromWorkspace;
-
-            foreach (var node in workspace.Nodes)
-            {
-                RegisterNodeEventHandlers(node);
-            }
-        }
-
-        protected void OnWorkspaceRemoved(WorkspaceModel workspace)
-        {
-            workspace.Saving -= OnWorkspaceSaving;
-            workspace.NodeAdded -= OnNodeAddedToWorkspace;
-            workspace.NodeRemoved -= OnNodeRemovedFromWorkspace;
-
-            foreach (var node in workspace.Nodes)
-            {
-                UnregisterNodeEventHandlers(node);
-            }
-
-            OnClear();
-        }
 
         protected virtual void OnWorkspaceSaving(XmlDocument doc)
         {
             // Override in derived classes
-        }
-
-        private void OnNodeAddedToWorkspace(NodeModel node)
-        {
-            RegisterNodeEventHandlers(node);
-        }
-
-        private void OnNodeRemovedFromWorkspace(NodeModel node)
-        {
-            UnregisterNodeEventHandlers(node);
-            DeleteGeometryForNode(node);
         }
 
         public virtual CameraData GetCameraInformation()
@@ -374,46 +304,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             // Override in derived classes.
         }
 
-        private void RegisterNodeEventHandlers(NodeModel node)
-        {
-            node.PropertyChanged += OnNodePropertyChanged;
-            node.RenderPackagesUpdated += OnRenderPackagesUpdated;
-
-            RegisterPortEventHandlers(node);
-        }
-
-        protected void UnregisterNodeEventHandlers(NodeModel node)
-        {
-            node.PropertyChanged -= OnNodePropertyChanged;
-            node.RenderPackagesUpdated -= OnRenderPackagesUpdated;
-
-            UnregisterPortEventHandlers(node);
-        }
-
-        protected void RegisterPortEventHandlers(NodeModel node)
-        {
-            node.PortConnected += PortConnectedHandler;
-            node.PortDisconnected += PortDisconnectedHandler;
-        }
-
-        private void UnregisterPortEventHandlers(NodeModel node)
-        {
-            node.PortConnected -= PortConnectedHandler;
-            node.PortDisconnected -= PortDisconnectedHandler;
-        }
-
-        protected virtual void PortConnectedHandler(PortModel arg1, ConnectorModel arg2)
-        {
-            // Do nothing for a standard node.
-        }
-
-        protected virtual void PortDisconnectedHandler(PortModel port)
-        {
-            if (port.PortType == PortType.Input)
-            {
-                DeleteGeometryForIdentifier(port.Owner.AstIdentifierBase);
-            }
-        }
 
         protected virtual void SelectionChangedHandler(object sender, NotifyCollectionChangedEventArgs e)
         {

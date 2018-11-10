@@ -208,30 +208,30 @@ namespace Dynamo.Manipulation
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="mouseEventArgs"></param>
-        protected virtual void MouseMove(object sender, MouseEventArgs mouseEventArgs)
-        {
-            if (!IsEnabled()) return;
+        //protected virtual void MouseMove(object sender, MouseEventArgs mouseEventArgs)
+        //{
+        //    if (!IsEnabled()) return;
 
-            var clickRay = BackgroundPreviewViewModel.GetClickRay(mouseEventArgs);
-            if (clickRay == null) return;
+        //    var clickRay = BackgroundPreviewViewModel.GetClickRay(mouseEventArgs);
+        //    if (clickRay == null) return;
 
-            if (GizmoInAction == null)
-            {
-                HighlightGizmoOnRollOver(clickRay);
-                return;
-            }
+        //    if (GizmoInAction == null)
+        //    {
+        //        HighlightGizmoOnRollOver(clickRay);
+        //        return;
+        //    }
 
-            var offset = GizmoInAction.GetOffset(clickRay.GetOriginPoint(), clickRay.GetDirectionVector());
-            if (offset.Length < 0.01) return;
+        //    var offset = GizmoInAction.GetOffset(clickRay.GetOriginPoint(), clickRay.GetDirectionVector());
+        //    if (offset.Length < 0.01) return;
 
-            // Update input nodes attached to manipulator node 
-            // Doing this triggers a graph update on scheduler thread
-            OnGizmoMoved(GizmoInAction, offset);
+        //    // Update input nodes attached to manipulator node 
+        //    // Doing this triggers a graph update on scheduler thread
+        //    OnGizmoMoved(GizmoInAction, offset);
 
-            // redraw manipulator at new position synchronously
-            var packages = BuildRenderPackage();
-            BackgroundPreviewViewModel.AddGeometryForRenderPackages(packages);
-        }
+        //    // redraw manipulator at new position synchronously
+        //    var packages = BuildRenderPackage();
+        //    BackgroundPreviewViewModel.AddGeometryForRenderPackages(packages);
+        //}
 
         /// <summary>
         /// Constructor
@@ -401,7 +401,7 @@ namespace Dynamo.Manipulation
         /// </summary>
         private void AttachBaseHandlers()
         {
-            BackgroundPreviewViewModel.ViewMouseMove += MouseMove;
+            //BackgroundPreviewViewModel.ViewMouseMove += MouseMove;
             BackgroundPreviewViewModel.ViewMouseDown += MouseDown;
             BackgroundPreviewViewModel.ViewMouseUp += MouseUp;
 
@@ -455,51 +455,11 @@ namespace Dynamo.Manipulation
         /// </summary>
         private void DetachHandlers()
         {
-            BackgroundPreviewViewModel.ViewMouseMove -= MouseMove;
+            //BackgroundPreviewViewModel.ViewMouseMove -= MouseMove;
             BackgroundPreviewViewModel.ViewMouseDown -= MouseDown;
             BackgroundPreviewViewModel.ViewMouseUp -= MouseUp;
 
             Node.RequestRenderPackages -= GenerateRenderPackages;
-        }
-
-        /// <summary>
-        /// Removes Gizmos from background preview.
-        /// </summary>
-        private void DeleteGizmos()
-        {
-            var gizmos = GetGizmos(false);
-            foreach (var item in gizmos)
-            {
-                // Unsubscribe gizmos from camera-change events before updating the scene
-                item.Dispose();
-                BackgroundPreviewViewModel.DeleteGeometryForIdentifier(item.Name);
-            }
-        }
-
-        /// <summary>
-        /// Highlights/Unhighlights Gizmo drawables on mouse roll-over
-        /// </summary>
-        /// <param name="clickRay"></param>
-        private void HighlightGizmoOnRollOver(IRay clickRay)
-        {
-            Debug.Assert((IsMainThread()));
-
-            var gizmos = GetGizmos(false);
-            foreach (var item in gizmos)
-            {
-                item.UnhighlightGizmo();
-
-                using (var originPt = clickRay.GetOriginPoint())
-                using (var dirVec = clickRay.GetDirectionVector())
-                {
-                    object hitObject;
-                    if (item.HitTest(originPt, dirVec, out hitObject))
-                    {
-                        item.HighlightGizmo();
-                        return;
-                    }
-                }
-            }
         }
 
         internal static bool IsMainThread()
@@ -522,7 +482,7 @@ namespace Dynamo.Manipulation
             Dispose(true);
 
             Node.ClearErrorsAndWarnings();
-            DeleteGizmos();
+            //DeleteGizmos();
             DetachHandlers();
         }
 

@@ -371,8 +371,7 @@ namespace Dynamo.Manipulation
 
         public override void DeleteTransientGraphics()
         {
-            var identifier = string.Format("{0}_{1}", RenderDescriptions.AxisLine, Name);
-            BackgroundPreviewViewModel.DeleteGeometryForIdentifier(identifier);
+            
         }
 
         #endregion

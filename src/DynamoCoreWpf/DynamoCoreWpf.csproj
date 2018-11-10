@@ -262,9 +262,6 @@
     <Compile Include="NodeViewCustomization\NodeViewCustomizations\VariableInputNodeViewCustomization.cs" />
     <Compile Include="ViewModels\RenderPackageFactoryViewModel.cs" />
     <Compile Include="ViewModels\Search\SearchCategory.cs" />
-    <Compile Include="ViewModels\Watch3D\DynamoGeometryModel3D.cs" />
-    <Compile Include="ViewModels\Watch3D\DynamoLineGeometryModel3D.cs" />
-    <Compile Include="ViewModels\Watch3D\DynamoPointGeometryModel3D.cs" />
     <Compile Include="ViewModels\Watch3D\HelixWatch3DViewModel.cs" />
     <Compile Include="ViewModels\Watch3D\DefaultWatch3DViewModel.cs" />
     <Compile Include="ViewModels\Watch3D\IWatch3DViewModel.cs" />
@@ -282,7 +279,6 @@
       <DependentUpon>PackagePathView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\Watch3D\AttachedProperties.cs" />
-    <Compile Include="ViewModels\Watch3D\DynamoRenderTechniquesManager.cs" />
     <Compile Include="Views\Preview\CameraExtensions.cs" />
     <Compile Include="Views\Preview\PreviewCompactView.xaml.cs">
       <DependentUpon>PreviewCompactView.xaml</DependentUpon>

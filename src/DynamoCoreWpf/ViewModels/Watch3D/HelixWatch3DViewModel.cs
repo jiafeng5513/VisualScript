@@ -7,14 +7,12 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
-using System.Windows.Input;
 using System.Windows.Media.Media3D;
 using System.Xml;
 using Dynamo.Graph.Nodes;
 using Dynamo.Graph.Workspaces;
 using Dynamo.Logging;
 using Dynamo.Selection;
-using Dynamo.ViewModels;
 using Dynamo.Wpf.Properties;
 using Dynamo.Wpf.Rendering;
 using Dynamo.Visualization;
@@ -114,10 +112,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         private PerspectiveCamera camera;
         private const float defaultLabelOffset = 0.025f;
 
-        internal const string DefaultGridName = "Grid";
-        internal const string DefaultAxesName = "Axes";
-        internal const string DefaultLightName = "DirectionalLight";
-
         private const string TextKey = ":text";
         private List<Model3D> sceneItems;
         private Dictionary<string, string> nodesSelected = new Dictionary<string, string>();
@@ -131,24 +125,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         private Dictionary<string, Model3D> model3DDictionary = new Dictionary<string, Model3D>();
         private readonly Dictionary<string, List<Tuple<string, Vector3>>> labelPlaces 
             = new Dictionary<string, List<Tuple<string, Vector3>>>();
-
-        //protected void OnRequestViewRefresh()
-        //{
-        //    if (RequestViewRefresh != null)
-        //    {
-        //        RequestViewRefresh();
-        //    }
-        //}
-
-        //protected override void OnActiveStateChanged()
-        //{
-        //    if (!active && CanNavigateBackground)
-        //    {
-        //        CanNavigateBackground = false;
-        //    }
-
-        //    RaisePropertyChanged("IsGridVisible");
-        //}
 
         public event Action<Model3D> RequestAttachToScene;
         protected void OnRequestAttachToScene(Model3D model3D)
@@ -258,10 +234,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             }
         }
 
-        public IEffectsManager EffectsManager { get; private set; }
-
-        public IRenderTechniquesManager RenderTechniquesManager { get; private set; }
-
 
         #endregion
 
@@ -299,7 +271,7 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         {
             Name = Resources.BackgroundPreviewName;
             IsResizable = false;
-            RenderTechniquesManager = new DynamoRenderTechniquesManager();
+            //RenderTechniquesManager = new DynamoRenderTechniquesManager();
             //EffectsManager = new DynamoEffectsManager(RenderTechniquesManager);
 
             //SetupScene();
@@ -400,12 +372,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
                 // Raise request for model objects to be created on the UI thread.
                 OnRequestCreateModels(packages, forceAsyncCall);
             }
-        }
-
-        protected override void OnShutdown()
-        {
-            EffectsManager = null;
-            RenderTechniquesManager = null;
         }
 
         protected override void OnWorkspaceOpening(object obj)
@@ -560,71 +526,12 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
                     node.RequestVisualUpdateAsync(scheduler, engineManager.EngineController, renderPackageFactory, true);
                     break;
 
-                case "IsFrozen":
-                    HashSet<NodeModel> gathered = new HashSet<NodeModel>();
-                    node.GetDownstreamNodes(node, gathered);
-                    SetGeometryFrozen(gathered);
-                    break;
+                //case "IsFrozen":
+                //    HashSet<NodeModel> gathered = new HashSet<NodeModel>();
+                //    node.GetDownstreamNodes(node, gathered);
+                //    SetGeometryFrozen(gathered);
+                //    break;
             }
-        }
-
-        private void DeleteGeometries(KeyValuePair<string, Model3D>[] geometryModels, bool requestUpdate)
-        {
-            lock (Model3DDictionaryMutex)
-            {
-                if (!geometryModels.Any())
-                {
-                    return;
-                }
-
-                foreach (var kvp in geometryModels)
-                {
-                    var model3D = Model3DDictionary[kvp.Key] as GeometryModel3D;
-                    // check if the geometry is frozen. if the gemoetry is frozen 
-                    // then do not detach from UI.
-                    var frozenModel = AttachedProperties.GetIsFrozen(model3D);
-                    if (frozenModel) continue;
-
-                    if (model3D != null)
-                    {
-                        model3D.Detach();
-                        model3D.Dispose();
-                    }
-
-                    Model3DDictionary.Remove(kvp.Key);
-                    var nodePath = kvp.Key.Split(':')[0];
-                    labelPlaces.Remove(nodePath);
-                    nodesSelected.Remove(nodePath);
-                }
-            }
-
-            if (!requestUpdate) return;
-            OnSceneItemsChanged();
-        }
-
-        /// <summary>
-        /// Delete render packages generated by the node.
-        /// Note this function should be called from UI thread; otherwise call
-        /// RemoveGeometryForNodeAsync().
-        /// </summary>
-        /// <param name="node"></param>
-        /// <param name="requestUpdate"></param>
-        public override void DeleteGeometryForNode(NodeModel node, bool requestUpdate = true)
-        {
-            var geometryModels = FindAllGeometryModel3DsForNode(node);
-            DeleteGeometries(geometryModels, requestUpdate);
-        }
-
-        /// <summary>
-        /// Delete render packages associated with the specified identifier.
-        /// Note this function should be called from UI thread.
-        /// </summary>
-        /// <param name="identifier"></param>
-        /// <param name="requestUpdate"></param>
-        public override void DeleteGeometryForIdentifier(string identifier, bool requestUpdate = true)
-        {
-            var geometryModels = FindAllGeometryModel3DsForNode(identifier);
-            DeleteGeometries(geometryModels, requestUpdate); 
         }
 
         /// <summary>
@@ -678,25 +585,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             return geometryModels;
         }
 
-        private void SetGeometryFrozen(HashSet<NodeModel> gathered)
-        {
-            foreach (var node in gathered)
-            {
-                var geometryModels = FindAllGeometryModel3DsForNode(node);
-
-                if (!geometryModels.Any())
-                {
-                    continue;
-                }
-
-                var modelValues = geometryModels.Select(x => x.Value);
-
-                foreach (GeometryModel3D g in modelValues)
-                {
-                    g.SetValue(AttachedProperties.IsFrozenProperty, node.IsFrozen);
-                }
-            }
-        }
 
         private void SetSelection(IEnumerable items, bool isSelected)
         {
@@ -810,7 +698,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             }
         }
 
-        
         /// <summary>
         /// Remove the labels (in Watch3D View) for geometry once the Watch node is disconnected
         /// </summary>
