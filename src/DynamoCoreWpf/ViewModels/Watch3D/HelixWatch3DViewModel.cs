@@ -131,15 +131,13 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         private LineGeometry3D worldAxes;
         private RenderTechnique renderTechnique;
         private PerspectiveCamera camera;
-        private readonly Vector3 directionalLightDirection = new Vector3(-0.5f, -1.0f, 0.0f);
+
         private DirectionalLight3D directionalLight;
 
-        private readonly Color4 directionalLightColor = new Color4(0.9f, 0.9f, 0.9f, 1.0f);
-        private readonly Color4 defaultSelectionColor = new Color4(new Color3(0, 158.0f / 255.0f, 1.0f));
+
         private readonly Color4 defaultMaterialColor = new Color4(new Color3(1.0f, 1.0f, 1.0f));
         private readonly Size defaultPointSize = new Size(6, 6);
-        private readonly Size highlightSize = new Size(8, 8);
-        private readonly Color4 highlightColor = new Color4(new Color3(1.0f, 0.0f, 0.0f));
+
 
         private static readonly Color4 defaultLineColor = new Color4(new Color3(0, 0, 0));
         private static readonly Color4 defaultPointColor = new Color4(new Color3(0, 0, 0));
@@ -156,14 +154,12 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         private const string MeshKey = ":mesh";
         private const string TextKey = ":text";
 
-        //private const int FrameUpdateSkipCount = 200;
+
         private int currentFrameSkipCount;
 
-        //private const double EqualityTolerance = 0.000001;
+
         private double nearPlaneDistanceFactor = 0.001;
-        //internal const double DefaultNearClipDistance = 0.1f;
-        //internal const double DefaultFarClipDistance = 100000;
-        //internal static BoundingBox DefaultBounds = new BoundingBox(new Vector3(-25f, -25f, -25f), new Vector3(25f,25f,25f));
+       
 
         private List<Model3D> sceneItems;
 
@@ -264,53 +260,7 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             }
         }
 
-        public LineGeometry3D Grid
-        {
-            get { return worldGrid; }
-            set
-            {
-                worldGrid = value;
-                RaisePropertyChanged(DefaultGridName);
-            }
-        }
-
-        public LineGeometry3D Axes
-        {
-            get { return worldAxes; }
-            set
-            {
-                worldAxes = value;
-                RaisePropertyChanged("Axes");
-            }
-        }
-
         public PhongMaterial WhiteMaterial { get; set; }
-
-        public PhongMaterial SelectedMaterial { get; set; }
-
-        /// <summary>
-        /// This is the initial transform applied to 
-        /// elements of the scene, like the grid and world axes.
-        /// </summary>
-        public Transform3D SceneTransform
-        {
-            get
-            {
-                return new TranslateTransform3D(0, -0, 0);
-            }
-        }
-        public RenderTechnique RenderTechnique
-        {
-            get
-            {
-                return this.renderTechnique;
-            }
-            set
-            {
-                renderTechnique = value;
-                RaisePropertyChanged("RenderTechnique");
-            }
-        }
 
         public PerspectiveCamera Camera
         {
@@ -442,8 +392,8 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             RenderTechniquesManager = new DynamoRenderTechniquesManager();
             EffectsManager = new DynamoEffectsManager(RenderTechniquesManager);
 
-            SetupScene();
-            InitializeHelix();
+            //SetupScene();
+            //InitializeHelix();
         }
 
         public void SerializeCamera(XmlElement camerasElement)
@@ -866,8 +816,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             OnSceneItemsChanged();
         }
 
-
-
         public override CameraData GetCameraInformation()
         {
             return camera.ToCameraData(Name);
@@ -958,156 +906,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             }
         }
 
-        
-
-        private void SetupScene()
-        {
-            RenderTechnique = new RenderTechnique("RenderCustom");
-
-            WhiteMaterial = new PhongMaterial
-            {
-                Name = "White",
-                AmbientColor = PhongMaterials.ToColor(0.1, 0.1, 0.1, 1.0),
-                DiffuseColor = defaultMaterialColor,
-                SpecularColor = PhongMaterials.ToColor(0.0225, 0.0225, 0.0225, 1.0),
-                EmissiveColor = PhongMaterials.ToColor(0.0, 0.0, 0.0, 1.0),
-                SpecularShininess = 12.8f,
-            };
-
-            SelectedMaterial = new PhongMaterial
-            {
-                Name = "White",
-                AmbientColor = PhongMaterials.ToColor(0.1, 0.1, 0.1, 1.0),
-                DiffuseColor = defaultSelectionColor,
-                SpecularColor = PhongMaterials.ToColor(0.0225, 0.0225, 0.0225, 1.0),
-                EmissiveColor = PhongMaterials.ToColor(0.0, 0.0, 0.0, 1.0),
-                SpecularShininess = 12.8f,
-            };
-
-            // camera setup
-            Camera = new PerspectiveCamera();
-
-            SetCameraData(new CameraData());
-
-            DrawGrid();
-        }
-
-        /// <summary>
-        /// Initialize the Helix with these values. These values should be attached before the 
-        /// visualization starts. Deleting them and attaching them does not make any effect on helix.         
-        /// So they are initialized before the process starts.
-        /// </summary>
-        private void InitializeHelix()
-        {
-            if (Model3DDictionary == null)
-            {
-                throw new Exception("Helix could not be initialized.");
-            }
-
-            directionalLight = new DirectionalLight3D
-            {
-                Color = directionalLightColor,
-                Direction = directionalLightDirection,
-                Name = DefaultLightName
-            };
-
-            if (!Model3DDictionary.ContainsKey(DefaultLightName))
-            {
-                AttachedProperties.SetIsSpecialRenderPackage(directionalLight, true);
-                Model3DDictionary.Add(DefaultLightName, directionalLight);
-            }
-
-            gridModel3D = new DynamoLineGeometryModel3D
-            {
-                Geometry = Grid,
-                Transform = SceneTransform,
-                Color = Color.White,
-                Thickness = 0.3,
-                IsHitTestVisible = false,
-                Name = DefaultGridName
-            };
-
-            SetGridVisibility();
-
-            if (!model3DDictionary.ContainsKey(DefaultGridName))
-            {
-                AttachedProperties.SetIsSpecialRenderPackage(gridModel3D, true);
-                Model3DDictionary.Add(DefaultGridName, gridModel3D);
-            }
-
-            var axesModel3D = new DynamoLineGeometryModel3D
-            {
-                Geometry = Axes,
-                Transform = SceneTransform,
-                Color = Color.White,
-                Thickness = 0.3,
-                IsHitTestVisible = false,
-                Name = DefaultAxesName
-            };
-
-            if (!Model3DDictionary.ContainsKey(DefaultAxesName))
-            {
-                AttachedProperties.SetIsSpecialRenderPackage(axesModel3D, true);
-                Model3DDictionary.Add(DefaultAxesName, axesModel3D);
-            }
-
-            UpdateSceneItems();
-        }
-
-        /// <summary>
-        /// Create the grid
-        /// </summary>
-        private void DrawGrid()
-        {
-            Grid = new LineGeometry3D();
-            var positions = new Vector3Collection();
-            var indices = new IntCollection();
-            var colors = new Color4Collection();
-
-            for (var i = 0; i < 10; i += 1)
-            {
-                for (var j = 0; j < 10; j += 1)
-                {
-                    DrawGridPatch(positions, indices, colors, -50 + i * 10, -50 + j * 10);
-                }
-            }
-
-            Grid.Positions = positions;
-            Grid.Indices = indices;
-            Grid.Colors = colors;
-
-            Axes = new LineGeometry3D();
-            var axesPositions = new Vector3Collection();
-            var axesIndices = new IntCollection();
-            var axesColors = new Color4Collection();
-
-            // Draw the coordinate axes
-            axesPositions.Add(new Vector3());
-            axesIndices.Add(axesPositions.Count - 1);
-            axesPositions.Add(new Vector3(50, 0, 0));
-            axesIndices.Add(axesPositions.Count - 1);
-            axesColors.Add(Color.Red);
-            axesColors.Add(Color.Red);
-
-            axesPositions.Add(new Vector3());
-            axesIndices.Add(axesPositions.Count - 1);
-            axesPositions.Add(new Vector3(0, 5, 0));
-            axesIndices.Add(axesPositions.Count - 1);
-            axesColors.Add(Color.Blue);
-            axesColors.Add(Color.Blue);
-
-            axesPositions.Add(new Vector3());
-            axesIndices.Add(axesPositions.Count - 1);
-            axesPositions.Add(new Vector3(0, 0, -50));
-            axesIndices.Add(axesPositions.Count - 1);
-            axesColors.Add(Color.Green);
-            axesColors.Add(Color.Green);
-
-            Axes.Positions = axesPositions;
-            Axes.Indices = axesIndices;
-            Axes.Colors = axesColors;
-        }
-
         private void SetGridVisibility()
         {
             var visibility = isGridVisible ? Visibility.Visible : Visibility.Hidden;
@@ -1118,62 +916,7 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             OnRequestViewRefresh();
         }
 
-        private static void DrawGridPatch(
-            Vector3Collection positions, IntCollection indices, Color4Collection colors, int startX, int startY)
-        {
-            var c1 = (System.Windows.Media.Color)ColorConverter.ConvertFromString("#c5d1d8");
-            c1.Clamp();
-            var c2 = (System.Windows.Media.Color)ColorConverter.ConvertFromString("#ddeaf2");
-            c2.Clamp();
-
-            var darkGridColor = new Color4(new Vector4(c1.ScR, c1.ScG, c1.ScB, 1));
-            var lightGridColor = new Color4(new Vector4(c2.ScR, c2.ScG, c2.ScB, 1));
-
-            const int size = 10;
-
-            for (var x = startX; x <= startX + size; x++)
-            {
-                if (x == 0 && startY < 0) continue;
-
-                var v = new Vector3(x, -.001f, startY);
-                positions.Add(v);
-                indices.Add(positions.Count - 1);
-                positions.Add(new Vector3(x, -.001f, startY + size));
-                indices.Add(positions.Count - 1);
-
-                if (x % 5 == 0)
-                {
-                    colors.Add(darkGridColor);
-                    colors.Add(darkGridColor);
-                }
-                else
-                {
-                    colors.Add(lightGridColor);
-                    colors.Add(lightGridColor);
-                }
-            }
-
-            for (var y = startY; y <= startY + size; y++)
-            {
-                if (y == 0 && startX >= 0) continue;
-
-                positions.Add(new Vector3(startX, -.001f, y));
-                indices.Add(positions.Count - 1);
-                positions.Add(new Vector3(startX + size, -.001f, y));
-                indices.Add(positions.Count - 1);
-
-                if (y % 5 == 0)
-                {
-                    colors.Add(darkGridColor);
-                    colors.Add(darkGridColor);
-                }
-                else
-                {
-                    colors.Add(lightGridColor);
-                    colors.Add(lightGridColor);
-                }
-            }
-        }
+        
 
         public void SetCameraData(CameraData data)
         {
