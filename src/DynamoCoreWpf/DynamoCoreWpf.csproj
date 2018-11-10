@@ -288,9 +288,6 @@
     <Compile Include="Views\Preview\PreviewCompactView.xaml.cs">
       <DependentUpon>PreviewCompactView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Preview\Watch3DSettingsControl.xaml.cs">
-      <DependentUpon>Watch3DSettingsControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Windows\BrowserWindow.xaml.cs">
       <DependentUpon>BrowserWindow.xaml</DependentUpon>
     </Compile>
@@ -320,9 +317,6 @@
     </Compile>
     <Compile Include="Controls\TooltipWindow.xaml.cs">
       <DependentUpon>TooltipWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Preview\Watch3DView.xaml.cs">
-      <DependentUpon>Watch3DView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Preview\WatchTree.xaml.cs">
       <DependentUpon>WatchTree.xaml</DependentUpon>
@@ -1027,10 +1021,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Preview\Watch3DSettingsControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Windows\BrowserWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -1073,10 +1063,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\TooltipWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Preview\Watch3DView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
