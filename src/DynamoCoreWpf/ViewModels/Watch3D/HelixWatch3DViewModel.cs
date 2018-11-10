@@ -5,19 +5,12 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
-using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
 using System.Xml;
-using Autodesk.DesignScript.Interfaces;
-using Dynamo.Controls;
 using Dynamo.Graph.Nodes;
-using Dynamo.Graph.Nodes.CustomNodes;
 using Dynamo.Graph.Workspaces;
 using Dynamo.Logging;
 using Dynamo.Selection;
@@ -27,13 +20,8 @@ using Dynamo.Wpf.Rendering;
 using Dynamo.Visualization;
 using DynamoUtilities;
 using HelixToolkit.Wpf.SharpDX;
-using HelixToolkit.Wpf.SharpDX.Core;
 using SharpDX;
-using Color = SharpDX.Color;
-using ColorConverter = System.Windows.Media.ColorConverter;
 using GeometryModel3D = HelixToolkit.Wpf.SharpDX.GeometryModel3D;
-using MeshBuilder = HelixToolkit.Wpf.SharpDX.MeshBuilder;
-using MeshGeometry3D = HelixToolkit.Wpf.SharpDX.MeshGeometry3D;
 using Model3D = HelixToolkit.Wpf.SharpDX.Model3D;
 using PerspectiveCamera = HelixToolkit.Wpf.SharpDX.PerspectiveCamera;
 using TextInfo = HelixToolkit.Wpf.SharpDX.TextInfo;
@@ -123,52 +111,17 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
     public class HelixWatch3DViewModel : DefaultWatch3DViewModel
     {
         #region private members
-
-        private double lightAzimuthDegrees = 45.0;
-        private double lightElevationDegrees = 35.0;
-        private DynamoLineGeometryModel3D gridModel3D;
-        private LineGeometry3D worldGrid;
-        private LineGeometry3D worldAxes;
-        private RenderTechnique renderTechnique;
         private PerspectiveCamera camera;
-
-        private DirectionalLight3D directionalLight;
-
-
-        private readonly Color4 defaultMaterialColor = new Color4(new Color3(1.0f, 1.0f, 1.0f));
-        private readonly Size defaultPointSize = new Size(6, 6);
-
-
-        private static readonly Color4 defaultLineColor = new Color4(new Color3(0, 0, 0));
-        private static readonly Color4 defaultPointColor = new Color4(new Color3(0, 0, 0));
-        private static readonly Color4 defaultDeadColor = new Color4(new Color3(0.7f,0.7f,0.7f));
-        private static readonly float defaultDeadAlphaScale = 0.2f;
         private const float defaultLabelOffset = 0.025f;
 
         internal const string DefaultGridName = "Grid";
         internal const string DefaultAxesName = "Axes";
         internal const string DefaultLightName = "DirectionalLight";
 
-        private const string PointsKey = ":points";
-        private const string LinesKey = ":lines";
-        private const string MeshKey = ":mesh";
         private const string TextKey = ":text";
-
-
-        private int currentFrameSkipCount;
-
-
-        private double nearPlaneDistanceFactor = 0.001;
-       
-
         private List<Model3D> sceneItems;
-
         private Dictionary<string, string> nodesSelected = new Dictionary<string, string>();
 
-
-#if DEBUG
-        private readonly Stopwatch renderTimer = new Stopwatch();
-#endif
 
         #endregion
 
@@ -179,24 +132,23 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         private readonly Dictionary<string, List<Tuple<string, Vector3>>> labelPlaces 
             = new Dictionary<string, List<Tuple<string, Vector3>>>();
 
-        public event Action RequestViewRefresh;
-        protected void OnRequestViewRefresh()
-        {
-            if (RequestViewRefresh != null)
-            {
-                RequestViewRefresh();
-            }
-        }
+        //protected void OnRequestViewRefresh()
+        //{
+        //    if (RequestViewRefresh != null)
+        //    {
+        //        RequestViewRefresh();
+        //    }
+        //}
 
-        protected override void OnActiveStateChanged()
-        {
-            if (!active && CanNavigateBackground)
-            {
-                CanNavigateBackground = false;
-            }
+        //protected override void OnActiveStateChanged()
+        //{
+        //    if (!active && CanNavigateBackground)
+        //    {
+        //        CanNavigateBackground = false;
+        //    }
 
-            RaisePropertyChanged("IsGridVisible");
-        }
+        //    RaisePropertyChanged("IsGridVisible");
+        //}
 
         public event Action<Model3D> RequestAttachToScene;
         protected void OnRequestAttachToScene(Model3D model3D)
@@ -260,8 +212,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             }
         }
 
-        public PhongMaterial WhiteMaterial { get; set; }
-
         public PerspectiveCamera Camera
         {
             get
@@ -275,37 +225,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
                 RaisePropertyChanged("Camera");
             }
         }
-
-        public override bool IsGridVisible
-        {
-            get { return isGridVisible && Active; }
-            set
-            {
-                if (isGridVisible == value) return;
-
-                base.IsGridVisible = value;
-                SetGridVisibility();
-            }
-        }
-
-        /// <summary>
-        /// The LeftClickCommand is set according to the
-        /// ViewModel's IsPanning or IsOrbiting properties.
-        /// When those properties are changed, this command is
-        /// set to ViewportCommand.Pan or ViewportCommand.Rotate depending. 
-        /// If neither panning or rotating is set, this property is set to null 
-        /// and left clicking should have no effect.
-        /// </summary>
-        //public RoutedCommand LeftClickCommand
-        //{
-        //    get
-        //    {
-        //        if (IsPanning) return ViewportCommands.Pan;
-        //        if (IsOrbiting) return ViewportCommands.Rotate;
-
-        //        return null;
-        //    }
-        //}
 
         public bool IsResizable { get; protected set; }
 
@@ -375,22 +294,13 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             }
         }
 
-        protected internal virtual void UpdateUpstream()
-        {
-        }
-
-        // This method is about indicating whether watch3d updated its stream or not.
-        protected internal virtual void OnWatchExecution()
-        {
-        }
-
         protected HelixWatch3DViewModel(NodeModel model, Watch3DViewModelStartupParams parameters) 
         : base(model, parameters)
         {
             Name = Resources.BackgroundPreviewName;
             IsResizable = false;
             RenderTechniquesManager = new DynamoRenderTechniquesManager();
-            EffectsManager = new DynamoEffectsManager(RenderTechniquesManager);
+            //EffectsManager = new DynamoEffectsManager(RenderTechniquesManager);
 
             //SetupScene();
             //InitializeHelix();
@@ -496,33 +406,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         {
             EffectsManager = null;
             RenderTechniquesManager = null;
-        }
-
-        protected override void OnClear()
-        {
-            lock (Model3DDictionaryMutex)
-            {
-                var keysList = new List<string> { DefaultLightName, DefaultGridName, DefaultAxesName };
-
-                foreach (var key in Model3DDictionary.Keys.Except(keysList).ToList())
-                {
-                    var model = Model3DDictionary[key] as GeometryModel3D;
-                    model.Detach();
-                    model.Dispose();
-                    Model3DDictionary.Remove(key);
-                }
-
-                labelPlaces.Clear();
-                nodesSelected = new Dictionary<string, string>();
-            }
-
-            OnSceneItemsChanged();
-        }
-
-        protected override void OnWorkspaceCleared(WorkspaceModel workspace)
-        {
-            SetCameraData(new CameraData());
-            base.OnWorkspaceCleared(workspace);
         }
 
         protected override void OnWorkspaceOpening(object obj)
@@ -685,33 +568,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             }
         }
 
-        public override void GenerateViewGeometryFromRenderPackagesAndRequestUpdate(RenderPackageCache taskPackages)
-        {
-            /*foreach (var p in taskPackages)
-            {
-                Debug.WriteLine(string.Format("Processing render packages for {0}", p.Description));
-            }
-            */
-            recentlyAddedNodes.Clear();
-
-#if DEBUG
-            renderTimer.Start();
-#endif
-            var packages = taskPackages.Packages;
-            var meshPackages = packages.Cast<HelixRenderPackage>().Where(rp => rp.MeshVertexCount % 3 == 0);
-
-            RemoveGeometryForUpdatedPackages(meshPackages);
-            AggregateRenderPackages(meshPackages);
-#if DEBUG
-            renderTimer.Stop();
-            Debug.WriteLine(string.Format("RENDER: {0} ellapsed for compiling assets for rendering.", renderTimer.Elapsed));
-            renderTimer.Reset();
-            renderTimer.Start();
-#endif
-
-            OnSceneItemsChanged();
-        }
-
         private void DeleteGeometries(KeyValuePair<string, Model3D>[] geometryModels, bool requestUpdate)
         {
             lock (Model3DDictionaryMutex)
@@ -771,40 +627,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             DeleteGeometries(geometryModels, requestUpdate); 
         }
 
-        protected override void OnModelPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            switch (e.PropertyName)
-            {
-                case "CurrentWorkspace":
-                    OnClear();
-
-                    IEnumerable<NodeModel> nodesToRender = null;
-
-                    // Get the nodes to render from the current home workspace. For custom
-                    // nodes, this will get the workspace in which the custom node is placed.
-                    // This will need to be adapted when multiple home workspaces are supported,
-                    // so that a specific workspace can be selected to act as the preview context.
-
-                    var hs = dynamoModel.Workspaces.FirstOrDefault(i => i is HomeWorkspaceModel);
-                    if (hs != null)
-                    {
-                        nodesToRender = hs.Nodes;
-                    }
-
-                    if (nodesToRender == null)
-                    {
-                        return;
-                    }
-
-                    foreach (var node in nodesToRender)
-                    {
-                        node.RequestVisualUpdateAsync(scheduler, engineManager.EngineController, renderPackageFactory, true);
-                    }
-
-                    break;
-            }
-        }
-
         /// <summary>
         /// Update the attached properties and recalculate transparency sorting
         /// after any update under Isolate Selected Geometry mode.
@@ -821,17 +643,13 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             return camera.ToCameraData(Name);
         }
 
-        #region internal methods
-
-        #endregion
-
         #region private methods
 
         private void OnSceneItemsChanged()
         {
             UpdateSceneItems();
             RaisePropertyChanged("SceneItems");
-            OnRequestViewRefresh();
+            //OnRequestViewRefresh();
         }
    
         private KeyValuePair<string, Model3D>[] FindAllGeometryModel3DsForNode(NodeModel node)
@@ -906,18 +724,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             }
         }
 
-        private void SetGridVisibility()
-        {
-            var visibility = isGridVisible ? Visibility.Visible : Visibility.Hidden;
-            //return if there is nothing to change
-            if (gridModel3D.Visibility == visibility) return;
-            
-            gridModel3D.Visibility = visibility;
-            OnRequestViewRefresh();
-        }
-
-        
-
         public void SetCameraData(CameraData data)
         {
             if (Camera == null) return;
@@ -927,24 +733,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             Camera.UpDirection = data.UpDirection;
             Camera.NearPlaneDistance = data.NearPlaneDistance;
             Camera.FarPlaneDistance = data.FarPlaneDistance;
-        }
-
-        private void RemoveGeometryForUpdatedPackages(IEnumerable<IRenderPackage> packages)
-        {
-            lock (Model3DDictionaryMutex)
-            {
-                var packageDescrips = packages.Select(p => p.Description.Split(':')[0]).Distinct();
-
-                foreach (var id in packageDescrips)
-                {
-                    DeleteGeometryForIdentifier(id, false);
-                }
-            }
-        }
-
-        private bool InCustomNode()
-        {
-            return dynamoModel.CurrentWorkspace is CustomNodeWorkspaceModel;
         }
 
         /// <summary>
@@ -1079,500 +867,11 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             }
         }
 
-        /// <summary>
-        /// Given a collection of render packages, generates
-        /// corresponding <see cref="GeometryModel3D"/> objects for visualization, and
-        /// attaches them to the visual scene.
-        /// </summary>
-        /// <param name="packages">An <see cref="IEnumerable"/> of <see cref="HelixRenderPackage"/>.</param>
-        private void AggregateRenderPackages(IEnumerable<HelixRenderPackage> packages)
-        {
-            IEnumerable<string> customNodeIdents = null;
-            if (InCustomNode())
-            {
-                var hs = dynamoModel.Workspaces.OfType<HomeWorkspaceModel>().FirstOrDefault();
-                if (hs != null)
-                {
-                    customNodeIdents = FindIdentifiersForCustomNodes(hs);
-                }
-            }
-
-            lock (Model3DDictionaryMutex)
-            {
-                foreach (var rp in packages)
-                {
-                    // Each node can produce multiple render packages. We want all the geometry of the
-                    // same kind stored inside a RenderPackage to be pushed into one GeometryModel3D object.
-                    // We strip the unique identifier for the package (i.e. the bit after the `:` in var12345:0), and replace it
-                    // with `points`, `lines`, or `mesh`. For each RenderPackage, we check whether the geometry dictionary
-                    // has entries for the points, lines, or mesh already. If so, we add the RenderPackage's geometry
-                    // to those geometry objects.
-
-                    var baseId = rp.Description;
-                    if (baseId.IndexOf(":", StringComparison.Ordinal) > 0)
-                    {
-                        baseId = baseId.Split(':')[0];
-                    }
-                    
-                    //If this render package belongs to special render package, then create
-                    //and update the corresponding GeometryModel. Sepcial renderpackage are
-                    //defined based on its description containing one of the constants from
-                    //RenderDescriptions struct.
-                    if (UpdateGeometryModelForSpecialRenderPackage(rp, baseId))
-                        continue;
-
-                    var drawDead = InCustomNode() && !customNodeIdents.Contains(baseId);
-
-                    string id;
-                    var p = rp.Points;
-                    if (p.Positions.Any())
-                    {
-                        //if we require a custom transform then we need to create a new Geometry3d object.
-                        id = ((rp.RequiresCustomTransform) ? rp.Description : baseId) + PointsKey;
-
-                        PointGeometryModel3D pointGeometry3D;
-
-                        if (Model3DDictionary.ContainsKey(id))
-                        {
-                            pointGeometry3D = Model3DDictionary[id] as PointGeometryModel3D;
-                        }
-                        else
-                        {
-                            pointGeometry3D = CreatePointGeometryModel3D(rp);
-                            Model3DDictionary.Add(id, pointGeometry3D);
-                        }
-
-                        var points = pointGeometry3D.Geometry as PointGeometry3D;
-                        var startIdx = points.Positions.Count;
-
-                        points.Positions.AddRange(p.Positions);
-
-                        if (drawDead)
-                        {
-                            points.Colors.AddRange(Enumerable.Repeat(defaultDeadColor, points.Positions.Count));
-                        }
-                        else
-                        {
-                            points.Colors.AddRange(p.Colors.Any()
-                              ? p.Colors
-                              : Enumerable.Repeat(defaultPointColor, points.Positions.Count));
-                            points.Indices.AddRange(p.Indices.Select(i => i + startIdx));
-                        }
-
-                        AddLabelPlace(baseId, p.Positions[0], rp);
-                        pointGeometry3D.Geometry = points;
-                        pointGeometry3D.Name = baseId;
-                    }
-
-                    var l = rp.Lines;
-                    if (l.Positions.Any())
-                    {
-                        //if we require a custom transform then we need to create a new Geometry3d object.
-                        id = ((rp.RequiresCustomTransform) ? rp.Description : baseId) + LinesKey;
-
-                        LineGeometryModel3D lineGeometry3D;
-
-                        if (Model3DDictionary.ContainsKey(id))
-                        {
-                            lineGeometry3D = Model3DDictionary[id] as LineGeometryModel3D;
-                        }
-                        else
-                        {
-                            // If the package contains mesh vertices, then the lines represent the 
-                            // edges of meshes. Draw them with a different thickness.
-                            lineGeometry3D = CreateLineGeometryModel3D(rp, rp.MeshVertices.Any()?0.5:1.0);
-                            Model3DDictionary.Add(id, lineGeometry3D);
-                        }
-
-                        var lineSet = lineGeometry3D.Geometry as LineGeometry3D;
-                        var startIdx = lineSet.Positions.Count;
-
-                        lineSet.Positions.AddRange(l.Positions);
-                        if (drawDead)
-                        {
-                            lineSet.Colors.AddRange(Enumerable.Repeat(defaultDeadColor, l.Positions.Count));
-                        }
-                        else
-                        {
-                            lineSet.Colors.AddRange(l.Colors.Any()
-                             ? l.Colors
-                             : Enumerable.Repeat(defaultLineColor, l.Positions.Count));
-                        }
-                        
-                        lineSet.Indices.AddRange(l.Indices.Any()
-                            ? l.Indices.Select(i => i + startIdx)
-                            : Enumerable.Range(startIdx, startIdx + l.Positions.Count));
-
-                        AddLabelPlace(baseId, lineSet.Positions[startIdx], rp);
-                        lineGeometry3D.Geometry = lineSet;
-                        lineGeometry3D.Name = baseId;
-                    }
-
-                    var m = rp.Mesh;
-                    if (!m.Positions.Any()) continue;
-
-                    //if we require a custom transform or vertex coloration then we need to create a new Geometry3d object.
-                    id = ((rp.RequiresPerVertexColoration || rp.Colors != null || rp.RequiresCustomTransform) ? rp.Description : baseId) + MeshKey;
-
-                    DynamoGeometryModel3D meshGeometry3D;
-
-                    if (Model3DDictionary.ContainsKey(id))
-                    {
-                        meshGeometry3D = Model3DDictionary[id] as DynamoGeometryModel3D;
-                    }
-                    else
-                    {
-                        meshGeometry3D = CreateDynamoGeometryModel3D(rp);
-                        Model3DDictionary.Add(id, meshGeometry3D);
-                    }
-
-                    var mesh = meshGeometry3D.Geometry == null
-                        ? HelixRenderPackage.InitMeshGeometry()
-                        : meshGeometry3D.Geometry as MeshGeometry3D;
-                    var idxCount = mesh.Positions.Count;
-
-                    mesh.Positions.AddRange(m.Positions);
-
-                    // If we are in a custom node, and the current
-                    // package's id is NOT one of the output ids of custom nodes
-                    // in the graph, then draw the geometry with transparency.
-                    if (drawDead)
-                    {
-                        meshGeometry3D.RequiresPerVertexColoration = true;
-                        mesh.Colors.AddRange(m.Colors.Select(c=>new Color4(c.Red, c.Green, c.Blue, c.Alpha * defaultDeadAlphaScale)));
-                    }
-                    else
-                    {
-                        mesh.Colors.AddRange(m.Colors);
-                    }
-
-                    mesh.Normals.AddRange(m.Normals);
-                    mesh.TextureCoordinates.AddRange(m.TextureCoordinates);
-                    mesh.Indices.AddRange(m.Indices.Select(i => i + idxCount));
-
-                    if (mesh.Colors.Any(c => c.Alpha < 1.0))
-                    {
-                        meshGeometry3D.SetValue(AttachedProperties.HasTransparencyProperty, true);
-                    }
-
-                    AddLabelPlace(baseId, mesh.Positions[idxCount], rp);
-                    meshGeometry3D.Geometry = mesh;
-                    meshGeometry3D.Name = baseId;
-                }
-
-                AttachAllGeometryModel3DToRenderHost();
-            }
-        }
-
-        private void AddLabelPlace(string nodeId, Vector3 pos, IRenderPackage rp)
-        {
-            if (!labelPlaces.ContainsKey(nodeId))
-            {
-                labelPlaces[nodeId] = new List<Tuple<string, Vector3>>();
-            }
-
-            //if the renderPackage also implements ITransformable then 
-            // use the transform property to transform the text labels
-           
-            SharpDX.Vector3 transformedPos = pos;
-            if (rp is HelixRenderPackage && rp is Autodesk.DesignScript.Interfaces.ITransformable)
-            {
-                transformedPos = (rp as Autodesk.DesignScript.Interfaces.ITransformable)
-                   .Transform.ToMatrix3D().Transform((pos).ToPoint3D()).ToVector3();
-            }
-            
-
-            labelPlaces[nodeId].Add(new Tuple<string, Vector3>(rp.Description, transformedPos));
-            if (rp.DisplayLabels)
-            {
-                CreateOrUpdateText(nodeId, transformedPos, rp);
-            }
-        }
-
-        /// <summary>
-        /// Updates or replaces the GeometryModel3D for special IRenderPackage. Special 
-        /// IRenderPackage has a Description field that starts with a string value defined 
-        /// in RenderDescriptions. See RenderDescriptions for details of possible values.
-        /// </summary>
-        /// <param name="rp">The target HelixRenderPackage object</param>
-        /// <param name="id">id of the HelixRenderPackage object</param>
-        /// <returns>Returns true if rp is a special render package, and its GeometryModel3D
-        /// is successfully updated.</returns>
-        private bool UpdateGeometryModelForSpecialRenderPackage(HelixRenderPackage rp, string id)
-        {
-            int desclength = RenderDescriptions.ManipulatorAxis.Length;
-            if (rp.Description.Length < desclength)
-                return false;
-
-            string description = rp.Description.Substring(0, desclength);
-            Model3D model = null;
-            Model3DDictionary.TryGetValue(id, out model);
-            switch(description)
-            {
-                case RenderDescriptions.ManipulatorAxis:
-                    var manipulator = model as DynamoGeometryModel3D;
-                    if (null == manipulator)
-                    {
-                        manipulator = CreateDynamoGeometryModel3D(rp);
-                        AttachedProperties.SetIsSpecialRenderPackage(manipulator, true);
-                    }
-                    
-                    var mb = new MeshBuilder();
-                    mb.AddArrow(rp.Lines.Positions[0], rp.Lines.Positions[1], 0.1);
-                    manipulator.Geometry = mb.ToMeshGeometry3D();
-                    
-                    if (rp.Lines.Colors[0].Red == 1)
-                        manipulator.Material = PhongMaterials.Red;
-                    else if (rp.Lines.Colors[0].Green == 1)
-                        manipulator.Material = PhongMaterials.Green;
-                    else if (rp.Lines.Colors[0].Blue == 1)
-                        manipulator.Material = PhongMaterials.Blue;
-
-                    Model3DDictionary[id] = manipulator;
-                    return true;
-                case RenderDescriptions.AxisLine:
-                    var centerline = model as DynamoLineGeometryModel3D;
-                    if (null == centerline)
-                    {
-                        centerline = CreateLineGeometryModel3D(rp, 0.3);
-                        AttachedProperties.SetIsSpecialRenderPackage(centerline, true);
-                    }
-                    centerline.Geometry = rp.Lines;
-                    Model3DDictionary[id] = centerline;
-                    return true;
-                case RenderDescriptions.ManipulatorPlane:
-                    var plane = model as DynamoLineGeometryModel3D;
-                    if (null == plane)
-                    {
-                        plane = CreateLineGeometryModel3D(rp, 0.7);
-                        AttachedProperties.SetIsSpecialRenderPackage(plane, true);
-                    }
-                    plane.Geometry = rp.Lines;
-                    Model3DDictionary[id] = plane;
-                    return true;
-                default:
-                    return false;
-            }
-        }
-
-        /// <summary>
-        /// Handles View Click event and performs a hit tests for geometry selection.
-        /// </summary>
-        protected override void HandleViewClick(object sender, MouseButtonEventArgs e)
-        {
-            var viewport = sender as Viewport3DX;
-            if (null == viewport) return;
-
-            var vm = viewModel as DynamoViewModel;
-            if (vm == null) return;
-
-            var nodes = new List<NodeModel>();
-            var hits = viewport.FindHits(e.GetPosition(viewport));
-            foreach (var hit in hits)
-            {
-                var model = hit.ModelHit;
-                if (model == null) continue;
-
-                foreach (var node in vm.Model.CurrentWorkspace.Nodes)
-                {
-                    var foundNode = node.AstIdentifierBase.Contains(model.Name);
-
-                    if (!foundNode) continue;
-
-                    nodes.Add(node);
-                    break;
-                }
-            }
-
-            //If any node is selected, clear the current selection and add these
-            //nodes to current selection. When nothing is selected, DONOT clear
-            //the selection because it may end up removing a manipulator while
-            //selecting it's gizmos.
-            if(nodes.Any())
-            {
-                DynamoSelection.Instance.ClearSelection();
-                nodes.ForEach(x => vm.Model.AddToSelection(x));
-            }
-        }
-
-        private void CreateOrUpdateText(string baseId, Vector3 pt, IRenderPackage rp)
-        {
-            var textId = baseId + TextKey;
-            BillboardTextModel3D bbText;
-            if (Model3DDictionary.ContainsKey(textId))
-            {
-                bbText = Model3DDictionary[textId] as BillboardTextModel3D;
-            }
-            else
-            {
-                bbText = new BillboardTextModel3D()
-                {
-                    Geometry = HelixRenderPackage.InitText3D(),
-                };
-                Model3DDictionary.Add(textId, bbText);
-            }
-            var geom = bbText.Geometry as BillboardText3D;
-           
-            geom.TextInfo.Add(new TextInfo(HelixRenderPackage.CleanTag(rp.Description),
-               pt + defaultLabelOffset));
-        }
-
-        private DynamoGeometryModel3D CreateDynamoGeometryModel3D(HelixRenderPackage rp)
-        {
-          
-                var meshGeometry3D = new DynamoGeometryModel3D(renderTechnique)
-                {
-                    Transform = new MatrixTransform3D(rp.Transform.ToMatrix3D()),
-                    Material = WhiteMaterial,
-                    IsHitTestVisible = false,
-                    RequiresPerVertexColoration = rp.RequiresPerVertexColoration,
-                    IsSelected = rp.IsSelected
-                };
-            
-            if (rp.Colors != null)
-            {
-                var pf = PixelFormats.Bgra32;
-                var stride = (rp.ColorsStride / 4 * pf.BitsPerPixel + 7) / 8;
-                try
-                {
-                    var diffMap = BitmapSource.Create(rp.ColorsStride / 4, rp.Colors.Count() / rp.ColorsStride, 96.0, 96.0, pf, null,
-                        rp.Colors.ToArray(), stride);
-                    var diffMat = new PhongMaterial
-                    {
-                        Name = "White",
-                        AmbientColor = PhongMaterials.ToColor(0.1, 0.1, 0.1, 1.0),
-                        DiffuseColor = defaultMaterialColor,
-                        SpecularColor = PhongMaterials.ToColor(0.0225, 0.0225, 0.0225, 1.0),
-                        EmissiveColor = PhongMaterials.ToColor(0.0, 0.0, 0.0, 1.0),
-                        SpecularShininess = 12.8f,
-                        DiffuseMap = diffMap
-                    };
-                    meshGeometry3D.Material = diffMat;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    Console.WriteLine(ex.StackTrace);
-                }
-            }
-
-            return meshGeometry3D;
-        }
-
-        private DynamoLineGeometryModel3D CreateLineGeometryModel3D(HelixRenderPackage rp, double thickness = 1.0)
-        {
-            var lineGeometry3D = new DynamoLineGeometryModel3D()
-            {
-                Geometry = HelixRenderPackage.InitLineGeometry(),
-                Transform = new MatrixTransform3D(rp.Transform.ToMatrix3D()),
-                Color = Color.White,
-                Thickness = thickness,
-                IsHitTestVisible = false,
-                IsSelected = rp.IsSelected
-            };
-            return lineGeometry3D;
-        }
-
-        private DynamoPointGeometryModel3D CreatePointGeometryModel3D(HelixRenderPackage rp)
-        {
-            var pointGeometry3D = new DynamoPointGeometryModel3D
-            {
-                Geometry = HelixRenderPackage.InitPointGeometry(),
-                Transform = new MatrixTransform3D(rp.Transform.ToMatrix3D()),
-                Color = Color.White,
-                Figure = PointGeometryModel3D.PointFigure.Ellipse,
-                Size = defaultPointSize,
-                IsHitTestVisible = true,
-                IsSelected = rp.IsSelected
-            };
-            return pointGeometry3D;
-        }
-
         private void AttachAllGeometryModel3DToRenderHost()
         {
             foreach (var model3D in Model3DDictionary.Select(kvp => kvp.Value))
             {
                 OnRequestAttachToScene(model3D);
-            }
-        }
-
-
-
-        /// <summary>
-        /// Find all output identifiers for all custom nodes in the provided workspace. 
-        /// </summary>
-        /// <param name="workspace">A workspace</param>
-        /// <returns>An <see cref="IEnumerable"/> of <see cref="string"/> containing all output identifiers for 
-        /// all custom nodes in the provided workspace, or null if the workspace is null.</returns>
-        internal static IEnumerable<string> FindIdentifiersForCustomNodes(HomeWorkspaceModel workspace)
-        {
-            if (workspace == null)
-            {
-                return null;
-            }
-
-            // Remove the output identifier appended to the custom node outputs.
-            var rgx = new Regex("_out[0-9]");
-
-            var customNodes = workspace.Nodes.Where(n => n is Function);
-            var idents = new List<string>();
-            foreach (var n in customNodes)
-            {
-                if (n.IsPartiallyApplied)
-                {
-                    // Find output identifiers for the connected map node
-                    var mapOutportsIdents =
-                        n.OutPorts.SelectMany(
-                            np => np.Connectors.SelectMany(
-                                    c => c.End.Owner.OutPorts.Select(
-                                            mp => rgx.Replace(mp.Owner.GetAstIdentifierForOutputIndex(mp.Index).Value, ""))));
-                    
-                    idents.AddRange(mapOutportsIdents);
-                }
-                else
-                {
-                    idents.AddRange(n.OutPorts.Select(p => rgx.Replace(n.GetAstIdentifierForOutputIndex(p.Index).Value, "")));
-                }
-            }
-            return idents;
-        }
-
-
-
-        /// <summary>
-        /// For a set of selected nodes, compute a bounding box which
-        /// encompasses all of the nodes' generated geometry.
-        /// </summary>
-        /// <param name="geometry">A collection of <see cref="GeometryModel3D"/> objects.</param>
-        /// <returns>A <see cref="BoundingBox"/> object.</returns>
-
-
-        internal override void ExportToSTL(string path, string modelName)
-        {
-            var geoms = SceneItems.Where(i => i is DynamoGeometryModel3D).
-                Cast<DynamoGeometryModel3D>();
-
-            using (TextWriter tw = new StreamWriter(path))
-            {
-                tw.WriteLine("solid {0}", dynamoModel.CurrentWorkspace.Name);
-                foreach (var g in geoms)
-                {
-                    var n = ((MeshGeometry3D) g.Geometry).Normals.ToList();
-                    var t = ((MeshGeometry3D)g.Geometry).Triangles.ToList();
-
-                    for (var i = 0; i < t.Count(); i ++)
-                    {
-                        var nCount = i*3;
-                        tw.WriteLine("\tfacet normal {0} {1} {2}", n[nCount].X, n[nCount].Y, n[nCount].Z);
-                        tw.WriteLine("\t\touter loop");
-                        tw.WriteLine("\t\t\tvertex {0} {1} {2}", t[i].P0.X, t[i].P0.Y, t[i].P0.Z);
-                        tw.WriteLine("\t\t\tvertex {0} {1} {2}", t[i].P1.X, t[i].P1.Y, t[i].P1.Z);
-                        tw.WriteLine("\t\t\tvertex {0} {1} {2}", t[i].P2.X, t[i].P2.Y, t[i].P2.Z);
-                        tw.WriteLine("\t\tendloop");
-                        tw.WriteLine("\tendfacet");
-                    }
-                }
-                tw.WriteLine("endsolid {0}", dynamoModel.CurrentWorkspace.Name);
             }
         }
 
@@ -1582,8 +881,8 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         {
             if (disposing)
             {
-                var effectsManager = EffectsManager as DynamoEffectsManager;
-                if (effectsManager != null) effectsManager.Dispose();
+                //var effectsManager = EffectsManager as DynamoEffectsManager;
+                //if (effectsManager != null) effectsManager.Dispose();
 
                 foreach (var sceneItem in SceneItems)
                 {

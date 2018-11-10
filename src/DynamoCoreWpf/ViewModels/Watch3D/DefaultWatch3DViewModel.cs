@@ -67,7 +67,7 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
 
         protected List<NodeModel> recentlyAddedNodes = new List<NodeModel>();
         protected bool active;
-        protected bool isGridVisible;
+        //protected bool isGridVisible;
 
         /// <summary>
         /// Represents the name of current Watch3DViewModel which will be saved in preference settings
@@ -93,28 +93,12 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
                 preferences.SetIsBackgroundPreviewActive(PreferenceWatchName, value);               
                 RaisePropertyChanged("Active");
 
-                OnActiveStateChanged();
+                //OnActiveStateChanged();
 
                 if (active)
                 {
                     RegenerateAllPackages();
                 }
-            }
-        }
-
-        /// <summary>
-        /// A flag indicating whether the grid is visible in 3D.
-        /// </summary>
-        public virtual bool IsGridVisible
-        {
-            get { return isGridVisible; }
-            set
-            {
-                if (isGridVisible == value) return;
-
-                isGridVisible = value;
-                preferences.IsBackgroundGridVisible = value;
-                RaisePropertyChanged("IsGridVisible");
             }
         }
 
@@ -182,38 +166,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         //    }
         //}
 
-        internal WorkspaceViewModel CurrentSpaceViewModel
-        {
-            get
-            {
-                return viewModel.Workspaces.FirstOrDefault(vm => vm.Model == dynamoModel.CurrentWorkspace);
-            }
-        }
-
-        /// <summary>
-        /// A flag which indicates whether the Watch3DViewModel
-        /// is currently in pan mode.
-        /// </summary>
-        public bool IsPanning
-        {
-            get
-            {
-                return CurrentSpaceViewModel != null && CurrentSpaceViewModel.IsPanning;
-            }
-        }
-
-        /// <summary>
-        /// A flag which indicates whether the Watch3DViewModel
-        /// is currently in orbit mode.
-        /// </summary>
-        public bool IsOrbiting
-        {
-            get
-            {
-                return CurrentSpaceViewModel != null && CurrentSpaceViewModel.IsOrbiting;
-            }
-        }
-
         public bool CanBeActivated { get; internal set; }
 
         /// <summary>
@@ -233,15 +185,8 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             engineManager = parameters.EngineControllerManager;
 
             Name = Resources.BackgroundPreviewDefaultName;
-            isGridVisible = parameters.Preferences.IsBackgroundGridVisible;
             active = parameters.Preferences.IsBackgroundPreviewActive;
             logger = parameters.Logger;
-
-            RegisterEventHandlers();
-
-
-
-            
 
             CanBeActivated = true;
         }
@@ -271,23 +216,11 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             // Override in inherited classes.
         }
 
-        protected virtual void OnActiveStateChanged()
-        {
-            UnregisterEventHandlers();
-            OnClear();
-        }
-
-        private void RegisterEventHandlers()
-        {
-            DynamoSelection.Instance.Selection.CollectionChanged += SelectionChangedHandler;
-            PropertyChanged += OnPropertyChanged;
-
-            LogVisualizationCapabilities();
-
-            RegisterModelEventhandlers(dynamoModel);
-
-            RegisterWorkspaceEventHandlers(dynamoModel);
-        }
+        //protected virtual void OnActiveStateChanged()
+        //{
+        //    UnregisterEventHandlers();
+        //    OnClear();
+        //}
 
         /// <summary>
         /// Event to be handled when the background preview is toggled on or off
@@ -295,82 +228,9 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         /// </summary>
         public event Action<bool> CanNavigateBackgroundPropertyChanged;
 
-        private void OnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
-        {
-            switch (propertyChangedEventArgs.PropertyName)
-            {
-                case "CanNavigateBackground":
-                    var handler = CanNavigateBackgroundPropertyChanged;
-                    if (handler != null)
-                    {
-                        handler(CanNavigateBackground);
-                    }
-                    break;
-                case "IsolationMode":
-                    OnIsolationModeRequestUpdate();
-                    break;
-            }
-        }
-
         protected virtual void OnIsolationModeRequestUpdate()
         {
             // Override in inherited classes.
-        }
-
-        protected void UnregisterEventHandlers()
-        {
-            DynamoSelection.Instance.Selection.CollectionChanged -= SelectionChangedHandler;
-
-            UnregisterModelEventHandlers(dynamoModel);
-
-            UnregisterWorkspaceEventHandlers(dynamoModel);
-        }
-
-        private void OnModelShutdownStarted(IDynamoModel dynamoModel)
-        {
-            UnregisterEventHandlers();
-            OnShutdown();
-        }
-
-        private void LogVisualizationCapabilities()
-        {
-            var renderingTier = (RenderCapability.Tier >> 16);
-            var pixelShader3Supported = RenderCapability.IsPixelShaderVersionSupported(3, 0);
-            var pixelShader4Supported = RenderCapability.IsPixelShaderVersionSupported(4, 0);
-            var softwareEffectSupported = RenderCapability.IsShaderEffectSoftwareRenderingSupported;
-            var maxTextureSize = RenderCapability.MaxHardwareTextureSize;
-
-            logger.Log(string.Format("RENDER : Rendering Tier: {0}", renderingTier));
-            logger.LogError(string.Format("RENDER : Pixel Shader 3 Supported: {0}", pixelShader3Supported));
-            logger.Log(string.Format("RENDER : Pixel Shader 4 Supported: {0}", pixelShader4Supported));
-            logger.Log(string.Format("RENDER : Software Effect Rendering Supported: {0}", softwareEffectSupported));
-            logger.Log(string.Format("RENDER : Maximum hardware texture size: {0}", maxTextureSize));
-        }
-
-        private void RegisterModelEventhandlers(IDynamoModel dynamoModel)
-        {
-            dynamoModel.WorkspaceCleared += OnWorkspaceCleared;
-            dynamoModel.ShutdownStarted += OnModelShutdownStarted;
-            dynamoModel.EvaluationCompleted += OnEvaluationCompleted;
-            dynamoModel.PropertyChanged += OnModelPropertyChanged;
-        }
-
-        protected virtual void OnModelPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            // Override in derived classes
-        }
-
-        protected virtual void OnEvaluationCompleted(object sender, EvaluationCompletedEventArgs e)
-        {
-            // Override in derived classes
-        }
-
-        private void UnregisterModelEventHandlers(IDynamoModel model)
-        {
-            model.WorkspaceCleared -= OnWorkspaceCleared;
-            model.ShutdownStarted -= OnModelShutdownStarted;
-            model.EvaluationCompleted -= OnEvaluationCompleted;
-            model.PropertyChanged -= OnModelPropertyChanged;
         }
 
         private void UnregisterWorkspaceEventHandlers(IDynamoModel model)
@@ -382,26 +242,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             foreach (var ws in model.Workspaces)
             {
                 ws.Saving -= OnWorkspaceSaving;
-            }
-        }
-
-        private void RegisterWorkspaceEventHandlers(IDynamoModel model)
-        {
-            model.WorkspaceAdded += OnWorkspaceAdded;
-            model.WorkspaceRemoved += OnWorkspaceRemoved;
-            model.WorkspaceOpening += OnWorkspaceOpening;
-
-            foreach (var ws in model.Workspaces)
-            {
-                ws.Saving += OnWorkspaceSaving;
-                ws.NodeAdded += OnNodeAddedToWorkspace;
-                ws.NodeRemoved += OnNodeRemovedFromWorkspace;
-
-                foreach (var node in ws.Nodes)
-                {
-                    node.PropertyChanged += OnNodePropertyChanged;
-                    node.RenderPackagesUpdated += OnRenderPackagesUpdated;
-                }
             }
         }
 
@@ -418,10 +258,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             }
         }
 
-        protected virtual void OnWorkspaceCleared(WorkspaceModel workspace)
-        {
-            OnClear();
-        }
 
         protected virtual void OnWorkspaceOpening(object obj)
         {
@@ -667,15 +503,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         }
 
         public event Action<object, MouseButtonEventArgs> ViewMouseDown;
-        //internal void OnViewMouseDown(object sender, MouseButtonEventArgs e)
-        //{
-        //    HandleViewClick(sender, e);
-        //    var handler = ViewMouseDown;
-        //    if (handler != null) handler(sender, e);
-        //}
-
-        protected virtual void HandleViewClick(object sender, MouseButtonEventArgs e)
-        { }
 
         public event Action<object, MouseButtonEventArgs> ViewMouseUp;
         //internal void OnViewMouseUp(object sender, MouseButtonEventArgs e)
@@ -703,18 +530,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         {
             // Override in derived classes.
         }
-
-        internal virtual void ExportToSTL(string path, string modelName)
-        {
-            // Override in derived classes
-        }
-
-        //internal void CancelNavigationState()
-        //{
-        //    if(IsPanning) TogglePan(null);
-        //    if(IsOrbiting) ToggleOrbit(null);
-        //}
-
 
         protected virtual void Dispose(bool disposing)
         {
