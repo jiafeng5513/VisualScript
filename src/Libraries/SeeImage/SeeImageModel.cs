@@ -30,6 +30,36 @@ namespace ModelAnalyzerUI
     [IsDesignScriptCompatible]
     public class SeeImageModel : NodeModel
     {
+        private double imageWidth = 300;
+        private double imageHeight = 300;
+        /// <summary>
+        /// 图片控件的指导高度
+        /// 此处存储实际数据
+        /// </summary>
+        public double ImageHeight {
+            get => imageHeight;
+            set
+            {
+                imageHeight = value;
+                RaisePropertyChanged("ImageHeight");
+                this.OnNodeModified();
+
+            }
+        }
+        /// <summary>
+        /// 图片控件的指导宽度
+        /// 此处存储实际数据
+        /// </summary>
+        public double ImageWidth
+        {
+            get => imageWidth;
+            set
+            {
+                imageWidth = value;
+                RaisePropertyChanged("ImageWidth");
+                this.OnNodeModified();
+            }
+        }
 
         [JsonConstructor]
         private SeeImageModel(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)

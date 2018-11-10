@@ -21,11 +21,13 @@ namespace Dynamo.Wpf.NodeViewCustomizations
     public class SeeImageViewCustomization : INodeViewCustomization<SeeImageModel>
     {
         private NodeModel nodeModel;
+        private NodeViewModel nodeViewModel;
+
         private SeeImageView seeImageView;
         private SeeImageButtonControl seeImageButtonControl;
-        private NodeViewModel nodeViewModel;
         private SeeImageModel convertModel;
-        private SeeImageViewModel exporterViewModel;
+        private SeeImageViewModel seeImageViewModel;
+
         private Image image;
 
         public void CustomizeView(SeeImageModel model, NodeView nodeView)
@@ -33,18 +35,24 @@ namespace Dynamo.Wpf.NodeViewCustomizations
             nodeModel = nodeView.ViewModel.NodeModel;
             nodeViewModel = nodeView.ViewModel;
             convertModel = model;
-            
+
+            seeImageButtonControl = new SeeImageButtonControl()
+            {
+                DataContext = new SeeImageViewModel(model, nodeView),
+            };
             seeImageView = new SeeImageView(model, nodeView)
             {
                 DataContext = new SeeImageViewModel(model, nodeView),
             };
-            seeImageButtonControl = new SeeImageButtonControl();
-            exporterViewModel = seeImageView.DataContext as SeeImageViewModel;
+            
+            seeImageViewModel = seeImageView.DataContext as SeeImageViewModel;
+
             nodeView.PresentationGrid.Children.Add(seeImageView);
             nodeView.PresentationGrid.Visibility = Visibility.Visible;
 
             nodeView.inputGrid.Children.Add(seeImageButtonControl);
             nodeView.inputGrid.Visibility = Visibility.Visible;
+
             nodeModel.PropertyChanged += NodeModelOnPropertyChanged;
             seeImageView.Loaded += converterControl_Loaded;
             HandleMirrorData();

@@ -28,10 +28,31 @@ namespace Dynamo.Wpf
 
         public DelegateCommand ZoomOutCommand { get; set; }
         public DelegateCommand ZoomInCommand { get; set; }
-        public DelegateCommand ZoomToRealSizeCommand { get; set; }
         public DelegateCommand ZoomToDefaultSizeCommand { get; set; }
 
-
+        /// <summary>
+        /// 图片控件的指导宽度
+        /// 此处负责数据绑定
+        /// </summary>
+        public double ImageWidth
+        {
+            get => _seeImageModel.ImageWidth;
+            set => _seeImageModel.ImageWidth = value;
+        }
+        /// <summary>
+        /// 图片控件的指导高度
+        /// 此处负责数据绑定
+        /// </summary>
+        public double ImageHeight
+        {
+            get => _seeImageModel.ImageHeight;
+            set => _seeImageModel.ImageHeight = value;
+        }
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="model"></param>
+        /// <param name="nodeView"></param>
         public SeeImageViewModel(SeeImageModel model, NodeView nodeView)
         {
             _seeImageModel = model;
@@ -45,11 +66,11 @@ namespace Dynamo.Wpf
         {
             switch (e.PropertyName)
             {
-                case "ExportableNodeSource":
-                    RaisePropertyChanged("ExportableNodeSource");
+                case "ImageHeight":
+                    RaisePropertyChanged("ImageHeight");
                     break;
-                case "SelectedExportableNode":
-                    RaisePropertyChanged("SelectedExportableNode");
+                case "ImageWidth":
+                    RaisePropertyChanged("ImageWidth");
                     break;
             }
         }
@@ -59,7 +80,7 @@ namespace Dynamo.Wpf
         /// <param name="parameters"></param>
         private void ZoomOut(object parameters)
         {
-
+            ImageWidth *= 1.1;
         }
         /// <summary>
         /// 缩小
@@ -67,15 +88,11 @@ namespace Dynamo.Wpf
         /// <param name="parameters"></param>
         private void ZoomIn(object parameters)
         {
-
-        }
-        /// <summary>
-        /// 缩放到真实大小
-        /// </summary>
-        /// <param name="parameters"></param>
-        private void ZoomToRealSize(object parameters)
-        {
-
+            if (ImageWidth < 180)
+            {
+                return;
+            }
+            ImageWidth *= 0.9;
         }
         /// <summary>
         /// 缩放到默认大小
@@ -83,7 +100,7 @@ namespace Dynamo.Wpf
         /// <param name="parameters"></param>
         private void ZoomToDefaultSize(object parameters)
         {
-
+            ImageWidth = 300;
         }
         /// <summary>
         /// 初始化Commands
@@ -92,7 +109,6 @@ namespace Dynamo.Wpf
         {
             ZoomOutCommand = new DelegateCommand(ZoomOut, o => true);
             ZoomInCommand = new DelegateCommand(ZoomIn, o => true);
-            ZoomToRealSizeCommand = new DelegateCommand(ZoomToRealSize, o => true);
             ZoomToDefaultSizeCommand = new DelegateCommand(ZoomToDefaultSize, o => true);
         }
 
