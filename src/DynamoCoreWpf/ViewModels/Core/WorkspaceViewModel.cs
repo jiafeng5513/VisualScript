@@ -333,18 +333,6 @@ namespace Dynamo.ViewModels
             set { Model.HasUnsavedChanges = value; }
         }
 
-        private ObservableCollection<Watch3DFullscreenViewModel> _watches = new ObservableCollection<Watch3DFullscreenViewModel>();
-        [JsonIgnore]
-        public ObservableCollection<Watch3DFullscreenViewModel> Watch3DViewModels
-        {
-            get { return _watches; }
-            set
-            {
-                _watches = value;
-                RaisePropertyChanged("Watch3DViewModels");
-            }
-        }
-
         /// <summary>
         ///     Get or set the zoom value of the workspace.
         /// </summary>

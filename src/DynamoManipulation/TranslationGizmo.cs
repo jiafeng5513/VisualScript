@@ -1,48 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Media;
 using Autodesk.DesignScript.Geometry;
-using Autodesk.DesignScript.Interfaces;
-using Dynamo.Wpf.ViewModels.Watch3D;
-using Dynamo.Visualization;
 
 namespace Dynamo.Manipulation
 {
-    
+
     /// <summary>
     /// Translation Gizmo, that handles translation.
     /// </summary>
     class TranslationGizmo : Gizmo
     {
-        /// <summary>
-        /// Defines type of planes.
-        /// </summary>
-        enum Planes
-        {
-            xyPlane,
-            yzPlane,
-            zxPlane,
-        }
-
-        /// <summary>
-        /// Defines type of axis.
-        /// </summary>
-        enum Axes
-        {
-            xAxis,
-            yAxis,
-            zAxis,
-            randomAxis, //Arbitrary axis
-        }
 
         #region Private members
-
-        /// <summary>
-        /// An offset distance from the gizmo Origin
-        /// at which to place the axes in their respective directions
-        /// </summary>
-        private const double axisOriginOffset = 0.2;
 
         /// <summary>
         /// List of axis available for manipulation
@@ -80,20 +50,6 @@ namespace Dynamo.Manipulation
         {
             ReferenceCoordinateSystem = CoordinateSystem.Identity();
             UpdateGeometry(axis1, null, null, size);
-        }
-
-        /// <summary>
-        /// Constructs planar gizmo, can be manipulated in two directions.
-        /// </summary>
-        /// <param name="manipulator"></param>
-        /// <param name="axis1">First axis of freedom</param>
-        /// <param name="axis2">Second axis of freedom</param>
-        /// <param name="size">Visual size of the Gizmo</param>
-        public TranslationGizmo(NodeManipulator manipulator, Vector axis1, Vector axis2, double size)
-            : base(manipulator)
-        {
-            ReferenceCoordinateSystem = CoordinateSystem.Identity();
-            UpdateGeometry(axis1, axis2, null, size);
         }
 
         /// <summary>
@@ -155,50 +111,6 @@ namespace Dynamo.Manipulation
 
         #region private methods
 
-        /// <summary>
-        /// Returs default color for a given axis
-        /// </summary>
-        /// <param name="axis">Axes</param>
-        /// <returns>Color</returns>
-        private Color GetAxisColor(Axes axis)
-        {
-            var col = Convert.ToByte(255);
-            switch (axis)
-            {
-                case Axes.xAxis:
-                    return Color.FromRgb(col, 0, 0);
-                case Axes.yAxis:
-                    return Color.FromRgb(0, col, 0);
-                case Axes.zAxis:
-                    return Color.FromRgb(0, 0, col);
-                case Axes.randomAxis:
-                    break;
-                default:
-                    break;
-            }
-            
-            const byte colR = 0;
-            var colG = Convert.ToByte(158);
-            var colB = Convert.ToByte(255);
-            return Color.FromRgb(colR, colG, colB);
-        }
-
-        /// <summary>
-        /// Returns Axis enum along which given vector is aligned.
-        /// </summary>
-        /// <param name="axis">Axis vector</param>
-        /// <returns>Axis</returns>
-        private Axes GetAlignedAxis(Vector axis)
-        {
-            if (axis.IsParallel(ReferenceCoordinateSystem.XAxis))
-                return Axes.xAxis;
-            if (axis.IsParallel(ReferenceCoordinateSystem.YAxis))
-                return Axes.yAxis;
-            if (axis.IsParallel(ReferenceCoordinateSystem.ZAxis))
-                return Axes.zAxis;
-
-            return Axes.randomAxis;
-        }
         /// <summary>
         /// 
         /// </summary>
@@ -331,32 +243,6 @@ namespace Dynamo.Manipulation
             return Vector.ByTwoPoints(ManipulatorOrigin, hitPoint);
         }
 
-        /// <summary>
-        /// Returns drawables to render this Gizmo
-        /// </summary>
-        /// <returns>List of render package</returns>
-        //public override RenderPackageCache GetDrawables()
-        //{
-        //    var drawables = new RenderPackageCache();
-        //    foreach (Vector axis in axes)
-        //    {
-        //        IRenderPackage package = RenderPackageFactory.CreateRenderPackage();
-        //        DrawAxis(ref package, axis);
-        //        drawables.Add(package);
-        //    }
-
-        //    var p = Planes.xyPlane;
-        //    foreach (Plane plane in planes)
-        //    {
-        //        IRenderPackage package = RenderPackageFactory.CreateRenderPackage();
-        //        DrawPlane(ref package, plane, p++);
-        //        drawables.Add(package);
-        //    }
-        //    drawables.Add(GetDrawablesForTransientGraphics());
-
-        //    return drawables;
-        //}
-
         public override void UpdateGizmoGraphics()
         {
             // Update gizmo geometry wrt to current Origin
@@ -368,117 +254,9 @@ namespace Dynamo.Manipulation
             planes.AddRange(newPlanes);
         }
 
-
         public override void DeleteTransientGraphics()
         {
             
-        }
-
-        #endregion
-
-        #region Helper methods to draw the gizmo
-
-        /// <summary>
-        /// Returns drawables for transient geometry associated with Gizmo
-        /// </summary>
-        /// <returns></returns>
-        //public override RenderPackageCache GetDrawablesForTransientGraphics()
-        //{
-        //    var drawables = new RenderPackageCache();
-        //    if (null != hitAxis)
-        //    {
-        //        IRenderPackage package = RenderPackageFactory.CreateRenderPackage();
-        //        DrawAxisLine(ref package, hitAxis, "xAxisLine");
-        //        drawables.Add(package);
-        //    }
-        //    if (null != hitPlane)
-        //    {
-        //        IRenderPackage package = RenderPackageFactory.CreateRenderPackage();
-        //        DrawAxisLine(ref package, hitPlane.XAxis, "xAxisLine");
-        //        drawables.Add(package);
-
-        //        package = RenderPackageFactory.CreateRenderPackage();
-        //        DrawAxisLine(ref package, hitPlane.YAxis, "yAxisLine");
-        //        drawables.Add(package);
-        //    }
-
-        //    return drawables;
-        //}
-
-        /// <summary>
-        /// Draws axis line
-        /// </summary>
-        /// <param name="package"></param>
-        /// <param name="axis"></param>
-        /// <param name="name"></param>
-        private void DrawAxisLine(ref IRenderPackage package, Vector axis, string name)
-        {
-            package.Description = string.Format("{0}_{1}_{2}", RenderDescriptions.AxisLine, Name, name);
-            using (var line = RayExtensions.ToOriginCenteredLine(Origin, axis))
-            {
-                var color = GetAxisColor(GetAlignedAxis(axis));
-                package.AddLineStripVertexCount(2);
-                package.AddLineStripVertexColor(color.R, color.G, color.B, color.A);
-                package.AddLineStripVertex(line.StartPoint.X, line.StartPoint.Y, line.StartPoint.Z);
-                package.AddLineStripVertexColor(color.R, color.G, color.B, color.A);
-                package.AddLineStripVertex(line.EndPoint.X, line.EndPoint.Y, line.EndPoint.Z);
-            }
-        }
-
-        /// <summary>
-        /// Draws plane at half the scale.
-        /// </summary>
-        /// <param name="package"></param>
-        /// <param name="plane"></param>
-        /// <param name="name"></param>
-        private void DrawPlane(ref IRenderPackage package, Plane plane, Planes name)
-        {
-            package.Description = string.Format("{0}_{1}_{2}", RenderDescriptions.ManipulatorPlane, Name, name);
-            using (var vec1 = plane.XAxis.Scale(scale/3))
-            using (var vec2 = plane.YAxis.Scale(scale/3))
-            using (var vec3 = plane.YAxis.Scale(scale/3))
-            {
-                using (var p1 = Origin.Add(vec1))
-                using (var p2 = p1.Add(vec2))
-                using (var p3 = Origin.Add(vec3))
-                {
-                    var axis = plane.Normal;
-                    var color = GetAxisColor(GetAlignedAxis(axis));
-
-                    package.AddLineStripVertexCount(3);
-                    package.AddLineStripVertexColor(color.R, color.G, color.B, color.A);
-                    package.AddLineStripVertex(p1.X, p1.Y, p1.Z);
-
-                    package.AddLineStripVertexColor(color.R, color.G, color.B, color.A);
-                    package.AddLineStripVertex(p2.X, p2.Y, p2.Z);
-
-                    package.AddLineStripVertexColor(color.R, color.G, color.B, color.A);
-                    package.AddLineStripVertex(p3.X, p3.Y, p3.Z);
-                    
-                }
-            }
-        }
-
-        /// <summary>
-        /// Draws axis as 3D arrow based on scale factor.
-        /// </summary>
-        /// <param name="package"></param>
-        /// <param name="axis"></param>
-        private void DrawAxis(ref IRenderPackage package, Vector axis)
-        {
-            var axisType = GetAlignedAxis(axis);
-            package.Description = string.Format("{0}_{1}_{2}", RenderDescriptions.ManipulatorAxis, Name, axisType);
-
-            using (var axisStart = Origin.Add(axis.Scale(axisOriginOffset)))
-            using (var axisEnd = Origin.Add(axis.Scale(scale)))
-            {
-                var color = GetAxisColor(axisType);
-                package.AddLineStripVertexCount(2);
-                package.AddLineStripVertexColor(color.R, color.G, color.B, color.A);
-                package.AddLineStripVertex(axisStart.X, axisStart.Y, axisStart.Z);
-                package.AddLineStripVertexColor(color.R, color.G, color.B, color.A);
-                package.AddLineStripVertex(axisEnd.X, axisEnd.Y, axisEnd.Z);
-            }
         }
 
         #endregion

@@ -1,7 +1,6 @@
 ﻿using Dynamo.Interfaces;
 using Dynamo.ViewModels;
 using Dynamo.Visualization;
-using Dynamo.Wpf.Rendering;
 
 namespace Dynamo.Wpf.ViewModels
 {
@@ -34,14 +33,6 @@ namespace Dynamo.Wpf.ViewModels
                 factory.TessellationParameters.MaxTessellationDivisions = value;
                 RaisePropertyChanged("MaxTessellationDivisions");
             }
-        }
-
-        public RenderPackageFactoryViewModel(IPreferences preferenceSettings)
-        {
-            this.factory = new HelixRenderPackageFactory()
-            {
-                TessellationParameters = { ShowEdges = preferenceSettings.ShowEdges }
-            };
         }
     }
 }
