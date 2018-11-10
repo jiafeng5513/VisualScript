@@ -335,27 +335,27 @@ namespace Dynamo.Manipulation
         /// Returns drawables to render this Gizmo
         /// </summary>
         /// <returns>List of render package</returns>
-        public override RenderPackageCache GetDrawables()
-        {
-            var drawables = new RenderPackageCache();
-            foreach (Vector axis in axes)
-            {
-                IRenderPackage package = RenderPackageFactory.CreateRenderPackage();
-                DrawAxis(ref package, axis);
-                drawables.Add(package);
-            }
+        //public override RenderPackageCache GetDrawables()
+        //{
+        //    var drawables = new RenderPackageCache();
+        //    foreach (Vector axis in axes)
+        //    {
+        //        IRenderPackage package = RenderPackageFactory.CreateRenderPackage();
+        //        DrawAxis(ref package, axis);
+        //        drawables.Add(package);
+        //    }
 
-            var p = Planes.xyPlane;
-            foreach (Plane plane in planes)
-            {
-                IRenderPackage package = RenderPackageFactory.CreateRenderPackage();
-                DrawPlane(ref package, plane, p++);
-                drawables.Add(package);
-            }
-            drawables.Add(GetDrawablesForTransientGraphics());
+        //    var p = Planes.xyPlane;
+        //    foreach (Plane plane in planes)
+        //    {
+        //        IRenderPackage package = RenderPackageFactory.CreateRenderPackage();
+        //        DrawPlane(ref package, plane, p++);
+        //        drawables.Add(package);
+        //    }
+        //    drawables.Add(GetDrawablesForTransientGraphics());
 
-            return drawables;
-        }
+        //    return drawables;
+        //}
 
         public override void UpdateGizmoGraphics()
         {
@@ -382,28 +382,28 @@ namespace Dynamo.Manipulation
         /// Returns drawables for transient geometry associated with Gizmo
         /// </summary>
         /// <returns></returns>
-        public override RenderPackageCache GetDrawablesForTransientGraphics()
-        {
-            var drawables = new RenderPackageCache();
-            if (null != hitAxis)
-            {
-                IRenderPackage package = RenderPackageFactory.CreateRenderPackage();
-                DrawAxisLine(ref package, hitAxis, "xAxisLine");
-                drawables.Add(package);
-            }
-            if (null != hitPlane)
-            {
-                IRenderPackage package = RenderPackageFactory.CreateRenderPackage();
-                DrawAxisLine(ref package, hitPlane.XAxis, "xAxisLine");
-                drawables.Add(package);
+        //public override RenderPackageCache GetDrawablesForTransientGraphics()
+        //{
+        //    var drawables = new RenderPackageCache();
+        //    if (null != hitAxis)
+        //    {
+        //        IRenderPackage package = RenderPackageFactory.CreateRenderPackage();
+        //        DrawAxisLine(ref package, hitAxis, "xAxisLine");
+        //        drawables.Add(package);
+        //    }
+        //    if (null != hitPlane)
+        //    {
+        //        IRenderPackage package = RenderPackageFactory.CreateRenderPackage();
+        //        DrawAxisLine(ref package, hitPlane.XAxis, "xAxisLine");
+        //        drawables.Add(package);
 
-                package = RenderPackageFactory.CreateRenderPackage();
-                DrawAxisLine(ref package, hitPlane.YAxis, "yAxisLine");
-                drawables.Add(package);
-            }
+        //        package = RenderPackageFactory.CreateRenderPackage();
+        //        DrawAxisLine(ref package, hitPlane.YAxis, "yAxisLine");
+        //        drawables.Add(package);
+        //    }
 
-            return drawables;
-        }
+        //    return drawables;
+        //}
 
         /// <summary>
         /// Draws axis line

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Dynamo.Graph.Nodes;
 using Dynamo.Logging;
@@ -18,18 +17,12 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
     public class HelixWatch3DViewModel : DefaultWatch3DViewModel
     {
         #region private members
-        private const float defaultLabelOffset = 0.025f;
 
         private const string TextKey = ":text";
-        //private List<Model3D> sceneItems;
-        private Dictionary<string, string> nodesSelected = new Dictionary<string, string>();
 
         #endregion
 
         #region events
-
-        public Object Model3DDictionaryMutex = new object();
-
         /// <summary>
         /// An envent requesting to create geometries from render packages.
         /// </summary>
@@ -57,29 +50,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
 
         #endregion
 
-        #region properties
-
-
-        //internal Dictionary<string, Model3D> Model3DDictionary
-        //{
-        //    get
-        //    {
-        //        lock (Model3DDictionaryMutex)
-        //        {
-        //            return model3DDictionary;
-        //        }
-        //    }
-
-        //    set
-        //    {
-        //        lock (Model3DDictionaryMutex)
-        //        {
-        //            model3DDictionary = value;
-        //        }
-        //    }
-        //}
-
-        #endregion
 
         /// <summary>
         /// Attempt to create a HelixWatch3DViewModel. If one cannot be created,
@@ -114,12 +84,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         : base(model, parameters)
         {
             Name = Resources.BackgroundPreviewName;
-            //IsResizable = false;
-            //RenderTechniquesManager = new DynamoRenderTechniquesManager();
-            //EffectsManager = new DynamoEffectsManager(RenderTechniquesManager);
-
-            //SetupScene();
-            //InitializeHelix();
         }
 
         public override void RemoveGeometryForNode(NodeModel node)
@@ -150,71 +114,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             // make var_guid from var_guid:0:1
             var nodePath = path.Contains(':') ? path.Remove(path.IndexOf(':')) : path;
             var labelName = nodePath + TextKey;
-            lock (Model3DDictionaryMutex)
-            {
-                // first, remove current labels of the node
-                // it does not crash if there is no such key in dictionary
-                //var sceneItemsChanged = Model3DDictionary.Remove(labelName);
-
-                // it may be requested an array of items to put labels
-                // for example, the first item in 2-dim array - path will look like var_guid:0
-                // and it will select var_guid:0:0, var_guid:0:1, var_guid:0:2 and so on.
-                // if there is a geometry to add label(s)
-                //List<Tuple<string, Vector3>> requestedLabelPlaces;
-                //if (labelPlaces.ContainsKey(nodePath) &&
-                //    (requestedLabelPlaces = labelPlaces[nodePath]
-                //        .Where(pair => pair.Item1 == path || pair.Item1.StartsWith(path + ":")).ToList()).Any())
-                //{
-                //    // If the nodesSelected Dictionary does not contain the current nodePath as a key,
-                //    // or if the current value of the nodePath key is not the same as the current path 
-                //    // (which is currently being selected) then, create new label(s) for the Watch3DView.
-                //    // Else, remove the label(s) in the Watch 3D View.
-
-                //    if (!nodesSelected.ContainsKey(nodePath) || nodesSelected[nodePath] != path)
-                //    {
-                //        // second, add requested labels
-                //        var textGeometry = HelixRenderPackage.InitText3D();
-                //        var bbText = new BillboardTextModel3D
-                //        {
-                //            Geometry = textGeometry
-                //        };
-
-                //        foreach (var id_position in requestedLabelPlaces)
-                //        {
-                //            var text = HelixRenderPackage.CleanTag(id_position.Item1);
-                //            var textPosition = id_position.Item2 + defaultLabelOffset;
-
-                //            var textInfo = new TextInfo(text, textPosition);
-                //            textGeometry.TextInfo.Add(textInfo);
-                //        }
-
-                //        //if (nodesSelected.ContainsKey(nodePath))
-                //        //{
-                //        //    ToggleTreeViewItemHighlighting(nodesSelected[nodePath], false); // switch off selection for previous path
-                //        //}
-                        
-                //        Model3DDictionary.Add(labelName, bbText);
-                //        sceneItemsChanged = true;
-                //        //AttachAllGeometryModel3DToRenderHost();
-                //        nodesSelected[nodePath] = path;
-
-                //        //ToggleTreeViewItemHighlighting(path, true); // switch on selection for current path
-                //    }
-
-                //    // if no node is being selected, that means the current node is being unselected
-                //    // and no node within the parent node is currently selected.
-                //    else
-                //    {
-                //        nodesSelected.Remove(nodePath);
-                //        //ToggleTreeViewItemHighlighting(path, false);
-                //    }
-                //}
-
-                //if (sceneItemsChanged)
-                //{
-                //    //OnSceneItemsChanged();
-                //}
-            }
         }
 
         /// <summary>
@@ -225,14 +124,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         {
             var nodePath = path.Contains(':') ? path.Remove(path.IndexOf(':')) : path;
             var labelName = nodePath + TextKey;
-            lock (Model3DDictionaryMutex)
-            {
-                //var sceneItemsChanged = Model3DDictionary.Remove(labelName);
-                //if (sceneItemsChanged)
-                //{
-                //    //OnSceneItemsChanged();
-                //}
-            }
         }
 
         #endregion

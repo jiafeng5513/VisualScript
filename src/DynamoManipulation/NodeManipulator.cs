@@ -446,7 +446,7 @@ namespace Dynamo.Manipulation
             // Race condition can occur if say one gizmo is moving due to another gizmo
             // and it is highlighted when it comes near the mouse pointer.
             RenderPackageCache result = null;
-            BackgroundPreviewViewModel.Invoke(() => result = BuildRenderPackage());
+            //BackgroundPreviewViewModel.Invoke(() => result = BuildRenderPackage());
             return result;
         }
 
@@ -490,26 +490,26 @@ namespace Dynamo.Manipulation
         /// Builds render packages as required for rendering this manipulator.
         /// </summary>
         /// <returns>List of render packages</returns>
-        public RenderPackageCache BuildRenderPackage()
-        {
-            Debug.Assert(IsMainThread());
+        //public RenderPackageCache BuildRenderPackage()
+        //{
+        //    Debug.Assert(IsMainThread());
 
-            var packages = new RenderPackageCache();
-            try
-            {
-                var gizmos = GetGizmos(true);
-                foreach (var item in gizmos)
-                {
-                    packages.Add(item.GetDrawables());
-                }
-            }
-            catch (Exception e)
-            {
-                Node.Warning(Properties.Resources.DirectManipulationError +": " + e.Message);
-            }
+        //    var packages = new RenderPackageCache();
+        //    try
+        //    {
+        //        var gizmos = GetGizmos(true);
+        //        foreach (var item in gizmos)
+        //        {
+        //            packages.Add(item.GetDrawables());
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Node.Warning(Properties.Resources.DirectManipulationError +": " + e.Message);
+        //    }
 
-            return packages;
-        }
+        //    return packages;
+        //}
 
         /// <summary>
         /// Checks if manipulator is enabled or not. Manipulator is enabled 
@@ -605,16 +605,16 @@ namespace Dynamo.Manipulation
             subManipulators.ForEach(x => x.Dispose());
         }
 
-        public RenderPackageCache BuildRenderPackage()
-        {
-            var packages = new RenderPackageCache();
-            foreach (var subManipulator in subManipulators)
-            {
-                packages.Add(subManipulator.BuildRenderPackage());
-            }
+        //public RenderPackageCache BuildRenderPackage()
+        //{
+        //    //var packages = new RenderPackageCache();
+        //    //foreach (var subManipulator in subManipulators)
+        //    //{
+        //    //    packages.Add(subManipulator.BuildRenderPackage());
+        //    //}
 
-            return packages;
-        }
+        //    //return packages;
+        //}
 
         #endregion
     }

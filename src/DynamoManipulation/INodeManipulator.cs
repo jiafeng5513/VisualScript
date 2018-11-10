@@ -26,6 +26,6 @@ namespace Dynamo.Manipulation
     /// </summary>
     public interface INodeManipulator : IDisposable
     {
-        RenderPackageCache BuildRenderPackage();
+        //RenderPackageCache BuildRenderPackage();
     }
 }

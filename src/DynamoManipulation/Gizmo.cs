@@ -46,9 +46,9 @@ namespace Dynamo.Manipulation
         /// Returns render package for all the drawables of this Gizmo.
         /// </summary>
         /// <returns>List of render packages.</returns>
-        RenderPackageCache GetDrawables();
+        //RenderPackageCache GetDrawables();
 
-        RenderPackageCache GetDrawablesForTransientGraphics();
+        //RenderPackageCache GetDrawablesForTransientGraphics();
 
         /// <summary>
         /// Delete any transient graphics associated with the Gizmo
@@ -60,7 +60,7 @@ namespace Dynamo.Manipulation
         /// Highlight gizmo drawables or create transient geometry to highlight the gizmo during mouse over
         /// </summary>
         /// <returns></returns>
-        void HighlightGizmo();
+        //void HighlightGizmo();
 
         /// <summary>
         /// Unhighlight gizmo drawables or delete all transient geometry used to highlight gizmo during mouse over 
@@ -168,10 +168,10 @@ namespace Dynamo.Manipulation
 
         private void Redraw()
         {
-            if (manipulator.IsEnabled())
-            {
-                BackgroundPreviewViewModel.AddGeometryForRenderPackages(GetDrawables());
-            }
+            //if (manipulator.IsEnabled())
+            //{
+            //    BackgroundPreviewViewModel.AddGeometryForRenderPackages(GetDrawables());
+            //}
         }
 
         private void OnViewCameraChanged(object o, RoutedEventArgs routedEventArgs)
@@ -185,20 +185,29 @@ namespace Dynamo.Manipulation
         public abstract bool HitTest(Point source, Vector direction, out object hitObject);
 
         public abstract Vector GetOffset(Point newPosition, Vector viewDirection);
+        public RenderPackageCache GetDrawables()
+        {
+            throw new NotImplementedException();
+        }
 
-        public abstract RenderPackageCache GetDrawables();
+        public RenderPackageCache GetDrawablesForTransientGraphics()
+        {
+            throw new NotImplementedException();
+        }
 
-        public abstract RenderPackageCache GetDrawablesForTransientGraphics();
+        //public abstract RenderPackageCache GetDrawables();
+
+        //public abstract RenderPackageCache GetDrawablesForTransientGraphics();
 
         public abstract void UpdateGizmoGraphics();
 
         public abstract void DeleteTransientGraphics();
 
-        public void HighlightGizmo()
-        {
-            var drawables = GetDrawablesForTransientGraphics();
-            BackgroundPreviewViewModel.AddGeometryForRenderPackages(drawables);
-        }
+        //public void HighlightGizmo()
+        //{
+        //    var drawables = GetDrawablesForTransientGraphics();
+        //    BackgroundPreviewViewModel.AddGeometryForRenderPackages(drawables);
+        //}
 
         public void UnhighlightGizmo()
         {
