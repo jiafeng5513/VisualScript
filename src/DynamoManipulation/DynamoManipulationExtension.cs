@@ -144,8 +144,8 @@ namespace Dynamo.Manipulation
             viewLoadedParams.SelectionCollectionChanged += UpdateManipulators;
             viewLoadedParams.CurrentWorkspaceChanged += OnCurrentWorkspaceChanged;
 
-            BackgroundPreviewViewModel.CanNavigateBackgroundPropertyChanged += Watch3DViewModelNavigateBackgroundPropertyChanged;
-            BackgroundPreviewViewModel.ViewMouseDown += Watch3DViewModelOnViewMouseDown;
+            //BackgroundPreviewViewModel.CanNavigateBackgroundPropertyChanged += Watch3DViewModelNavigateBackgroundPropertyChanged;
+            //BackgroundPreviewViewModel.ViewMouseDown += Watch3DViewModelOnViewMouseDown;
         }
 
         private void UnregisterEventHandlers()
@@ -153,50 +153,50 @@ namespace Dynamo.Manipulation
             viewLoadedParams.SelectionCollectionChanged -= UpdateManipulators;
             viewLoadedParams.CurrentWorkspaceChanged -= OnCurrentWorkspaceChanged;
 
-            BackgroundPreviewViewModel.CanNavigateBackgroundPropertyChanged -= Watch3DViewModelNavigateBackgroundPropertyChanged;
-            BackgroundPreviewViewModel.ViewMouseDown -= Watch3DViewModelOnViewMouseDown;
+            //BackgroundPreviewViewModel.CanNavigateBackgroundPropertyChanged -= Watch3DViewModelNavigateBackgroundPropertyChanged;
+            //BackgroundPreviewViewModel.ViewMouseDown -= Watch3DViewModelOnViewMouseDown;
         }
 
         private void Watch3DViewModelOnViewMouseDown(object o, MouseButtonEventArgs mouseButtonEventArgs)
         {
-            BackgroundPreviewViewModel.HighlightNodeGraphics(manipulatorNodes);
+            //BackgroundPreviewViewModel.HighlightNodeGraphics(manipulatorNodes);
         }
 
-        private void Watch3DViewModelNavigateBackgroundPropertyChanged(bool canNavigateBackground)
-        {
-            if (canNavigateBackground)
-            {
-                // if switching to geometry view
-                // Get the Model3D objects corresponding to the nodes and highlight them
-                var nodes = GetZeroTouchNodesForMatchingNames();
-                manipulatorNodes = nodes.Where(InspectInputsForNode);
+        //private void Watch3DViewModelNavigateBackgroundPropertyChanged(bool canNavigateBackground)
+        //{
+        //    if (canNavigateBackground)
+        //    {
+        //        // if switching to geometry view
+        //        // Get the Model3D objects corresponding to the nodes and highlight them
+        //        var nodes = GetZeroTouchNodesForMatchingNames();
+        //        manipulatorNodes = nodes.Where(InspectInputsForNode);
 
-                BackgroundPreviewViewModel.HighlightNodeGraphics(manipulatorNodes);
-            }
-            else
-            {
-                // if switching to node view
-                BackgroundPreviewViewModel.UnHighlightNodeGraphics(manipulatorNodes);
-            }
+        //        BackgroundPreviewViewModel.HighlightNodeGraphics(manipulatorNodes);
+        //    }
+        //    else
+        //    {
+        //        // if switching to node view
+        //        BackgroundPreviewViewModel.UnHighlightNodeGraphics(manipulatorNodes);
+        //    }
 
-        }
+        //}
 
-        private IEnumerable<DSFunctionBase> GetZeroTouchNodesForMatchingNames()
-        {
-            var nodes = WorkspaceModel.Nodes;
-            var nodeNames = manipulatorDaemon.NodeNames;
-            var nodeModels = new List<DSFunctionBase>();
-            foreach (var nodeName in nodeNames)
-            {
-                var creationName = nodeName;
+        //private IEnumerable<DSFunctionBase> GetZeroTouchNodesForMatchingNames()
+        //{
+        //    var nodes = WorkspaceModel.Nodes;
+        //    var nodeNames = manipulatorDaemon.NodeNames;
+        //    var nodeModels = new List<DSFunctionBase>();
+        //    foreach (var nodeName in nodeNames)
+        //    {
+        //        var creationName = nodeName;
 
-                // Find zero touch nodes that match a given name
-                var ztNodes = nodes.OfType<DSFunction>().Where(n => n.CreationName == creationName);
+        //        // Find zero touch nodes that match a given name
+        //        var ztNodes = nodes.OfType<DSFunction>().Where(n => n.CreationName == creationName);
 
-                nodeModels.AddRange(ztNodes);
-            }
-            return nodeModels;
-        }
+        //        nodeModels.AddRange(ztNodes);
+        //    }
+        //    return nodeModels;
+        //}
 
         /// <summary>
         /// For each node in nodes, inspect inputs and filter only those nodes
@@ -204,36 +204,36 @@ namespace Dynamo.Manipulation
         /// </summary>
         /// <param name="node"></param>
         /// <returns></returns>
-        private static bool InspectInputsForNode(NodeModel node)
-        {
-            bool manipulable = false;
-            for (int i = 0; i < node.InPorts.Count; i++)
-            {
-                Tuple<int, NodeModel> val;
-                if (node.InputNodes.TryGetValue(i, out val))
-                {
-                    if (val != null)
-                    {
-                        if (val.Item2 is DoubleSlider)
-                        {
-                            manipulable = true;
-                            break;
-                        }
-                    }
-                    else
-                    {
-                        manipulable = true;
-                        break;
-                    }
-                }
-                else
-                {
-                    manipulable = true;
-                    break;
-                }
-            }
-            return manipulable;
-        }
+        //private static bool InspectInputsForNode(NodeModel node)
+        //{
+        //    bool manipulable = false;
+        //    for (int i = 0; i < node.InPorts.Count; i++)
+        //    {
+        //        Tuple<int, NodeModel> val;
+        //        if (node.InputNodes.TryGetValue(i, out val))
+        //        {
+        //            if (val != null)
+        //            {
+        //                if (val.Item2 is DoubleSlider)
+        //                {
+        //                    manipulable = true;
+        //                    break;
+        //                }
+        //            }
+        //            else
+        //            {
+        //                manipulable = true;
+        //                break;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            manipulable = true;
+        //            break;
+        //        }
+        //    }
+        //    return manipulable;
+        //}
 
         public void Shutdown()
         {

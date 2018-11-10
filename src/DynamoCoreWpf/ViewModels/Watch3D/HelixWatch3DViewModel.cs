@@ -156,14 +156,14 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         private const string MeshKey = ":mesh";
         private const string TextKey = ":text";
 
-        private const int FrameUpdateSkipCount = 200;
+        //private const int FrameUpdateSkipCount = 200;
         private int currentFrameSkipCount;
 
-        private const double EqualityTolerance = 0.000001;
+        //private const double EqualityTolerance = 0.000001;
         private double nearPlaneDistanceFactor = 0.001;
-        internal const double DefaultNearClipDistance = 0.1f;
-        internal const double DefaultFarClipDistance = 100000;
-        internal static BoundingBox DefaultBounds = new BoundingBox(new Vector3(-25f, -25f, -25f), new Vector3(25f,25f,25f));
+        //internal const double DefaultNearClipDistance = 0.1f;
+        //internal const double DefaultFarClipDistance = 100000;
+        //internal static BoundingBox DefaultBounds = new BoundingBox(new Vector3(-25f, -25f, -25f), new Vector3(25f,25f,25f));
 
         private List<Model3D> sceneItems;
 
@@ -180,7 +180,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
 
         public Object Model3DDictionaryMutex = new object();
         private Dictionary<string, Model3D> model3DDictionary = new Dictionary<string, Model3D>();
-        // Dictionary<nodeId, List<Tuple<nodeArrayItemId, labelPosition>>>
         private readonly Dictionary<string, List<Tuple<string, Vector3>>> labelPlaces 
             = new Dictionary<string, List<Tuple<string, Vector3>>>();
 
@@ -239,33 +238,12 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         /// <summary>
         /// An event requesting a zoom to fit operation around the provided bounds.
         /// </summary>
-        public event Action<BoundingBox> RequestZoomToFit;
-        protected void OnRequestZoomToFit(BoundingBox bounds)
-        {
-            if(RequestZoomToFit != null)
-            {
-                RequestZoomToFit(bounds);
-            }
-        }
+
 
         #endregion
 
         #region properties
 
-        internal static Color4 DefaultLineColor
-        {
-            get { return defaultLineColor; }
-        }
-
-        internal static Color4 DefaultPointColor
-        {
-            get { return defaultPointColor; }
-        }
-
-        internal static Color4 DefaultDeadColor
-        {
-            get { return defaultDeadColor; }
-        }
 
         internal Dictionary<string, Model3D> Model3DDictionary
         {
@@ -348,28 +326,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             }
         }
 
-        public double LightAzimuthDegrees
-        {
-            get { return lightAzimuthDegrees; }
-            set { lightAzimuthDegrees = value; }
-        }
-
-        public double LightElevationDegrees
-        {
-            get { return lightElevationDegrees; }
-            set { lightElevationDegrees = value; }
-        }
-
-        public double NearPlaneDistanceFactor
-        {
-            get { return nearPlaneDistanceFactor; }
-            set
-            {
-                nearPlaneDistanceFactor = value;
-                RaisePropertyChanged("NearPlaneDistanceFactor");
-            }
-        }
-
         public override bool IsGridVisible
         {
             get { return isGridVisible && Active; }
@@ -390,16 +346,16 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         /// If neither panning or rotating is set, this property is set to null 
         /// and left clicking should have no effect.
         /// </summary>
-        public RoutedCommand LeftClickCommand
-        {
-            get
-            {
-                if (IsPanning) return ViewportCommands.Pan;
-                if (IsOrbiting) return ViewportCommands.Rotate;
+        //public RoutedCommand LeftClickCommand
+        //{
+        //    get
+        //    {
+        //        if (IsPanning) return ViewportCommands.Pan;
+        //        if (IsOrbiting) return ViewportCommands.Rotate;
 
-                return null;
-            }
-        }
+        //        return null;
+        //    }
+        //}
 
         public bool IsResizable { get; protected set; }
 
@@ -437,7 +393,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
 
         public IRenderTechniquesManager RenderTechniquesManager { get; private set; }
 
-        public bool SupportDeferredRender { get; private set; }
 
         #endregion
 
@@ -911,93 +866,14 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             OnSceneItemsChanged();
         }
 
-        protected override void ZoomToFit(object parameter)
-        {
-            var idents = FindIdentifiersForContext();
-            var geoms = SceneItems.Where(item => item is GeometryModel3D).Cast<GeometryModel3D>();
-            var targetGeoms = FindGeometryForIdentifiers(geoms, idents);
-            var selectionBounds = ComputeBoundsForGeometry(targetGeoms.ToArray());
 
-            // Don't zoom if there is no valid bounds.
-            if (selectionBounds.Equals(new BoundingBox())) return;
-
-            OnRequestZoomToFit(selectionBounds);
-        }
 
         public override CameraData GetCameraInformation()
         {
             return camera.ToCameraData(Name);
         }
 
-        /// <summary>
-        /// Finds all output identifiers based on the context.
-        /// 
-        /// Ex. If there are nodes selected, returns all identifiers for outputs
-        /// on the selected nodes. If you're in a custom node, returns all identifiers
-        /// for the outputs from instances of those custom nodes in the graph. etc.
-        /// </summary>
-        /// <returns>An <see cref="IEnumerable"/> of <see cref="string"/> containing the output identifiers found in the context.</returns>
-        private IEnumerable<string> FindIdentifiersForContext()
-        {
-            IEnumerable<string> idents = null;
-
-            var hs = dynamoModel.Workspaces.OfType<HomeWorkspaceModel>().FirstOrDefault();
-            if (hs == null)
-            {
-                return idents;
-            }
-
-            if (InCustomNode())
-            {
-                idents = FindIdentifiersForCustomNodes(hs);
-            }
-            else
-            {
-                if (DynamoSelection.Instance.Selection.Any())
-                {
-                    var selNodes = DynamoSelection.Instance.Selection.Where(s => s is NodeModel).Cast<NodeModel>().ToArray();
-                    idents = FindIdentifiersForSelectedNodes(selNodes);
-                }
-                else
-                {
-                    idents = AllOutputIdentifiersInWorkspace(hs);
-                }
-            }
-
-            return idents;
-        } 
-
-        protected override bool CanToggleCanNavigateBackground(object parameter)
-        {
-            return true;
-        }
-
         #region internal methods
-
-        internal void ComputeFrameUpdate()
-        {
-#if DEBUG
-            if (renderTimer.IsRunning)
-            {
-                renderTimer.Stop();
-                Debug.WriteLine(string.Format("RENDER: {0} ellapsed for setting properties and rendering.", renderTimer.Elapsed));
-                renderTimer.Reset();
-            }
-#endif
-
-            // Raising a property change notification for
-            // the SceneItems collections causes a full
-            // re-render including sorting for transparency.
-            // We don't want to do this every frame, so we
-            // do this update only at a fixed interval.
-            //if (currentFrameSkipCount == FrameUpdateSkipCount)
-            //{
-            //    RaisePropertyChanged("SceneItems");
-            //    currentFrameSkipCount = 0;
-            //}
-
-            currentFrameSkipCount++;
-        }
 
         #endregion
 
@@ -1082,60 +958,7 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             }
         }
 
-        private void LogCameraWarning(string msg, Exception ex)
-        {
-            logger.LogWarning(msg, WarningLevel.Mild);
-            logger.Log(msg);
-            logger.Log(ex.Message);
-        }
-
-        private void SaveCamera(XmlElement camerasElement)
-        {
-            try
-            {
-                var node = XmlHelper.AddNode(camerasElement, "Camera");
-                XmlHelper.AddAttribute(node, "Name", Name);
-                XmlHelper.AddAttribute(node, "eyeX", Camera.Position.X.ToString(CultureInfo.InvariantCulture));
-                XmlHelper.AddAttribute(node, "eyeY", Camera.Position.Y.ToString(CultureInfo.InvariantCulture));
-                XmlHelper.AddAttribute(node, "eyeZ", Camera.Position.Z.ToString(CultureInfo.InvariantCulture));
-                XmlHelper.AddAttribute(node, "lookX", Camera.LookDirection.X.ToString(CultureInfo.InvariantCulture));
-                XmlHelper.AddAttribute(node, "lookY", Camera.LookDirection.Y.ToString(CultureInfo.InvariantCulture));
-                XmlHelper.AddAttribute(node, "lookZ", Camera.LookDirection.Z.ToString(CultureInfo.InvariantCulture));
-                camerasElement.AppendChild(node);
-            }
-            catch (Exception ex)
-            {
-                const string msg = "CAMERA: Camera position information could not be saved.";
-                LogCameraWarning(msg, ex);
-            }
-        }
-
-        private void LoadCamera(XmlNode cameraNode)
-        {
-            if (cameraNode.Attributes.Count == 0)
-            {
-                return;
-            }
-
-            try
-            {
-                Name = cameraNode.Attributes["Name"].Value;
-                var ex = float.Parse(cameraNode.Attributes["eyeX"].Value);
-                var ey = float.Parse(cameraNode.Attributes["eyeY"].Value);
-                var ez = float.Parse(cameraNode.Attributes["eyeZ"].Value);
-                var lx = float.Parse(cameraNode.Attributes["lookX"].Value);
-                var ly = float.Parse(cameraNode.Attributes["lookY"].Value);
-                var lz = float.Parse(cameraNode.Attributes["lookZ"].Value);
-
-                Camera.LookDirection = new Vector3D(lx, ly, lz);
-                Camera.Position = new Point3D(ex, ey, ez);
-            }
-            catch (Exception ex)
-            {
-                const string msg = "CAMERA: Camera position information could not be loaded from the file.";
-                LogCameraWarning(msg, ex);
-            }
-        }
+        
 
         private void SetupScene()
         {
@@ -1829,42 +1652,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             }
         }
 
-        public override void HighlightNodeGraphics(IEnumerable<NodeModel> nodes)
-        {
-            HighlightGraphicsOnOff(nodes, true);
-        }
-
-        public override void UnHighlightNodeGraphics(IEnumerable<NodeModel> nodes)
-        {
-            HighlightGraphicsOnOff(nodes, false);
-        }
-
-        private void HighlightGraphicsOnOff(IEnumerable<NodeModel> nodes, bool highlightOn)
-        {
-            foreach (var node in nodes)
-            {
-                var geometries = FindAllGeometryModel3DsForNode(node);
-                foreach (var geometry in geometries)
-                {
-                    var pointGeom = geometry.Value as PointGeometryModel3D;
-                    
-                    if (pointGeom == null) continue;
-                    
-                    var points = pointGeom.Geometry;
-                    points.Colors.Clear();
-                    
-                    points.Colors.AddRange(highlightOn
-                        ? Enumerable.Repeat(highlightColor, points.Positions.Count)
-                        : Enumerable.Repeat(defaultPointColor, points.Positions.Count));
-
-                    pointGeom.Size = highlightOn ? highlightSize : defaultPointSize;
-
-                    pointGeom.Detach();
-                    OnRequestAttachToScene(pointGeom);
-                }
-            }
-        }
-
         private void CreateOrUpdateText(string baseId, Vector3 pt, IRenderPackage rp)
         {
             var textId = baseId + TextKey;
@@ -1966,101 +1753,7 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             }
         }
 
-        private static MeshGeometry3D DrawTestMesh()
-        {
-            var b1 = new MeshBuilder();
-            for (var x = 0; x < 4; x++)
-            {
-                for (var y = 0; y < 4; y++)
-                {
-                    for (var z = 0; z < 4; z++)
-                    {
-                        b1.AddBox(new Vector3(x, y, z), 0.5, 0.5, 0.5, BoxFaces.All);
-                    }
-                }
-            }
-            var mesh = b1.ToMeshGeometry3D();
 
-            mesh.Colors = new Color4Collection();
-            foreach (var v in mesh.Positions)
-            {
-                mesh.Colors.Add(new Color4(1f, 0f, 0f, 1f));
-            }
-
-            return mesh;
-        }
-
-        internal void UpdateNearClipPlane()
-        {
-
-            if (camera == null) return;
-
-            var near = camera.NearPlaneDistance;
-            var far = camera.FarPlaneDistance;
-
-            ComputeClipPlaneDistances(camera.Position.ToVector3(), camera.LookDirection.ToVector3(), SceneItems,
-                NearPlaneDistanceFactor, out near, out far, DefaultNearClipDistance, DefaultFarClipDistance);
-
-            if (Camera.NearPlaneDistance == near && Camera.FarPlaneDistance == far) return;
-
-            Camera.NearPlaneDistance = near;
-            Camera.FarPlaneDistance = far;
-        }
-
-        /// <summary>
-        /// This method clamps the near and far clip planes around the scene geometry
-        /// to achiever higher z-buffer precision.
-        /// 
-        /// It does this by finding the distance from each GeometryModel3D object's corner points
-        /// to the camera plane. The camera's far clip plane is set to 2 * dfar, and the camera's 
-        /// near clip plane is set to nearPlaneDistanceFactor * dnear
-        /// </summary>
-        internal static void ComputeClipPlaneDistances(Vector3 cameraPosition, Vector3 cameraLook, IEnumerable<Model3D> geometry, 
-            double nearPlaneDistanceFactor, out double near, out double far, double defaultNearClipDistance, double defaultFarClipDistance)
-        {
-            near = defaultNearClipDistance;
-            far = DefaultFarClipDistance;
-
-            var validGeometry = geometry.Where(i => i is GeometryModel3D).ToArray();
-            if (!validGeometry.Any()) return;
-
-            var bounds = validGeometry.Cast<GeometryModel3D>().Select(g=>g.Bounds());
-
-            // See http://mathworld.wolfram.com/Point-PlaneDistance.html
-            // The plane distance formula will return positive values for points on the same side of the plane
-            // as the plane's normal, and negative values for points on the opposite side of the plane. 
-
-            var distances = bounds.SelectMany(b => b.GetCorners()).
-                Select(c => c.DistanceToPlane(cameraPosition, cameraLook.Normalized())).
-                ToList();
-
-            if (!distances.Any()) return;
-
-            distances.Sort();
-
-            // All behind
-            // Set the near and far clip to their defaults
-            // because nothing is in front of the camera.
-            if (distances.All(d => d < 0))
-            {
-                near = defaultNearClipDistance;
-                far = defaultFarClipDistance;
-                return;
-            }
-
-            // All in front or some in front and some behind
-            // Set the near clip plane to some fraction of the 
-            // of the distance to the first point.
-            var closest = distances.First(d => d >= 0);
-            near = closest.AlmostEqualTo(0, EqualityTolerance) ? DefaultNearClipDistance : Math.Max(DefaultNearClipDistance, closest * nearPlaneDistanceFactor);
-            far = distances.Last() * 2;
-
-        }
-
-        internal static IEnumerable<string> FindIdentifiersForSelectedNodes(IEnumerable<NodeModel> selectedNodes)
-        {
-            return selectedNodes.SelectMany(n => n.OutPorts.Select(p => n.GetAstIdentifierForOutputIndex(p.Index).Value));
-        }
 
         /// <summary>
         /// Find all output identifiers for all custom nodes in the provided workspace. 
@@ -2101,22 +1794,7 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             return idents;
         }
 
-        internal static IEnumerable<string> AllOutputIdentifiersInWorkspace(HomeWorkspaceModel workspace)
-        {
-            if (workspace == null)
-            {
-                return null;
-            }
 
-            return
-                workspace.Nodes
-                    .SelectMany(n => n.OutPorts.Select(p => n.GetAstIdentifierForOutputIndex(p.Index).Value));
-        } 
-
-        internal static IEnumerable<GeometryModel3D> FindGeometryForIdentifiers(IEnumerable<GeometryModel3D> geometry, IEnumerable<string> identifiers)
-        {
-            return identifiers.SelectMany(id => geometry.Where(item => item.Name.Contains(id))).ToArray();
-        }
 
         /// <summary>
         /// For a set of selected nodes, compute a bounding box which
@@ -2124,19 +1802,7 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         /// </summary>
         /// <param name="geometry">A collection of <see cref="GeometryModel3D"/> objects.</param>
         /// <returns>A <see cref="BoundingBox"/> object.</returns>
-        internal static BoundingBox ComputeBoundsForGeometry(GeometryModel3D[] geometry)
-        {
-            if (!geometry.Any()) return DefaultBounds;
 
-            var bounds = geometry.First().Bounds();
-            bounds = geometry.Aggregate(bounds, (current, geom) => BoundingBox.Merge(current, geom.Bounds()));
-
-#if DEBUG
-            Debug.WriteLine("{0} geometry items referenced by the selection.", geometry.Count());
-            Debug.WriteLine("Bounding box of selected geometry:{0}", bounds);
-#endif
-            return bounds;
-        }
 
         internal override void ExportToSTL(string path, string modelName)
         {
@@ -2309,69 +1975,4 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         }
     }
 
-    internal static class BoundingBoxExtensions
-    {
-        /// <summary>
-        /// Convert a <see cref="BoundingBox"/> to a <see cref="Rect3D"/>
-        /// </summary>
-        /// <param name="bounds">The <see cref="BoundingBox"/> to be converted.</param>
-        /// <returns>A <see cref="Rect3D"/> object.</returns>
-        internal static Rect3D ToRect3D(this BoundingBox bounds)
-        {
-            var min = bounds.Minimum;
-            var max = bounds.Maximum;
-            var size = new Size3D((max.X - min.X), (max.Y - min.Y), (max.Z - min.Z));
-            return new Rect3D(min.ToPoint3D(), size);
-        }
-
-        /// <summary>
-        /// If a <see cref="GeometryModel3D"/> has more than one point, then
-        /// return its bounds, otherwise, return a bounding
-        /// box surrounding the point of the supplied size.
-        /// 
-        /// This extension method is to correct for the Helix toolkit's GeometryModel3D.Bounds
-        /// property which does not update correctly as new geometry is added to the GeometryModel3D.
-        /// </summary>
-        /// <param name="pointGeom">A <see cref="GeometryModel3D"/> object.</param>
-        /// <returns>A <see cref="BoundingBox"/> object encapsulating the geometry.</returns>
-        internal static BoundingBox Bounds(this GeometryModel3D geom, float defaultBoundsSize = 5.0f)
-        {
-            if (geom.Geometry.Positions.Count == 0)
-            {
-                return new BoundingBox();
-            }
-
-            if (geom.Geometry.Positions.Count > 1)
-            {
-                return BoundingBox.FromPoints(geom.Geometry.Positions.ToArray());
-            }
-
-            var pos = geom.Geometry.Positions.First();
-            var min = pos + new Vector3(-defaultBoundsSize, -defaultBoundsSize, -defaultBoundsSize);
-            var max = pos + new Vector3(defaultBoundsSize, defaultBoundsSize, defaultBoundsSize);
-            return new BoundingBox(min, max);
-        }
-
-        public static Vector3 Center(this BoundingBox bounds)
-        {
-            return (bounds.Maximum + bounds.Minimum)/2;
-        }
-
-    }
-
-    internal static class Vector3Extensions
-    {
-        internal static double DistanceToPlane(this Vector3 point, Vector3 planeOrigin, Vector3 planeNormal)
-        {
-            return Vector3.Dot(planeNormal, (point - planeOrigin));
-        }
-    }
-
-    internal static class DoubleExtensions
-    {
-        internal static bool AlmostEqualTo(this double a, double b, double tolerance)
-        {
-            return Math.Abs(a - b) < tolerance;
-        }
-    }
 }

@@ -21,10 +21,10 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             typeof(GeometryModel3D),
             new PropertyMetadata(false, ShowSelectedPropertyChanged));
 
-        public static void SetShowSelected(UIElement element, bool value)
-        {
-            element.SetValue(ShowSelectedProperty, value);
-        }
+        //public static void SetShowSelected(UIElement element, bool value)
+        //{
+        //    element.SetValue(ShowSelectedProperty, value);
+        //}
 
         public static bool GetShowSelected(UIElement element)
         {
@@ -55,10 +55,10 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             typeof (GeometryModel3D),
             new PropertyMetadata(false));
 
-        public static void SetHasTransparencyProperty(UIElement element, bool value)
-        {
-            element.SetValue(HasTransparencyProperty, value);
-        }
+        //public static void SetHasTransparencyProperty(UIElement element, bool value)
+        //{
+        //    element.SetValue(HasTransparencyProperty, value);
+        //}
 
         public static bool GetHasTransparencyProperty(UIElement element)
         {
@@ -74,10 +74,10 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             typeof(GeometryModel3D),
             new PropertyMetadata(false, IsFrozenPropertyChanged));
 
-        public static void SetIsFrozen(UIElement element, bool value)
-        {
-            element.SetValue(IsFrozenProperty, value);
-        }
+        //public static void SetIsFrozen(UIElement element, bool value)
+        //{
+        //    element.SetValue(IsFrozenProperty, value);
+        //}
 
         public static bool GetIsFrozen(UIElement element)
         {

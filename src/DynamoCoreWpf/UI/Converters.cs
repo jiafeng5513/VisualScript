@@ -20,7 +20,6 @@ using Dynamo.Graph.Nodes;
 using Dynamo.Graph.Workspaces;
 using Dynamo.Logging;
 using Dynamo.Utilities;
-using HelixToolkit.Wpf.SharpDX;
 using Color = System.Windows.Media.Color;
 using FlowDirection = System.Windows.FlowDirection;
 using HorizontalAlignment = System.Windows.HorizontalAlignment;
@@ -2087,29 +2086,6 @@ namespace Dynamo.Controls
         }
     }
 
-    internal class Watch3DBackgroundColorConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            var homeColor = (System.Windows.Media.Color)SharedDictionaryManager.DynamoColorsAndBrushesDictionary["WorkspaceBackgroundHome"];
-            var customColor = (System.Windows.Media.Color)SharedDictionaryManager.DynamoColorsAndBrushesDictionary["WorkspaceBackgroundCustom"];
-
-            //parameter will contain a true or false
-            //whether this is the home space
-            if ((bool)value)
-            {
-                return homeColor.ToColor4();
-            }
-
-            return customColor.ToColor4();
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter,
-          CultureInfo culture)
-        {
-            return null;
-        }
-    }
 
     public class GroupFontSizeToEditorEnabledConverter : IMultiValueConverter
     {

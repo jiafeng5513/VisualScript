@@ -32,10 +32,10 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         public IPreferences Preferences { get; set; }
         public IEngineControllerManager EngineControllerManager { get; set; }
 
-        public Watch3DViewModelStartupParams()
-        {
+        //public Watch3DViewModelStartupParams()
+        //{
             
-        }
+        //}
 
         public Watch3DViewModelStartupParams(DynamoModel model)
         {
@@ -127,7 +127,7 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         /// <summary>
         /// A flag which indicates whether this view model is used for a background preview.
         /// </summary>
-        public virtual bool IsBackgroundPreview 
+        public virtual bool IsBackgroundPreview
         {
             get { return true; }
         }
@@ -169,28 +169,18 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         /// navigation override key (ESC).
         /// </summary>
         private bool navigationKeyIsDown = false;
-        public bool NavigationKeyIsDown
-        {
-            get { return navigationKeyIsDown; }
-            set
-            {
-                if (navigationKeyIsDown == value) return;
+        //public bool NavigationKeyIsDown
+        //{
+        //    get { return navigationKeyIsDown; }
+        //    set
+        //    {
+        //        if (navigationKeyIsDown == value) return;
 
-                navigationKeyIsDown = value;
-                RaisePropertyChanged("NavigationKeyIsDown");
-                RaisePropertyChanged("CanNavigateBackground");
-            }
-        }
-
-        public DelegateCommand TogglePanCommand { get; set; }
-
-        public DelegateCommand ToggleOrbitCommand { get; set; }
-
-        public DelegateCommand ToggleCanNavigateBackgroundCommand { get; set; }
-
-        public DelegateCommand ToggleIsolationModeCommand { get; set; }
-
-        public DelegateCommand ZoomToFitCommand { get; set; }
+        //        navigationKeyIsDown = value;
+        //        RaisePropertyChanged("NavigationKeyIsDown");
+        //        RaisePropertyChanged("CanNavigateBackground");
+        //    }
+        //}
 
         internal WorkspaceViewModel CurrentSpaceViewModel
         {
@@ -249,11 +239,10 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
 
             RegisterEventHandlers();
 
-            TogglePanCommand = new DelegateCommand(TogglePan, CanTogglePan);
-            ToggleOrbitCommand = new DelegateCommand(ToggleOrbit, CanToggleOrbit);
-            ToggleCanNavigateBackgroundCommand = new DelegateCommand(ToggleCanNavigateBackground, CanToggleCanNavigateBackground);
-            ToggleIsolationModeCommand = new DelegateCommand(ToggleIsolationMode, CanToggleIsolationMode);
-            ZoomToFitCommand = new DelegateCommand(ZoomToFit, CanZoomToFit);
+
+
+            
+
             CanBeActivated = true;
         }
 
@@ -670,7 +659,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         }
 
         internal event Func<Point3D> RequestCameraPosition;
-
         public Point3D? GetCameraPosition()
         {
             var handler = RequestCameraPosition;
@@ -679,37 +667,37 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         }
 
         public event Action<object, MouseButtonEventArgs> ViewMouseDown;
-        internal void OnViewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            HandleViewClick(sender, e);
-            var handler = ViewMouseDown;
-            if (handler != null) handler(sender, e);
-        }
+        //internal void OnViewMouseDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    HandleViewClick(sender, e);
+        //    var handler = ViewMouseDown;
+        //    if (handler != null) handler(sender, e);
+        //}
 
         protected virtual void HandleViewClick(object sender, MouseButtonEventArgs e)
         { }
 
         public event Action<object, MouseButtonEventArgs> ViewMouseUp;
-        internal void OnViewMouseUp(object sender, MouseButtonEventArgs e)
-        {
-            var handler = ViewMouseUp;
-            if (handler != null) handler(sender, e);
-        }
+        //internal void OnViewMouseUp(object sender, MouseButtonEventArgs e)
+        //{
+        //    var handler = ViewMouseUp;
+        //    if (handler != null) handler(sender, e);
+        //}
 
         public event Action<object, MouseEventArgs> ViewMouseMove;
-        internal void OnViewMouseMove(object sender, MouseEventArgs e)
-        {
-            var handler = ViewMouseMove;
-            if (handler != null) handler(sender, e);
-        }
+        //internal void OnViewMouseMove(object sender, MouseEventArgs e)
+        //{
+        //    var handler = ViewMouseMove;
+        //    if (handler != null) handler(sender, e);
+        //}
 
         public event Action<object, RoutedEventArgs> ViewCameraChanged;
 
-        internal void OnViewCameraChanged(object sender, RoutedEventArgs args)
-        {
-            var handler = ViewCameraChanged;
-            if (handler != null) handler(sender, args);
-        }
+        //internal void OnViewCameraChanged(object sender, RoutedEventArgs args)
+        //{
+        //    var handler = ViewCameraChanged;
+        //    if (handler != null) handler(sender, args);
+        //}
 
         protected virtual void OnNodePropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -721,82 +709,12 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             // Override in derived classes
         }
 
-        internal void CancelNavigationState()
-        {
-            if(IsPanning) TogglePan(null);
-            if(IsOrbiting) ToggleOrbit(null);
-        }
+        //internal void CancelNavigationState()
+        //{
+        //    if(IsPanning) TogglePan(null);
+        //    if(IsOrbiting) ToggleOrbit(null);
+        //}
 
-        #region command methods
-
-        internal void TogglePan(object parameter)
-        {
-            CurrentSpaceViewModel.RequestTogglePanMode();
-
-            // Since panning and orbiting modes are exclusive from one another,
-            // turning one on may turn the other off. This is the reason we must
-            // raise property change for both at the same time to update visual.
-            RaisePropertyChanged("IsPanning");
-            RaisePropertyChanged("IsOrbiting");
-            RaisePropertyChanged("LeftClickCommand");
-        }
-
-        private static bool CanTogglePan(object parameter)
-        {
-            return true;
-        }
-
-        private void ToggleOrbit(object parameter)
-        {
-            CurrentSpaceViewModel.RequestToggleOrbitMode();
-
-            // Since panning and orbiting modes are exclusive from one another,
-            // turning one on may turn the other off. This is the reason we must
-            // raise property change for both at the same time to update visual.
-            RaisePropertyChanged("IsPanning");
-            RaisePropertyChanged("IsOrbiting");
-            RaisePropertyChanged("LeftClickCommand");
-        }
-
-        private static bool CanToggleOrbit(object parameter)
-        {
-            return true;
-        }
-
-        private void ToggleCanNavigateBackground(object parameter)
-        {
-            if (!Active)
-                return;
-
-            CanNavigateBackground = !CanNavigateBackground;
-        }
-
-        protected virtual bool CanToggleCanNavigateBackground(object parameter)
-        {
-            return false;
-        }
-
-        private void ToggleIsolationMode(object parameter)
-        {
-            IsolationMode = !IsolationMode;
-        }
-
-        private bool CanToggleIsolationMode(object parameter)
-        {
-            return true;
-        }
-
-        private static bool CanZoomToFit(object parameter)
-        {
-            return true;
-        }
-
-        protected virtual void ZoomToFit(object parameter)
-        {
-            // Override in derived classes to specify zoom to fit behavior.
-        } 
-
-        #endregion
 
         protected virtual void Dispose(bool disposing)
         {
