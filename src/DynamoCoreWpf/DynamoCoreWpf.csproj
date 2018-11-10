@@ -278,7 +278,6 @@
     <Compile Include="Views\PackageManager\PackagePathView.xaml.cs">
       <DependentUpon>PackagePathView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\Watch3D\AttachedProperties.cs" />
     <Compile Include="Views\Preview\CameraExtensions.cs" />
     <Compile Include="Views\Preview\PreviewCompactView.xaml.cs">
       <DependentUpon>PreviewCompactView.xaml</DependentUpon>
@@ -422,8 +421,6 @@
     <None Include="UI\Fonts\OpenSans-SemiboldItalic.ttf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="ViewModels\Watch3D\Resources\_dynamo.bfx" />
-    <None Include="ViewModels\Watch3D\Shaders\CompileShaders.bat" />
     <Resource Include="UI\Images\cursors.psd" />
     <Resource Include="UI\Images\cursors1.psd" />
   </ItemGroup>
@@ -1150,13 +1147,6 @@
     <Resource Include="UI\Images\bubble-arrow.png" />
     <Resource Include="UI\Images\icon-whats-new-small.png" />
     <Resource Include="UI\Images\icon-dictionary-small.png" />
-    <Content Include="ViewModels\Watch3D\Shaders\BillboardText.fx" />
-    <Content Include="ViewModels\Watch3D\Shaders\Common.fx" />
-    <Content Include="ViewModels\Watch3D\Shaders\Custom.fx" />
-    <Content Include="ViewModels\Watch3D\Shaders\Default.fx" />
-    <Content Include="ViewModels\Watch3D\Shaders\Lines.fx" />
-    <Content Include="ViewModels\Watch3D\Shaders\Material.fx" />
-    <Content Include="ViewModels\Watch3D\Shaders\Points.fx" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

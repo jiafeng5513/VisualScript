@@ -557,12 +557,12 @@ namespace Dynamo.ViewModels
                 case "Active":
                     RaisePropertyChanged("BackgroundPreviewActive");
                     break;
-                case "CanNavigateBackground":
-                    if (!BackgroundPreviewViewModel.CanNavigateBackground)
-                    {
-                        // Return focus back to Dynamo View
-                        OnRequestReturnFocusToView();
-                    }
+                //case "CanNavigateBackground":
+                //    if (!BackgroundPreviewViewModel.CanNavigateBackground)
+                //    {
+                //        // Return focus back to Dynamo View
+                //        OnRequestReturnFocusToView();
+                //    }
                     break;
             }
         }
@@ -1802,14 +1802,7 @@ namespace Dynamo.ViewModels
             }
             else if (parameter.ToString() == Resources.ScreenShotFrom3DShortcutParameter)
             {
-                if (BackgroundPreviewViewModel.CanNavigateBackground)
-                {
-                    Save3DImage(_fileDialog.FileName);
-                }
-                else
-                {
-                    SaveImage(_fileDialog.FileName);
-                }
+                SaveImage(_fileDialog.FileName);
             }
             else
             {
@@ -1962,14 +1955,6 @@ namespace Dynamo.ViewModels
 
         internal void ZoomIn(object parameter)
         {
-            if (BackgroundPreviewViewModel != null &&
-                BackgroundPreviewViewModel.CanNavigateBackground)
-            {
-                var op = ViewOperationEventArgs.Operation.ZoomIn;
-                OnRequestViewOperation(new ViewOperationEventArgs(op));
-                return;
-            }
-
             CurrentSpaceViewModel.ZoomInInternal();
             ZoomInCommand.RaiseCanExecuteChanged();
         }
@@ -1981,14 +1966,6 @@ namespace Dynamo.ViewModels
 
         private void ZoomOut(object parameter)
         {
-            if (BackgroundPreviewViewModel != null &&
-                BackgroundPreviewViewModel.CanNavigateBackground)
-            {
-                var op = ViewOperationEventArgs.Operation.ZoomOut;
-                OnRequestViewOperation(new ViewOperationEventArgs(op));
-                return;
-            }
-
             CurrentSpaceViewModel.ZoomOutInternal();
             ZoomOutCommand.RaiseCanExecuteChanged();
         }
@@ -2000,13 +1977,6 @@ namespace Dynamo.ViewModels
 
         private void FitView(object parameter)
         {
-            if (BackgroundPreviewViewModel.CanNavigateBackground)
-            {
-                var op = ViewOperationEventArgs.Operation.FitView;
-                OnRequestViewOperation(new ViewOperationEventArgs(op));
-                return;
-            }
-
             CurrentSpaceViewModel.FitViewInternal();
         }
 

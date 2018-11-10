@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Media3D;
-using System.Xml;
 using Dynamo.Core;
 using Dynamo.Graph.Nodes;
 using Dynamo.Interfaces;
@@ -49,12 +44,9 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         protected readonly IDynamoModel dynamoModel;
         protected readonly IScheduler scheduler;
         protected readonly IPreferences preferences;
-        protected readonly ILogger logger;
         protected readonly IEngineControllerManager engineManager;
         protected IRenderPackageFactory renderPackageFactory;
         protected IDynamoViewModel viewModel;
-
-        protected List<NodeModel> recentlyAddedNodes = new List<NodeModel>();
         protected bool active;
 
         /// <summary>
@@ -94,65 +86,7 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         /// A name which identifies this view model when multiple
         /// Watch3DViewModel objects exist.
         /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// A flag which indicates whether this view model is used for a background preview.
-        /// </summary>
-        public virtual bool IsBackgroundPreview
-        {
-            get { return true; }
-        }
-
-        private bool canNavigateBackground = false;
-        public bool CanNavigateBackground
-        {
-            get
-            {
-                return canNavigateBackground || navigationKeyIsDown;
-            }
-            set
-            {
-                canNavigateBackground = value;
-                //Dynamo.Logging.Analytics.TrackScreenView(canNavigateBackground ? "Geometry" : "Nodes");
-                RaisePropertyChanged("CanNavigateBackground");
-            }
-        }
-
-        /// <summary>
-        /// A flag which indicates whether Isolate Selected Geometry mode is activated.
-        /// </summary>
-        private bool isolationMode;
-        public bool IsolationMode
-        {
-            get
-            {
-                return isolationMode;
-            }
-            set
-            {
-                isolationMode = value;
-                RaisePropertyChanged("IsolationMode");
-            }
-        }
-
-        /// <summary>
-        /// A flag which indicates whether the user is holding the
-        /// navigation override key (ESC).
-        /// </summary>
-        private bool navigationKeyIsDown = false;
-        //public bool NavigationKeyIsDown
-        //{
-        //    get { return navigationKeyIsDown; }
-        //    set
-        //    {
-        //        if (navigationKeyIsDown == value) return;
-
-        //        navigationKeyIsDown = value;
-        //        RaisePropertyChanged("NavigationKeyIsDown");
-        //        RaisePropertyChanged("CanNavigateBackground");
-        //    }
-        //}
+        public string Name { get; set; } 
 
         public bool CanBeActivated { get; internal set; }
 
@@ -169,12 +103,10 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             dynamoModel = parameters.Model;
             scheduler = parameters.Scheduler;
             preferences = parameters.Preferences;
-            logger = parameters.Logger;
             engineManager = parameters.EngineControllerManager;
 
             Name = Resources.BackgroundPreviewDefaultName;
             active = parameters.Preferences.IsBackgroundPreviewActive;
-            logger = parameters.Logger;
 
             CanBeActivated = true;
         }
@@ -193,24 +125,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             this.renderPackageFactory = renderPackageFactory;
         }
 
-        
-        protected virtual void OnClear()
-        {
-            // Override in inherited classes.
-        }
-
-
-        /// <summary>
-        /// Event to be handled when the background preview is toggled on or off
-        /// On/off state is passed using the bool parameter
-        /// </summary>
-        public event Action<bool> CanNavigateBackgroundPropertyChanged;
-
-        protected virtual void OnIsolationModeRequestUpdate()
-        {
-            // Override in inherited classes.
-        }
-
         /// <summary>
         /// Forces a regeneration of the render packages for all nodes.
         /// </summary>
@@ -224,23 +138,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             }
         }
 
-
-        protected virtual void OnWorkspaceOpening(object obj)
-        {
-            // Override in derived classes.
-        }
-
-
-        protected virtual void OnWorkspaceSaving(XmlDocument doc)
-        {
-            // Override in derived classes
-        }
-
-        public virtual CameraData GetCameraInformation()
-        {
-            // Override in derived classes.
-            return null;
-        }
 
         /// <summary>
         /// Call this method to remove render pakcages that created by node.
@@ -284,92 +181,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
             }
         }
 
-        public virtual void DeleteGeometryForNode(NodeModel node, bool requestUpdate = true)
-        {
-            // Override in derived classes.
-        }
-
-        public virtual void DeleteGeometryForIdentifier(string identifier, bool requestUpdate = true)
-        {
-            // Override in derived classes.
-        }
-
-        public virtual void HighlightNodeGraphics(IEnumerable<NodeModel> nodes)
-        {
-            // Override in derived classes.
-        }
-
-        public virtual void UnHighlightNodeGraphics(IEnumerable<NodeModel> nodes)
-        {
-            // Override in derived classes.
-        }
-
-
-        protected virtual void SelectionChangedHandler(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            // Override in derived classes
-        }
-
-        protected virtual void OnRenderPackagesUpdated(NodeModel node, RenderPackageCache packages)
-        {
-            RemoveGeometryForNode(node);
-            if (packages.IsEmpty())
-                return;
-
-            // If there is no attached model update for all render packages
-            if (watchModel == null)
-            {
-                AddGeometryForRenderPackages(packages);
-                return;
-            }
-
-            // If there are no input ports update for all render packages
-            var inPorts = watchModel.InPorts;
-            if (inPorts == null || inPorts.Count() < 1)
-            {
-                AddGeometryForRenderPackages(packages);
-                return;
-            }
-
-            // If there are no connectors connected to the first (only) input port update for all render packages
-            var inConnectors = inPorts[0].Connectors;
-            if (inConnectors == null || inConnectors.Count() < 1 || inConnectors[0].Start == null)
-            {
-                AddGeometryForRenderPackages(packages);
-                return;
-            }
-
-            // Only update for render packages from the connected output port
-            var inputId = inConnectors[0].Start.GUID;
-            foreach (var port in node.OutPorts)
-            {
-                if (port.GUID != inputId)
-                {
-                    continue;
-                }
-
-                RenderPackageCache portPackages = packages.GetPortPackages(inputId);
-                if (portPackages == null)
-                {
-                    continue;
-                }
-
-                AddGeometryForRenderPackages(portPackages);
-            }
-        }
-
-        /// <summary>
-        /// Called from derived classes when a collection of render packages
-        /// are available to be processed as render geometry.
-        /// </summary>
-        /// <param name="taskPackages">A collection of packages from which to 
-        /// create render geometry.</param>
-        public virtual void GenerateViewGeometryFromRenderPackagesAndRequestUpdate(
-            RenderPackageCache taskPackages)
-        {
-            // Override in derived classes
-        }
-
         internal event Func<MouseEventArgs, IRay> RequestClickRay;
 
         /// <summary>
@@ -410,24 +221,8 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
 
         public event Action<object, RoutedEventArgs> ViewCameraChanged;
 
-        //internal void OnViewCameraChanged(object sender, RoutedEventArgs args)
-        //{
-        //    var handler = ViewCameraChanged;
-        //    if (handler != null) handler(sender, args);
-        //}
-
-        protected virtual void OnNodePropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            // Override in derived classes.
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-        }
-
         public void Dispose()
         {
-            Dispose(true);
             GC.SuppressFinalize(this);
         }
     }

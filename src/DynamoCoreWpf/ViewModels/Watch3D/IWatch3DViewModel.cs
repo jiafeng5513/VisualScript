@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Media3D;
 using Dynamo.Visualization;
-using Dynamo.Graph.Nodes;
 
 namespace Dynamo.Wpf.ViewModels.Watch3D
 {
@@ -61,11 +59,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         IRay GetClickRay(MouseEventArgs args);
 
         /// <summary>
-        /// Represents the name of current IWatch3DViewModel which will be saved in preference settings
-        /// </summary>
-        string PreferenceWatchName { get; }
-
-        /// <summary>
         /// Returns the current camera position of the 3D background preview
         /// Note: GetCameraInformation returns the camera position but without the correct
         /// transformation to model coordinates. This function takes care of that transformation
@@ -75,11 +68,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         /// <returns></returns>
         Point3D? GetCameraPosition();
 
-        /// <summary>
-        /// Returns information about camera position in background 3D preview
-        /// </summary>
-        /// <returns>Information about camera position</returns>
-        CameraData GetCameraInformation();
 
         /// <summary>
         /// Converts render packages into drawable geometry primitives 
@@ -90,33 +78,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         /// the creation of display geometry for asynchronous execution</param>
         void AddGeometryForRenderPackages(RenderPackageCache packages, bool forceAsyncCall = false);
 
-        /// <summary>
-        /// Finds a geometry corresponding to a string identifier
-        /// and removes it from the collection of geometry objects to be drawn
-        /// </summary>
-        /// <param name="identifier"></param>
-        /// <param name="requestUpdate"></param>
-        void DeleteGeometryForIdentifier(string identifier, bool requestUpdate = true);
-
-        /// <summary>
-        /// Finds geometries corresponding to a node and remove
-        /// them from the collection of geometry objects to be drawn.
-        /// </summary>
-        /// <param name="node"></param>
-        /// <param name="requestUpdate"></param>
-        void DeleteGeometryForNode(NodeModel node, bool requestUpdate = true);
-
-        /// <summary>
-        /// Highlight geometry corresponding to their respective nodes 
-        /// </summary>
-        /// <param name="nodes"></param>
-        void HighlightNodeGraphics(IEnumerable<NodeModel> nodes);
-
-        /// <summary>
-        /// Unhighlight geometry corresponding to their respective nodes 
-        /// </summary>
-        /// <param name="nodes"></param>
-        void UnHighlightNodeGraphics(IEnumerable<NodeModel> nodes);
 
         /// <summary>
         /// Invoke an Action synchronously on the UI thread via the ViewModel's Dispatcher 
@@ -136,16 +97,6 @@ namespace Dynamo.Wpf.ViewModels.Watch3D
         /// </summary>
         event Action<object, MouseButtonEventArgs> ViewMouseUp;
 
-        /// <summary>
-        /// Event to be handled for a mouse move event in the Watch view
-        /// </summary>
-        event Action<object, MouseEventArgs> ViewMouseMove;
-
-        /// <summary>
-        /// Event to be handled when the background preview is toggled on or off
-        /// On/off state is passed using the bool parameter
-        /// </summary>
-        event Action<bool> CanNavigateBackgroundPropertyChanged;
 
         /// <summary>
         /// Camera changed events to be handled for zoom/pan/rotate events in watch view

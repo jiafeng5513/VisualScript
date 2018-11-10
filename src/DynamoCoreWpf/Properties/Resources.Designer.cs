@@ -61,16 +61,6 @@ namespace Dynamo.Wpf.Properties {
         }
         
         /// <summary>
-        ///   查找 System.Byte[] 类型的本地化资源。
-        /// </summary>
-        public static byte[] _dynamo {
-            get {
-                object obj = ResourceManager.GetObject("_dynamo", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   查找类似 Could not get version. 的本地化字符串。
         /// </summary>
         public static string AboutWindowCannotGetVersion {
