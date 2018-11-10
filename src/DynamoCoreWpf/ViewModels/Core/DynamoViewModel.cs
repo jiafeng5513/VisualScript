@@ -90,16 +90,6 @@ namespace Dynamo.ViewModels
             get { return Model.PreferenceSettings; }
         }
 
-        public Point TransformOrigin
-        {
-            get { return transformOrigin; }
-            set
-            {
-                transformOrigin = value;
-                RaisePropertyChanged("TransformOrigin");
-            }
-        }
-
         public bool ViewingHomespace
         {
             get { return model.CurrentWorkspace == HomeSpace; }
@@ -327,11 +317,6 @@ namespace Dynamo.ViewModels
 
         public bool WatchIsResizable { get; set; }
 
-        //public string Version
-        //{
-        //    get { return model.Version; }
-        //}
-
         public string HostVersion
         {
             get { return model.HostVersion; }
@@ -394,18 +379,6 @@ namespace Dynamo.ViewModels
             get { return this.Model.CurrentWorkspace.Presets.Any(); }
         }
 
-        /// <summary>
-        /// A collection of <see cref="DefaultWatch3DViewModel"/> objects. 
-        /// 
-        /// Each DefaultWatch3DViewModel object is responsible for converting
-        /// data for visualization in a different context. For example, the 
-        /// <see cref="HelixWatch3DViewModel"/> provides the geometry for the
-        /// background preview.
-        /// </summary>
-        public IEnumerable<DefaultWatch3DViewModel> Watch3DViewModels
-        {
-            get { return watch3DViewModels; }
-        }
 
         /// <summary>
         /// A <see cref="DefaultWatch3DViewModel"/> which provides the
@@ -506,48 +479,10 @@ namespace Dynamo.ViewModels
 
             SubscribeDispatcherHandlers();
 
-            RenderPackageFactoryViewModel = new RenderPackageFactoryViewModel(Model.PreferenceSettings);
-            RenderPackageFactoryViewModel.PropertyChanged += RenderPackageFactoryViewModel_PropertyChanged;
-
             BackgroundPreviewViewModel = startConfiguration.Watch3DViewModel;
             BackgroundPreviewViewModel.PropertyChanged += Watch3DViewModelPropertyChanged;
             WatchHandler.RequestSelectGeometry += BackgroundPreviewViewModel.AddLabelForPath;
-            RegisterWatch3DViewModel(BackgroundPreviewViewModel, RenderPackageFactoryViewModel.Factory);
             model.ComputeModelDeserialized += model_ComputeModelDeserialized;
-            //model.HideUnhideNamespace(false, "DeepLearning.dll", "org.tensorflow.framework");
-        }
-
-        /// <summary>
-        /// Sets up the provided <see cref="DefaultWatch3DViewModel"/> object and 
-        /// adds it to the Watch3DViewModels collection.
-        /// </summary>
-        /// <param name="watch3DViewModel"></param>
-        /// <param name="factory"></param>
-        protected void RegisterWatch3DViewModel(DefaultWatch3DViewModel watch3DViewModel, IRenderPackageFactory factory)
-        {
-            watch3DViewModel.Setup(this, factory);
-            watch3DViewModels.Add(watch3DViewModel);
-            watch3DViewModel.Active = PreferenceSettings
-                .GetIsBackgroundPreviewActive(watch3DViewModel.PreferenceWatchName);
-            RaisePropertyChanged("Watch3DViewModels");
-        }
-
-        private void RenderPackageFactoryViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            switch (e.PropertyName)
-            {
-                case "ShowEdges":
-                    var factoryVm = (RenderPackageFactoryViewModel)sender;
-                    model.PreferenceSettings.ShowEdges = factoryVm.Factory.TessellationParameters.ShowEdges;
-                    // A full regeneration is required to get the edge geometry.
-                    foreach (var vm in Watch3DViewModels)
-                    {
-                        vm.RegenerateAllPackages();
-                    }
-                    break;
-                default:
-                    return;
-            }
         }
 
         void Watch3DViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -556,13 +491,6 @@ namespace Dynamo.ViewModels
             {
                 case "Active":
                     RaisePropertyChanged("BackgroundPreviewActive");
-                    break;
-                case "CanNavigateBackground":
-                    if (!BackgroundPreviewViewModel.CanNavigateBackground)
-                    {
-                        // Return focus back to Dynamo View
-                        OnRequestReturnFocusToView();
-                    }
                     break;
             }
         }
@@ -1802,14 +1730,7 @@ namespace Dynamo.ViewModels
             }
             else if (parameter.ToString() == Resources.ScreenShotFrom3DShortcutParameter)
             {
-                if (BackgroundPreviewViewModel.CanNavigateBackground)
-                {
-                    Save3DImage(_fileDialog.FileName);
-                }
-                else
-                {
-                    SaveImage(_fileDialog.FileName);
-                }
+                SaveImage(_fileDialog.FileName);
             }
             else
             {
@@ -1962,14 +1883,6 @@ namespace Dynamo.ViewModels
 
         internal void ZoomIn(object parameter)
         {
-            if (BackgroundPreviewViewModel != null &&
-                BackgroundPreviewViewModel.CanNavigateBackground)
-            {
-                var op = ViewOperationEventArgs.Operation.ZoomIn;
-                OnRequestViewOperation(new ViewOperationEventArgs(op));
-                return;
-            }
-
             CurrentSpaceViewModel.ZoomInInternal();
             ZoomInCommand.RaiseCanExecuteChanged();
         }
@@ -1981,14 +1894,6 @@ namespace Dynamo.ViewModels
 
         private void ZoomOut(object parameter)
         {
-            if (BackgroundPreviewViewModel != null &&
-                BackgroundPreviewViewModel.CanNavigateBackground)
-            {
-                var op = ViewOperationEventArgs.Operation.ZoomOut;
-                OnRequestViewOperation(new ViewOperationEventArgs(op));
-                return;
-            }
-
             CurrentSpaceViewModel.ZoomOutInternal();
             ZoomOutCommand.RaiseCanExecuteChanged();
         }
@@ -2000,13 +1905,6 @@ namespace Dynamo.ViewModels
 
         private void FitView(object parameter)
         {
-            if (BackgroundPreviewViewModel.CanNavigateBackground)
-            {
-                var op = ViewOperationEventArgs.Operation.FitView;
-                OnRequestViewOperation(new ViewOperationEventArgs(op));
-                return;
-            }
-
             CurrentSpaceViewModel.FitViewInternal();
         }
 

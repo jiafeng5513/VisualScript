@@ -208,30 +208,30 @@ namespace Dynamo.Manipulation
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="mouseEventArgs"></param>
-        protected virtual void MouseMove(object sender, MouseEventArgs mouseEventArgs)
-        {
-            if (!IsEnabled()) return;
+        //protected virtual void MouseMove(object sender, MouseEventArgs mouseEventArgs)
+        //{
+        //    if (!IsEnabled()) return;
 
-            var clickRay = BackgroundPreviewViewModel.GetClickRay(mouseEventArgs);
-            if (clickRay == null) return;
+        //    var clickRay = BackgroundPreviewViewModel.GetClickRay(mouseEventArgs);
+        //    if (clickRay == null) return;
 
-            if (GizmoInAction == null)
-            {
-                HighlightGizmoOnRollOver(clickRay);
-                return;
-            }
+        //    if (GizmoInAction == null)
+        //    {
+        //        HighlightGizmoOnRollOver(clickRay);
+        //        return;
+        //    }
 
-            var offset = GizmoInAction.GetOffset(clickRay.GetOriginPoint(), clickRay.GetDirectionVector());
-            if (offset.Length < 0.01) return;
+        //    var offset = GizmoInAction.GetOffset(clickRay.GetOriginPoint(), clickRay.GetDirectionVector());
+        //    if (offset.Length < 0.01) return;
 
-            // Update input nodes attached to manipulator node 
-            // Doing this triggers a graph update on scheduler thread
-            OnGizmoMoved(GizmoInAction, offset);
+        //    // Update input nodes attached to manipulator node 
+        //    // Doing this triggers a graph update on scheduler thread
+        //    OnGizmoMoved(GizmoInAction, offset);
 
-            // redraw manipulator at new position synchronously
-            var packages = BuildRenderPackage();
-            BackgroundPreviewViewModel.AddGeometryForRenderPackages(packages);
-        }
+        //    // redraw manipulator at new position synchronously
+        //    var packages = BuildRenderPackage();
+        //    BackgroundPreviewViewModel.AddGeometryForRenderPackages(packages);
+        //}
 
         /// <summary>
         /// Constructor
@@ -401,7 +401,7 @@ namespace Dynamo.Manipulation
         /// </summary>
         private void AttachBaseHandlers()
         {
-            BackgroundPreviewViewModel.ViewMouseMove += MouseMove;
+            //BackgroundPreviewViewModel.ViewMouseMove += MouseMove;
             BackgroundPreviewViewModel.ViewMouseDown += MouseDown;
             BackgroundPreviewViewModel.ViewMouseUp += MouseUp;
 
@@ -446,7 +446,7 @@ namespace Dynamo.Manipulation
             // Race condition can occur if say one gizmo is moving due to another gizmo
             // and it is highlighted when it comes near the mouse pointer.
             RenderPackageCache result = null;
-            BackgroundPreviewViewModel.Invoke(() => result = BuildRenderPackage());
+            //BackgroundPreviewViewModel.Invoke(() => result = BuildRenderPackage());
             return result;
         }
 
@@ -455,51 +455,11 @@ namespace Dynamo.Manipulation
         /// </summary>
         private void DetachHandlers()
         {
-            BackgroundPreviewViewModel.ViewMouseMove -= MouseMove;
+            //BackgroundPreviewViewModel.ViewMouseMove -= MouseMove;
             BackgroundPreviewViewModel.ViewMouseDown -= MouseDown;
             BackgroundPreviewViewModel.ViewMouseUp -= MouseUp;
 
             Node.RequestRenderPackages -= GenerateRenderPackages;
-        }
-
-        /// <summary>
-        /// Removes Gizmos from background preview.
-        /// </summary>
-        private void DeleteGizmos()
-        {
-            var gizmos = GetGizmos(false);
-            foreach (var item in gizmos)
-            {
-                // Unsubscribe gizmos from camera-change events before updating the scene
-                item.Dispose();
-                BackgroundPreviewViewModel.DeleteGeometryForIdentifier(item.Name);
-            }
-        }
-
-        /// <summary>
-        /// Highlights/Unhighlights Gizmo drawables on mouse roll-over
-        /// </summary>
-        /// <param name="clickRay"></param>
-        private void HighlightGizmoOnRollOver(IRay clickRay)
-        {
-            Debug.Assert((IsMainThread()));
-
-            var gizmos = GetGizmos(false);
-            foreach (var item in gizmos)
-            {
-                item.UnhighlightGizmo();
-
-                using (var originPt = clickRay.GetOriginPoint())
-                using (var dirVec = clickRay.GetDirectionVector())
-                {
-                    object hitObject;
-                    if (item.HitTest(originPt, dirVec, out hitObject))
-                    {
-                        item.HighlightGizmo();
-                        return;
-                    }
-                }
-            }
         }
 
         internal static bool IsMainThread()
@@ -522,7 +482,7 @@ namespace Dynamo.Manipulation
             Dispose(true);
 
             Node.ClearErrorsAndWarnings();
-            DeleteGizmos();
+            //DeleteGizmos();
             DetachHandlers();
         }
 
@@ -530,26 +490,26 @@ namespace Dynamo.Manipulation
         /// Builds render packages as required for rendering this manipulator.
         /// </summary>
         /// <returns>List of render packages</returns>
-        public RenderPackageCache BuildRenderPackage()
-        {
-            Debug.Assert(IsMainThread());
+        //public RenderPackageCache BuildRenderPackage()
+        //{
+        //    Debug.Assert(IsMainThread());
 
-            var packages = new RenderPackageCache();
-            try
-            {
-                var gizmos = GetGizmos(true);
-                foreach (var item in gizmos)
-                {
-                    packages.Add(item.GetDrawables());
-                }
-            }
-            catch (Exception e)
-            {
-                Node.Warning(Properties.Resources.DirectManipulationError +": " + e.Message);
-            }
+        //    var packages = new RenderPackageCache();
+        //    try
+        //    {
+        //        var gizmos = GetGizmos(true);
+        //        foreach (var item in gizmos)
+        //        {
+        //            packages.Add(item.GetDrawables());
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Node.Warning(Properties.Resources.DirectManipulationError +": " + e.Message);
+        //    }
 
-            return packages;
-        }
+        //    return packages;
+        //}
 
         /// <summary>
         /// Checks if manipulator is enabled or not. Manipulator is enabled 
@@ -645,16 +605,16 @@ namespace Dynamo.Manipulation
             subManipulators.ForEach(x => x.Dispose());
         }
 
-        public RenderPackageCache BuildRenderPackage()
-        {
-            var packages = new RenderPackageCache();
-            foreach (var subManipulator in subManipulators)
-            {
-                packages.Add(subManipulator.BuildRenderPackage());
-            }
+        //public RenderPackageCache BuildRenderPackage()
+        //{
+        //    //var packages = new RenderPackageCache();
+        //    //foreach (var subManipulator in subManipulators)
+        //    //{
+        //    //    packages.Add(subManipulator.BuildRenderPackage());
+        //    //}
 
-            return packages;
-        }
+        //    //return packages;
+        //}
 
         #endregion
     }

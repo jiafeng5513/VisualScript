@@ -18,10 +18,6 @@ namespace Dynamo.Manipulation
     /// </summary>
     public interface IGizmo : IDisposable
     {
-        /// <summary>
-        /// Unique name of the Gizmo
-        /// </summary>
-        string Name { get; set; }
 
         /// <summary>
         /// Performs hit test based on view projection ray and returns the
@@ -33,39 +29,6 @@ namespace Dynamo.Manipulation
         /// <param name="hitObject">The object hit by the input ray.</param>
         /// <returns>True when an object is hit, else false.</returns>
         bool HitTest(Point source, Vector direction, out object hitObject);
-
-        /// <summary>
-        /// Computes new offset based on the hit point.
-        /// </summary>
-        /// <param name="newPosition">New position of mouse click.</param>
-        /// <param name="viewDirection">view projection direction</param>
-        /// <returns>Offset vector of hit point wrt it's origin.</returns>
-        Vector GetOffset(Point newPosition, Vector viewDirection);
-
-        /// <summary>
-        /// Returns render package for all the drawables of this Gizmo.
-        /// </summary>
-        /// <returns>List of render packages.</returns>
-        RenderPackageCache GetDrawables();
-
-        RenderPackageCache GetDrawablesForTransientGraphics();
-
-        /// <summary>
-        /// Delete any transient graphics associated with the Gizmo
-        /// such as those used in highlights, etc.
-        /// </summary>
-        void DeleteTransientGraphics();
-
-        /// <summary>
-        /// Highlight gizmo drawables or create transient geometry to highlight the gizmo during mouse over
-        /// </summary>
-        /// <returns></returns>
-        void HighlightGizmo();
-
-        /// <summary>
-        /// Unhighlight gizmo drawables or delete all transient geometry used to highlight gizmo during mouse over 
-        /// </summary>
-        void UnhighlightGizmo();
 
         /// <summary>
         /// Update graphics widgets associated with the gizmo whenever it needs to be updated
@@ -168,10 +131,7 @@ namespace Dynamo.Manipulation
 
         private void Redraw()
         {
-            if (manipulator.IsEnabled())
-            {
-                BackgroundPreviewViewModel.AddGeometryForRenderPackages(GetDrawables());
-            }
+
         }
 
         private void OnViewCameraChanged(object o, RoutedEventArgs routedEventArgs)
@@ -186,24 +146,13 @@ namespace Dynamo.Manipulation
 
         public abstract Vector GetOffset(Point newPosition, Vector viewDirection);
 
-        public abstract RenderPackageCache GetDrawables();
-
-        public abstract RenderPackageCache GetDrawablesForTransientGraphics();
-
         public abstract void UpdateGizmoGraphics();
 
         public abstract void DeleteTransientGraphics();
 
-        public void HighlightGizmo()
-        {
-            var drawables = GetDrawablesForTransientGraphics();
-            BackgroundPreviewViewModel.AddGeometryForRenderPackages(drawables);
-        }
-
         public void UnhighlightGizmo()
         {
-            // Delete all transient geometry used to highlight gizmo
-            DeleteTransientGraphics();
+
         }
 
         public void Dispose()
