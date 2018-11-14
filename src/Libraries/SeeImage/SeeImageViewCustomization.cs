@@ -28,8 +28,6 @@ namespace Dynamo.Wpf.NodeViewCustomizations
         private SeeImageModel convertModel;
         private SeeImageViewModel seeImageViewModel;
 
-        private Image image;
-
         public void CustomizeView(SeeImageModel model, NodeView nodeView)
         {
             nodeModel = nodeView.ViewModel.NodeModel;

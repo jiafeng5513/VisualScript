@@ -18,8 +18,16 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <PlatformTarget>x64</PlatformTarget>
-    <NoWarn>CS1591,CS3001,CS3002</NoWarn>
+    <NoWarn>CS1591,CS3001,CS3002,CS0672,CS0618</NoWarn>
     <OutputPath>..\..\bin\x64\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>..\..\bin\x64\Release\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+    <NoWarn>CS1591,CS3001,CS3002,CS0672,CS0618</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <NoWarn>CS1591,CS3001,CS3002</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
@@ -104,6 +112,7 @@
     <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="MsBuildAL1073WarningWorkaround.targets" />
   <Target Name="AfterBuild">
     <ItemGroup>
       <ExtensionDefinition Include="DynamoManipulationExtension_ViewExtensionDefinition.xml" />

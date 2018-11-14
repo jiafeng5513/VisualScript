@@ -18,13 +18,13 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <PlatformTarget>x64</PlatformTarget>
-    <NoWarn>CS1591,CS1587,CS3001,CS3016,CS1572</NoWarn>
+    <NoWarn>CS1591,CS1587,CS3001,CS3016,CS1572,CS0672,CS0618</NoWarn>
     <OutputPath>..\..\..\bin\x64\Debug\nodes\</OutputPath>
     <DocumentationFile>..\..\..\bin\x64\Debug\nodes\CoreNodeModels.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>..\..\..\bin\x64\Release\nodes\</OutputPath>
-    <NoWarn>CS1591,CS1587,CS3001,CS3016,CS1572</NoWarn>
+    <NoWarn>CS1591,CS1587,CS3001,CS3016,CS1572,CS0672,CS0618</NoWarn>
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>

@@ -28,13 +28,13 @@
     <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
     <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
     <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Team Tools\Static Analysis Tools\Rule Sets\MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <CodeAnalysisRuleSetDirectories>;C:\VS2010\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
     <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
     <CodeAnalysisRuleDirectories>;C:\VS2010\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
     <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
     <Prefer32Bit>false</Prefer32Bit>
-    <NoWarn>CS3008,CS3003,CS1591,CS3005,CS0660</NoWarn>
+    <NoWarn>CS3008,CS3003,CS1591,CS3005,CS0660,CS0672,CS0618</NoWarn>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <OutputPath>..\..\..\bin\x64\Debug\</OutputPath>
   </PropertyGroup>
@@ -52,7 +52,7 @@
     <DefineConstants>_USE_FREE_LIST</DefineConstants>
     <Prefer32Bit>false</Prefer32Bit>
     <OutputPath>..\..\..\bin\x64\Release\</OutputPath>
-    <NoWarn>CS3008,CS3003,CS1591,CS3005,CS0660</NoWarn>
+    <NoWarn>CS3008,CS3003,CS1591,CS3005,CS0660,CS0672,CS0618</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />

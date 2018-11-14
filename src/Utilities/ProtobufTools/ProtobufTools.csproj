@@ -19,7 +19,7 @@
     <OutputPath>..\..\..\bin\x64\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DocumentationFile>..\..\..\bin\x64\Debug\ProtobufTools.xml</DocumentationFile>
-    <NoWarn>CS1591</NoWarn>
+    <NoWarn>CS1591,CS1570</NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
@@ -35,7 +35,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <NoWarn>CS1591</NoWarn>
+    <NoWarn>CS1591,CS1570</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Google.Protobuf, Version=3.6.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">

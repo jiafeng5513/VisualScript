@@ -16,12 +16,12 @@
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <NoWarn>CS1591,CS3016</NoWarn>
+    <NoWarn>CS1591,CS3016,CS0672,CS0618</NoWarn>
     <PlatformTarget>x64</PlatformTarget>
     <OutputPath>..\..\..\bin\x64\Debug\nodes\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <NoWarn>CS1591,CS3016</NoWarn>
+    <NoWarn>CS1591,CS3016,CS0672,CS0618</NoWarn>
     <OutputPath>..\..\..\bin\x64\Release\nodes\</OutputPath>
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>

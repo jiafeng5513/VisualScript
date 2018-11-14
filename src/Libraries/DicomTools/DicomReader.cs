@@ -23,7 +23,6 @@ namespace DicomTools
         /// 关闭合成构造方法
         /// </summary>
         private DicomReader(){}
-        private DicomFile _file;
         /// <summary>
         /// 读取Dicom图像
         /// </summary>

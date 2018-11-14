@@ -105,7 +105,7 @@ namespace TensorServer
                 TFTensor result = output[0];
                 var probabilities = ((float[][])result.GetValue(jagged: true))[0];
                 var bestIdx = 0;
-                float p = 0, best = 0;
+                float best = 0;
                 for (int i = 0; i < probabilities.Length; i++)
                 {
                     if (probabilities[i] > best)

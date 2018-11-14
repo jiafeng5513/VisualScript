@@ -433,7 +433,7 @@ namespace ImageProc
         /// 掩码运算
         /// </summary>
         /// <param name="target">目标图像</param>
-        /// <param name="mask">掩码</param>
+        /// <param name="Mask">掩码</param>
         /// <returns></returns>
         public static Mat Mask(Mat target, Mat Mask)
         {
