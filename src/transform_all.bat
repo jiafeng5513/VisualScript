@@ -3,6 +3,7 @@ SETLOCAL ENABLEDELAYEDEXPANSION
 REM This is a script used to generate assembly information, which is executed when the AssemblyInfoGenerator project is generated
 REM Update the version number according to the T4 template carried in the project.
 REM RevisionNumber = ((int)(DateTime.UtcNow - new DateTime(2017,1,1)).TotalDays)*10+((int)DateTime.UtcNow.Hour)/3
+
 :: set the working dir (default to current dir)
 set wdir=%cd%
 if not (%1)==() set wdir=%1
@@ -19,7 +20,9 @@ dir *.tt /b > t4list.txt
 echo the following T4 templates will be transformed:
 type t4list.txt
 
-set TextTransform=C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\TextTransform.exe
+set TextTransform=C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\TextTransform.exe
+IF NOT EXIST "%TextTransform%" set TextTransform=C:\Program Files (x86)\Microsoft Visual Studio\2017\Professional\Common7\IDE\TextTransform.exe
+IF NOT EXIST "%TextTransform%" set TextTransform=C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\TextTransform.exe
 
 :: transform all the templates
 for /f %%d in (t4list.txt) do (
