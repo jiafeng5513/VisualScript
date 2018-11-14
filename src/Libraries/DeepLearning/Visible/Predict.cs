@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Sockets;
@@ -39,9 +40,19 @@ namespace DeepLearning.Visible
             sw.Close();
 
             //1.启动TensorServer
-
             currentDirectory += "//TensorServer.exe";
-            System.Diagnostics.Process.Start(currentDirectory);
+            Process proc = new Process();
+            proc.StartInfo.FileName = currentDirectory;
+
+#if DEBUG
+            proc.StartInfo.CreateNoWindow = false;
+            proc.StartInfo.UseShellExecute = true;
+#else
+            proc.StartInfo.CreateNoWindow = true;
+            proc.StartInfo.UseShellExecute = false;
+#endif
+            proc.Start();
+            //System.Diagnostics.Process.Start(currentDirectory);
             //2.启动TCP客户端
             bool run = true;
             BinaryReader br;

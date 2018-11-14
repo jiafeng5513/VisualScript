@@ -172,7 +172,6 @@ namespace TensorServer
             Program m_server = new Program();
             m_server.ListenProcess();
             Console.WriteLine("监听退出,服务器关闭");
-            Thread.Sleep(2000);
         }
     }
 }
