@@ -663,6 +663,10 @@
                                   Name="CreateANode"
                                   Command="{Binding CreateANodeByCode}"
                                   Header="创建一个节点" />
+                        <MenuItem Focusable="False"
+                                  Name="OpenBrowser"
+                                  Command="{Binding OpenBrowser}"
+                                  Header="打开浏览器" />
                         <!--anchor-->
                     </MenuItem>
                 </Menu>
