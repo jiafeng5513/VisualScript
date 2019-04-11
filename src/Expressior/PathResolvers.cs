@@ -33,7 +33,8 @@ namespace Dynamo.Applications
                 "BuiltIn.ds",
                 "ImageProcess.dll",//注意这个dll的名字
                 "DicomTools.dll",
-                "DeepLearning.dll"
+                "DeepLearning.dll",
+                "TensorCore.dll"
             };
 
         }

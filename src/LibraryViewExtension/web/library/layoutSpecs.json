@@ -1299,7 +1299,7 @@
                 }
               ],
               "childElements": []
-            },            
+            },
             {
               "text": "Model Analysis",
               "iconUrl": "",
@@ -1307,6 +1307,164 @@
               "include": [
                 {
                   "path": "DeepLearning.Core.ModelAgent"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Basic Tensor Operators",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.Negate"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.Sigmoid"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.Tanh"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.Asin"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.Sin"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.Acos"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.Cos"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.Cosh"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.Sinh"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.Exp"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.Log"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.Square"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.Sqrt"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.Transpose"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.Reshape"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.Times"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.TransposeTimes"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.Plus"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.Minus"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.LogAddExp"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.Pow"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.ElementTimes"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.ElementDivide"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.Combine"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.Splice"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.CosineDistance"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.CosineDistanceWithNegativeSamples"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.PastValue"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.FutureValue"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Complex Tensor Operators",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.Convolution"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.ROIPooling"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.Pooling"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.BatchNormalization"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.Dropout"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Activation Functions",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.ReLU"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.Softmax"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.Hardmax"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.LeakyReLU"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Loss Functions",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.BinaryCrossEntropy"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.WeightedBinaryCrossEntropy"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.CrossEntropyWithSoftmax"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.ClassificationError"
                 }
               ],
               "childElements": []
