@@ -524,8 +524,8 @@ Global
 		{ACD8A60E-3004-440C-AD24-0B4794D3BF1F}.Debug|x64.Build.0 = Debug|x64
 		{ACD8A60E-3004-440C-AD24-0B4794D3BF1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACD8A60E-3004-440C-AD24-0B4794D3BF1F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ACD8A60E-3004-440C-AD24-0B4794D3BF1F}.Release|x64.ActiveCfg = Release|x64
-		{ACD8A60E-3004-440C-AD24-0B4794D3BF1F}.Release|x64.Build.0 = Release|x64
+		{ACD8A60E-3004-440C-AD24-0B4794D3BF1F}.Release|x64.ActiveCfg = Release|Any CPU
+		{ACD8A60E-3004-440C-AD24-0B4794D3BF1F}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
