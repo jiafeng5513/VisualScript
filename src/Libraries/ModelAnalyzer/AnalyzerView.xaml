@@ -9,7 +9,7 @@
              xmlns:configuration="clr-namespace:Dynamo.Configuration;assembly=DynamoCore"
              xmlns:viewModels="clr-namespace:Dynamo.ViewModels;assembly=DynamoCoreWpf"
              xmlns:wpf="clr-namespace:Dynamo.Wpf"
-             d:DataContext="{d:DesignInstance wpf:AnalyzerViewModel, IsDesignTimeCreatable=False}"
+             d:DataContext="{d:DesignInstance wpf:CnnTrainerViewModel, IsDesignTimeCreatable=False}"
              mc:Ignorable="d" Width="250" Height="Auto">
 
     <UserControl.Resources>

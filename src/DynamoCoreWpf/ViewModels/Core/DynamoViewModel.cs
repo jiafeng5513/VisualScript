@@ -1426,6 +1426,16 @@ namespace Dynamo.ViewModels
             EmbeddedBrowser m = new EmbeddedBrowser();
             m.Show();
         }
+        /// <summary>
+        /// 打开外挂控制台
+        /// </summary>
+        /// <param name="parameter"></param>
+        private void DoOpenConsoleView(object parameter)
+        {
+            //打开外挂控制台
+            ConsoleView.ConsoleView m = new ConsoleView.ConsoleView();
+            m.Show();
+        }
 
         private static bool CanCreateNodeFromSelection(object parameter)
         {

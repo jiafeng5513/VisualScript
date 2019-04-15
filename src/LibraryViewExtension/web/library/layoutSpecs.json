@@ -1290,6 +1290,20 @@
           "include": [],
           "childElements": [
             {
+              "text": "Constructors",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "TensorCore.TensorCore.Constructors.CreateStreamConfiguration"
+                },
+                {
+                  "path": "TensorCore.TensorCore.Constructors.CreateMinibatchSource"
+                }
+              ],
+              "childElements": []
+            },
+            {
               "text": "Example",
               "iconUrl": "",
               "elementType": "group",
@@ -1307,6 +1321,17 @@
               "include": [
                 {
                   "path": "DeepLearning.Core.ModelAgent"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Build-In Trainer",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "TensorCore.CnnTrainer"
                 }
               ],
               "childElements": []
@@ -1468,6 +1493,89 @@
                 }
               ],
               "childElements": []
+            },
+            {
+              "text": "Other Functions",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.GlorotUniformInitializer"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Consts,attributes and Enums",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+              ],
+              "childElements": [
+                {
+                  "text": "DataType",
+                  "iconUrl": "",
+                  "elementType": "group",
+                  "include": [
+                    {
+                      "path": "TensorCore.TensorCore.Constants.DataType_Double"
+                    },
+                    {
+                      "path": "TensorCore.TensorCore.Constants.DataType_Float"
+                    },
+                    {
+                      "path": "TensorCore.TensorCore.Constants.DataType_Float16"
+                    },
+                    {
+                      "path": "TensorCore.TensorCore.Constants.DataType_Int16"
+                    },
+                    {
+                      "path": "TensorCore.TensorCore.Constants.DataType_Int8"
+                    },
+                    {
+                      "path": "TensorCore.TensorCore.Constants.DataType_UChar"
+                    },
+                    {
+                      "path": "TensorCore.TensorCore.Constants.DataType_Unknown"
+                    }
+                  ],
+                  "childElements": []
+                },
+                {
+                  "text": "Device",
+                  "iconUrl": "",
+                  "elementType": "group",
+                  "include": [
+                    {
+                      "path": "TensorCore.TensorCore.Constants.Device_CPU"
+                    },
+                    {
+                      "path": "TensorCore.TensorCore.Constants.Device_GPU"
+                    },
+                    {
+                      "path": "TensorCore.TensorCore.Constants.Device_All"
+                    }
+                  ],
+                  "childElements": []
+                },
+                {
+                  "text": "Attribute",
+                  "iconUrl": "",
+                  "elementType": "group",
+                  "include": [
+                    {
+                      "path": "TensorCore.TensorCore.Constants.DefaultParamInitScale"
+                    },
+                    {
+                      "path": "TensorCore.TensorCore.Constants.SentinelValueForInferParamInitRank"
+                    },
+                    {
+                      "path": "TensorCore.TensorCore.Constants.InfinitelyRepeat"
+                    }
+                  ],
+                  "childElements": []
+                }
+              ]
             }
           ]
         },

@@ -667,6 +667,11 @@
                                   Name="OpenBrowser"
                                   Command="{Binding OpenBrowser}"
                                   Header="打开浏览器" />
+
+                        <MenuItem Focusable="False"
+                                  Name="OpenConsoleView"
+                                  Command="{Binding OpenConsoleView}"
+                                  Header="打开外挂控制台" />
                         <!--anchor-->
                     </MenuItem>
                 </Menu>

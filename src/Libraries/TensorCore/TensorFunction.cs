@@ -7,10 +7,14 @@ using CNTK;
 
 namespace TensorCore
 {
+    /*
+     * TensorFunction for Encapsulating Tensor Computing Functions
+     */
     public class TensorFunction
     {
         public static Function Negate(Variable operand, string name = "")
         {
+
             return CNTKLib.Negate(operand, name);
         }
 
@@ -232,6 +236,11 @@ namespace TensorCore
         public static Function LeakyReLU(Variable operand, double alpha, string name = "")
         {
             return CNTKLib.LeakyReLU(operand, alpha, name);
+        }
+
+        public static CNTKDictionary GlorotUniformInitializer(double scale, int outputRank, int filterRank)
+        {
+            return CNTKLib.GlorotUniformInitializer(scale, outputRank,filterRank);
         }
     }
 }
