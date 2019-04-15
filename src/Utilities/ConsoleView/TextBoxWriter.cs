@@ -35,22 +35,37 @@ namespace ConsoleView
         {
             textBox.AppendText(msg);
             textBox.AppendText("\n");
+            textBox.ScrollToEnd();
         }
 
         public override void Write(string value)
         {
             if (textBox.Dispatcher.CheckAccess())
+            {
                 textBox.AppendText(value);
+                textBox.AppendText("\n");
+                textBox.ScrollToEnd();
+            }
             else
+            {
                 textBox.Dispatcher.Invoke(new outputDelegate(outputAction), value);
+            }
+            textBox.ScrollToEnd();
         }
 
         public override void WriteLine(string value)
         {
             if (textBox.Dispatcher.CheckAccess())
+            {
                 textBox.AppendText(value);
+                textBox.AppendText("\n");
+                textBox.ScrollToEnd();
+            }
             else
+            {
                 textBox.Dispatcher.Invoke(new outputDelegate(outputAction), value);
+            }
+            
         }
     }
 }

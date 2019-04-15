@@ -10,7 +10,7 @@ using Dynamo.Graph.Nodes;
 using Dynamo.Models;
 using Dynamo.UI.Commands;
 using Dynamo.ViewModels;
-
+using System.Threading;
 using ModelAnalyzerUI;
 using Newtonsoft.Json;
 using ProtobufTools;
@@ -66,6 +66,16 @@ namespace Dynamo.Wpf
                     break;
             }
         }
+
+        private void Test()
+        {
+            for (int i = 0; i < 100; i++)
+            {
+                Console.WriteLine("Test%4d",i);
+                Thread.Sleep(50);
+            }
+        }
+
         #region DelegateCommand
         /// <summary>
         /// 开始训练
@@ -74,8 +84,8 @@ namespace Dynamo.Wpf
         private void Start(object parameters)
         {
             CanSeeProgressBar = !CanSeeProgressBar;
-            var cmd = new DynamoModel.CreateNodeCommand(Guid.NewGuid().ToString(), "String", -1, -1, true, false);
-            cmd.Execute(DynamoModel.getInstance());
+            //var cmd = new DynamoModel.CreateNodeCommand(Guid.NewGuid().ToString(), "String", -1, -1, true, false);
+            //cmd.Execute(DynamoModel.getInstance());
 
             /*
              * 第一步,进度条
@@ -85,6 +95,14 @@ namespace Dynamo.Wpf
              * 
              */
 
+            ConsoleView.ConsoleView m = new ConsoleView.ConsoleView();
+            m.Show();
+            Console.WriteLine("Plug-in console startup...");
+            Console.WriteLine("********Link Start********");
+
+            Thread thread = new Thread(new ThreadStart(Test));//创建线程
+
+            thread.Start();
         }
         /// <summary>
         /// 训练停止

@@ -65,7 +65,7 @@ namespace Dynamo.ViewModels
             NodeFromSelectionCommand = new DelegateCommand(CreateNodeFromSelection, CanCreateNodeFromSelection);
             CreateANodeByCode = new DelegateCommand(CreateANode, o => true);
             OpenBrowser = new DelegateCommand(DoOpenBrowser, o => true);
-            OpenConsoleView = new DelegateCommand(DoOpenBrowser, o => true);
+            OpenConsoleView = new DelegateCommand(DoOpenConsoleView, o => true);
         }
         public DelegateCommand OpenIfSavedCommand { get; set; }
         public DelegateCommand OpenCommand { get; set; }

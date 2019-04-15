@@ -20,6 +20,9 @@ namespace ConsoleView
     /// </summary>
     public partial class ConsoleView : Window
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public ConsoleView()
         {
             InitializeComponent();

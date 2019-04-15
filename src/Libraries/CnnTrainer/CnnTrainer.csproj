@@ -113,6 +113,10 @@
       <Project>{7a9e0314-966f-4584-baa3-7339cbb849d1}</Project>
       <Name>ProtoCore</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Utilities\ConsoleView\ConsoleView.csproj">
+      <Project>{72F0CAE7-9DA5-452D-8FA8-07845D1CD5EC}</Project>
+      <Name>ConsoleView</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Utilities\ProtobufTools\ProtobufTools.csproj">
       <Project>{14b2adfe-54a0-46d3-b400-8f9333c1f96b}</Project>
       <Name>ProtobufTools</Name>
