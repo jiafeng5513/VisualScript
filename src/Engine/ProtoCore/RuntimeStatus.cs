@@ -5,6 +5,7 @@ using System.Text;
 using ProtoCore.DSASM;
 using ProtoCore.Utils;
 using System.Linq;
+using CNTK;
 using ProtoCore.DSDefinitions;
 using ProtoCore.Runtime;
 using ProtoCore.Properties;
@@ -409,7 +410,6 @@ namespace ProtoCore
                 
                 var fep = funcGroup.FunctionEndPoints[0];
                 var formalParamsJoined = string.Join(", ", fep.FormalParams.Select(x => x.ToShortString()));
-
                 message = string.Format(Resources.NonOverloadMethodResolutionError, qualifiedMethodName, formalParamsJoined, argsJoined);
             }
             else // overloaded case

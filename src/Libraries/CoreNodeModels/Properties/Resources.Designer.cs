@@ -79,7 +79,7 @@ namespace CoreNodeModels.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Function to apply. 的本地化字符串。
+        ///   查找类似 EFunction to apply. 的本地化字符串。
         /// </summary>
         public static string ApplyPortDataFuncToolTip {
             get {
@@ -196,7 +196,7 @@ namespace CoreNodeModels.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Function #0 的本地化字符串。
+        ///   查找类似 EFunction #0 的本地化字符串。
         /// </summary>
         public static string ComposePortDataFunc0ToolTip {
             get {
@@ -205,7 +205,7 @@ namespace CoreNodeModels.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Function #1 的本地化字符串。
+        ///   查找类似 EFunction #1 的本地化字符串。
         /// </summary>
         public static string ComposePortDataFunc1ToolTip {
             get {
@@ -934,7 +934,7 @@ namespace CoreNodeModels.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Reductor Function: accepts one item from each list being reduced, and the current accumulated value, result is the new accumulated value. 的本地化字符串。
+        ///   查找类似 Reductor EFunction: accepts one item from each list being reduced, and the current accumulated value, result is the new accumulated value. 的本地化字符串。
         /// </summary>
         public static string ReducePortDataReductorToolTip {
             get {
@@ -1015,7 +1015,7 @@ namespace CoreNodeModels.Properties {
         }
         
         /// <summary>
-        ///   查找类似 Reductor Function: accepts one item from each list being reduced, and the current accumulated value, result is the new accumulated value. 的本地化字符串。
+        ///   查找类似 Reductor EFunction: accepts one item from each list being reduced, and the current accumulated value, result is the new accumulated value. 的本地化字符串。
         /// </summary>
         public static string ScanPortDataReductorToolTip {
             get {

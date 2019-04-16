@@ -173,7 +173,7 @@ namespace Dynamo.Graph.Nodes.NodeLoaders
                 if (inputCountAttrib == null)
                 {
                     throw new ArgumentException(string.Format(
-                        "Function inputs cannot be determined ({0}).",
+                        "EFunction inputs cannot be determined ({0}).",
                         element.GetAttribute("nickname")));
                 }
 
@@ -204,7 +204,7 @@ namespace Dynamo.Graph.Nodes.NodeLoaders
 
             if (string.IsNullOrEmpty(signature))
             {
-                const string message = "Function signature cannot be determined.";
+                const string message = "EFunction signature cannot be determined.";
                 throw new ArgumentException(message);
             }
 

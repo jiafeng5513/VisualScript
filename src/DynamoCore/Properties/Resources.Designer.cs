@@ -214,7 +214,7 @@ namespace Dynamo.Properties {
         }
         
         /// <summary>
-        ///   查找类似 A Function 的本地化字符串。
+        ///   查找类似 A EFunction 的本地化字符串。
         /// </summary>
         public static string ComposeFunctionPortDataFunctionToolTip {
             get {
@@ -405,7 +405,7 @@ namespace Dynamo.Properties {
         }
         
         /// <summary>
-        ///   查找类似 DesignScript Builtin Functions 的本地化字符串。
+        ///   查找类似 DesignScript Builtin EFunctions 的本地化字符串。
         /// </summary>
         public static string DSFunctionNodeDescription {
             get {
@@ -576,7 +576,7 @@ namespace Dynamo.Properties {
         }
         
         /// <summary>
-        ///   查找类似 DesignScript Builtin Functions 的本地化字符串。
+        ///   查找类似 DesignScript Builtin EFunctions 的本地化字符串。
         /// </summary>
         public static string FunctionNodeDescription {
             get {

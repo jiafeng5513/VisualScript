@@ -18,7 +18,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
-using Function = Dynamo.Graph.Nodes.CustomNodes.Function;
 using Newtonsoft.Json.Linq;
 using System.IO;
 using Newtonsoft.Json;
@@ -26,6 +25,7 @@ using Dynamo.Wpf.ViewModels.Core;
 using System.Diagnostics;
 using Dynamo.Engine;
 using System.Globalization;
+using Dynamo.Graph.Nodes.CustomNodes;
 
 namespace Dynamo.ViewModels
 {
@@ -56,7 +56,7 @@ namespace Dynamo.ViewModels
         #region events 
 
         /// <summary>
-        ///     Function that can be used to respond to a changed workspace Zoom amount.
+        ///     EFunction that can be used to respond to a changed workspace Zoom amount.
         /// </summary>
         /// <param name="sender">The object where the event handler is attached.</param>
         /// <param name="e">The event data.</param>
@@ -1276,7 +1276,7 @@ namespace Dynamo.ViewModels
             try
             {
                 var function =
-                    (Function)DynamoViewModel.Model.CurrentWorkspace.Nodes.First(x => x is Function && ((Function)x).Definition.FunctionId.ToString() == id.ToString());
+                    (EFunction)DynamoViewModel.Model.CurrentWorkspace.Nodes.First(x => x is EFunction && ((EFunction)x).Definition.FunctionId.ToString() == id.ToString());
 
                 if (function == null) return;
 

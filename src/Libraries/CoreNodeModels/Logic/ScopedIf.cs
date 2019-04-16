@@ -17,7 +17,7 @@ namespace CoreNodeModels.Logic
     [NodeName("ScopeIf"), NodeCategory(BuiltinNodeCategories.LOGIC),
     NodeDescription("ScopeIfDescription", typeof(Resources)), IsDesignScriptCompatible]
     [AlsoKnownAs("DSCoreNodesUI.Logic.ScopedIf")]
-    [OutPortTypes("Function")]
+    [OutPortTypes("EFunction")]
     public class ScopedIf : ScopedNodeModel
     {
         [JsonConstructor]

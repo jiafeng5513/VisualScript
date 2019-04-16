@@ -1290,6 +1290,26 @@
           "include": [],
           "childElements": [
             {
+              "text": "Build-In Layers",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "TensorCore.TensorCore.BuildInLayers.ConvBatchNormalizationLayer"
+                },
+                {
+                  "path": "TensorCore.TensorCore.BuildInLayers.ProjectLayer"
+                },
+                {
+                  "path": "TensorCore.TensorCore.BuildInLayers.ResNetNode"
+                },
+                {
+                  "path": "TensorCore.TensorCore.BuildInLayers.ResNetNodeInc"
+                }
+              ],
+              "childElements": []
+            },
+            {
               "text": "Constructors",
               "iconUrl": "",
               "elementType": "group",
@@ -1299,6 +1319,21 @@
                 },
                 {
                   "path": "TensorCore.TensorCore.Constructors.CreateMinibatchSource"
+                },
+                {
+                  "path": "TensorCore.TensorCore.Constructors.CreateTrainingRate"
+                },
+                {
+                  "path": "TensorCore.TensorCore.Constructors.CreateInputVariable"
+                },
+                {
+                  "path": "TensorCore.TensorCore.Constructors.CreateScalar"
+                },
+                {
+                  "path": "TensorCore.TensorCore.Constructors.CreateParameter"
+                },
+                {
+                  "path": "TensorCore.TensorCore.Constructors.CreateNdShape"
                 }
               ],
               "childElements": []
@@ -1310,6 +1345,20 @@
               "include": [
                 {
                   "path": "DeepLearning.DeepLearning.Example.Predict"
+                }
+              ],
+              "childElements": []
+            },
+            {
+              "text": "Converter",
+              "iconUrl": "",
+              "elementType": "group",
+              "include": [
+                {
+                  "path": "TensorCore.TensorCore.TensorConverter.FunctionToVariable"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorConverter.ParameterToVariable"
                 }
               ],
               "childElements": []
@@ -1450,6 +1499,9 @@
                 },
                 {
                   "path": "TensorCore.TensorCore.TensorFunction.Dropout"
+                },
+                {
+                  "path": "TensorCore.TensorCore.TensorFunction.GetProjectionMap"
                 }
               ],
               "childElements": []
@@ -1554,6 +1606,20 @@
                     },
                     {
                       "path": "TensorCore.TensorCore.Constants.Device_All"
+                    }
+                  ],
+                  "childElements": []
+                },
+                {
+                  "text": "PoolingType",
+                  "iconUrl": "",
+                  "elementType": "group",
+                  "include": [
+                    {
+                      "path": "TensorCore.TensorCore.Constants.MaxPooling"
+                    },
+                    {
+                      "path": "TensorCore.TensorCore.Constants.AveragePooling"
                     }
                   ],
                   "childElements": []

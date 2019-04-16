@@ -760,12 +760,12 @@ namespace Dynamo.Migration
             if (srcElement == null)
                 throw new ArgumentNullException("srcElement");
 
-            XmlElement funcEl = document.CreateElement("Dynamo.Graph.Nodes.CustomNodes.Function");
+            XmlElement funcEl = document.CreateElement("Dynamo.Graph.Nodes.CustomNodes.EFunction");
 
             foreach (XmlAttribute attribute in srcElement.Attributes)
                 funcEl.SetAttribute(attribute.Name, attribute.Value);
 
-            funcEl.SetAttribute("type", "Dynamo.Graph.Nodes.CustomNodes.Function");
+            funcEl.SetAttribute("type", "Dynamo.Graph.Nodes.CustomNodes.EFunction");
 
             var idEl = document.CreateElement("ID");
             idEl.SetAttribute("value", id);

@@ -122,18 +122,18 @@ namespace Dynamo.Graph.Workspaces
             {
                 node = CreateDummyNode(obj, assemblyLocation, inPorts, outPorts);
             }
-            else if (type == typeof(Function))
+            else if (type == typeof(EFunction))
             {
                 var functionId = Guid.Parse(obj["FunctionSignature"].Value<string>());
 
                 CustomNodeDefinition def = null;
                 CustomNodeInfo info = null;
                 bool isUnresolved = !manager.TryGetCustomNodeData(functionId, null,  out def, out info);
-                Function function = manager.CreateCustomNodeInstance(functionId, null,  def, info);
-                node = function;
+                EFunction eFunction = manager.CreateCustomNodeInstance(functionId, null,  def, info);
+                node = eFunction;
 
                 if (isUnresolved)
-                  function.UpdatePortsForUnresolved(inPorts, outPorts);
+                  eFunction.UpdatePortsForUnresolved(inPorts, outPorts);
             }
             else if (type == typeof(CodeBlockNodeModel))
             {
@@ -595,10 +595,10 @@ namespace Dynamo.Graph.Workspaces
             // Dependencies
             writer.WritePropertyName("Dependencies");
             writer.WriteStartArray();
-            var functions = ws.Nodes.Where(n => n is Function);
+            var functions = ws.Nodes.Where(n => n is EFunction);
             if (functions.Any())
             {
-                var deps = functions.Cast<Function>().Select(f => f.Definition.FunctionId).Distinct();
+                var deps = functions.Cast<EFunction>().Select(f => f.Definition.FunctionId).Distinct();
                 foreach (var d in deps)
                 {
                     writer.WriteValue(d);
@@ -616,7 +616,7 @@ namespace Dynamo.Graph.Workspaces
                 // a DSVarArgFunction or a CodeBlockNodeModel into a list.
                 var nodeGuids =
                     ws.Nodes.Where(
-                            n => n is DSFunction || n is DSVarArgFunction || n is CodeBlockNodeModel || n is Function)
+                            n => n is DSFunction || n is DSVarArgFunction || n is CodeBlockNodeModel || n is EFunction)
                         .Select(n => n.GUID);
 
                 var nodeTraceDataList = engine.LiveRunnerRuntimeCore.RuntimeData.GetTraceDataForNodes(nodeGuids,

@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using CNTK;
 
 namespace TensorCore
 {
+     //using Op = CNTK.Function
     /*
      * TensorFunction for Encapsulating Tensor Computing Functions
      */
@@ -57,8 +60,8 @@ namespace TensorCore
         {
             return CNTKLib.Sinh(operand, name);
         }
-
-        public static Function ReLU(Variable operand, string name = "")
+        
+        public static CNTK.Function ReLU(Variable operand, string name = "")
         {
             return CNTKLib.ReLU(operand, name);
         }
@@ -201,6 +204,12 @@ namespace TensorCore
             sharing, autoPadding, dilation);
         }
 
+        public static Function Convolution(Variable convolutionMap, Variable operand, NDShape strides)
+        {
+            return CNTKLib.Convolution(convolutionMap, operand, strides);
+        }
+
+
         public static Function ROIPooling(Variable operand, Variable rois, PoolingType poolingType,
             NDShape roiOutputShape, double spatialScale, string name = "")
         {
@@ -214,6 +223,11 @@ namespace TensorCore
             return CNTKLib.Pooling(operand,poolingType, poolingWindowShape, strides, autoPadding, ceilOutDim , includePad, name);
         }
 
+        public static Function Pooling(Variable operand, PoolingType poolingType, NDShape poolingWindowShape,
+            NDShape strides)
+        {
+            return CNTKLib.Pooling(operand,  poolingType,  poolingWindowShape, strides);
+        }
         //多个重载
         public static Function BatchNormalization(Variable operand, Variable scale, Variable bias, Variable runningMean,
             Variable runningInvStd, Variable runningCount, bool spatial, double normalizationTimeConstant = 0,
@@ -241,6 +255,24 @@ namespace TensorCore
         public static CNTKDictionary GlorotUniformInitializer(double scale, int outputRank, int filterRank)
         {
             return CNTKLib.GlorotUniformInitializer(scale, outputRank,filterRank);
+        }
+
+        public static Variable GetProjectionMap(int outputDim, int inputDim, DeviceDescriptor device)
+        {
+            if (inputDim > outputDim)
+                throw new Exception("Can only project from lower to higher dimensionality");
+
+            float[] projectionMapValues = new float[inputDim * outputDim];
+            for (int i = 0; i < inputDim * outputDim; i++)
+                projectionMapValues[i] = 0;
+            for (int i = 0; i < inputDim; ++i)
+                projectionMapValues[(i * (int)inputDim) + i] = 1.0f;
+
+            var projectionMap = new NDArrayView(DataType.Float, new int[] { 1, 1, inputDim, outputDim }, device);
+            projectionMap.CopyFrom(new NDArrayView(new int[] { 1, 1, inputDim, outputDim }, projectionMapValues, (uint)projectionMapValues.Count(), device));
+
+            var temp=new Constant(projectionMap);
+            return new Variable(temp);
         }
     }
 }

@@ -24,22 +24,22 @@ namespace Dynamo.Wpf
         private readonly NodeViewModel nodeViewModel;
         private readonly NodeModel nodeModel;
 
-        public int NumOfClasses
+        public string NumOfClasses
         {
-            get => _cnnTrainerModel.NumOfClasses;
-            set => _cnnTrainerModel.NumOfClasses = value;
+            get => _cnnTrainerModel.NumOfClasses.ToString();
+            set => _cnnTrainerModel.NumOfClasses = Convert.ToInt32(value);
         }
 
-        public int MiniBatchSize
+        public string MiniBatchSize
         {
-            get => _cnnTrainerModel.MiniBatchSize;
-            set => _cnnTrainerModel.MiniBatchSize = value;
+            get => _cnnTrainerModel.MiniBatchSize.ToString();
+            set => _cnnTrainerModel.MiniBatchSize = Convert.ToInt32(value);
         }
 
-        public int TopN
+        public string TopN
         {
-            get => _cnnTrainerModel.TopN;
-            set => _cnnTrainerModel.TopN = value;
+            get => _cnnTrainerModel.TopN.ToString();
+            set => _cnnTrainerModel.TopN = Convert.ToInt32(value);
         }
 
         public CnnTrainerViewModel(CnnTrainerModel model, NodeView nodeView)
@@ -83,7 +83,7 @@ namespace Dynamo.Wpf
         /// <param name="parameters"></param>
         private void Start(object parameters)
         {
-            CanSeeProgressBar = !CanSeeProgressBar;
+            
             //var cmd = new DynamoModel.CreateNodeCommand(Guid.NewGuid().ToString(), "String", -1, -1, true, false);
             //cmd.Execute(DynamoModel.getInstance());
 
@@ -94,15 +94,14 @@ namespace Dynamo.Wpf
              * 第四步,训练线程开始
              * 
              */
+            CanSeeProgressBar = true;
 
             ConsoleView.ConsoleView m = new ConsoleView.ConsoleView();
             m.Show();
-            Console.WriteLine("Plug-in console startup...");
-            Console.WriteLine("********Link Start********");
+            TensorCore.CnnTrainer.RunTraining();
+            //Thread thread = new Thread(new ThreadStart(TensorCore.CnnTrainer.RunTraining));//创建线程
+            //thread.Start();
 
-            Thread thread = new Thread(new ThreadStart(Test));//创建线程
-
-            thread.Start();
         }
         /// <summary>
         /// 训练停止

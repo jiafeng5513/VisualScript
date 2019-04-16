@@ -32,40 +32,6 @@ namespace TensorCore
         {
             return MinibatchSource.TextFormatMinibatchSource(filepath, streamConfigurations);
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="shape"></param>
-        /// <param name="type"></param>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        public static Variable CreateInputVariable(NDShape shape, DataType type, string name)
-        {
-            return CNTKLib.InputVariable(shape, type, name);
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="value"></param>
-        /// <param name="device"></param>
-        /// <returns></returns>
-        public static Variable CreateScalar(float value, DeviceDescriptor device)
-        {
-            return Constant.Scalar<float>(value, device);
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="shape"></param>
-        /// <param name="dataType"></param>
-        /// <param name="cntkDictionary"></param>
-        /// <param name="device"></param>
-        /// <returns></returns>
-        public static Variable CreateParameter(NDShape shape, DataType dataType, CNTKDictionary cntkDictionary,
-            DeviceDescriptor device)
-        {
-            return new Parameter(shape, DataType.Float,cntkDictionary, device);
-        }
 
         /// <summary>
         /// 
@@ -105,6 +71,45 @@ namespace TensorCore
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="shape"></param>
+        /// <param name="type"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static Variable CreateInputVariable(NDShape shape, DataType type, string name)
+        {
+            return CNTKLib.InputVariable(shape, type, name);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="device"></param>
+        /// <returns></returns>
+        public static Variable CreateScalar(float value, DeviceDescriptor device)
+        {
+            return Constant.Scalar<float>(value, device);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="shape"></param>
+        /// <param name="dataType"></param>
+        /// <param name="cntkDictionary"></param>
+        /// <param name="device"></param>
+        /// <returns></returns>
+        public static Variable CreateParameter(NDShape shape, DataType dataType, CNTKDictionary cntkDictionary,
+            DeviceDescriptor device)
+        {
+            return new Parameter(shape, DataType.Float,cntkDictionary, device);
+        }
+
+        public static Variable CreateParameter(NDShape shape, float initValue, DeviceDescriptor device, string name="")
+        {
+            return new Parameter(shape, initValue, device, name);
+        }
+        /// <summary>
         /// 学习率
         /// </summary>
         /// <param name="value"></param>
@@ -114,6 +119,23 @@ namespace TensorCore
         {
             return new TrainingParameterScheduleDouble(value, (uint)minibatchsize);
         }
+
+        //public static NDShape CreateNdShape(int[] dims)
+        //{
+        //    return (NDShape)(dims);
+        //}
+
+        public static NDShape CreateNdShape(List<Object>dims)
+        {
+            int[]dimInts=new int[dims.Count];
+            for (int i = 0; i < dims.Count; i++)
+            {
+                dimInts[i] = (int) dims.IndexOf(i);
+            }
+
+            return (NDShape)(dimInts);
+        }
+
 
     }
 }

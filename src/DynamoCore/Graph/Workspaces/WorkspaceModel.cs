@@ -218,7 +218,7 @@ namespace Dynamo.Graph.Workspaces
         #region events
 
         /// <summary>
-        ///     Function that can be used to respond on a saved workspace.
+        ///     EFunction that can be used to respond on a saved workspace.
         /// </summary>
         /// <param name="model">The <see cref="WorkspaceModel"/> object which has been saved.</param>
         public delegate void WorkspaceSavedEvent(WorkspaceModel model);
@@ -240,7 +240,7 @@ namespace Dynamo.Graph.Workspaces
                 RequestNodeCentered(this, e);
         }
         /// <summary>
-        ///     Function that can be used to respond to a "point event"
+        ///     EFunction that can be used to respond to a "point event"
         /// </summary>
         /// <param name="sender">The object where the event handler is attached.</param>
         /// <param name="e">The event data.</param>
@@ -498,7 +498,7 @@ namespace Dynamo.Graph.Workspaces
                 //if the workspace is a main workspace then find all functions and their dependencies
                 if (this is HomeWorkspaceModel)
                 {
-                    foreach (var node in this.Nodes.OfType<Function>())
+                    foreach (var node in this.Nodes.OfType<EFunction>())
                     {
                         dependencies.Add(node.FunctionSignature);
                     }
@@ -1072,7 +1072,7 @@ namespace Dynamo.Graph.Workspaces
             node.ConnectorAdded += OnConnectorAdded;
             node.UpdateASTCollection +=OnToggleNodeFreeze;
 
-            var functionNode = node as Function;
+            var functionNode = node as EFunction;
             if (functionNode != null)
             {
                 functionNode.Controller.SyncWithDefinitionStart += OnSyncWithDefinitionStart;
@@ -1120,7 +1120,7 @@ namespace Dynamo.Graph.Workspaces
 
         protected virtual void DisposeNode(NodeModel node)
         {
-            var functionNode = node as Function;
+            var functionNode = node as EFunction;
             if (functionNode != null)
             {
                 functionNode.Controller.SyncWithDefinitionStart -= OnSyncWithDefinitionStart;

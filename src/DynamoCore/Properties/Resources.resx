@@ -133,7 +133,7 @@
     <comment>Description for string node</comment>
   </data>
   <data name="FunctionNodeDescription" xml:space="preserve">
-    <value>DesignScript Builtin Functions</value>
+    <value>DesignScript Builtin EFunctions</value>
     <comment>Description for function node</comment>
   </data>
   <data name="CustomNodeDesciption" xml:space="preserve">
@@ -157,7 +157,7 @@
     <comment>Search tags. When do translation, appending localized tags to the existing tags and use ';' to seperate them</comment>
   </data>
   <data name="ComposeFunctionPortDataFunctionToolTip" xml:space="preserve">
-    <value>A Function</value>
+    <value>A EFunction</value>
   </data>
   <data name="ComposeFunctionPortDataResultToolTip" xml:space="preserve">
     <value>Composed function: g(f(x))</value>
@@ -514,7 +514,7 @@ input : var[]..[]
 value: bool = false</value>
   </data>
   <data name="DSFunctionNodeDescription" xml:space="preserve">
-    <value>DesignScript Builtin Functions</value>
+    <value>DesignScript Builtin EFunctions</value>
   </data>
   <data name="DummyNodeDescription" xml:space="preserve">
     <value>This is an obsolete node</value>

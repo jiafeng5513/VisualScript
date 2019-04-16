@@ -27,9 +27,8 @@ namespace ConsoleView
         {
             InitializeComponent();
             Console.SetOut(new TextBoxWriter(ConsoleEditor));//重定向开始
-
-            Console.Write("helloword");
-            Console.WriteLine("helloword");
+            Console.WriteLine("Plug-in console startup...");
+            Console.WriteLine("********Link Start********");
 
         }
     }

@@ -10,6 +10,6 @@ namespace Dynamo.Graph.Nodes.CustomNodes
         /// <param name="id">Identifier referring to a custom node definition.</param>
         /// <param name="name"></param>
         /// <param name="isTestMode"></param>
-        Function CreateCustomNodeInstance(Guid id, string name = null);
+        EFunction CreateCustomNodeInstance(Guid id, string name = null);
     }
 }

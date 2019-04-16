@@ -225,7 +225,7 @@ limitations under the License.
     <Compile Include="Core\NodeModelAssemblyLoader.cs" />
     <Compile Include="Graph\Nodes\NodeCategories.cs" />
     <Compile Include="Graph\Connectors\ConnectorModel.cs" />
-    <Compile Include="Graph\Nodes\CustomNodes\Function.cs" />
+    <Compile Include="Graph\Nodes\CustomNodes\EFunction.cs" />
     <Compile Include="Graph\Nodes\NodeModel.cs" />
     <Compile Include="Graph\Workspaces\WorkspaceModel.cs" />
     <Compile Include="Graph\Nodes\NodeLoaders\CodeBlockNodeLoader.cs" />

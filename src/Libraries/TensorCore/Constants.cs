@@ -119,7 +119,21 @@ namespace TensorCore
         }
         #endregion
 
-#region consts in MiniBatchSource
+#region PoolingType
+
+        public static PoolingType MaxPooling()
+        {
+            return PoolingType.Max;
+        }
+
+        public static PoolingType AveragePooling()
+        {
+            return PoolingType.Average;
+        }
+
+        #endregion
+
+        #region consts in MiniBatchSource
 
         public static UInt64 InfinitelyRepeat()
         {

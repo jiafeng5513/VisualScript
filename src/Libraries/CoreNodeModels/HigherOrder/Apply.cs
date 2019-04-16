@@ -7,11 +7,11 @@ using Newtonsoft.Json;
 
 namespace CoreNodeModels.HigherOrder
 {
-    [NodeName("Function Apply")]
+    [NodeName("EFunction Apply")]
     [NodeCategory(BuiltinNodeCategories.CORE_EVALUATE)]
     [NodeDescription("FunctionApplyDescription", typeof(Resources))]
     [IsDesignScriptCompatible]
-    [AlsoKnownAs("DSCoreNodesUI.HigherOrder.ApplyFunction", "Function.Apply")]
+    [AlsoKnownAs("DSCoreNodesUI.HigherOrder.ApplyFunction", "EFunction.Apply")]
     public class ApplyFunction : VariableInputNode
     {
         [JsonConstructor]
@@ -39,7 +39,7 @@ namespace CoreNodeModels.HigherOrder
         protected override string GetInputTooltip(int index)
         {
             if (index == 0)
-                return "Function to apply.";
+                return "EFunction to apply.";
 
             return "Argument #" + index;
         }
@@ -70,11 +70,11 @@ namespace CoreNodeModels.HigherOrder
         }
     }
 
-    [NodeName("Function Compose")]
+    [NodeName("EFunction Compose")]
     [NodeCategory(BuiltinNodeCategories.CORE_EVALUATE)]
     [NodeDescription("FunctionComposeDescription", typeof(Resources))]
     [IsDesignScriptCompatible]
-    [AlsoKnownAs("DSCoreNodesUI.HigherOrder.ComposeFunctions", "Function.Compose")]
+    [AlsoKnownAs("DSCoreNodesUI.HigherOrder.ComposeFunctions", "EFunction.Compose")]
     public class ComposeFunctions : VariableInputNode
     {
         [JsonConstructor]
@@ -98,7 +98,7 @@ namespace CoreNodeModels.HigherOrder
 
         protected override string GetInputTooltip(int index)
         {
-            return "Function #" + index;
+            return "EFunction #" + index;
         }
 
         protected override void RemoveInput()

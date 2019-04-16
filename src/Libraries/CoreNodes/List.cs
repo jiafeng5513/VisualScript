@@ -1603,7 +1603,7 @@ namespace DSCore
         /// </summary>
         /// <param name="list">List to take the minimum value from.</param>
         /// <param name="keyProjector">
-        ///     Function that consumes an item from the list and produces an orderable value.
+        ///     EFunction that consumes an item from the list and produces an orderable value.
         /// </param>
         public static object MinimumItemByKey(IList list, Delegate keyProjector)
         {
@@ -1633,7 +1633,7 @@ namespace DSCore
         /// </summary>
         /// <param name="list">List to take the maximum value from.</param>
         /// <param name="keyProjector">
-        ///     Function that consumes an item from the list and produces an orderable value.
+        ///     EFunction that consumes an item from the list and produces an orderable value.
         /// </param>
         public static object MaximumItemByKey(IList list, Delegate keyProjector)
         {
@@ -1662,7 +1662,7 @@ namespace DSCore
         /// </summary>
         /// <param name="list">List to be filtered.</param>
         /// <param name="predicate">
-        ///     Function to be applied to all items in the list. All items that make the
+        ///     EFunction to be applied to all items in the list. All items that make the
         ///     predicate produce True will be stored in the output list.
         /// </param>
         public static IList Filter(IList list, Delegate predicate)
@@ -1677,7 +1677,7 @@ namespace DSCore
         /// </summary>
         /// <param name="list">List to be filtered.</param>
         /// <param name="predicate">
-        ///     Function to be applied to all items in the list. All items that make the
+        ///     EFunction to be applied to all items in the list. All items that make the
         ///     predicate produce False will be stored in the output list.
         /// </param>
         public static IList FilterOut(IList list, Delegate predicate)
@@ -1691,7 +1691,7 @@ namespace DSCore
         /// </summary>
         /// <param name="list">List to be sorted.</param>
         /// <param name="keyProjector">
-        ///     Function that consumes an item from the list and produces an orderable value.
+        ///     EFunction that consumes an item from the list and produces an orderable value.
         /// </param>
         /// <returns></returns>
         public static IList SortByKey(IList list, Delegate keyProjector)
@@ -1705,7 +1705,7 @@ namespace DSCore
         /// </summary>
         /// <param name="list">List to be sorted.</param>
         /// <param name="comparison">
-        ///     Function that consumes two items from the list and produces a value determining the order
+        ///     EFunction that consumes two items from the list and produces a value determining the order
         ///     of the two items as follows: a value less than zero if the first item should appear
         ///     before the second, zero if the values are considered the same, and a value greater than
         ///     zero if the second item should appear before the first.
@@ -1739,11 +1739,11 @@ namespace DSCore
         ///     storing the result.
         /// </summary>
         /// <param name="projection">
-        ///     Function that consumes an item from each input list and produces a value that is stored
+        ///     EFunction that consumes an item from each input list and produces a value that is stored
         ///     in the output list.
         /// </param>
         /// <param name="lists">Lists to be combined/mapped into a new list.</param>
-        public static IList<object> Map(Function.MapDelegate projection, params IEnumerable<object>[] lists)
+        public static IList<object> Map(EFunction.MapDelegate projection, params IEnumerable<object>[] lists)
         {
             if (!lists.Any())
                 throw new ArgumentException("Need at least one list to map.");
@@ -1762,12 +1762,12 @@ namespace DSCore
         ///     input lists and storing the result.
         /// </summary>
         /// <param name="projection">
-        ///     Function that consumes an item from each input list and produces a value that is stored
+        ///     EFunction that consumes an item from each input list and produces a value that is stored
         ///     in the output list.
         /// </param>
         /// <param name="lists">Lists to take the cartesion product of.</param>
         public static IList<object> CartesianProduct(
-            Function.MapDelegate projection,
+            EFunction.MapDelegate projection,
             params IEnumerable<object>[] lists)
         {
             if (!lists.Any())
@@ -1780,10 +1780,10 @@ namespace DSCore
         ///     Applies a function to each item of the input list(s). Does not accumulate results.
         /// </summary>
         /// <param name="action">
-        ///     Function that consumed an item from each input list. Return value is ignored.
+        ///     EFunction that consumed an item from each input list. Return value is ignored.
         /// </param>
         /// <param name="lists">Lists to be iterated over.</param>
-        public static void ForEach(Function.MapDelegate action, params IEnumerable<object>[] lists)
+        public static void ForEach(EFunction.MapDelegate action, params IEnumerable<object>[] lists)
         {
             if (!lists.Any())
                 throw new ArgumentException("Need at least one list to iterate over.");
@@ -1803,7 +1803,7 @@ namespace DSCore
         ///     items in the given list.
         /// </summary>
         /// <param name="predicate">
-        ///     Function to be applied to all items in the list, returns a boolean value.
+        ///     EFunction to be applied to all items in the list, returns a boolean value.
         /// </param>
         /// <param name="list">List to be tested.</param>
         public static bool TrueForAllItems(IList list, Delegate predicate)
@@ -1816,7 +1816,7 @@ namespace DSCore
         ///     items in the given list.
         /// </summary>
         /// <param name="predicate">
-        ///     Function to be applied to all items in the list, returns a boolean value.
+        ///     EFunction to be applied to all items in the list, returns a boolean value.
         /// </param>
         /// <param name="list">List to be tested.</param>
         public static bool TrueForAnyItems(IList list, Delegate predicate)
@@ -1830,7 +1830,7 @@ namespace DSCore
         ///     mapping function produced the same result.
         /// </summary>
         /// <param name="list">List to group into sublists.</param>
-        /// <param name="keyProjector">Function that produces grouping values.</param>
+        /// <param name="keyProjector">EFunction that produces grouping values.</param>
         public static IList GroupByKey(IList list, Delegate keyProjector)
         {
             return
@@ -1845,7 +1845,7 @@ namespace DSCore
         ///     list containing the results of each function application.
         /// </summary>
         /// <param name="list">List to map.</param>
-        /// <param name="mapFunc">Function to apply to each element.</param>
+        /// <param name="mapFunc">EFunction to apply to each element.</param>
         public static IList Map(IList list, Delegate mapFunc)
         {
             return list.Cast<object>().Select(x => mapFunc.DynamicInvoke(x)).ToList();
@@ -1861,7 +1861,7 @@ namespace DSCore
         ///     indices and applying a function to them, and using the results to construct
         ///     a new list.
         /// </summary>
-        /// <param name="combinator">Function to apply to an element from each list.</param>
+        /// <param name="combinator">EFunction to apply to an element from each list.</param>
         /// <param name="lists">Lists to combine.</param>
         public static IList Combine(Delegate combinator, params IList[] lists)
         {

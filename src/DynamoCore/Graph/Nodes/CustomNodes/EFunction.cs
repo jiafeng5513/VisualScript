@@ -21,12 +21,12 @@ namespace Dynamo.Graph.Nodes.CustomNodes
     [NodeName("Custom Node")]
     [NodeDescription("FunctionDescription",typeof(Dynamo.Properties.Resources))]
     [IsMetaNode]
-    [AlsoKnownAs("Dynamo.Nodes.Function")]
-    public class Function 
+    [AlsoKnownAs("Dynamo.Nodes.EFunction")]
+    public class EFunction 
         : FunctionCallBase<CustomNodeController<CustomNodeDefinition>, CustomNodeDefinition>
     {
         [JsonConstructor]
-        private Function(string name, string description, string category)
+        private EFunction(string name, string description, string category)
             : base(new CustomNodeController<CustomNodeDefinition>(null))
         {
             ArgumentLacing = LacingStrategy.Auto;
@@ -36,13 +36,13 @@ namespace Dynamo.Graph.Nodes.CustomNodes
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Function"/> class.
+        /// Initializes a new instance of the <see cref="EFunction"/> class.
         /// </summary>
         /// <param name="def">CustomNode definition.</param>
         /// <param name="name">Name.</param>
         /// <param name="description">Description.</param>
         /// <param name="category">Category.</param>
-        public Function(
+        public EFunction(
             CustomNodeDefinition def, string name, string description, string category)
             : base(new CustomNodeController<CustomNodeDefinition>(def))
         {

@@ -25,7 +25,7 @@ namespace ModelAnalyzerUI
 {
     [NodeCategory("TensorCore")]
     [NodeName("CnnTrainer")]
-    //[InPortTypes("string")]
+    [InPortTypes(new string[]{"int[]","string", "CNTK.EFunction", "CNTK.DeviceDescriptor", "CNTK.MinibatchSource", "CNTK.TrainingParameterScheduleDouble" })]
     [NodeDescription("ExportToSATDescripiton", typeof(Resources))]
     [NodeSearchTags("ExportWithUnitsSearchTags", typeof(Resources))]
     [IsDesignScriptCompatible]
@@ -60,6 +60,7 @@ namespace ModelAnalyzerUI
             {
                 topN = value;
                 RaisePropertyChanged("TopN");
+                this.OnNodeModified();
             }
         }
 
@@ -93,10 +94,12 @@ namespace ModelAnalyzerUI
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
 
-            if (!InPorts[0].IsConnected || !InPorts[1].IsConnected || !InPorts[2].IsConnected)
+            if (!InPorts[0].IsConnected || !InPorts[1].IsConnected || !InPorts[2].IsConnected || !InPorts[3].IsConnected
+                || !InPorts[4].IsConnected || !InPorts[5].IsConnected)
             {
                 //只有所有的输入节点都链接了,才能继续,否则构建一个默认输出
-                return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
+                return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildBooleanNode(false)) };
+
             }
 
             //校验UI参数
@@ -120,12 +123,12 @@ namespace ModelAnalyzerUI
 
             AssociativeNode node = null;
 
-            TensorCore.CnnTrainer temp =TensorCore.CnnTrainer.getInstance();
+            //TensorCore.CnnTrainer temp =TensorCore.CnnTrainer.getInstance();
 
             node = AstFactory.BuildFunctionCall(
-                        new Func<int[], int, int, string,int, CNTK.Function, DeviceDescriptor, MinibatchSource, 
-                                TrainingParameterScheduleDouble,bool>(temp.CnnTrainerInti),
-                        new List<AssociativeNode> { input1, input2, input3,input4,input5,input6,input7,input8,input9 });
+                        new Func<int[], int, int, string,int, CNTK.Function, CNTK.DeviceDescriptor, CNTK.MinibatchSource,
+                            CNTK.TrainingParameterScheduleDouble,bool>(TensorCore.CnnTrainer.CnnTrainerInti),
+                        new List<AssociativeNode> { input1, input2, input3,input4,input5,input6,input7,input8,input9});
 
             return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), node) };
         }

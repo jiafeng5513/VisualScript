@@ -11,7 +11,7 @@ namespace CoreNodeModels.Logic
     [NodeName("If")]
     [NodeCategory(BuiltinNodeCategories.LOGIC)]
     [NodeDescription("IfDescription", typeof(Resources))]
-    [OutPortTypes("Function")]
+    [OutPortTypes("EFunction")]
     [IsDesignScriptCompatible]
     [AlsoKnownAs("DSCoreNodesUI.Logic.If")]
     public class If : NodeModel

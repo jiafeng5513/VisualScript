@@ -125,7 +125,7 @@
     <value>Result of application.</value>
   </data>
   <data name="ApplyPortDataFuncToolTip" xml:space="preserve">
-    <value>Function to apply.</value>
+    <value>EFunction to apply.</value>
   </data>
   <data name="BooleanDescription" xml:space="preserve">
     <value>Selection between a true and false.</value>
@@ -158,10 +158,10 @@
     <value>Combined lists</value>
   </data>
   <data name="ComposePortDataFunc0ToolTip" xml:space="preserve">
-    <value>Function #0</value>
+    <value>EFunction #0</value>
   </data>
   <data name="ComposePortDataFunc1ToolTip" xml:space="preserve">
-    <value>Function #1</value>
+    <value>EFunction #1</value>
   </data>
   <data name="ComposePortDataResultToolTip" xml:space="preserve">
     <value>Composed function.</value>
@@ -266,11 +266,11 @@
   </data>
   <data name="FunctionApplyDescription" xml:space="preserve">
     <value>Applies a function to arguments.</value>
-    <comment>Description for Function.Apply</comment>
+    <comment>Description for EFunction.Apply</comment>
   </data>
   <data name="FunctionComposeDescription" xml:space="preserve">
     <value>Compose multiple functions.</value>
-    <comment>Description for Function.Compose</comment>
+    <comment>Description for EFunction.Compose</comment>
   </data>
   <data name="IfDescription" xml:space="preserve">
     <value>Conditional statement</value>
@@ -409,7 +409,7 @@
     <value>variable</value>
   </data>
   <data name="ReducePortDataReductorToolTip" xml:space="preserve">
-    <value>Reductor Function: accepts one item from each list being reduced, and the current accumulated value, result is the new accumulated value.</value>
+    <value>Reductor EFunction: accepts one item from each list being reduced, and the current accumulated value, result is the new accumulated value.</value>
   </data>
   <data name="ReducePortDataResultToolTip" xml:space="preserve">
     <value>Reduced lists</value>
@@ -438,7 +438,7 @@
     <value>If condition(item) = True, then "replaceWith" is returned. Otherwise "item" is returned unaltered.</value>
   </data>
   <data name="ScanPortDataReductorToolTip" xml:space="preserve">
-    <value>Reductor Function: accepts one item from each list being reduced, and the current accumulated value, result is the new accumulated value.</value>
+    <value>Reductor EFunction: accepts one item from each list being reduced, and the current accumulated value, result is the new accumulated value.</value>
   </data>
   <data name="ScanPortDataResultToolTip" xml:space="preserve">
     <value>Scanned lists</value>

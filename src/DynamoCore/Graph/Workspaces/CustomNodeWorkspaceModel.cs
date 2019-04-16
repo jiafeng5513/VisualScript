@@ -115,7 +115,7 @@ namespace Dynamo.Graph.Workspaces
             get
             {
                 return Nodes
-                    .OfType<Function>()
+                    .OfType<EFunction>()
                     .Select(node => node.Definition)
                     .Where(def => def.FunctionId != CustomNodeId)
                     .Distinct();

@@ -35,12 +35,12 @@ namespace Dynamo.Engine
         IEnumerable<string> ReturnKeys { get; }
 
         /// <summary>
-        ///     Function parameters
+        ///     EFunction parameters
         /// </summary>
         IEnumerable<TypedParameter> Parameters { get; }
 
         /// <summary>
-        ///     Function name.
+        ///     EFunction name.
         /// </summary>
         string FunctionName { get; }
 
@@ -154,7 +154,7 @@ namespace Dynamo.Engine
     public class FunctionDescriptor : IFunctionDescriptor
     {
         /// <summary>
-        ///     A comment describing the Function
+        ///     A comment describing the EFunction
         /// </summary>
         private string summary;
 
@@ -163,7 +163,7 @@ namespace Dynamo.Engine
         /// <summary>
         /// Initializes a new instance of the <see cref="FunctionDescriptor"/> class.
         /// </summary>
-        /// <param name="funcDescParams">Function descriptor parameters.</param>
+        /// <param name="funcDescParams">EFunction descriptor parameters.</param>
         public FunctionDescriptor(FunctionDescriptorParams funcDescParams)
         {
             if (!String.IsNullOrEmpty(funcDescParams.Summary))
@@ -224,17 +224,17 @@ namespace Dynamo.Engine
         public string ClassName { get; private set; }
 
         /// <summary>
-        ///     Function name.
+        ///     EFunction name.
         /// </summary>
         public string FunctionName { get; private set; }
 
         /// <summary>
-        ///     Function parameters.
+        ///     EFunction parameters.
         /// </summary>
         public IEnumerable<TypedParameter> Parameters { get; private set; }
 
         /// <summary>
-        ///     Function return type.
+        ///     EFunction return type.
         /// </summary>
         public ProtoCore.Type ReturnType { get; private set; }
 
@@ -270,7 +270,7 @@ namespace Dynamo.Engine
         public bool IsObsolete { get { return !string.IsNullOrEmpty(ObsoleteMessage); } }
 
         /// <summary>
-        ///     Function type.
+        ///     EFunction type.
         /// </summary>
         public FunctionType Type { get; private set; }
 

@@ -308,7 +308,7 @@ namespace Dynamo.Graph.Nodes
         private string strPrefix = String.Empty;
 
         /// <summary>
-        /// Function call being currently typed
+        /// EFunction call being currently typed
         /// </summary>
         private string functionName = String.Empty;
 

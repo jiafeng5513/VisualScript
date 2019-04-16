@@ -13,56 +13,42 @@ namespace TensorCore
      */
     public class CnnTrainer
     {
-        private int[] m_imageDim;
-        private int m_numClasses;
-        private uint m_TopN;
-        private string m_modelFile;
-        private uint m_minibatchSize;
-        private Function m_classifierOutput;
-        private DeviceDescriptor m_device;
-        private MinibatchSource m_minibatchSource;
-        private TrainingParameterScheduleDouble m_learningRatePerSample;
+        private static int[] m_imageDim;
+        private static int m_numClasses;
+        private static uint m_TopN;
+        private static string m_modelFile;
+        private static uint m_minibatchSize;
+        private static Function m_classifierOutput;
+        private static DeviceDescriptor m_device;
+        private static MinibatchSource m_minibatchSource;
+        private static TrainingParameterScheduleDouble m_learningRatePerSample;
 
-        private static CnnTrainer uniqueInstance;
-
-        private CnnTrainer()
-        {
-        }
-
-        public static CnnTrainer getInstance()
-        {
-            if (uniqueInstance == null)
-            {
-                uniqueInstance = new CnnTrainer();
-            }
-            return uniqueInstance;
-        }
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="m_imageDim"></param>
-        /// <param name="m_numClasses"></param>
-        /// <param name="m_TopN"></param>
-        /// <param name="m_modelFile"></param>
-        /// <param name="m_minibatchSize"></param>
-        /// <param name="m_classifierOutput"></param>
-        /// <param name="m_device"></param>
+        /// <param name="imageDim"></param>
+        /// <param name="numClasses"></param>
+        /// <param name="TopN"></param>
+        /// <param name="modelFile"></param>
+        /// <param name="minibatchSize"></param>
+        /// <param name="classifierOutput"></param>
+        /// <param name="device"></param>
         /// <param name="minibatchSource"></param>
-        /// <param name="m_learningRatePerSample"></param>
-        public bool CnnTrainerInti(int[] m_imageDim, int m_numClasses, int m_TopN, 
-            string m_modelFile, int m_minibatchSize, Function m_classifierOutput, 
-            DeviceDescriptor m_device, MinibatchSource minibatchSource, 
-            TrainingParameterScheduleDouble m_learningRatePerSample)
+        /// <param name="learningRatePerSample"></param>
+        public static bool CnnTrainerInti(int[] imageDim, int numClasses, int TopN, 
+            string modelFile, int minibatchSize, CNTK.Function classifierOutput,
+            CNTK.DeviceDescriptor device, CNTK.MinibatchSource minibatchSource, 
+            CNTK.TrainingParameterScheduleDouble learningRatePerSample)
         {
-            this.m_imageDim = m_imageDim;
-            this.m_numClasses = m_numClasses;
-            this.m_TopN = (uint)m_TopN;
-            this.m_modelFile = m_modelFile;
-            this.m_minibatchSize = (uint)m_minibatchSize;
-            this.m_classifierOutput = m_classifierOutput;
-            this.m_device = m_device;
-            this.m_minibatchSource = minibatchSource;
-            this.m_learningRatePerSample = m_learningRatePerSample;
+            m_imageDim = imageDim;
+            m_numClasses = numClasses;
+            m_TopN = (uint)TopN;
+            m_modelFile = modelFile;
+            m_minibatchSize = (uint)minibatchSize;
+            m_classifierOutput = classifierOutput;
+            m_device = device;
+            m_minibatchSource = minibatchSource;
+            m_learningRatePerSample = learningRatePerSample;
             return true;
         }
 
@@ -79,7 +65,7 @@ namespace TensorCore
         /// <param name="learningRatePerSample"></param>
         /// <param name="device"></param>
         /// <returns></returns>
-        public bool RunTraining()
+        public static void RunTraining()
         {
 
             // prepare training data
@@ -138,7 +124,7 @@ namespace TensorCore
             imageClassifier.Save(m_modelFile);
 
 
-            return true;
+           
         }
     }
 }

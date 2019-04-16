@@ -1586,7 +1586,7 @@ Do you want to install the latest Dynamo update?</value>
     <value>{0} elapsed for loading {1} main window.</value>
   </data>
   <data name="MessageNodeWithNullFunction" xml:space="preserve">
-    <value>There is a null function definition for this node.</value>
+    <value>There is a null eFunction definition for this node.</value>
   </data>
   <data name="MessageNoNodeDescription" xml:space="preserve">
     <value>No description provided</value>
