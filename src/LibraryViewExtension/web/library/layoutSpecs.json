@@ -1305,6 +1305,9 @@
                 },
                 {
                   "path": "TensorCore.TensorCore.BuildInLayers.ResNetNodeInc"
+                },
+                {
+                  "path": "TensorCore.TensorCore.BuildInLayers.OutputDnnLayer"
                 }
               ],
               "childElements": []

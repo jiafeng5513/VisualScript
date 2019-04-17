@@ -102,12 +102,12 @@ namespace TensorCore
         public static Variable CreateParameter(NDShape shape, DataType dataType, CNTKDictionary cntkDictionary,
             DeviceDescriptor device)
         {
-            return new Parameter(shape, DataType.Float,cntkDictionary, device);
+            return new Variable(new Parameter(shape, DataType.Float,cntkDictionary, device));
         }
 
         public static Variable CreateParameter(NDShape shape, float initValue, DeviceDescriptor device, string name="")
         {
-            return new Parameter(shape, initValue, device, name);
+            return new Variable(new Parameter(shape, initValue, device, name));
         }
         /// <summary>
         /// 学习率
@@ -130,7 +130,7 @@ namespace TensorCore
             int[]dimInts=new int[dims.Count];
             for (int i = 0; i < dims.Count; i++)
             {
-                dimInts[i] = (int) dims.IndexOf(i);
+                dimInts[i] = dims.IndexOf(i);
             }
 
             return (NDShape)(dimInts);

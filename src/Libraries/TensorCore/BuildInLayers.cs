@@ -108,5 +108,22 @@ namespace TensorCore
             return CNTKLib.ReLU(convBNFunction);
         }
 
+        public static Function OutputDnnLayer(Function cnnout,int numOutputClasses,int cMaps,double fcWScale,double fcBValue,DeviceDescriptor device)
+        {
+            // Global average pooling
+            int poolW = 8;
+            int poolH = 8;
+            int poolhStride = 1;
+            int poolvStride = 1;
+            var pool = CNTKLib.Pooling(cnnout, PoolingType.Average,
+                new int[] { poolW, poolH, 1 }, new int[] { poolhStride, poolvStride, 1 });
+
+            // Output DNN layer
+            var outTimesParams = new Parameter(new int[] { numOutputClasses, 1, 1, cMaps }, DataType.Float,
+                CNTKLib.GlorotUniformInitializer(fcWScale, 1, 0), device);
+            var outBiasParams = new Parameter(new int[] { numOutputClasses }, (float)fcBValue, device, "");
+
+            return CNTKLib.Plus(CNTKLib.Times(outTimesParams, pool), outBiasParams, "CifarRes");
+        }
     }
 }
