@@ -5,24 +5,66 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CNTK;
+using Newtonsoft.Json;
 
 namespace TensorCore
 {
     /*
      * CnnTrainer for Encapsulating Training procedures
      */
+    public class TrainerParamContainer
+    {
+        public int[] m_imageDim;
+        public int m_numClasses;
+        public uint m_TopN;
+        public string m_modelFile;
+        public uint m_minibatchSize;
+        public Function m_classifierOutput;
+        public DeviceDescriptor m_device;
+        public MinibatchSource m_minibatchSource;
+        public TrainingParameterScheduleDouble m_learningRatePerSample;
+
+        public bool Check()
+        {
+            bool CanRun = true;
+            if (m_imageDim == null)
+            {
+                Console.WriteLine("imageDim is null");
+                CanRun = false;
+                
+            }
+
+            //Console.WriteLine("numClasses=" + numClasses + "  TopN=" + TopN + " modelFile=" + modelFile + " minibatchSize=" + minibatchSize);
+            if (m_classifierOutput == null)
+            {
+                Console.WriteLine("classifierOutput is null");
+                CanRun = false;
+            }
+
+            if (m_device == null)
+            {
+                Console.WriteLine("device is null");
+                CanRun = false;
+            }
+
+            if (m_minibatchSource == null)
+            {
+                Console.WriteLine("minibatchSource is null");
+                CanRun = false;
+            }
+
+            if (m_learningRatePerSample == null)
+            {
+                Console.WriteLine("learningRatePerSample is null");
+                CanRun = false;
+            }
+
+            return CanRun;
+
+        }
+    }
     public class CnnTrainer
     {
-        private static int[] m_imageDim;
-        private static int m_numClasses;
-        private static uint m_TopN;
-        private static string m_modelFile;
-        private static uint m_minibatchSize;
-        private static Function m_classifierOutput;
-        private static DeviceDescriptor m_device;
-        private static MinibatchSource m_minibatchSource;
-        private static TrainingParameterScheduleDouble m_learningRatePerSample;
-
         /// <summary>
         /// 
         /// </summary>
@@ -40,15 +82,39 @@ namespace TensorCore
             CNTK.DeviceDescriptor device, CNTK.MinibatchSource minibatchSource, 
             CNTK.TrainingParameterScheduleDouble learningRatePerSample)
         {
-            m_imageDim = imageDim;
-            m_numClasses = numClasses;
-            m_TopN = (uint)TopN;
-            m_modelFile = modelFile;
-            m_minibatchSize = (uint)minibatchSize;
-            m_classifierOutput = classifierOutput;
-            m_device = device;
-            m_minibatchSource = minibatchSource;
-            m_learningRatePerSample = learningRatePerSample;
+            TrainerParamContainer ParamDeliverer=new TrainerParamContainer();
+            ParamDeliverer.m_imageDim = imageDim;
+            ParamDeliverer.m_numClasses = numClasses;
+            ParamDeliverer.m_TopN = (uint)TopN;
+            ParamDeliverer.m_modelFile = modelFile;
+            ParamDeliverer.m_minibatchSize = (uint)minibatchSize;
+            ParamDeliverer.m_classifierOutput = classifierOutput;
+            ParamDeliverer.m_device = device;
+            ParamDeliverer.m_minibatchSource = minibatchSource;
+            ParamDeliverer.m_learningRatePerSample = learningRatePerSample;
+
+            JsonConvert.SerializeObject(ParamDeliverer.m_imageDim);
+            JsonConvert.SerializeObject(ParamDeliverer.m_numClasses);
+            JsonConvert.SerializeObject(ParamDeliverer.m_TopN);
+            JsonConvert.SerializeObject(ParamDeliverer.m_modelFile);
+            JsonConvert.SerializeObject(ParamDeliverer.m_minibatchSize);
+            //JsonConvert.SerializeObject(ParamDeliverer.m_classifierOutput);
+            /*
+             * 分类器不能直接序列化,要先利用Function的Save进行一步序列化,
+             * 然后封包
+             * 传过来后,解包,拿出byte,Load进去
+             * 这个要先用控制台程序做实验
+             */
+            JsonConvert.SerializeObject(ParamDeliverer.m_minibatchSource);
+            JsonConvert.SerializeObject(ParamDeliverer.m_device);
+            JsonConvert.SerializeObject(ParamDeliverer.m_learningRatePerSample);
+
+            string json = JsonConvert.SerializeObject(ParamDeliverer);
+
+            string SavePath = System.Environment.CurrentDirectory;
+
+            System.IO.File.WriteAllText(SavePath+ "/TrainerParamContainer.json", json);
+            //序列化出去
             return true;
         }
 
@@ -67,23 +133,43 @@ namespace TensorCore
         /// <returns></returns>
         public static void RunTraining()
         {
+            TrainerParamContainer ParamDeliverer;
+            
+            try
+            {
+                string ParamFile = System.Environment.CurrentDirectory + "/TrainerParamContainer.json";
+                string json = System.IO.File.ReadAllText(ParamFile);
+                ParamDeliverer= JsonConvert.DeserializeObject<TrainerParamContainer>(json);
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine(e);
+                return;
+            }
+
+            if (ParamDeliverer.Check()==false)
+            {
+                Console.WriteLine("Params Deliverer failed!");
+                return;
+            }
+            Console.WriteLine("*********Engine Check Pass*********");
 
             // prepare training data
 
-            var imageStreamInfo = m_minibatchSource.StreamInfo("features");
-            var labelStreamInfo = m_minibatchSource.StreamInfo("labels");
+            var imageStreamInfo = ParamDeliverer.m_minibatchSource.StreamInfo("features");
+            var labelStreamInfo = ParamDeliverer.m_minibatchSource.StreamInfo("labels");
 
             // build a model
-            var imageInput = CNTKLib.InputVariable(m_imageDim, imageStreamInfo.m_elementType, "Images");
-            var labelsVar = CNTKLib.InputVariable(new int[] { m_numClasses }, labelStreamInfo.m_elementType, "Labels");
+            var imageInput = CNTKLib.InputVariable(ParamDeliverer.m_imageDim, imageStreamInfo.m_elementType, "Images");
+            var labelsVar = CNTKLib.InputVariable(new int[] { ParamDeliverer.m_numClasses }, labelStreamInfo.m_elementType, "Labels");
 
             // prepare for training
-            var trainingLoss = CNTKLib.CrossEntropyWithSoftmax(m_classifierOutput, labelsVar, "lossFunction");
-            var prediction = CNTKLib.ClassificationError(m_classifierOutput, labelsVar, m_TopN, "predictionError");
+            var trainingLoss = CNTKLib.CrossEntropyWithSoftmax(ParamDeliverer.m_classifierOutput, labelsVar, "lossFunction");
+            var prediction = CNTKLib.ClassificationError(ParamDeliverer.m_classifierOutput, labelsVar, ParamDeliverer.m_TopN, "predictionError");
 
 
-            var trainer = Trainer.CreateTrainer(m_classifierOutput, trainingLoss, prediction,
-                new List<Learner> {Learner.SGDLearner(m_classifierOutput.Parameters(), m_learningRatePerSample) });
+            var trainer = Trainer.CreateTrainer(ParamDeliverer.m_classifierOutput, trainingLoss, prediction,
+                new List<Learner> {Learner.SGDLearner(ParamDeliverer.m_classifierOutput.Parameters(), ParamDeliverer.m_learningRatePerSample) });
 
 
             int outputFrequencyInMinibatches = 20, miniBatchCount = 0;
@@ -91,7 +177,7 @@ namespace TensorCore
             // Feed data to the trainer for number of epochs. 
             while (true)
             {
-                var minibatchData = m_minibatchSource.GetNextMinibatch(m_minibatchSize, m_device);
+                var minibatchData = ParamDeliverer.m_minibatchSource.GetNextMinibatch(ParamDeliverer.m_minibatchSize, ParamDeliverer.m_device);
 
                 // Stop training once max epochs is reached.
                 if (minibatchData.empty())
@@ -101,7 +187,7 @@ namespace TensorCore
 
                 trainer.TrainMinibatch(new Dictionary<Variable, MinibatchData>()
                         {{imageInput, minibatchData[imageStreamInfo]}, {labelsVar, minibatchData[labelStreamInfo]}},
-                    m_device);
+                    ParamDeliverer.m_device);
 
                 if ((miniBatchCount % outputFrequencyInMinibatches) == 0 && trainer.PreviousMinibatchSampleCount() != 0)
                 {
@@ -119,9 +205,9 @@ namespace TensorCore
             }
 
             // save the model
-            var imageClassifier = Function.Combine(new List<Variable>() {trainingLoss, prediction, m_classifierOutput },
+            var imageClassifier = Function.Combine(new List<Variable>() {trainingLoss, prediction, ParamDeliverer.m_classifierOutput },
                 "ImageClassifier");
-            imageClassifier.Save(m_modelFile);
+            imageClassifier.Save(ParamDeliverer.m_modelFile);
 
 
            
