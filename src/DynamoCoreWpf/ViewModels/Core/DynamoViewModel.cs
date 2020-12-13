@@ -34,7 +34,7 @@ using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Threading;
 using ISelectable = Dynamo.Selection.ISelectable;
-using BrowserCore;
+
 namespace Dynamo.ViewModels
 {
     public interface IDynamoViewModel : INotifyPropertyChanged
@@ -1422,9 +1422,9 @@ namespace Dynamo.ViewModels
         /// <param name="parameter"></param>
         private void DoOpenBrowser(object parameter)
         {
-            //打开嵌入式浏览器
-            EmbeddedBrowser m = new EmbeddedBrowser();
-            m.Show();
+            ////打开嵌入式浏览器
+            //EmbeddedBrowser m = new EmbeddedBrowser();
+            //m.Show();
         }
         /// <summary>
         /// 打开外挂控制台
