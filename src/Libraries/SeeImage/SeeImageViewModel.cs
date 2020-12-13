@@ -1,21 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Reflection;
-using System.Windows;
-using System.Windows.Media.Imaging;
-using DeepLearning.Visible;
-using Dynamo.Controls;
+﻿using Dynamo.Controls;
 using Dynamo.Core;
 using Dynamo.Graph.Nodes;
-using Dynamo.Models;
-using Dynamo.UI.Commands;
 using Dynamo.ViewModels;
 using ModelAnalyzerUI;
-using Newtonsoft.Json;
-using ProtobufTools;
-using TensorProtocol;
 using DelegateCommand = Dynamo.UI.Commands.DelegateCommand;
 
 namespace Dynamo.Wpf

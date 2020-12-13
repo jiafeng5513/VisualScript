@@ -1432,11 +1432,7 @@ namespace Dynamo.ViewModels
         /// <param name="parameter"></param>
         private void DoOpenConsoleView(object parameter)
         {
-            //打开外挂控制台
-            ConsoleView.ConsoleView m = new ConsoleView.ConsoleView();
-            m.Show();
-            Console.WriteLine("Lunch From Core WPF ViewModel");
-            Console.WriteLine("********Lunch From Core WPF ViewModel********");
+
         }
 
         private static bool CanCreateNodeFromSelection(object parameter)

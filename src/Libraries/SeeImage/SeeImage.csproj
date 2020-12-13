@@ -114,21 +114,9 @@
       <Project>{7a9e0314-966f-4584-baa3-7339cbb849d1}</Project>
       <Name>ProtoCore</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Utilities\ProtobufTools\ProtobufTools.csproj">
-      <Project>{14b2adfe-54a0-46d3-b400-8f9333c1f96b}</Project>
-      <Name>ProtobufTools</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Utilities\TensorProtocol\TensorProtocol.csproj">
-      <Project>{58217757-5682-4F9C-88D6-DDB59FB8EA34}</Project>
-      <Name>TensorProtocol</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CoreNodes\CoreNodes.csproj">
       <Project>{87550b2b-6cb8-461e-8965-dfafe3aafb5c}</Project>
       <Name>CoreNodes</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DeepLearning\DeepLearning.csproj">
-      <Project>{bebf0fcc-11a9-45f5-a076-bdddec452d59}</Project>
-      <Name>DeepLearning</Name>
     </ProjectReference>
     <ProjectReference Include="..\DynamoConversions\DynamoConversions.csproj">
       <Project>{C5ADC05B-34E8-47BF-8E78-9C7BF96418C2}</Project>
