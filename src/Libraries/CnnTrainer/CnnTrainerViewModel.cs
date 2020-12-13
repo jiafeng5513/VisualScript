@@ -96,11 +96,11 @@ namespace Dynamo.Wpf
              */
             CanSeeProgressBar = true;
 
-            ConsoleView.ConsoleView m = new ConsoleView.ConsoleView();
-            m.Show();
-            Console.WriteLine("Lunch From CNN Trainer ViewModel");
-            TensorCore.CnnTrainer.RunTraining();
-            Console.WriteLine("Check!");
+            //ConsoleView.ConsoleView m = new ConsoleView.ConsoleView();
+            //m.Show();
+            //Console.WriteLine("Lunch From CNN Trainer ViewModel");
+            //TensorCore.CnnTrainer.RunTraining();
+            //Console.WriteLine("Check!");
             //Thread thread = new Thread(new ThreadStart(TensorCore.CnnTrainer.RunTraining));//创建线程
             //thread.Start();
 

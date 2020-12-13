@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using CNTK;
 using Newtonsoft.Json;
@@ -93,27 +94,29 @@ namespace TensorCore
             ParamDeliverer.m_minibatchSource = minibatchSource;
             ParamDeliverer.m_learningRatePerSample = learningRatePerSample;
 
-            JsonConvert.SerializeObject(ParamDeliverer.m_imageDim);
-            JsonConvert.SerializeObject(ParamDeliverer.m_numClasses);
-            JsonConvert.SerializeObject(ParamDeliverer.m_TopN);
-            JsonConvert.SerializeObject(ParamDeliverer.m_modelFile);
-            JsonConvert.SerializeObject(ParamDeliverer.m_minibatchSize);
-            //JsonConvert.SerializeObject(ParamDeliverer.m_classifierOutput);
-            /*
-             * 分类器不能直接序列化,要先利用Function的Save进行一步序列化,
-             * 然后封包
-             * 传过来后,解包,拿出byte,Load进去
-             * 这个要先用控制台程序做实验
-             */
-            JsonConvert.SerializeObject(ParamDeliverer.m_minibatchSource);
-            JsonConvert.SerializeObject(ParamDeliverer.m_device);
-            JsonConvert.SerializeObject(ParamDeliverer.m_learningRatePerSample);
+            //Thread thread = new Thread(new ParameterizedThreadStart(CnnTrainer.RunTraining));//创建线程
+            //thread.Start(ParamDeliverer);
+            //JsonConvert.SerializeObject(ParamDeliverer.m_imageDim);
+            //JsonConvert.SerializeObject(ParamDeliverer.m_numClasses);
+            //JsonConvert.SerializeObject(ParamDeliverer.m_TopN);
+            //JsonConvert.SerializeObject(ParamDeliverer.m_modelFile);
+            //JsonConvert.SerializeObject(ParamDeliverer.m_minibatchSize);
+            ////JsonConvert.SerializeObject(ParamDeliverer.m_classifierOutput);
+            ///*
+            // * 分类器不能直接序列化,要先利用Function的Save进行一步序列化,
+            // * 然后封包
+            // * 传过来后,解包,拿出byte,Load进去
+            // * 这个要先用控制台程序做实验
+            // */
+            //JsonConvert.SerializeObject(ParamDeliverer.m_minibatchSource);
+            //JsonConvert.SerializeObject(ParamDeliverer.m_device);
+            //JsonConvert.SerializeObject(ParamDeliverer.m_learningRatePerSample);
 
-            string json = JsonConvert.SerializeObject(ParamDeliverer);
+            //string json = JsonConvert.SerializeObject(ParamDeliverer);
 
-            string SavePath = System.Environment.CurrentDirectory;
+            //string SavePath = System.Environment.CurrentDirectory;
 
-            System.IO.File.WriteAllText(SavePath+ "/TrainerParamContainer.json", json);
+            //System.IO.File.WriteAllText(SavePath+ "/TrainerParamContainer.json", json);
             //序列化出去
             return true;
         }
@@ -131,27 +134,29 @@ namespace TensorCore
         /// <param name="learningRatePerSample"></param>
         /// <param name="device"></param>
         /// <returns></returns>
-        public static void RunTraining()
+        public static void RunTraining(Object paramDeliverer)
         {
-            TrainerParamContainer ParamDeliverer;
             
-            try
-            {
-                string ParamFile = System.Environment.CurrentDirectory + "/TrainerParamContainer.json";
-                string json = System.IO.File.ReadAllText(ParamFile);
-                ParamDeliverer= JsonConvert.DeserializeObject<TrainerParamContainer>(json);
-            }
-            catch (IOException e)
-            {
-                Console.WriteLine(e);
-                return;
-            }
+            var ParamDeliverer =(TrainerParamContainer) paramDeliverer;
+            //ConsoleView.ConsoleView m = new ConsoleView.ConsoleView();
+            //m.Show();
+            //try
+            //{
+            //    string ParamFile = System.Environment.CurrentDirectory + "/TrainerParamContainer.json";
+            //    string json = System.IO.File.ReadAllText(ParamFile);
+            //    //ParamDeliverer= JsonConvert.DeserializeObject<TrainerParamContainer>(json);
+            //}
+            //catch (IOException e)
+            //{
+            //    Console.WriteLine(e);
+            //    return;
+            //}
 
-            if (ParamDeliverer.Check()==false)
-            {
-                Console.WriteLine("Params Deliverer failed!");
-                return;
-            }
+            //if (ParamDeliverer.Check()==false)
+            //{
+            //    Console.WriteLine("Params Deliverer failed!");
+            //    return;
+            //}
             Console.WriteLine("*********Engine Check Pass*********");
 
             // prepare training data

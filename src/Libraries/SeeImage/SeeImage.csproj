@@ -170,7 +170,7 @@
   <Import Project="MsBuildAL1073WarningWorkaround.targets" />
   <Target Name="AfterBuild">
     <!-- Get System.Drawing.dll -->
-    <GetReferenceAssemblyPaths TargetFrameworkMoniker=".NETFramework, Version=v2.0">
+    <GetReferenceAssemblyPaths TargetFrameworkMoniker=".NETFramework, Version=v4.7">
       <Output TaskParameter="FullFrameworkReferenceAssemblyPaths" PropertyName="FrameworkAssembliesPath" />
     </GetReferenceAssemblyPaths>
     <!-- Get ProtoGeometry -->

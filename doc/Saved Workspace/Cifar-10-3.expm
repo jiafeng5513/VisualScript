@@ -2,7 +2,7 @@
   "Uuid": "82a2d986-a234-490b-9c32-3b149a2d2243",
   "IsCustomNode": false,
   "Description": null,
-  "Name": "Cifar-10-2",
+  "Name": "Cifar-10-3",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -2578,39 +2578,6 @@
       ],
       "Replication": "Auto",
       "Description": "Constants.Device_GPU (GpuID: int): var"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.EFunction, DynamoCore",
-      "FunctionSignature": "a4be15ff-759f-43ec-a888-d173cd0f5e3a",
-      "FunctionType": "Graph",
-      "NodeType": "FunctionNode",
-      "Id": "34cd433ab74745a4959792a0d3ecb009",
-      "Inputs": [
-        {
-          "Id": "fc183c88c48c46cfa21fb2140e7f1e00",
-          "Name": "input",
-          "Description": "var[]..[]",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "e3c10f72e05a492e9265b93ef6d20ef3",
-          "Name": "ClassOutPut",
-          "Description": "return value",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false,
-          "IsConnected": false
-        }
-      ],
-      "Replication": "Auto",
-      "Description": ""
     }
   ],
   "Connectors": [
@@ -3050,9 +3017,7 @@
       "Id": "85002f6215474e3199c3e51859d5e0ef"
     }
   ],
-  "Dependencies": [
-    "a4be15ff-759f-43ec-a888-d173cd0f5e3a"
-  ],
+  "Dependencies": [],
   "Bindings": [],
   "View": {
     "Dynamo": {
@@ -3813,21 +3778,11 @@
         "Excluded": false,
         "X": 6280.0047857161735,
         "Y": -594.80483375305221
-      },
-      {
-        "ShowGeometry": true,
-        "Name": "Classifier",
-        "Id": "34cd433ab74745a4959792a0d3ecb009",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 955.87361115482236,
-        "Y": -2505.1071332800384
       }
     ],
     "Annotations": [],
-    "X": 374.35374472907358,
-    "Y": 1008.166777531828,
-    "Zoom": 0.32225346373167196
+    "X": 6.8188165453177589,
+    "Y": 1593.1040688440132,
+    "Zoom": 0.69958867047828988
   }
 }
