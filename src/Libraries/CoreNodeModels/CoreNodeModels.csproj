@@ -41,7 +41,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Input\ColorPalette.cs" />
-    <Compile Include="Input\DateTime.cs" />
     <Compile Include="DynamoConvert.cs" />
     <Compile Include="Input\SliderBase.cs" />
     <Compile Include="Input\Double.cs" />
@@ -57,7 +56,6 @@
     <Compile Include="CreateList.cs" />
     <Compile Include="DropDown.cs" />
     <Compile Include="Enum.cs" />
-    <Compile Include="Formula.cs" />
     <Compile Include="HigherOrder\Apply.cs" />
     <Compile Include="HigherOrder\MapCombineLacing.cs" />
     <Compile Include="IModelSelectionHelper.cs" />
@@ -83,7 +81,6 @@
     <Compile Include="Watch.cs" />
     <Compile Include="WatchImageCore.cs" />
     <Compile Include="String.cs" />
-    <Compile Include="WebRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\DynamoCore\DynamoCore.csproj">

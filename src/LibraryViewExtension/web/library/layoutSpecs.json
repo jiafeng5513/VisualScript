@@ -1282,25 +1282,6 @@
               "childElements": []
             }
           ]
-        },
-        {
-          "text": "Dicom Tools",
-          "iconUrl": "./dist/resources/Category.DicomTools.svg",
-          "elementType": "category",
-          "include": [],
-          "childElements": [
-            {
-              "text": "Dicom Reader",
-              "iconUrl": "",
-              "elementType": "group",
-              "include": [
-                {
-                  "path": "DicomTools.DicomTools.DicomReader.ReadDicomFromPath"
-                }
-              ],
-              "childElements": []
-            }
-          ]
         }
       ]
     },
