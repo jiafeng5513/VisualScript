@@ -117,10 +117,6 @@
       <Project>{87550b2b-6cb8-461e-8965-dfafe3aafb5c}</Project>
       <Name>CoreNodes</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DynamoConversions\DynamoConversions.csproj">
-      <Project>{C5ADC05B-34E8-47BF-8E78-9C7BF96418C2}</Project>
-      <Name>DynamoConversions</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">

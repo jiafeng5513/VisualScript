@@ -5,7 +5,6 @@ using System.Text;
 using ProtoCore.DSASM;
 using ProtoCore.Utils;
 using System.Linq;
-using CNTK;
 using ProtoCore.DSDefinitions;
 using ProtoCore.Runtime;
 using ProtoCore.Properties;
