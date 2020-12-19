@@ -9,7 +9,7 @@ configuration:
 platform: x64
 before_build:
   - nuget restore .\src\Expressior.sln
-
+  - dotnet restore .\src\Expressior.sln
 build:
   project: src/Expressior.sln
   verbosity: minimal
