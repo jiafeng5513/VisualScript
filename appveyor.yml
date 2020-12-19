@@ -7,8 +7,9 @@ configuration:
 - Debug
 - Release
 platform: x64
-nuget:
-  account_feed: true
+before_build:
+  - nuget restore .\src\Expressior.sln
+
 build:
   project: src/Expressior.sln
   verbosity: minimal
