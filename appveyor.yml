@@ -9,8 +9,6 @@ configuration:
 platform: x64
 nuget:
   account_feed: true
-before_build:
-- cmd: dotnet restore ./src/Expressior.sln
 build:
   project: src/Expressior.sln
   verbosity: minimal
