@@ -13,6 +13,7 @@ before_build:
 build:
   project: src/Expressior.sln
   verbosity: minimal
+  parallel: true
 notifications:
 - provider: Email
   to:
