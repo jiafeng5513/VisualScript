@@ -1,9 +1,9 @@
-![image](https://github.com/AngelaViVi/Expressior/blob/Expressior_master/src/DynamoCoreWpf/UI/Images/StartPage/dynamo-logo.png) 
+![image](./src/DynamoCoreWpf/UI/Images/StartPage/dynamo-logo.png) 
 ====================================
-
-|BRANCH|master|root1|root2
-|:--------:|:----------:|:-------------:|-------------:|
-|STATE|[![Build status](https://ci.appveyor.com/api/projects/status/ke5nv5l0d33w5tl2/branch/Expressior_master?svg=true)](https://ci.appveyor.com/project/AngelaViVi/expressior/branch/Expressior_master)|stopped|stopped
+### Ci Merge Control
+|BRANCH|master|
+|:--------:|:----------:|
+|appveyor|[![Build status](https://ci.appveyor.com/api/projects/status/ke5nv5l0d33w5tl2?svg=true)](https://ci.appveyor.com/project/jiafeng5513/expressior)
 
 ### Introduction
 Expressior is a node-based visual scripting application based on [Autodesk Dynamo BIM](https://github.com/DynamoDS/Dynamo).Used by "drag and drop" like Blueprint in Unreal Engine 4. 
