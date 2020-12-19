@@ -196,7 +196,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ExtendedLibraries\FunctionObject.ds" />
-    <None Include="packages.config" />
     <None Include="Parser\atg\Associative.atg" />
     <None Include="Parser\atg\End.atg" />
     <None Include="Parser\atg\Imperative.atg" />
