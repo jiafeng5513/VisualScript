@@ -9,14 +9,8 @@ configuration:
 platform: x64
 before_build:
   - nuget restore .\src\Expressior.sln
-environment:
-  solution: src/Expressior.sln
-  oauth_access_token:
-    secure: 14B2LfzdzmTNRCadtOW73/mofQniTe49NA71lH65TSq8uLPeTKlIu/o2FVUOisAc
 nuget:
   account_feed: true
-build_script:
-  - msbuild %solution%
 build:
   project: src/Expressior.sln
   verbosity: minimal
