@@ -115,7 +115,7 @@ namespace Dynamo.Graph.Nodes
         /// <summary>
         /// This method returns a name for the icon based on name of the node.
         /// </summary>
-        /// <param name="descriptor">Function descriptor, that contains all info about node.</param>
+        /// <param name="descriptor">EFunction descriptor, that contains all info about node.</param>
         /// <param name="overridePrefix">
         /// overridePrefix is used as default value for generating node icon name.
         /// If overridePrefix is empty, it uses QualifiedName property.

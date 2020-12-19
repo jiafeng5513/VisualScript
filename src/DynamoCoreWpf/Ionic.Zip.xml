@@ -1908,7 +1908,7 @@
                actual AES key used is derived from the <see cref="P:Ionic.Zip.ZipEntry.Password"/> via an
                algorithm that complies with <see href="http://www.ietf.org/rfc/rfc2898.txt">RFC 2898</see>, using an iteration
                count of 1000.  The algorithm is sometimes referred to as PBKDF2, which stands
-               for "Password Based Key Derivation Function #2".
+               for "Password Based Key Derivation EFunction #2".
              </para>
             
              <para>
@@ -7359,12 +7359,12 @@
             
              <code lang="VB">
             
-             Function MyStreamOpener(ByVal entryName As String) As Stream
+             EFunction MyStreamOpener(ByVal entryName As String) As Stream
                  '' This simply opens a file.  You probably want to do somethinig
                  '' more involved here: open a stream to read from a database,
                  '' open a stream on an HTTP connection, and so on.
                  Return File.OpenRead(entryName)
-             End Function
+             End EFunction
             
              Sub MyStreamCloser(entryName As String, stream As Stream)
                  stream.Close()

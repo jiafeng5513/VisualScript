@@ -7,7 +7,7 @@ namespace Dynamo.Graph.Nodes.ZeroTouch
     ///     DesignScript function node. All functions from DesignScript share the
     ///     same function node but internally have different procedure.
     /// </summary>
-    [NodeName("Function Node"), NodeDescription("DSFunctionNodeDescription", typeof(Properties.Resources)),
+    [NodeName("EFunction Node"), NodeDescription("DSFunctionNodeDescription", typeof(Properties.Resources)),
     IsVisibleInDynamoLibrary(false), IsMetaNode]
     [AlsoKnownAs("Dynamo.Nodes.DSFunction")]
     public class DSFunction : DSFunctionBase
@@ -45,7 +45,7 @@ namespace Dynamo.Graph.Nodes.ZeroTouch
         /// <summary>
         ///     Initializes a new instance of the <see cref="DSFunction"/> class.
         /// </summary>
-        /// <param name="description">Function descritor.</param>
+        /// <param name="description">EFunction descritor.</param>
         public DSFunction(FunctionDescriptor functionDescription) 
             : base(new ZeroTouchNodeController<FunctionDescriptor>(functionDescription)) 
         {

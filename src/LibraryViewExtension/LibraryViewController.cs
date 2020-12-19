@@ -219,6 +219,7 @@ namespace Dynamo.LibraryUI
         private void OnLibraryViewLoaded(object sender, RoutedEventArgs e)
         {
             var libraryView = sender as LibraryView;
+            
 #if DEBUG
             var browser = libraryView.Browser;
             browser.ConsoleMessage += OnBrowserConsoleMessage;

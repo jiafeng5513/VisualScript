@@ -409,7 +409,6 @@ namespace ProtoCore
                 
                 var fep = funcGroup.FunctionEndPoints[0];
                 var formalParamsJoined = string.Join(", ", fep.FormalParams.Select(x => x.ToShortString()));
-
                 message = string.Format(Resources.NonOverloadMethodResolutionError, qualifiedMethodName, formalParamsJoined, argsJoined);
             }
             else // overloaded case

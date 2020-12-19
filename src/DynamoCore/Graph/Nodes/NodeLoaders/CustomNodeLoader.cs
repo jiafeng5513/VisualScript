@@ -11,7 +11,7 @@ namespace Dynamo.Graph.Nodes.NodeLoaders
     /// <summary>
     ///     Xml Loader for Custom Nodes.
     /// </summary>
-    internal class CustomNodeLoader : INodeLoader<Function>
+    internal class CustomNodeLoader : INodeLoader<EFunction>
     {
         private readonly ICustomNodeSource customNodeManager;
         //private readonly bool isTestMode;
@@ -22,7 +22,7 @@ namespace Dynamo.Graph.Nodes.NodeLoaders
             //this.isTestMode = isTestMode;
         }
         
-        public Function CreateNodeFromXml(XmlElement nodeElement, SaveContext context, ElementResolver resolver)
+        public EFunction CreateNodeFromXml(XmlElement nodeElement, SaveContext context, ElementResolver resolver)
         {
             XmlNode idNode =
                 nodeElement.ChildNodes.Cast<XmlNode>()
@@ -44,7 +44,7 @@ namespace Dynamo.Graph.Nodes.NodeLoaders
             return node;
         }
 
-        public Function CreateProxyNode(Guid funcId, string name, Guid nodeId, int inputNum, int outputNum)
+        public EFunction CreateProxyNode(Guid funcId, string name, Guid nodeId, int inputNum, int outputNum)
         {
             var node = customNodeManager.CreateCustomNodeInstance(funcId, name/*, isTestMode*/);
             // create its definition and add inputs and outputs

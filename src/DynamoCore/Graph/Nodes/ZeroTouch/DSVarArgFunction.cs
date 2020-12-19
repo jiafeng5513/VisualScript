@@ -14,7 +14,7 @@ namespace Dynamo.Graph.Nodes.ZeroTouch
     ///     DesignScript var-arg function node. All functions from DesignScript share the
     ///     same function node but internally have different procedure.
     /// </summary>
-    [NodeName("Function Node w/ VarArgs"), NodeDescription("FunctionNodeDescription", typeof(Properties.Resources)),
+    [NodeName("EFunction Node w/ VarArgs"), NodeDescription("FunctionNodeDescription", typeof(Properties.Resources)),
     IsVisibleInDynamoLibrary(false), IsMetaNode]
     [AlsoKnownAs("Dynamo.Nodes.DSVarArgFunction")]
     public class DSVarArgFunction : DSFunctionBase
@@ -46,7 +46,7 @@ namespace Dynamo.Graph.Nodes.ZeroTouch
         /// <summary>
         ///     Initializes a new instance of the <see cref="DSVarArgFunction"/> class.
         /// </summary>
-        /// <param name="descriptor">Function descritor.</param>
+        /// <param name="descriptor">EFunction descritor.</param>
         public DSVarArgFunction(FunctionDescriptor descriptor)
             : base(new ZeroTouchVarArgNodeController<FunctionDescriptor>(descriptor))
         {

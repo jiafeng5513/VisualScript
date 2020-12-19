@@ -1069,7 +1069,7 @@ namespace Dynamo.Models
 
         private void InitializeIncludedNodes()
         {
-            var customNodeData = new TypeLoadData(typeof(Function));
+            var customNodeData = new TypeLoadData(typeof(EFunction));
             NodeFactory.AddLoader(new CustomNodeLoader(CustomNodeManager/*, IsTestMode*/));
             NodeFactory.AddAlsoKnownAs(customNodeData.Type, customNodeData.AlsoKnownAs);
 
@@ -1334,7 +1334,7 @@ namespace Dynamo.Models
                 return;
 
             var dependencies = CustomNodeManager.GetAllDependenciesGuids(def);
-            var funcNodes = homeWorkspace.Nodes.OfType<Function>();
+            var funcNodes = homeWorkspace.Nodes.OfType<EFunction>();
             var dirtyNodes = funcNodes.Where(n => dependencies.Contains(n.Definition.FunctionId));
             homeWorkspace.MarkNodesAsModifiedAndRequestRun(dirtyNodes);
         }

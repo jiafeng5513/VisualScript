@@ -1938,7 +1938,7 @@ namespace ProtoCore
             {
                 //@TODO(Luke): log no-type coercion possible warning
                 runtimeCore.RuntimeStatus.LogWarning(WarningID.ConversionNotPossible,
-                                              Resources.kConvertNonConvertibleTypes);
+                                              Resources.kConvertNonConvertibleTypes+ runtimeCore.DSExecutable.classTable.ClassNodes[ret.metaData.type]);
                 return StackValue.Null;
             }
         }

@@ -17,6 +17,8 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("Watch3DNodeModelsWpf")]
 [assembly: InternalsVisibleTo("DynamoApplications")]
 [assembly: InternalsVisibleTo("ModelAnalyzer")]
+[assembly: InternalsVisibleTo("CnnTrainer")]
+[assembly: InternalsVisibleTo("Console")]
 [assembly: InternalsVisibleTo("RevitSystemTests")]
 [assembly: InternalsVisibleTo("DynamoCLI")]
 [assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")] // Dynamic assembly created by Moq

@@ -225,7 +225,7 @@ limitations under the License.
     <Compile Include="Core\NodeModelAssemblyLoader.cs" />
     <Compile Include="Graph\Nodes\NodeCategories.cs" />
     <Compile Include="Graph\Connectors\ConnectorModel.cs" />
-    <Compile Include="Graph\Nodes\CustomNodes\Function.cs" />
+    <Compile Include="Graph\Nodes\CustomNodes\EFunction.cs" />
     <Compile Include="Graph\Nodes\NodeModel.cs" />
     <Compile Include="Graph\Workspaces\WorkspaceModel.cs" />
     <Compile Include="Graph\Nodes\NodeLoaders\CodeBlockNodeLoader.cs" />
@@ -362,7 +362,7 @@ limitations under the License.
   </Target>
   <Target Name="AfterBuild" Condition=" '$(OS)' != 'Unix' ">
     <!-- Get System.Drawing.dll -->
-    <GetReferenceAssemblyPaths TargetFrameworkMoniker=".NETFramework, Version=v2.0">
+    <GetReferenceAssemblyPaths TargetFrameworkMoniker=".NETFramework, Version=v4.7">
       <Output TaskParameter="FullFrameworkReferenceAssemblyPaths" PropertyName="FrameworkAssembliesPath" />
     </GetReferenceAssemblyPaths>
     <!-- Get DynamoCore -->

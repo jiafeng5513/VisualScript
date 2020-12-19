@@ -137,7 +137,7 @@ namespace Dynamo.ViewModels
         public bool IsNodeExpanded { get; set; }
 
         /// <summary>
-        /// If Content is 1 string, e.g. "Empty", "null", "Function", margin should be more to the left side.
+        /// If Content is 1 string, e.g. "Empty", "null", "EFunction", margin should be more to the left side.
         /// For this purpose used this value. When it's true, margin in DataTrigger is set to -15,5,5,5; otherwise
         /// it's set to 5,5,5,5
         /// </summary>

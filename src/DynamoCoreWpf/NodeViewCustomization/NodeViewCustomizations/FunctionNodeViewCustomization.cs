@@ -9,14 +9,14 @@ using Dynamo.Wpf.Properties;
 
 namespace Dynamo.Wpf
 {
-    public class FunctionNodeViewCustomization : INodeViewCustomization<Function>
+    public class FunctionNodeViewCustomization : INodeViewCustomization<EFunction>
     {
-        private Function functionNodeModel;
+        private EFunction _eFunctionNodeModel;
         private DynamoViewModel dynamoViewModel;
 
-        public void CustomizeView(Function function, NodeView nodeView)
+        public void CustomizeView(EFunction eFunction, NodeView nodeView)
         {
-            functionNodeModel = function;
+            _eFunctionNodeModel = eFunction;
             dynamoViewModel = nodeView.ViewModel.DynamoViewModel;
 
             nodeView.MainContextMenu.Items.Add(new Separator());
@@ -42,7 +42,7 @@ namespace Dynamo.Wpf
             // Check if the workspace is read-only or not, disable editPropertiesItem accordingly
             CustomNodeWorkspaceModel ws;
             dynamoViewModel.Model.CustomNodeManager.TryGetFunctionWorkspace(
-                functionNodeModel.Definition.FunctionId,out ws);
+                _eFunctionNodeModel.Definition.FunctionId,out ws);
 
             if (ws != null && ws.IsReadOnly)
             {
@@ -58,7 +58,7 @@ namespace Dynamo.Wpf
             //nodeView.MainContextMenu.Items.Add(publishCustomNodeItem);
 
             ////publishCustomNodeItem.Command = nodeView.ViewModel.DynamoViewModel.PublishSelectedNodesCommand;
-            //publishCustomNodeItem.CommandParameter = functionNodeModel;
+            //publishCustomNodeItem.CommandParameter = _eFunctionNodeModel;
 
             nodeView.UpdateLayout();
         }
@@ -68,7 +68,7 @@ namespace Dynamo.Wpf
             CustomNodeInfo info;
             var model = dynamoViewModel.Model;
 
-            if (!model.CustomNodeManager.TryGetNodeInfo(functionNodeModel.Definition.FunctionId,
+            if (!model.CustomNodeManager.TryGetNodeInfo(_eFunctionNodeModel.Definition.FunctionId,
                     out info))
             {
                 return;
@@ -87,13 +87,13 @@ namespace Dynamo.Wpf
                 CanEditName = false
             };
 
-            model.OnRequestsFunctionNamePrompt(functionNodeModel, args);
+            model.OnRequestsFunctionNamePrompt(_eFunctionNodeModel, args);
 
             if (args.Success)
             {
                 CustomNodeWorkspaceModel ws;
                 model.CustomNodeManager.TryGetFunctionWorkspace(
-                    functionNodeModel.Definition.FunctionId,out ws);
+                    _eFunctionNodeModel.Definition.FunctionId,out ws);
                 ws.SetInfo(args.Name, args.Category, args.Description);
 
                 if (!string.IsNullOrEmpty(ws.FileName))

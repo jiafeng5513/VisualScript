@@ -3176,7 +3176,7 @@ namespace Dynamo.Wpf.Properties {
         }
         
         /// <summary>
-        ///   查找类似 There is a null function definition for this node. 的本地化字符串。
+        ///   查找类似 There is a null eFunction definition for this node. 的本地化字符串。
         /// </summary>
         public static string MessageNodeWithNullFunction {
             get {

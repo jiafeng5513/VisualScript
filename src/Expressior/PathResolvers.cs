@@ -28,12 +28,6 @@ namespace Dynamo.Applications
                 "VMDataBridge.dll",
                 "DSCoreNodes.dll",
                 "DesignScriptBuiltin.dll",
-                "DSIronPython.dll",
-                "FunctionObject.ds",
-                "BuiltIn.ds",
-                "ImageProcess.dll",//注意这个dll的名字
-                "DicomTools.dll",
-                "DeepLearning.dll"
             };
 
         }

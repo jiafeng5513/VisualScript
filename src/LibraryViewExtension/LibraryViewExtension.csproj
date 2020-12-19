@@ -207,4 +207,5 @@
   </Target>
   <Import Project="..\packages\cef.redist.x86.3.2623.1401\build\cef.redist.x86.targets" Condition="Exists('..\packages\cef.redist.x86.3.2623.1401\build\cef.redist.x86.targets')" />
   <Import Project="..\packages\CefSharp.Common.49.0.1\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.49.0.1\build\CefSharp.Common.targets')" />
+  <ProjectExtensions />
 </Project>

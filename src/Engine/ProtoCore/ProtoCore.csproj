@@ -16,9 +16,15 @@
     </UpgradeBackupLocation>
     <OldToolsVersion>3.5</OldToolsVersion>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <ImportGroup Label="PropertySheets">
     <Import Project="$(SolutionDir)Config\CS.props" />
+    <Import Project="..\..\packages\CNTK.Deps.Cuda.2.6.0\build\netstandard2.0\CNTK.Deps.Cuda.targets" Condition="Exists('..\..\packages\CNTK.Deps.Cuda.2.6.0\build\netstandard2.0\CNTK.Deps.Cuda.targets')" />
+    <Import Project="..\..\packages\CNTK.Deps.cuDNN.2.6.0\build\netstandard2.0\CNTK.Deps.cuDNN.targets" Condition="Exists('..\..\packages\CNTK.Deps.cuDNN.2.6.0\build\netstandard2.0\CNTK.Deps.cuDNN.targets')" />
+    <Import Project="..\..\packages\CNTK.Deps.MKL.2.6.0\build\netstandard2.0\CNTK.Deps.MKL.targets" Condition="Exists('..\..\packages\CNTK.Deps.MKL.2.6.0\build\netstandard2.0\CNTK.Deps.MKL.targets')" />
+    <Import Project="..\..\packages\CNTK.Deps.OpenCV.Zip.2.6.0\build\netstandard2.0\CNTK.Deps.OpenCV.Zip.targets" Condition="Exists('..\..\packages\CNTK.Deps.OpenCV.Zip.2.6.0\build\netstandard2.0\CNTK.Deps.OpenCV.Zip.targets')" />
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -189,8 +195,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ExtendedLibraries\BuiltIn.ds" />
     <None Include="ExtendedLibraries\FunctionObject.ds" />
+    <None Include="packages.config" />
     <None Include="Parser\atg\Associative.atg" />
     <None Include="Parser\atg\End.atg" />
     <None Include="Parser\atg\Imperative.atg" />
@@ -226,5 +232,14 @@
       <ExtendedLibraries Include="$(ProjectDir)ExtendedLibraries\*.ds" />
     </ItemGroup>
     <Copy SourceFiles="@(ExtendedLibraries)" DestinationFolder="$(OutputPath)" />
+  </Target>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\CNTK.Deps.Cuda.2.6.0\build\netstandard2.0\CNTK.Deps.Cuda.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\CNTK.Deps.Cuda.2.6.0\build\netstandard2.0\CNTK.Deps.Cuda.targets'))" />
+    <Error Condition="!Exists('..\..\packages\CNTK.Deps.cuDNN.2.6.0\build\netstandard2.0\CNTK.Deps.cuDNN.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\CNTK.Deps.cuDNN.2.6.0\build\netstandard2.0\CNTK.Deps.cuDNN.targets'))" />
+    <Error Condition="!Exists('..\..\packages\CNTK.Deps.MKL.2.6.0\build\netstandard2.0\CNTK.Deps.MKL.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\CNTK.Deps.MKL.2.6.0\build\netstandard2.0\CNTK.Deps.MKL.targets'))" />
+    <Error Condition="!Exists('..\..\packages\CNTK.Deps.OpenCV.Zip.2.6.0\build\netstandard2.0\CNTK.Deps.OpenCV.Zip.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\CNTK.Deps.OpenCV.Zip.2.6.0\build\netstandard2.0\CNTK.Deps.OpenCV.Zip.targets'))" />
   </Target>
 </Project>

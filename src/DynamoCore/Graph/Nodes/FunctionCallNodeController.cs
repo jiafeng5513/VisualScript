@@ -130,7 +130,7 @@ namespace Dynamo.Graph.Nodes
 
         /// <summary>
         ///     Produces AST for the given NodeModel that will call the underlying
-        ///     Function and assign all Identifiers for the node.
+        ///     EFunction and assign all Identifiers for the node.
         /// </summary>
         /// <param name="model">NodeModel to produce AST for.</param>
         /// <param name="inputAstNodes">Arguments to the function call.</param>

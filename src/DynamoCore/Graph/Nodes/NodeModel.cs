@@ -171,7 +171,7 @@ namespace Dynamo.Graph.Nodes
         [JsonIgnore]
         public bool IsCustomFunction
         {
-            get { return this is Function; }
+            get { return this is EFunction; }
         }
 
         /// <summary>

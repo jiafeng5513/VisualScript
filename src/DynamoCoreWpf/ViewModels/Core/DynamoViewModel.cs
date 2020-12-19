@@ -1416,6 +1416,24 @@ namespace Dynamo.ViewModels
             var cmd = new DynamoModel.CreateNodeCommand(Guid.NewGuid().ToString(), "String", -1, -1, true, false);
             this.ExecuteCommand(cmd);
         }
+        /// <summary>
+        /// 打开嵌入了浏览器的页面,并启动服务
+        /// </summary>
+        /// <param name="parameter"></param>
+        private void DoOpenBrowser(object parameter)
+        {
+            ////打开嵌入式浏览器
+            //EmbeddedBrowser m = new EmbeddedBrowser();
+            //m.Show();
+        }
+        /// <summary>
+        /// 打开外挂控制台
+        /// </summary>
+        /// <param name="parameter"></param>
+        private void DoOpenConsoleView(object parameter)
+        {
+
+        }
 
         private static bool CanCreateNodeFromSelection(object parameter)
         {

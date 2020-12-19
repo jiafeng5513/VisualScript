@@ -73,8 +73,8 @@ namespace Dynamo.LibraryUI
         /// </summary>
         /// <typeparam name="T">Type of items LayoutElement or LayoutIncludeInfo</typeparam>
         /// <param name="items">List of items to add</param>
-        /// <param name="getlist">Function to get the list of a given section to update</param>
-        /// <param name="keyselector">Function to select key for the given item to identify it uniquely.</param>
+        /// <param name="getlist">EFunction to get the list of a given section to update</param>
+        /// <param name="keyselector">EFunction to select key for the given item to identify it uniquely.</param>
         /// <param name="sectionText">Name of the section where the given items will be added</param>
         /// <returns></returns>
         private bool UpdateSpecification<T>(IEnumerable<T> items, Func<LayoutSection, List<T>> getlist, Func<T, string> keyselector, string sectionText)

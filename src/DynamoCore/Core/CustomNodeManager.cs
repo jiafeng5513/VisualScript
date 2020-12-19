@@ -138,7 +138,7 @@ namespace Dynamo.Core
         ///     the given id could not be found.
         /// </param>
         /// <returns>Custom Node Instance</returns>
-        public Function CreateCustomNodeInstance(
+        public EFunction CreateCustomNodeInstance(
             Guid id,
             string name = null)
         {
@@ -206,7 +206,7 @@ namespace Dynamo.Core
         ///     Custom node information data
         /// </param>
         /// <returns>Custom Node Instance</returns>
-        public Function CreateCustomNodeInstance(
+        public EFunction CreateCustomNodeInstance(
             Guid id,
             string name,
             CustomNodeDefinition def,
@@ -223,7 +223,7 @@ namespace Dynamo.Core
             if (def == null)
                 def = CustomNodeDefinition.MakeProxy(id, info.Name);
 
-            var node = new Function(def, info.Name, info.Description, info.Category);
+            var node = new EFunction(def, info.Name, info.Description, info.Category);
 
             CustomNodeWorkspaceModel workspace = null;
             if (loadedWorkspaceModels.TryGetValue(id, out workspace))
@@ -235,7 +235,7 @@ namespace Dynamo.Core
         }
 
         private void RegisterCustomNodeInstanceForLateInitialization(
-            Function node,
+            EFunction node,
             Guid id,
             string name)
         {
@@ -263,7 +263,7 @@ namespace Dynamo.Core
             };
         }
 
-        private static void RegisterCustomNodeInstanceForUpdates(Function node, CustomNodeWorkspaceModel workspace)
+        private static void RegisterCustomNodeInstanceForUpdates(EFunction node, CustomNodeWorkspaceModel workspace)
         {
             Action defUpdatedHandler = () =>
             {
@@ -1023,9 +1023,9 @@ namespace Dynamo.Core
                         // function node and custom node. 
                         List<Library.TypedParameter> parameters = null;
 
-                        if (inputReceiverNode is Function)
+                        if (inputReceiverNode is EFunction)
                         {
-                            var func = inputReceiverNode as Function;
+                            var func = inputReceiverNode as EFunction;
                             parameters = func.Controller.Definition.Parameters.ToList();
                         }
                         else if (inputReceiverNode is DSFunctionBase)

@@ -64,7 +64,7 @@ namespace Dynamo
                     topMostNodes.SelectMany(
                         topNode =>
                             //If the node is a recursive instance...
-                            topNode is Function && (topNode as Function).Definition.FunctionId == functionId
+                            topNode is EFunction && (topNode as EFunction).Definition.FunctionId == functionId
                                 // infinity output
                                 ? new[] {new {portIndex = 0, node = topNode, name = "∞"}}
                                 // otherwise, grab all ports with connected outputs and package necessary info
@@ -141,7 +141,7 @@ namespace Dynamo
             DisplayParameters = displayParameters;
             OutputNodes = topMost.Select(x => x.Item2.GetAstIdentifierForOutputIndex(x.Item1));
             DirectDependencies = nodeModels
-                .OfType<Function>()
+                .OfType<EFunction>()
                 .Select(node => node.Definition)
                 .Where(def => def.FunctionId != functionId)
                 .Distinct();
@@ -161,7 +161,7 @@ namespace Dynamo
         public bool IsProxy { get; private set; }
 
         /// <summary>
-        ///     Function name.
+        ///     EFunction name.
         /// </summary>
         public string FunctionName
         {
@@ -170,7 +170,7 @@ namespace Dynamo
         }
 
         /// <summary>
-        ///     Function unique ID.
+        ///     EFunction unique ID.
         /// </summary>
         public Guid FunctionId { get; private set; }
 
@@ -180,7 +180,7 @@ namespace Dynamo
         public IEnumerable<string> DisplayParameters { get; private set; }
 
         /// <summary>
-        ///     Function parameters.
+        ///     EFunction parameters.
         /// </summary>
         public IEnumerable<TypedParameter> Parameters { get; private set; } 
 

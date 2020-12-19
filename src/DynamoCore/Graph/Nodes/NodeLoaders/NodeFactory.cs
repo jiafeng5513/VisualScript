@@ -130,13 +130,13 @@ namespace Dynamo.Graph.Nodes.NodeLoaders
         {
             Guid guid;
             INodeLoader<NodeModel> data;
-            if (!Guid.TryParse(name, out guid) || !GetNodeSourceFromType(typeof(Function), out data))
+            if (!Guid.TryParse(name, out guid) || !GetNodeSourceFromType(typeof(EFunction), out data))
             {
                 return null;
             }
 
 
-            // create an instance of Function node 
+            // create an instance of EFunction node 
             var result = (data as CustomNodeLoader).CreateProxyNode(guid, name, id, inputs, outputs);
             return result;
         }

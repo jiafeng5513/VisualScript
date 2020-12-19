@@ -1,0 +1,5074 @@
+{
+  "Uuid": "82a2d986-a234-490b-9c32-3b149a2d2243",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "Cifar-10",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "HintPath": "E:\\VisualStudio\\CNTK_DEMO\\Data\\CIFAR-10\\Cifar10Rest.model",
+      "InputValue": "E:\\VisualStudio\\CNTK_DEMO\\Data\\CIFAR-10\\Cifar10Rest.model",
+      "NodeType": "ExtensionNode",
+      "Id": "2753d78742374c38b19b40492ca5b4d3",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "aa8e5ab447e84205899427df97deb526",
+          "Name": "",
+          "Description": "Filename",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows you to select a file on the system to get its filename"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "HintPath": "E:\\VisualStudio\\CNTK_DEMO\\Data\\CIFAR-10\\train_map.txt",
+      "InputValue": "E:\\VisualStudio\\CNTK_DEMO\\Data\\CIFAR-10\\train_map.txt",
+      "NodeType": "ExtensionNode",
+      "Id": "c601e241478b4636b06b17b5620da6ed",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "8cd314cd837d4aa5959b68312629b369",
+          "Name": "",
+          "Description": "Filename",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows you to select a file on the system to get its filename"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.Constructors.CreateMinibatchSource@string,string,int[],int,int",
+      "Id": "f6f2d6cee0ea4f15a7843157850a9bcb",
+      "Inputs": [
+        {
+          "Id": "3fc2b6b1e225480f961f8eb422b2d5b5",
+          "Name": "mapFilePath",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "22c72967882f47c4b520d7218fcfd745",
+          "Name": "meanFilePath",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "fd248b5bc51049438824b05db5d00b54",
+          "Name": "imageDims",
+          "Description": "int[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "bd155c2b9ca44cf0b8a3045bb00f95f9",
+          "Name": "numClasses",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "bd53bc30eaf7432faee8d7563f106241",
+          "Name": "maxSweeps",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b33f14da7bd9435387d6048b6a75b509",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Constructors.CreateMinibatchSource (mapFilePath: string, meanFilePath: string, imageDims: int[], numClasses: int, maxSweeps: int): var"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.Filename, CoreNodeModels",
+      "HintPath": "E:\\VisualStudio\\CNTK_DEMO\\Data\\CIFAR-10\\CIFAR-10_mean.xml",
+      "InputValue": "E:\\VisualStudio\\CNTK_DEMO\\Data\\CIFAR-10\\CIFAR-10_mean.xml",
+      "NodeType": "ExtensionNode",
+      "Id": "c9fb5be802d744489e45e27d9e1d50d2",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "204d69982529492eac81a892fefb0eae",
+          "Name": "",
+          "Description": "Filename",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows you to select a file on the system to get its filename"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.CreateList, CoreNodeModels",
+      "VariableInputPorts": true,
+      "NodeType": "ExtensionNode",
+      "Id": "841b73b88235471986aca7723b967c7a",
+      "Inputs": [
+        {
+          "Id": "1696d9a99d134d2594acc0db3a0332af",
+          "Name": "item0",
+          "Description": "Item Index #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "6ec5eba266f44ff49f64a5cf366c148b",
+          "Name": "item1",
+          "Description": "Item Index #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "4bc961b5aa1a47fc82d5f83bb4d3e9f6",
+          "Name": "item2",
+          "Description": "Item Index #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c82388b38c214e59948ef871952f0811",
+          "Name": "list",
+          "Description": "A list",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Makes a new list out of the given inputs"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Integer",
+      "InputValue": 32,
+      "MaximumValue": 100,
+      "MinimumValue": 0,
+      "StepValue": 1,
+      "Id": "642a7b3fdff342838e60061d5d47a100",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "8e5b780d55f04c6faebc040bfd2df653",
+          "Name": "",
+          "Description": "Int32",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces integer values."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Integer",
+      "InputValue": 32,
+      "MaximumValue": 100,
+      "MinimumValue": 0,
+      "StepValue": 1,
+      "Id": "545562b98c6c4afb9ee8443922e9bc9c",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "072cf20447cc4d298b95e25e2458706e",
+          "Name": "",
+          "Description": "Int32",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces integer values."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Integer",
+      "InputValue": 3,
+      "MaximumValue": 100,
+      "MinimumValue": 0,
+      "StepValue": 1,
+      "Id": "ca1da57da4784a09b9c026b496abc34f",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a83bbe8675164fdfa24e09c1fb97be64",
+          "Name": "",
+          "Description": "Int32",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces integer values."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Integer",
+      "InputValue": 10,
+      "MaximumValue": 100,
+      "MinimumValue": 0,
+      "StepValue": 1,
+      "Id": "70025b0c465e46e59abb65c6c0784b60",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4e740e7bd97741e3bac518523f86ea76",
+          "Name": "",
+          "Description": "Int32",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces integer values."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Integer",
+      "InputValue": 1,
+      "MaximumValue": 100,
+      "MinimumValue": 0,
+      "StepValue": 1,
+      "Id": "9106ecceba4a4abbb9ca74e0cf4fb173",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "919edf7ac5e040e8b174f3c1873f6524",
+          "Name": "",
+          "Description": "Int32",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces integer values."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.Constants.Device_GPU@int",
+      "Id": "d2c9ef1e12014a98b7d1b0cc3131e949",
+      "Inputs": [
+        {
+          "Id": "930250a6682d4f48b8ff1694e4e66173",
+          "Name": "GpuID",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "46c7fa4b83174851a5ab7892d479a707",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Constants.Device_GPU (GpuID: int): var"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Integer",
+      "InputValue": 0,
+      "MaximumValue": 100,
+      "MinimumValue": 0,
+      "StepValue": 1,
+      "Id": "cbbe7368a7d24af084673bc2b11754c5",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "5c51bc7b44ea486b87f88d5ed6003b86",
+          "Name": "",
+          "Description": "Int32",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces integer values."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.Constructors.CreateTrainingRate@double,int",
+      "Id": "d3244f4d8253442b93f769cd382b7afb",
+      "Inputs": [
+        {
+          "Id": "27bb076634ab4463b092691a17b228f5",
+          "Name": "value",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "afd8e4c08d84435498f1a9e52585a432",
+          "Name": "minibatchsize",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f683d1d6a18c4c24a02c9a4577eab7fe",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Constructors.CreateTrainingRate (value: double, minibatchsize: int): var"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "InputValue": 0.0078,
+      "Id": "f8b17c7ded4144dd8e6f0db7b77f9066",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a3516ea94dd240208412ccb5c4e9801a",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "InputValue": 1.0,
+      "Id": "852c1c5455bc4087a9eea793554779a0",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c9eb742ed8a1446caf0c751b5d3a028b",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number."
+    },
+    {
+      "ConcreteType": "ModelAnalyzerUI.CnnTrainerModel, CnnTrainer",
+      "NumOfClasses": 10,
+      "MiniBatchSize": 64,
+      "TopN": 5,
+      "NodeType": "ExtensionNode",
+      "Id": "53229a00119245cb9f51c15502a4f05e",
+      "Inputs": [
+        {
+          "Id": "3a6ccd44d00e4b9aa3a5f2730ff7fdaf",
+          "Name": "Input Dim",
+          "Description": "输入维度",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "4ff7c62367ca416bb8291b6c23e5b699",
+          "Name": "Model File",
+          "Description": "模型文件",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "1b97ddbd924f4687b95241c9d8945a6d",
+          "Name": "Classifier",
+          "Description": "分类器",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "a7e5a4d43cee41e288fcf6c2ac50083c",
+          "Name": "Device",
+          "Description": "计算硬件",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "9430d4f554fd480281377a0bf2bfcf97",
+          "Name": "Mini Batch Source",
+          "Description": "",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "6e8a165af9754003ae212e2a54b943b7",
+          "Name": "Learning Rate",
+          "Description": "学习率",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9b9304e0be60425d8a32a99d657cac09",
+          "Name": "Result",
+          "Description": "are you ok?",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "ExportToSATDescripiton"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.Constructors.CreateInputVariable@var,CNTK.DataType,string",
+      "Id": "71ce891294f84c34afbadedfe2770757",
+      "Inputs": [
+        {
+          "Id": "400204c0867842479238446cbb633f09",
+          "Name": "shape",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "3208d454048f44e595ff3c31369efe86",
+          "Name": "type",
+          "Description": "DataType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "48b5036c65e949f59e210db84569f445",
+          "Name": "name",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3c3b2f2d4e804dae9470e32c9bfb3f09",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Constructors.CreateInputVariable (shape: var, type: DataType, name: string): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.Constants.DataType_Float",
+      "Id": "20bd64a3589b4048a59a5977d3ab2e81",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e191bc9b4bd9493d976976aefe3898b1",
+          "Name": "DataType",
+          "Description": "DataType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Constants.DataType_Float ( ): DataType"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "Images",
+      "Id": "8fc68b6073a6456a9d39788661840be1",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3dd592c5c9344a2ab70a8d422a6ac88d",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.Constructors.CreateNdShape@var[]",
+      "Id": "d6d685ada9094251be5d5a167166b336",
+      "Inputs": [
+        {
+          "Id": "d7488cb1cf48400c935c205da9f5e245",
+          "Name": "dims",
+          "Description": "var[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "59e833bf56934ac1a2a18179789b71ff",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Constructors.CreateNdShape (dims: var[]): var"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Integer",
+      "InputValue": 1,
+      "MaximumValue": 100,
+      "MinimumValue": 0,
+      "StepValue": 1,
+      "Id": "063599b470934c0b8776ca57608c4adc",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ef3167f9dc5b4db790335d8a6033224d",
+          "Name": "",
+          "Description": "Int32",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces integer values."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.CreateList, CoreNodeModels",
+      "VariableInputPorts": true,
+      "NodeType": "ExtensionNode",
+      "Id": "a25d8da33d314b2aaef9ce45fb493f6c",
+      "Inputs": [
+        {
+          "Id": "a6bfe835e06942888bda74bd0d931bcb",
+          "Name": "item0",
+          "Description": "Item Index #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "d9263fa2a584485e953095840d05e0b4",
+          "Name": "item1",
+          "Description": "Item Index #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "eb2806a6725546a88aee5f9f72a3de68",
+          "Name": "item2",
+          "Description": "Item Index #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6d4b0f712bc84db39356d5b43d567a55",
+          "Name": "list",
+          "Description": "A list",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Makes a new list out of the given inputs"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Integer",
+      "InputValue": 1,
+      "MaximumValue": 100,
+      "MinimumValue": 0,
+      "StepValue": 1,
+      "Id": "db55a238a7614f0eaa83ff62afddb957",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "77d32ccd571d4e0b8d5e48b198c689d2",
+          "Name": "",
+          "Description": "Int32",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces integer values."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.CreateList, CoreNodeModels",
+      "VariableInputPorts": true,
+      "NodeType": "ExtensionNode",
+      "Id": "3e5de6434c334eb3a77ce403f8f1dbea",
+      "Inputs": [
+        {
+          "Id": "8ebc3fea724441629db38d4ea53972ba",
+          "Name": "item0",
+          "Description": "Item Index #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "12faf0af91f543378bc448aab6f116b5",
+          "Name": "item1",
+          "Description": "Item Index #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "77d22f2468f849bc8e6cfab42209103c",
+          "Name": "item2",
+          "Description": "Item Index #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4a39739d945d49deb9ff2bf022a5ef22",
+          "Name": "list",
+          "Description": "A list",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Makes a new list out of the given inputs"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Integer",
+      "InputValue": 8,
+      "MaximumValue": 20,
+      "MinimumValue": 0,
+      "StepValue": 1,
+      "Id": "75de2294a56245738142dcc5e0d14135",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "78f3044af52a4e4f9da928ffce9f716d",
+          "Name": "",
+          "Description": "Int32",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces integer values."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Integer",
+      "InputValue": 1,
+      "MaximumValue": 100,
+      "MinimumValue": 0,
+      "StepValue": 1,
+      "Id": "78b34160aa0e4d498485c3f5e8f75711",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "de65179569624f608b60d18253072332",
+          "Name": "",
+          "Description": "Int32",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces integer values."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Integer",
+      "InputValue": 8,
+      "MaximumValue": 20,
+      "MinimumValue": 0,
+      "StepValue": 1,
+      "Id": "2741ff17c8ce44a6953b2c9b3d877a81",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "7109da53cd26491cafe07b9bc5b40861",
+          "Name": "",
+          "Description": "Int32",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces integer values."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.Constants.AveragePooling",
+      "Id": "df5b8de65ea8431a930ad7bac6276113",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "415c33a19b9d45719cdbc0aae891f0e9",
+          "Name": "PoolingType",
+          "Description": "PoolingType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Constants.AveragePooling ( ): PoolingType"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.TensorFunction.Pooling@var,CNTK.PoolingType,var,var",
+      "Id": "0d9c646ddd7d4664bc8518e674e0fa4c",
+      "Inputs": [
+        {
+          "Id": "a6496127d36f4642b5f1d2161bd37a1a",
+          "Name": "operand",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "61ca0719d3504987be2ce1ef7f99e36d",
+          "Name": "poolingType",
+          "Description": "PoolingType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "489a489f1a0a427c9b5b6db435901b09",
+          "Name": "poolingWindowShape",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "87479342bf914d5eb163d95be38f52c5",
+          "Name": "strides",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "bc3172b0f9a74524bd9f3d9c148f14e1",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "TensorFunction.Pooling (operand: var, poolingType: PoolingType, poolingWindowShape: var, strides: var): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.TensorFunction.Times@var,var,string",
+      "Id": "6fd9dae20f814d05a7d954fa32d330ca",
+      "Inputs": [
+        {
+          "Id": "73dd5e889d9c421ab6740a66838d8034",
+          "Name": "leftOperand",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "dd77615701f8467d8371464a6b2de9e7",
+          "Name": "rightOperand",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "d03ee850013f4d44879fc410245ab2a7",
+          "Name": "name",
+          "Description": "string\nDefault value : \"\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2a025cfb1b4642c3a92a0f1889f2b354",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "TensorFunction.Times (leftOperand: var, rightOperand: var, name: string = \"\"): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.TensorFunction.GetProjectionMap@int,int,var",
+      "Id": "b671fe7017314926833b8e40da62637e",
+      "Inputs": [
+        {
+          "Id": "4d5545a192534b7398296143d74c7086",
+          "Name": "outputDim",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "a2fd76f2eef44155b82b7986d964d7d8",
+          "Name": "inputDim",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "dd3ad919ac8146df998d2530f572fa50",
+          "Name": "device",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "313a90fbe9df4159bd6ab529e298c3f6",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "TensorFunction.GetProjectionMap (outputDim: int, inputDim: int, device: var): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.Constants.Device_GPU@int",
+      "Id": "d1113990a9534cc9b5087b768eed26f9",
+      "Inputs": [
+        {
+          "Id": "d8fe590fdeed45ae9ed1cd4ecd691f4c",
+          "Name": "GpuID",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7fda8a0f448d49078d4466bba4a14a04",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Constants.Device_GPU (GpuID: int): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.TensorFunction.GlorotUniformInitializer@double,int,int",
+      "Id": "0068eb7ce25a4db286b53f3444f4ebd4",
+      "Inputs": [
+        {
+          "Id": "ca60cd7492b2461f8436aa0909e7e50a",
+          "Name": "scale",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "4627853055ae44c0a176e743a63f38de",
+          "Name": "outputRank",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "0e31eb858b5b4656954225bab0770365",
+          "Name": "filterRank",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7b3dab197ff34ae78cd224715ae09b4c",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "TensorFunction.GlorotUniformInitializer (scale: double, outputRank: int, filterRank: int): var"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Integer",
+      "InputValue": 0,
+      "MaximumValue": 0,
+      "MinimumValue": 0,
+      "StepValue": 1,
+      "Id": "e611dfbce38e4b92a24b83fd23b53633",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ecbabeb1645b460ea93eed565d577725",
+          "Name": "",
+          "Description": "Int32",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces integer values."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.Constants.Device_GPU@int",
+      "Id": "45fa55563d044e18ae87bc2fa2c5d852",
+      "Inputs": [
+        {
+          "Id": "2ab75d6975c94be8909ad619e55e2780",
+          "Name": "GpuID",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "be59d88323e347329f276cd241ce1069",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Constants.Device_GPU (GpuID: int): var"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "InputValue": 0.0,
+      "Id": "0a05436690da454683c654e16b142736",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e856098e38b44c5481ba7262b8b8530c",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.Constructors.CreateParameter@var,double,var,string",
+      "Id": "15de53c4b44a4f4ba3cb9b54b5f8cbab",
+      "Inputs": [
+        {
+          "Id": "af96585b606b42c9a774d6ba5afccb32",
+          "Name": "shape",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "687d33a3259147209826fdc8c1311e61",
+          "Name": "initValue",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "e8a1da10c660435ca1cd9350170d1594",
+          "Name": "device",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "966e0d34ef7e4f01b2e32af9e243b2ec",
+          "Name": "name",
+          "Description": "string\nDefault value : \"\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7940134590d646d88eb3868e4f8d75db",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Constructors.CreateParameter (shape: var, initValue: double, device: var, name: string = \"\"): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.TensorFunction.Plus@var,var,string",
+      "Id": "13f30d30ac5a4863a76e2949bdb8b6e3",
+      "Inputs": [
+        {
+          "Id": "4c2f6f444e764c5e83e0169ccb7d470b",
+          "Name": "leftOperand",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "9ad65548755d491695c66982f3125ca4",
+          "Name": "rightOperand",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "4a5819aa6efb4e029d2354680ed7c852",
+          "Name": "name",
+          "Description": "string\nDefault value : \"\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b3c582356f024b62b26244243e3c90ef",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "TensorFunction.Plus (leftOperand: var, rightOperand: var, name: string = \"\"): var"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Integer",
+      "InputValue": 0,
+      "MaximumValue": 0,
+      "MinimumValue": 0,
+      "StepValue": 1,
+      "Id": "d358e410fb8f48b49d8abc0ec1d1582d",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "01a4e32bf56b4d00b38de960386e61cb",
+          "Name": "",
+          "Description": "Int32",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces integer values."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": true,
+      "Id": "95561a248c5f4ad7b10592482c1eb546",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "9d465a8278424050b0e141f96a644fd8",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Selection between a true and false."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": false,
+      "Id": "ff0c8910139340b9a25eca80ed366004",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "16f400327fea458bb73b81a3646488f4",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Selection between a true and false."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": false,
+      "Id": "42effb8a65ea4b52b2a31fe73f490e4c",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "08b5d239279e48f18bfff19cd449bb9b",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Selection between a true and false."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "InputValue": 1.0,
+      "Id": "b4f685454ad74892a2e15d9b5932c050",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2cadad8491054933b843ddc418f58bb1",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "InputValue": 0.0,
+      "Id": "a3d212ed9f984662886017e2eefdce76",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4c1a02319a60406993337986e5e5a81c",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": true,
+      "Id": "a708f7c6d4564728a52907db4536a95d",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "104f484bcd704e7299d9afab8c6347d0",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Selection between a true and false."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.Constants.DataType_Float",
+      "Id": "3e4cd8a32f1044f5bc0a14bf6f8b7f51",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "1324c58540ac45748cbebb04e986d0c4",
+          "Name": "DataType",
+          "Description": "DataType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Constants.DataType_Float ( ): DataType"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "InputValue": 0.4,
+      "Id": "5886f023e19f4da8acc9d64b3f7e84f2",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "77e2cd63df244ea7a37f19261bb031bc",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.Constructors.CreateParameter@var,CNTK.DataType,var,var",
+      "Id": "458262f3652049abab24e971e5767801",
+      "Inputs": [
+        {
+          "Id": "1e5e5c95640745d59ece6ba5e49070c4",
+          "Name": "shape",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "10c497a337b1459c87e06b06ddbc4c82",
+          "Name": "dataType",
+          "Description": "DataType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "7d20458273274132adbaae978eec2131",
+          "Name": "cntkDictionary",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "7330e93cbab8437e828cef72623709d0",
+          "Name": "device",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "10264f6b8b404f159b2d7dbbeaba60aa",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Constructors.CreateParameter (shape: var, dataType: DataType, cntkDictionary: var, device: var): var"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.CreateList, CoreNodeModels",
+      "VariableInputPorts": true,
+      "NodeType": "ExtensionNode",
+      "Id": "a8e723bc067e435f9c9929becf730dcc",
+      "Inputs": [
+        {
+          "Id": "3084899f98c44fccb73bc5583de4baab",
+          "Name": "item0",
+          "Description": "Item Index #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "647b0570adf44af68b12f3263fdb0218",
+          "Name": "item1",
+          "Description": "Item Index #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "6bf419c72c084b10925d3bd01e51ef6c",
+          "Name": "item2",
+          "Description": "Item Index #2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "0163d2ec882e49a7bd4014ad89748da4",
+          "Name": "item3",
+          "Description": "Item Index #3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "561a4c90d7524a3f848470054db2d7d9",
+          "Name": "list",
+          "Description": "A list",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Makes a new list out of the given inputs"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Integer",
+      "InputValue": 1,
+      "MaximumValue": 100,
+      "MinimumValue": 0,
+      "StepValue": 1,
+      "Id": "1f08ae1d940c44808334687fd6098160",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e75b61c9e88d455fbd965a4ae662c7d4",
+          "Name": "",
+          "Description": "Int32",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces integer values."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": false,
+      "Id": "0413660dde8441d68959c014182a1693",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "25a60c5a7b5f4c19aedf1a6887296ba6",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Selection between a true and false."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Integer",
+      "InputValue": 64,
+      "MaximumValue": 100,
+      "MinimumValue": 0,
+      "StepValue": 1,
+      "Id": "86c5c3097b844591a4a02490371b6234",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "998c69d00af74ddca87a84a301ed780d",
+          "Name": "",
+          "Description": "Int32",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces integer values."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.CreateList, CoreNodeModels",
+      "VariableInputPorts": true,
+      "NodeType": "ExtensionNode",
+      "Id": "96b81c53db2b435b8aba1a53bf29eef9",
+      "Inputs": [
+        {
+          "Id": "8f341160cb514a1ab516c8828c77997f",
+          "Name": "item0",
+          "Description": "Item Index #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "def6b0756ec443518fbd468f14f470ea",
+          "Name": "list",
+          "Description": "A list",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Makes a new list out of the given inputs"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.TensorFunction.GetProjectionMap@int,int,var",
+      "Id": "aaf3f427cbb64a4aae197cb10db185d9",
+      "Inputs": [
+        {
+          "Id": "8892adbd2a0d4b60a03e7bbcc5761921",
+          "Name": "outputDim",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "2c21c4b0d67c44c9afae604148d6c92f",
+          "Name": "inputDim",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "a36499fb807148459e8fcab4fcf18b18",
+          "Name": "device",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "91f42d77c12049729bea92916c4e16f0",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "TensorFunction.GetProjectionMap (outputDim: int, inputDim: int, device: var): var"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": true,
+      "Id": "1c40f5ea2dbd4a47aa1d6afd7bc1e365",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6f1dadbbe94648a9943cd1aa47334146",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Selection between a true and false."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Integer",
+      "InputValue": 32,
+      "MaximumValue": 100,
+      "MinimumValue": 0,
+      "StepValue": 1,
+      "Id": "33cfb4296faf4a3d8300df422742775b",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "fb81c9baae7647e3b84801fc9c765329",
+          "Name": "",
+          "Description": "Int32",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces integer values."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.Constants.Device_GPU@int",
+      "Id": "76c583b66bcd4a5785a6ed8dcc1c7c92",
+      "Inputs": [
+        {
+          "Id": "f7394b44137441e2af1cc5802fd72c20",
+          "Name": "GpuID",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "efcde3d4efef400c813313caa0b84537",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Constants.Device_GPU (GpuID: int): var"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Integer",
+      "InputValue": 0,
+      "MaximumValue": 0,
+      "MinimumValue": 0,
+      "StepValue": 1,
+      "Id": "5cba700ae231471a865f74a317f5b591",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "69cffd18563346b8bed7aacd9482bde9",
+          "Name": "",
+          "Description": "Int32",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces integer values."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": false,
+      "Id": "800f6790e057466bb4e1253578e2caf6",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e4dd50e3f0db48f3b5b30c8521b4f448",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Selection between a true and false."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": true,
+      "Id": "b1afeb1bf3654582ab27e3675a7c9a40",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "a568edffd1424e92a44fd345f490e0ca",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Selection between a true and false."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Integer",
+      "InputValue": 16,
+      "MaximumValue": 100,
+      "MinimumValue": 0,
+      "StepValue": 1,
+      "Id": "94c374a3bacf4e0eaad4da4e81cf662e",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "fd06eea81b8845da88acb487666615b8",
+          "Name": "",
+          "Description": "Int32",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces integer values."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": false,
+      "Id": "6cc7232518f8404aa4c2c6e99f2aa50f",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d80443c0e9cb4424b491f2d853c46462",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Selection between a true and false."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.BuildInLayers.ConvBatchNormalizationLayer@var,int,int,int,int,int,double,double,double,int,bool,var",
+      "Id": "35a53668a4194ba8b462592fb057153f",
+      "Inputs": [
+        {
+          "Id": "d4f296459a8042879ea6c8cb6a821717",
+          "Name": "input",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "17ec0a3d91564093a35a6fdb29cc002c",
+          "Name": "outFeatureMapCount",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "13c27a8962c4458280979aa14dadb516",
+          "Name": "kernelWidth",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "e8175e4fdc5740df8220dcef3bb53e76",
+          "Name": "kernelHeight",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "0ea29d0ef2a149058b7ad1865880823b",
+          "Name": "hStride",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "cedd717be6fd48629affe47059af2c5e",
+          "Name": "vStride",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "714c54884f7043febc9420edb3436794",
+          "Name": "wScale",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "021a5bf074a44d498c54551605f200b4",
+          "Name": "bValue",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "7cc2f7e6a7b3488999b3c59520c12510",
+          "Name": "scValue",
+          "Description": "double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "d274cd8902c84217aee502349f5a6eb5",
+          "Name": "bnTimeConst",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "e746d77f67a644ca94bf0864014fe23e",
+          "Name": "spatial",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "dfea84ea9b484d34b8a83c438ec4b7c6",
+          "Name": "device",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f12ce8a8410e42e098de8f9fe90d56e0",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "BuildInLayers.ConvBatchNormalizationLayer (input: var, outFeatureMapCount: int, kernelWidth: int, kernelHeight: int, hStride: int, vStride: int, wScale: double, bValue: double, scValue: double, bnTimeConst: int, spatial: bool, device: var): var"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Integer",
+      "InputValue": 16,
+      "MaximumValue": 100,
+      "MinimumValue": 0,
+      "StepValue": 1,
+      "Id": "28da81efecd74f98917c806215da7fbe",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "843f72c07a834b5093a5332d38539d9e",
+          "Name": "",
+          "Description": "Int32",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces integer values."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Integer",
+      "InputValue": 3,
+      "MaximumValue": 10,
+      "MinimumValue": 0,
+      "StepValue": 1,
+      "Id": "05b586695d0349bbba4cf25011f74c3b",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4a10f92f0b3146f092b8e58fcbf4b117",
+          "Name": "",
+          "Description": "Int32",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces integer values."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Integer",
+      "InputValue": 3,
+      "MaximumValue": 10,
+      "MinimumValue": 0,
+      "StepValue": 1,
+      "Id": "c08e617d3c134de595f417c0297f0dec",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "c8620c6a4e2f4301b5af0730143c684b",
+          "Name": "",
+          "Description": "Int32",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces integer values."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Integer",
+      "InputValue": 1,
+      "MaximumValue": 100,
+      "MinimumValue": 0,
+      "StepValue": 1,
+      "Id": "4bd88cbfea6d45e4a7fd9190c2406d37",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "14eb30d978b64c29b451b0161e19d933",
+          "Name": "",
+          "Description": "Int32",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces integer values."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Integer",
+      "InputValue": 1,
+      "MaximumValue": 100,
+      "MinimumValue": 0,
+      "StepValue": 1,
+      "Id": "85531a2d2ee14f64bdf2b4a03aa57b0a",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "155370b20e79485eb64d5e92f9f63a50",
+          "Name": "",
+          "Description": "Int32",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces integer values."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "InputValue": 0.26,
+      "Id": "6cc08ed3c292432c9b94a50b403fc9b4",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2273e07a669747698b15e2330864b515",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "InputValue": 0.0,
+      "Id": "2bcde8509e7f4942af472ebace14639b",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "3df9b20f3f204acaa84f0c07045ae6cf",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.DoubleInput, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Double",
+      "InputValue": 1.0,
+      "Id": "1c664911530b471783cef1f74ed68a93",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "fa08f3459d1b49c9a8f5a66f002e6ee5",
+          "Name": "",
+          "Description": "Double",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a number."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Integer",
+      "InputValue": 4096,
+      "MaximumValue": 10000,
+      "MinimumValue": 0,
+      "StepValue": 1,
+      "Id": "d588c8832ccc4482ac6c242da39315b1",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6baa989d40834e76b97dbbe4e1b63571",
+          "Name": "",
+          "Description": "Int32",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces integer values."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": true,
+      "Id": "1a6aae60a0f1443ea5c3df55c43c2cf1",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "17006782b7d54eb0a14ea1b596a1cd59",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Selection between a true and false."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.Constants.Device_GPU@int",
+      "Id": "017f2db8a97f429d88bf143d0b19e5ac",
+      "Inputs": [
+        {
+          "Id": "56f451e5a58f48dab6608146fb1f9aaa",
+          "Name": "GpuID",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c7716986fa864af4b8cab2187003f23e",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Constants.Device_GPU (GpuID: int): var"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.IntegerSlider, CoreNodeModels",
+      "NodeType": "NumberInputNode",
+      "NumberType": "Integer",
+      "InputValue": 0,
+      "MaximumValue": 0,
+      "MinimumValue": 0,
+      "StepValue": 1,
+      "Id": "ed6515e758ff41cd975018db64ee325f",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "48810d6ae95e4f3ca70a48b7ecc18c06",
+          "Name": "",
+          "Description": "Int32",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A slider that produces integer values."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.Constructors.CreateNdShape@var[]",
+      "Id": "4e54364d9bd34380a06e8eb097d65c2f",
+      "Inputs": [
+        {
+          "Id": "bdeead1860574a4f8b549d5535953473",
+          "Name": "dims",
+          "Description": "var[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f33ca957da5449a3bcdca35932a60a1b",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Constructors.CreateNdShape (dims: var[]): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.Constructors.CreateNdShape@var[]",
+      "Id": "7fdcf6ef100b4951bd33aa7e63190ab8",
+      "Inputs": [
+        {
+          "Id": "c621c7aa248f403da466d6cafbb246d3",
+          "Name": "dims",
+          "Description": "var[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8c87647eb022470fa412179788df8637",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Constructors.CreateNdShape (dims: var[]): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.Constructors.CreateNdShape@var[]",
+      "Id": "c9999fe33295459ebeab007313276fa2",
+      "Inputs": [
+        {
+          "Id": "01652a79295a40b3b74175f1af9a3d52",
+          "Name": "dims",
+          "Description": "var[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "fb93334590584d7380b75623012cf0ac",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Constructors.CreateNdShape (dims: var[]): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.Constructors.CreateNdShape@var[]",
+      "Id": "e4c592d838914117aacda4fe653b576c",
+      "Inputs": [
+        {
+          "Id": "a2c616f395ee46efa3f455f3149df699",
+          "Name": "dims",
+          "Description": "var[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f8dd7c0ebfe24779ac5c0f86f7616a27",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Constructors.CreateNdShape (dims: var[]): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.BuildInLayers.ResNetNode@var,int,bool",
+      "Id": "a69833f61fd14c489620b38a9c239240",
+      "Inputs": [
+        {
+          "Id": "f412d05475444f01afafc07dd254acf9",
+          "Name": "input",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "810795dff9ec4baab71e29af72b8f6bc",
+          "Name": "outFeatureMapCount",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "0eb2e46699fe432c9c0a944e274e6589",
+          "Name": "spatial",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1ab9a44a077048dbb2fe9132b6e32157",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "BuildInLayers.ResNetNode (input: var, outFeatureMapCount: int, spatial: bool): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.TensorConverter.FunctionToVariable@var",
+      "Id": "34bbe80692044fe59ef1441780097802",
+      "Inputs": [
+        {
+          "Id": "0b7815e397fe4095ac762fbfcb2184e3",
+          "Name": "func",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "76309a8820a44bfe9376d97fc25eb37e",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "TensorConverter.FunctionToVariable (func: var): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.TensorConverter.FunctionToVariable@var",
+      "Id": "18687fc046eb4e3cb36789d6e2bfc566",
+      "Inputs": [
+        {
+          "Id": "b71237d3b8ef47e88ad33c89d5effe49",
+          "Name": "func",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c44c7ebfd5134f48b30e049bb0ac840c",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "TensorConverter.FunctionToVariable (func: var): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.BuildInLayers.ResNetNode@var,int,bool",
+      "Id": "1478514ebd1f4241878e56c83148c44a",
+      "Inputs": [
+        {
+          "Id": "6a7d959c31994a168d2f7833fd3742ab",
+          "Name": "input",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "895747992cde4327bc25db43ca82bb96",
+          "Name": "outFeatureMapCount",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "9849935b30e74399a7b7fd027d418818",
+          "Name": "spatial",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "502fa799c9534477ab4bc902867d7f78",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "BuildInLayers.ResNetNode (input: var, outFeatureMapCount: int, spatial: bool): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.BuildInLayers.ResNetNode@var,int,bool",
+      "Id": "60dc0ad74ac24943b623043383c7f0b3",
+      "Inputs": [
+        {
+          "Id": "682ce869da7c4060a1c216e46b25f0be",
+          "Name": "input",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "e6908f52e20744e7a31b034dfa9f7784",
+          "Name": "outFeatureMapCount",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "853233c507ef4209869215eb9af6eddb",
+          "Name": "spatial",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "de5525c8408a47f8bf03d14cf797bc83",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "BuildInLayers.ResNetNode (input: var, outFeatureMapCount: int, spatial: bool): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.TensorConverter.FunctionToVariable@var",
+      "Id": "84c14b128c624af49e7c6fa91446179c",
+      "Inputs": [
+        {
+          "Id": "856818b40f3142bd9bbdc80ac61264b1",
+          "Name": "func",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "03c2af474e684a29a7dc9ea0cf63fd10",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "TensorConverter.FunctionToVariable (func: var): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.BuildInLayers.ResNetNodeInc@var,int,bool,var",
+      "Id": "0c46744269534d8e85e7ec4c95e24853",
+      "Inputs": [
+        {
+          "Id": "e5c114cdec2a4df2bc82ea92f8ff4bf8",
+          "Name": "input",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "db1665ddb5564036883d61b9eef78846",
+          "Name": "outFeatureMapCount",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "250d665853584326876cfe471579ed72",
+          "Name": "spatial",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "6f05b592c2654931b050564f6ae27773",
+          "Name": "wProj",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "37b68831b6594d40ad6c5796821c4170",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "BuildInLayers.ResNetNodeInc (input: var, outFeatureMapCount: int, spatial: bool, wProj: var): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.TensorConverter.FunctionToVariable@var",
+      "Id": "16a4277138d844b5b69a1ce8e6e38a5e",
+      "Inputs": [
+        {
+          "Id": "9e9161cdd0f9437481b17242af7eea87",
+          "Name": "func",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4b6ae04867a446de94bf7f8a3bc0f1a1",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "TensorConverter.FunctionToVariable (func: var): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.BuildInLayers.ResNetNode@var,int,bool",
+      "Id": "306f30eb4dea4f14b23c0904620df617",
+      "Inputs": [
+        {
+          "Id": "2047bf2666454b6db8646cc0b2be9852",
+          "Name": "input",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "8aba67b6a37c444dae29dc240e28458e",
+          "Name": "outFeatureMapCount",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "30365d7e99044ae6b970ac8f8c435db7",
+          "Name": "spatial",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "3f435b7387e84595a182a10d0a7e2de4",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "BuildInLayers.ResNetNode (input: var, outFeatureMapCount: int, spatial: bool): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.TensorConverter.FunctionToVariable@var",
+      "Id": "5b6c1a563670429ab012b0e2dafc2115",
+      "Inputs": [
+        {
+          "Id": "d19241631d2d458fbed9510c722990c0",
+          "Name": "func",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0dedaa21c3e0488691841b42dc9d8599",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "TensorConverter.FunctionToVariable (func: var): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.BuildInLayers.ResNetNode@var,int,bool",
+      "Id": "cb2e3d9b1888485397986bb52ec28b70",
+      "Inputs": [
+        {
+          "Id": "0304a685f9844410b44560e82c1cd244",
+          "Name": "input",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "89ac9503189c4dffa04e37f81644b5c7",
+          "Name": "outFeatureMapCount",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "3fc2a42b878646219ec75e458991291a",
+          "Name": "spatial",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "db7afcd8db15495489a7c1883b695ee2",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "BuildInLayers.ResNetNode (input: var, outFeatureMapCount: int, spatial: bool): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.TensorConverter.FunctionToVariable@var",
+      "Id": "c32747e82d134aca9c2bdb4eecab46f2",
+      "Inputs": [
+        {
+          "Id": "b66d609bc27147f2b11fdc1efd6c281b",
+          "Name": "func",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b819b2f2563a43daaaf9cea0f25ece5f",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "TensorConverter.FunctionToVariable (func: var): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.BuildInLayers.ResNetNodeInc@var,int,bool,var",
+      "Id": "946dc2130c254e749d8ae064846b2ba8",
+      "Inputs": [
+        {
+          "Id": "9ca8aa6a4d0043e4a896785da70b60d8",
+          "Name": "input",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "1b7de38c99d14734a263aa550181e2e3",
+          "Name": "outFeatureMapCount",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "dd349c4a96554cdc8a125cd18d2de842",
+          "Name": "spatial",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "5ed0c2d692604a959bfc579d714c32ea",
+          "Name": "wProj",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "241b6474e3f649eaa0a8178a73125cda",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "BuildInLayers.ResNetNodeInc (input: var, outFeatureMapCount: int, spatial: bool, wProj: var): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.TensorConverter.FunctionToVariable@var",
+      "Id": "6830bc04cbae4b0cb061139aae4ea7a6",
+      "Inputs": [
+        {
+          "Id": "fe07a8a6928a4c94bec99729eefa074e",
+          "Name": "func",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "748220f9fd2745fca13f1e1a5be876b8",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "TensorConverter.FunctionToVariable (func: var): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.BuildInLayers.ResNetNode@var,int,bool",
+      "Id": "3f09729371d8460590e62c8debb6c863",
+      "Inputs": [
+        {
+          "Id": "70c477ed054c4b5fa0777e980e954d85",
+          "Name": "input",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "fe9b01f7bd1c4c9d8687732f8d2a659f",
+          "Name": "outFeatureMapCount",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "40aa8da8c235407c9d85e8bed24d0f32",
+          "Name": "spatial",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "437bd87ab3434b8ea3db4b5db3d83982",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "BuildInLayers.ResNetNode (input: var, outFeatureMapCount: int, spatial: bool): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.BuildInLayers.ResNetNode@var,int,bool",
+      "Id": "87097d79b42b4bf19d8877c48ba5be47",
+      "Inputs": [
+        {
+          "Id": "64e1d506a7f9478aa92867bb51b68804",
+          "Name": "input",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "aed643a7cb854ec8810e7ec1b1d7e5ec",
+          "Name": "outFeatureMapCount",
+          "Description": "int",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        },
+        {
+          "Id": "af614149eac94237b3dc4ae5d290c768",
+          "Name": "spatial",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1e55303f34e148be8b403d9ec01a6cc5",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "BuildInLayers.ResNetNode (input: var, outFeatureMapCount: int, spatial: bool): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.TensorConverter.FunctionToVariable@var",
+      "Id": "daeec866db8947a68402d735c7fdd84e",
+      "Inputs": [
+        {
+          "Id": "dbaef019953f4a5faaef533141e29b60",
+          "Name": "func",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8a39936641a34949a75c2ccab5da34b8",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "TensorConverter.FunctionToVariable (func: var): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.TensorConverter.FunctionToVariable@var",
+      "Id": "8db8eda3d49f4c97a387b233aaa69ef8",
+      "Inputs": [
+        {
+          "Id": "23e23b0f262447d5aa662030f2adaa41",
+          "Name": "func",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "abe7d1b445224f2fafdf16898e7bb3ea",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "TensorConverter.FunctionToVariable (func: var): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.TensorConverter.FunctionToVariable@var",
+      "Id": "a28a1c5f53384059bc37cd98d191a6ab",
+      "Inputs": [
+        {
+          "Id": "926d8e215337496b83cde4046a8ff714",
+          "Name": "func",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2a1ea38011754554b94490502cd9c39e",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "TensorConverter.FunctionToVariable (func: var): var"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "TensorCore.TensorConverter.FunctionToVariable@var",
+      "Id": "ca49a863b95d44929d00017136043282",
+      "Inputs": [
+        {
+          "Id": "eaa62875c781427c8f4243a86d0e9b5b",
+          "Name": "func",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e1b7a22e408247a3bacd064f7a99e8fb",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false,
+          "IsConnected": true
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "TensorConverter.FunctionToVariable (func: var): var"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "aa8e5ab447e84205899427df97deb526",
+      "End": "4ff7c62367ca416bb8291b6c23e5b699",
+      "Id": "c24b7602f99c429aa001f387f9406037"
+    },
+    {
+      "Start": "8cd314cd837d4aa5959b68312629b369",
+      "End": "3fc2b6b1e225480f961f8eb422b2d5b5",
+      "Id": "51c827d0c76047c786ca58f4e5351c59"
+    },
+    {
+      "Start": "b33f14da7bd9435387d6048b6a75b509",
+      "End": "9430d4f554fd480281377a0bf2bfcf97",
+      "Id": "61256c9c2896425395228cab30db8068"
+    },
+    {
+      "Start": "204d69982529492eac81a892fefb0eae",
+      "End": "22c72967882f47c4b520d7218fcfd745",
+      "Id": "2d052429488342b1bb5905df61f1ea82"
+    },
+    {
+      "Start": "c82388b38c214e59948ef871952f0811",
+      "End": "fd248b5bc51049438824b05db5d00b54",
+      "Id": "c252b2a8d1c74c859a42e806f6ed72ee"
+    },
+    {
+      "Start": "c82388b38c214e59948ef871952f0811",
+      "End": "3a6ccd44d00e4b9aa3a5f2730ff7fdaf",
+      "Id": "a18eaca03dbc4dacba11ab9b1b7fbe07"
+    },
+    {
+      "Start": "c82388b38c214e59948ef871952f0811",
+      "End": "d7488cb1cf48400c935c205da9f5e245",
+      "Id": "db112eb370934859a843016f8ba00a13"
+    },
+    {
+      "Start": "8e5b780d55f04c6faebc040bfd2df653",
+      "End": "6ec5eba266f44ff49f64a5cf366c148b",
+      "Id": "f72a20d7b75d4845a46bb486e11d6990"
+    },
+    {
+      "Start": "072cf20447cc4d298b95e25e2458706e",
+      "End": "1696d9a99d134d2594acc0db3a0332af",
+      "Id": "e6ba7528cc0a45759ceea720f5d5a43f"
+    },
+    {
+      "Start": "a83bbe8675164fdfa24e09c1fb97be64",
+      "End": "4bc961b5aa1a47fc82d5f83bb4d3e9f6",
+      "Id": "57af343a5b7e4d25ad6ece4127849922"
+    },
+    {
+      "Start": "4e740e7bd97741e3bac518523f86ea76",
+      "End": "bd155c2b9ca44cf0b8a3045bb00f95f9",
+      "Id": "57fe434a3d91456d88dd1f5128a506ec"
+    },
+    {
+      "Start": "4e740e7bd97741e3bac518523f86ea76",
+      "End": "8f341160cb514a1ab516c8828c77997f",
+      "Id": "0f4ea90c2528493493bacd1f7abd907f"
+    },
+    {
+      "Start": "4e740e7bd97741e3bac518523f86ea76",
+      "End": "3084899f98c44fccb73bc5583de4baab",
+      "Id": "4e492445e7b34fd18024c96f90468ae2"
+    },
+    {
+      "Start": "919edf7ac5e040e8b174f3c1873f6524",
+      "End": "bd53bc30eaf7432faee8d7563f106241",
+      "Id": "b987b57eface42a496944e21be97ff48"
+    },
+    {
+      "Start": "46c7fa4b83174851a5ab7892d479a707",
+      "End": "a7e5a4d43cee41e288fcf6c2ac50083c",
+      "Id": "40416e2e576a46dbac33aa0d7dc7405f"
+    },
+    {
+      "Start": "5c51bc7b44ea486b87f88d5ed6003b86",
+      "End": "930250a6682d4f48b8ff1694e4e66173",
+      "Id": "118277a3265f465bb40a5c94b63ba6d3"
+    },
+    {
+      "Start": "f683d1d6a18c4c24a02c9a4577eab7fe",
+      "End": "6e8a165af9754003ae212e2a54b943b7",
+      "Id": "6f5ab03ea3cc4318b559e1ed6fc7d448"
+    },
+    {
+      "Start": "a3516ea94dd240208412ccb5c4e9801a",
+      "End": "27bb076634ab4463b092691a17b228f5",
+      "Id": "7872509e98264e40baf0eae839c7b499"
+    },
+    {
+      "Start": "c9eb742ed8a1446caf0c751b5d3a028b",
+      "End": "afd8e4c08d84435498f1a9e52585a432",
+      "Id": "e1fec5755d344def9343fc5573121e06"
+    },
+    {
+      "Start": "3c3b2f2d4e804dae9470e32c9bfb3f09",
+      "End": "d4f296459a8042879ea6c8cb6a821717",
+      "Id": "458ed916a755434ca3ac4ea2b05e4301"
+    },
+    {
+      "Start": "e191bc9b4bd9493d976976aefe3898b1",
+      "End": "3208d454048f44e595ff3c31369efe86",
+      "Id": "c98b34438ab0427e9de9f02b538be846"
+    },
+    {
+      "Start": "3dd592c5c9344a2ab70a8d422a6ac88d",
+      "End": "48b5036c65e949f59e210db84569f445",
+      "Id": "eca272eb02d04c51af5ce348e73df6f8"
+    },
+    {
+      "Start": "59e833bf56934ac1a2a18179789b71ff",
+      "End": "400204c0867842479238446cbb633f09",
+      "Id": "b44649a1946e42518eb3ef0cebf626b1"
+    },
+    {
+      "Start": "ef3167f9dc5b4db790335d8a6033224d",
+      "End": "d9263fa2a584485e953095840d05e0b4",
+      "Id": "43519bf83fab404cb3b20a8d7ccd1224"
+    },
+    {
+      "Start": "6d4b0f712bc84db39356d5b43d567a55",
+      "End": "c621c7aa248f403da466d6cafbb246d3",
+      "Id": "21ea3f60d95c4b51827e0ccea03cb940"
+    },
+    {
+      "Start": "77d32ccd571d4e0b8d5e48b198c689d2",
+      "End": "a6bfe835e06942888bda74bd0d931bcb",
+      "Id": "53fdd7023e4b475cb20967a9dca1f3de"
+    },
+    {
+      "Start": "4a39739d945d49deb9ff2bf022a5ef22",
+      "End": "bdeead1860574a4f8b549d5535953473",
+      "Id": "634b468e1f4144469641b202c739857b"
+    },
+    {
+      "Start": "78f3044af52a4e4f9da928ffce9f716d",
+      "End": "12faf0af91f543378bc448aab6f116b5",
+      "Id": "8b28986dc27a4a129751dbfed1b2b3e3"
+    },
+    {
+      "Start": "de65179569624f608b60d18253072332",
+      "End": "eb2806a6725546a88aee5f9f72a3de68",
+      "Id": "b8b04d067306421d9aa1d3f47ec33ddb"
+    },
+    {
+      "Start": "de65179569624f608b60d18253072332",
+      "End": "77d22f2468f849bc8e6cfab42209103c",
+      "Id": "a327a2cf70634884a713a9ab7a4678db"
+    },
+    {
+      "Start": "7109da53cd26491cafe07b9bc5b40861",
+      "End": "8ebc3fea724441629db38d4ea53972ba",
+      "Id": "92bb713e07674f1dbf6422f1bbe86182"
+    },
+    {
+      "Start": "415c33a19b9d45719cdbc0aae891f0e9",
+      "End": "61ca0719d3504987be2ce1ef7f99e36d",
+      "Id": "80819ecf5f7747178ff6d07f92b244a7"
+    },
+    {
+      "Start": "bc3172b0f9a74524bd9f3d9c148f14e1",
+      "End": "eaa62875c781427c8f4243a86d0e9b5b",
+      "Id": "94c322db26cc414db2c3140824cafa54"
+    },
+    {
+      "Start": "2a025cfb1b4642c3a92a0f1889f2b354",
+      "End": "4c2f6f444e764c5e83e0169ccb7d470b",
+      "Id": "d2d57b5e7e5449a883c15fd34ff15ad5"
+    },
+    {
+      "Start": "313a90fbe9df4159bd6ab529e298c3f6",
+      "End": "5ed0c2d692604a959bfc579d714c32ea",
+      "Id": "b8d302e3ec36421e8c8f4fa8c4a1dfce"
+    },
+    {
+      "Start": "7fda8a0f448d49078d4466bba4a14a04",
+      "End": "dd3ad919ac8146df998d2530f572fa50",
+      "Id": "9691d8d569604b1d889520d124aa961f"
+    },
+    {
+      "Start": "7b3dab197ff34ae78cd224715ae09b4c",
+      "End": "7d20458273274132adbaae978eec2131",
+      "Id": "a261178bb86d4af7bd2cf8ce9b10daba"
+    },
+    {
+      "Start": "ecbabeb1645b460ea93eed565d577725",
+      "End": "2ab75d6975c94be8909ad619e55e2780",
+      "Id": "d30a29de21cc4a49b982d4c29a44e907"
+    },
+    {
+      "Start": "be59d88323e347329f276cd241ce1069",
+      "End": "7330e93cbab8437e828cef72623709d0",
+      "Id": "4d39d3ea85804fc1a6b25ecc49e7d8f3"
+    },
+    {
+      "Start": "be59d88323e347329f276cd241ce1069",
+      "End": "e8a1da10c660435ca1cd9350170d1594",
+      "Id": "bb094e0fa24d44c1b6892dc51f2b0594"
+    },
+    {
+      "Start": "e856098e38b44c5481ba7262b8b8530c",
+      "End": "0e31eb858b5b4656954225bab0770365",
+      "Id": "7b3124c2122641babf5cd9e69d5f5574"
+    },
+    {
+      "Start": "7940134590d646d88eb3868e4f8d75db",
+      "End": "9ad65548755d491695c66982f3125ca4",
+      "Id": "df8edd38385c477080d046d9b1a88692"
+    },
+    {
+      "Start": "b3c582356f024b62b26244243e3c90ef",
+      "End": "1b97ddbd924f4687b95241c9d8945a6d",
+      "Id": "6a1b4ecd8d8043a9a8f3ca954c7c672e"
+    },
+    {
+      "Start": "01a4e32bf56b4d00b38de960386e61cb",
+      "End": "d8fe590fdeed45ae9ed1cd4ecd691f4c",
+      "Id": "5a448754e25844478663e889d30916f9"
+    },
+    {
+      "Start": "9d465a8278424050b0e141f96a644fd8",
+      "End": "dd349c4a96554cdc8a125cd18d2de842",
+      "Id": "2fb0e3863b314b01abd9d60d4f3d9dae"
+    },
+    {
+      "Start": "16f400327fea458bb73b81a3646488f4",
+      "End": "af614149eac94237b3dc4ae5d290c768",
+      "Id": "589f7054cc6a4a8da1abfdfcabfdee9e"
+    },
+    {
+      "Start": "08b5d239279e48f18bfff19cd449bb9b",
+      "End": "40aa8da8c235407c9d85e8bed24d0f32",
+      "Id": "291e403b58774b82be8efb834081c7ec"
+    },
+    {
+      "Start": "2cadad8491054933b843ddc418f58bb1",
+      "End": "4627853055ae44c0a176e743a63f38de",
+      "Id": "2a30baa7bf3d44d5b24a3b7a28d3372d"
+    },
+    {
+      "Start": "4c1a02319a60406993337986e5e5a81c",
+      "End": "687d33a3259147209826fdc8c1311e61",
+      "Id": "46b63c954a8844c79990dad15dd555eb"
+    },
+    {
+      "Start": "104f484bcd704e7299d9afab8c6347d0",
+      "End": "3fc2a42b878646219ec75e458991291a",
+      "Id": "5f16e60b15e44380b19dd3c1bb803645"
+    },
+    {
+      "Start": "1324c58540ac45748cbebb04e986d0c4",
+      "End": "10c497a337b1459c87e06b06ddbc4c82",
+      "Id": "c0339da76d694cf6969354a92d398d11"
+    },
+    {
+      "Start": "77e2cd63df244ea7a37f19261bb031bc",
+      "End": "ca60cd7492b2461f8436aa0909e7e50a",
+      "Id": "f2f643d3632047e48affaada4ea20a33"
+    },
+    {
+      "Start": "10264f6b8b404f159b2d7dbbeaba60aa",
+      "End": "73dd5e889d9c421ab6740a66838d8034",
+      "Id": "fc99c73519cd4798ae43122b2dd1281c"
+    },
+    {
+      "Start": "561a4c90d7524a3f848470054db2d7d9",
+      "End": "01652a79295a40b3b74175f1af9a3d52",
+      "Id": "f41acff0a9174c6cb1b08cca2067415f"
+    },
+    {
+      "Start": "e75b61c9e88d455fbd965a4ae662c7d4",
+      "End": "647b0570adf44af68b12f3263fdb0218",
+      "Id": "fce0c7df61fc42dfbdb95789dfd656a7"
+    },
+    {
+      "Start": "e75b61c9e88d455fbd965a4ae662c7d4",
+      "End": "6bf419c72c084b10925d3bd01e51ef6c",
+      "Id": "cfb6927f88be414d94be0210fceaa5aa"
+    },
+    {
+      "Start": "25a60c5a7b5f4c19aedf1a6887296ba6",
+      "End": "30365d7e99044ae6b970ac8f8c435db7",
+      "Id": "54847c0521c04dc589c6fe9ebf0decac"
+    },
+    {
+      "Start": "998c69d00af74ddca87a84a301ed780d",
+      "End": "4d5545a192534b7398296143d74c7086",
+      "Id": "14811bd45f0049c0ba6f9f2f28e72212"
+    },
+    {
+      "Start": "998c69d00af74ddca87a84a301ed780d",
+      "End": "0163d2ec882e49a7bd4014ad89748da4",
+      "Id": "cb83cb68e75f42218acf9770ddbe07d8"
+    },
+    {
+      "Start": "998c69d00af74ddca87a84a301ed780d",
+      "End": "1b7de38c99d14734a263aa550181e2e3",
+      "Id": "3978867ccf6e4db3a42e23b46511aa9b"
+    },
+    {
+      "Start": "998c69d00af74ddca87a84a301ed780d",
+      "End": "aed643a7cb854ec8810e7ec1b1d7e5ec",
+      "Id": "3fc754791f3a40d79dc2ce6bb8df0e4d"
+    },
+    {
+      "Start": "998c69d00af74ddca87a84a301ed780d",
+      "End": "fe9b01f7bd1c4c9d8687732f8d2a659f",
+      "Id": "f36c614d54224b52b2ed71843e6bf0fc"
+    },
+    {
+      "Start": "def6b0756ec443518fbd468f14f470ea",
+      "End": "a2c616f395ee46efa3f455f3149df699",
+      "Id": "152c050e44fa4d22a3bbb82ce2cb1f9c"
+    },
+    {
+      "Start": "91f42d77c12049729bea92916c4e16f0",
+      "End": "6f05b592c2654931b050564f6ae27773",
+      "Id": "276072f0935f4a69aa026f127c450c92"
+    },
+    {
+      "Start": "6f1dadbbe94648a9943cd1aa47334146",
+      "End": "250d665853584326876cfe471579ed72",
+      "Id": "db863bac22424749a0746f451709c0f0"
+    },
+    {
+      "Start": "fb81c9baae7647e3b84801fc9c765329",
+      "End": "a2fd76f2eef44155b82b7986d964d7d8",
+      "Id": "ebb71b0bc26d4f7aad0cc9303b7fe25e"
+    },
+    {
+      "Start": "fb81c9baae7647e3b84801fc9c765329",
+      "End": "8892adbd2a0d4b60a03e7bbcc5761921",
+      "Id": "c3c43cafb92f456390c11429773bf230"
+    },
+    {
+      "Start": "fb81c9baae7647e3b84801fc9c765329",
+      "End": "db1665ddb5564036883d61b9eef78846",
+      "Id": "b63f4a73b6114f769be9890462568e55"
+    },
+    {
+      "Start": "fb81c9baae7647e3b84801fc9c765329",
+      "End": "8aba67b6a37c444dae29dc240e28458e",
+      "Id": "97708c03dd794ee9a202ac522093f24f"
+    },
+    {
+      "Start": "fb81c9baae7647e3b84801fc9c765329",
+      "End": "89ac9503189c4dffa04e37f81644b5c7",
+      "Id": "15e00a7631cf445cbcf6324615d66965"
+    },
+    {
+      "Start": "efcde3d4efef400c813313caa0b84537",
+      "End": "a36499fb807148459e8fcab4fcf18b18",
+      "Id": "8a51cef08f234b6ebc78c7a303887815"
+    },
+    {
+      "Start": "69cffd18563346b8bed7aacd9482bde9",
+      "End": "f7394b44137441e2af1cc5802fd72c20",
+      "Id": "c40b2da764e6476a9e1926f65f922b81"
+    },
+    {
+      "Start": "e4dd50e3f0db48f3b5b30c8521b4f448",
+      "End": "853233c507ef4209869215eb9af6eddb",
+      "Id": "72597227a8a747938c66f6b91bac715d"
+    },
+    {
+      "Start": "a568edffd1424e92a44fd345f490e0ca",
+      "End": "9849935b30e74399a7b7fd027d418818",
+      "Id": "7ef51c9b7a8e431d895a0e5e591791a2"
+    },
+    {
+      "Start": "fd06eea81b8845da88acb487666615b8",
+      "End": "2c21c4b0d67c44c9afae604148d6c92f",
+      "Id": "8b432d484ecb408ebabfc021429e268f"
+    },
+    {
+      "Start": "fd06eea81b8845da88acb487666615b8",
+      "End": "810795dff9ec4baab71e29af72b8f6bc",
+      "Id": "97ac67163d6240b7b2153ffcdfd8a4d7"
+    },
+    {
+      "Start": "fd06eea81b8845da88acb487666615b8",
+      "End": "895747992cde4327bc25db43ca82bb96",
+      "Id": "0ab1892152ed480795e0dc7cc7f70fc7"
+    },
+    {
+      "Start": "fd06eea81b8845da88acb487666615b8",
+      "End": "e6908f52e20744e7a31b034dfa9f7784",
+      "Id": "6717928d0bcf43aa9c9ce644312d4ae2"
+    },
+    {
+      "Start": "d80443c0e9cb4424b491f2d853c46462",
+      "End": "0eb2e46699fe432c9c0a944e274e6589",
+      "Id": "84f47df6e8c0423889741fbd61c95a99"
+    },
+    {
+      "Start": "f12ce8a8410e42e098de8f9fe90d56e0",
+      "End": "0b7815e397fe4095ac762fbfcb2184e3",
+      "Id": "5c007a53d328477bb221c6c793ccb73c"
+    },
+    {
+      "Start": "843f72c07a834b5093a5332d38539d9e",
+      "End": "17ec0a3d91564093a35a6fdb29cc002c",
+      "Id": "4ee1f8775ac3479d8272326b0d868695"
+    },
+    {
+      "Start": "4a10f92f0b3146f092b8e58fcbf4b117",
+      "End": "13c27a8962c4458280979aa14dadb516",
+      "Id": "9226b4db0a50497da4fbb247c39b0796"
+    },
+    {
+      "Start": "c8620c6a4e2f4301b5af0730143c684b",
+      "End": "e8175e4fdc5740df8220dcef3bb53e76",
+      "Id": "b9a8c696fd7e408cb3b223ed05fab172"
+    },
+    {
+      "Start": "14eb30d978b64c29b451b0161e19d933",
+      "End": "0ea29d0ef2a149058b7ad1865880823b",
+      "Id": "849dd78373944737a3882af0b50578ae"
+    },
+    {
+      "Start": "155370b20e79485eb64d5e92f9f63a50",
+      "End": "cedd717be6fd48629affe47059af2c5e",
+      "Id": "8d6053724d044866a3056114026497bb"
+    },
+    {
+      "Start": "2273e07a669747698b15e2330864b515",
+      "End": "714c54884f7043febc9420edb3436794",
+      "Id": "d0ad72abfb394099b2967a16279f63ec"
+    },
+    {
+      "Start": "3df9b20f3f204acaa84f0c07045ae6cf",
+      "End": "021a5bf074a44d498c54551605f200b4",
+      "Id": "ed238b263e5a4146961c5f3a5bfaa641"
+    },
+    {
+      "Start": "fa08f3459d1b49c9a8f5a66f002e6ee5",
+      "End": "7cc2f7e6a7b3488999b3c59520c12510",
+      "Id": "29b22aceb77543db8b7d17d07e755c0f"
+    },
+    {
+      "Start": "6baa989d40834e76b97dbbe4e1b63571",
+      "End": "d274cd8902c84217aee502349f5a6eb5",
+      "Id": "86dcdce17201488496fb996497e3842c"
+    },
+    {
+      "Start": "17006782b7d54eb0a14ea1b596a1cd59",
+      "End": "e746d77f67a644ca94bf0864014fe23e",
+      "Id": "4ae4711dccf34e8f81fb84784945022a"
+    },
+    {
+      "Start": "c7716986fa864af4b8cab2187003f23e",
+      "End": "dfea84ea9b484d34b8a83c438ec4b7c6",
+      "Id": "77b882ef46094328932d96c450cd7af4"
+    },
+    {
+      "Start": "48810d6ae95e4f3ca70a48b7ecc18c06",
+      "End": "56f451e5a58f48dab6608146fb1f9aaa",
+      "Id": "06ec2639a1fd4289821fcf0eae62610e"
+    },
+    {
+      "Start": "f33ca957da5449a3bcdca35932a60a1b",
+      "End": "489a489f1a0a427c9b5b6db435901b09",
+      "Id": "7a5b3cf0abbc41a9a7849d84e9888314"
+    },
+    {
+      "Start": "8c87647eb022470fa412179788df8637",
+      "End": "87479342bf914d5eb163d95be38f52c5",
+      "Id": "9d416c7ed03b42c6b2a2103f42147020"
+    },
+    {
+      "Start": "fb93334590584d7380b75623012cf0ac",
+      "End": "1e5e5c95640745d59ece6ba5e49070c4",
+      "Id": "9d1fd1e554cd4c7981b906e92daeb1d0"
+    },
+    {
+      "Start": "f8dd7c0ebfe24779ac5c0f86f7616a27",
+      "End": "af96585b606b42c9a774d6ba5afccb32",
+      "Id": "16fa15067cb842c4b7a6240dd1d559b7"
+    },
+    {
+      "Start": "1ab9a44a077048dbb2fe9132b6e32157",
+      "End": "b71237d3b8ef47e88ad33c89d5effe49",
+      "Id": "9d3ea7ec715e437e8b57f23182bd359d"
+    },
+    {
+      "Start": "76309a8820a44bfe9376d97fc25eb37e",
+      "End": "f412d05475444f01afafc07dd254acf9",
+      "Id": "391ba788a7614436881f13eef2e64587"
+    },
+    {
+      "Start": "c44c7ebfd5134f48b30e049bb0ac840c",
+      "End": "6a7d959c31994a168d2f7833fd3742ab",
+      "Id": "3c02a535b1c549b083e0f632f179d194"
+    },
+    {
+      "Start": "502fa799c9534477ab4bc902867d7f78",
+      "End": "856818b40f3142bd9bbdc80ac61264b1",
+      "Id": "6f7ba27ec8ee4b7590246e48484f6068"
+    },
+    {
+      "Start": "de5525c8408a47f8bf03d14cf797bc83",
+      "End": "9e9161cdd0f9437481b17242af7eea87",
+      "Id": "f09a4a2bf8dd42e48cdeed198dcb03d4"
+    },
+    {
+      "Start": "03c2af474e684a29a7dc9ea0cf63fd10",
+      "End": "682ce869da7c4060a1c216e46b25f0be",
+      "Id": "5ec5fadbe1b446e1a31cb6d6c5683fe1"
+    },
+    {
+      "Start": "37b68831b6594d40ad6c5796821c4170",
+      "End": "d19241631d2d458fbed9510c722990c0",
+      "Id": "18f1d41c39ee4062bccbcffdb291dabb"
+    },
+    {
+      "Start": "4b6ae04867a446de94bf7f8a3bc0f1a1",
+      "End": "e5c114cdec2a4df2bc82ea92f8ff4bf8",
+      "Id": "ee6e27d1d6bf4f4184de162253dc8477"
+    },
+    {
+      "Start": "3f435b7387e84595a182a10d0a7e2de4",
+      "End": "b66d609bc27147f2b11fdc1efd6c281b",
+      "Id": "b1bcf4b6561b48a7a35f3c3cd245b3ec"
+    },
+    {
+      "Start": "0dedaa21c3e0488691841b42dc9d8599",
+      "End": "2047bf2666454b6db8646cc0b2be9852",
+      "Id": "70e7c19f293c4c1696e152048cd4c1c3"
+    },
+    {
+      "Start": "db7afcd8db15495489a7c1883b695ee2",
+      "End": "fe07a8a6928a4c94bec99729eefa074e",
+      "Id": "a5103d978408467aa8fbaae3bc8a8e69"
+    },
+    {
+      "Start": "b819b2f2563a43daaaf9cea0f25ece5f",
+      "End": "0304a685f9844410b44560e82c1cd244",
+      "Id": "c69ca005c5df41ae9f77b4b8686770ab"
+    },
+    {
+      "Start": "241b6474e3f649eaa0a8178a73125cda",
+      "End": "dbaef019953f4a5faaef533141e29b60",
+      "Id": "338916bb6c874bedab735760fe73b229"
+    },
+    {
+      "Start": "748220f9fd2745fca13f1e1a5be876b8",
+      "End": "9ca8aa6a4d0043e4a896785da70b60d8",
+      "Id": "328f7e227af24e5e80f8d9bd34f247ff"
+    },
+    {
+      "Start": "437bd87ab3434b8ea3db4b5db3d83982",
+      "End": "926d8e215337496b83cde4046a8ff714",
+      "Id": "58e463f88e4644d59e9fbb5f0fe2b6a2"
+    },
+    {
+      "Start": "1e55303f34e148be8b403d9ec01a6cc5",
+      "End": "23e23b0f262447d5aa662030f2adaa41",
+      "Id": "d884963e6e3247bcaf35a331ddadef0b"
+    },
+    {
+      "Start": "8a39936641a34949a75c2ccab5da34b8",
+      "End": "64e1d506a7f9478aa92867bb51b68804",
+      "Id": "f77476e8154e492e81e893cf03c5810f"
+    },
+    {
+      "Start": "abe7d1b445224f2fafdf16898e7bb3ea",
+      "End": "70c477ed054c4b5fa0777e980e954d85",
+      "Id": "e4150b70d29344e9b3784fdd10974419"
+    },
+    {
+      "Start": "2a1ea38011754554b94490502cd9c39e",
+      "End": "a6496127d36f4642b5f1d2161bd37a1a",
+      "Id": "5880a2601ba84a1f890a9503758145b6"
+    },
+    {
+      "Start": "e1b7a22e408247a3bacd064f7a99e8fb",
+      "End": "dd77615701f8467d8371464a6b2de9e7",
+      "Id": "fee79d55303844dab72058e98d58c161"
+    }
+  ],
+  "Dependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.0.0.8345",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "File Path",
+        "Id": "2753d78742374c38b19b40492ca5b4d3",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -85.670627888179524,
+        "Y": 41.796577731292814
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "File Path",
+        "Id": "c601e241478b4636b06b17b5620da6ed",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -84.0787620043726,
+        "Y": 174.80445393173005
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Constructors.CreateMinibatchSource",
+        "Id": "f6f2d6cee0ea4f15a7843157850a9bcb",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 627.5,
+        "Y": 304.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "File Path",
+        "Id": "c9fb5be802d744489e45e27d9e1d50d2",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -89.1509373870864,
+        "Y": 333.33202063326041
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List Create",
+        "Id": "841b73b88235471986aca7723b967c7a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 189.98376198533833,
+        "Y": 402.533995730674
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Integer Slider",
+        "Id": "642a7b3fdff342838e60061d5d47a100",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -211.05463730713473,
+        "Y": 629.72150197748419
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Integer Slider",
+        "Id": "545562b98c6c4afb9ee8443922e9bc9c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -208.05463730713473,
+        "Y": 567.72150197748419
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Integer Slider",
+        "Id": "ca1da57da4784a09b9c026b496abc34f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -210.05463730713473,
+        "Y": 701.72150197748419
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Num Of Classes",
+        "Id": "70025b0c465e46e59abb65c6c0784b60",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -236.91964894678654,
+        "Y": 924.73856948746447
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Integer Slider",
+        "Id": "9106ecceba4a4abbb9ca74e0cf4fb173",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -211.05463730713473,
+        "Y": 841.72150197748419
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Constants.Device_GPU",
+        "Id": "d2c9ef1e12014a98b7d1b0cc3131e949",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 687.5,
+        "Y": 543.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Integer Slider",
+        "Id": "cbbe7368a7d24af084673bc2b11754c5",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 374.63498836034819,
+        "Y": 647.09128522277251
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Constructors.CreateTrainingRate",
+        "Id": "d3244f4d8253442b93f769cd382b7afb",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1036.0431965442763,
+        "Y": 572.72786177105831
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Number",
+        "Id": "f8b17c7ded4144dd8e6f0db7b77f9066",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 869.304535637149,
+        "Y": 621.97192224622029
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Number",
+        "Id": "852c1c5455bc4087a9eea793554779a0",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 868.44060475161973,
+        "Y": 689.35853131749457
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "CnnTrainer",
+        "Id": "53229a00119245cb9f51c15502a4f05e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1556.3812746564911,
+        "Y": 471.38311380749
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Constructors.CreateInputVariable",
+        "Id": "71ce891294f84c34afbadedfe2770757",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 831.60053840986075,
+        "Y": -35.7563179740514
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Constants.DataType_Float",
+        "Id": "20bd64a3589b4048a59a5977d3ab2e81",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 462.08004081024581,
+        "Y": -34.870569408319341
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String",
+        "Id": "8fc68b6073a6456a9d39788661840be1",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 574.54330832949938,
+        "Y": 64.920780643976173
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Constructors.CreateNdShape",
+        "Id": "d6d685ada9094251be5d5a167166b336",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 364.347407914613,
+        "Y": -143.3239448401381
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "poolvStride",
+        "Id": "063599b470934c0b8776ca57608c4adc",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 7023.6050686142908,
+        "Y": -1149.3258639427222
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List Create",
+        "Id": "a25d8da33d314b2aaef9ce45fb493f6c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 7435.78630438017,
+        "Y": -1216.289372668562
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "poolhStride",
+        "Id": "db55a238a7614f0eaa83ff62afddb957",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 7021.51163788131,
+        "Y": -1230.9696625285221
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List Create",
+        "Id": "3e5de6434c334eb3a77ce403f8f1dbea",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 7424.89322619241,
+        "Y": -1454.2765400455621
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "poolH",
+        "Id": "75de2294a56245738142dcc5e0d14135",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 7029.88536081319,
+        "Y": -1385.883536768232
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Integer Slider",
+        "Id": "78b34160aa0e4d498485c3f5e8f75711",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 7028.41459740526,
+        "Y": -1310.6238082688521
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "poolW",
+        "Id": "2741ff17c8ce44a6953b2c9b3d877a81",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 7028.83864544671,
+        "Y": -1462.2937585216021
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Constants.AveragePooling",
+        "Id": "df5b8de65ea8431a930ad7bac6276113",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 7592.6676576467407,
+        "Y": -1624.4612982128322
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "TensorFunction.Pooling",
+        "Id": "0d9c646ddd7d4664bc8518e674e0fa4c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 8215.63767897511,
+        "Y": -1648.8738678365821
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "TensorFunction.Times",
+        "Id": "6fd9dae20f814d05a7d954fa32d330ca",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 8906.0983092252,
+        "Y": -1693.6232775156923
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "TensorFunction.GetProjectionMap",
+        "Id": "b671fe7017314926833b8e40da62637e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 5055.270743903211,
+        "Y": -1705.7540515006815
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Constants.Device_GPU",
+        "Id": "d1113990a9534cc9b5087b768eed26f9",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 4761.3029530844115,
+        "Y": -1583.5589125288025
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "TensorFunction.GlorotUniformInitializer",
+        "Id": "0068eb7ce25a4db286b53f3444f4ebd4",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 7496.19593831558,
+        "Y": -1930.1724600361622
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Integer Slider",
+        "Id": "e611dfbce38e4b92a24b83fd23b53633",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 7829.13251547111,
+        "Y": -1855.9480642153221
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Constants.Device_GPU",
+        "Id": "45fa55563d044e18ae87bc2fa2c5d852",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 8231.7265409897,
+        "Y": -1855.024775346792
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Number",
+        "Id": "0a05436690da454683c654e16b142736",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 7307.2727648013906,
+        "Y": -1852.830822246422
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Constructors.CreateParameter",
+        "Id": "15de53c4b44a4f4ba3cb9b54b5f8cbab",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 8516.43692620239,
+        "Y": -1945.3636897705321
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "TensorFunction.Plus",
+        "Id": "13f30d30ac5a4863a76e2949bdb8b6e3",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 9354.7339664554565,
+        "Y": -1796.4955147218182
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Integer Slider",
+        "Id": "d358e410fb8f48b49d8abc0ec1d1582d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 4371.9830938767718,
+        "Y": -1487.5807873273834
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Spatial",
+        "Id": "95561a248c5f4ad7b10592482c1eb546",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 4954.0848312583712,
+        "Y": -1832.0585553959966
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Spatial",
+        "Id": "ff0c8910139340b9a25eca80ed366004",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 5697.6413729220276,
+        "Y": -1502.7497081442218
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Spatial",
+        "Id": "42effb8a65ea4b52b2a31fe73f490e4c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 6431.0014570167614,
+        "Y": -1821.0322409654145
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Number",
+        "Id": "b4f685454ad74892a2e15d9b5932c050",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 7311.82894839852,
+        "Y": -1927.9227555706821
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Number",
+        "Id": "a3d212ed9f984662886017e2eefdce76",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 8248.4111562478411,
+        "Y": -1929.8209868499421
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Spatial",
+        "Id": "a708f7c6d4564728a52907db4536a95d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 4027.0579817833113,
+        "Y": -1769.4216061071415
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Constants.DataType_Float",
+        "Id": "3e4cd8a32f1044f5bc0a14bf6f8b7f51",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 7634.2551287944307,
+        "Y": -2023.3624136093922
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Number",
+        "Id": "5886f023e19f4da8acc9d64b3f7e84f2",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 7308.70759906098,
+        "Y": -1996.5924409964521
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Constructors.CreateParameter",
+        "Id": "458262f3652049abab24e971e5767801",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 8489.07850644431,
+        "Y": -2197.6585657436722
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List Create",
+        "Id": "a8e723bc067e435f9c9929becf730dcc",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 7670.50831824022,
+        "Y": -2211.432916344952
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Integer Slider",
+        "Id": "1f08ae1d940c44808334687fd6098160",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 7174.2089796698647,
+        "Y": -2151.2940719657322
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Spatial",
+        "Id": "0413660dde8441d68959c014182a1693",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 3419.7022371457115,
+        "Y": -1775.3585601161385
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "cMap3",
+        "Id": "86c5c3097b844591a4a02490371b6234",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 4614.2781685016316,
+        "Y": -2123.4102802577845
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List Create",
+        "Id": "96b81c53db2b435b8aba1a53bf29eef9",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 7680.99580511036,
+        "Y": -2308.8816669821722
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "TensorFunction.GetProjectionMap",
+        "Id": "aaf3f427cbb64a4aae197cb10db185d9",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2668.0325712600716,
+        "Y": -1663.7265250370945
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Spatial",
+        "Id": "1c40f5ea2dbd4a47aa1d6afd7bc1e365",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2718.628430539472,
+        "Y": -1807.2255513255136
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "cMap2",
+        "Id": "33cfb4296faf4a3d8300df422742775b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2450.1277152220018,
+        "Y": -2133.1584757398396
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Constants.Device_GPU",
+        "Id": "76c583b66bcd4a5785a6ed8dcc1c7c92",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2346.7590337736619,
+        "Y": -1590.4746288672554
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Integer Slider",
+        "Id": "5cba700ae231471a865f74a317f5b591",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1964.5976830561817,
+        "Y": -1510.6031477686845
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Spatial",
+        "Id": "800f6790e057466bb4e1253578e2caf6",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1938.7257042848917,
+        "Y": -1817.9985379585814
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Spatial",
+        "Id": "b1afeb1bf3654582ab27e3675a7c9a40",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1511.6326388894527,
+        "Y": -1863.5786057311193
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "cMap1",
+        "Id": "94c374a3bacf4e0eaad4da4e81cf662e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 787.38238609012319,
+        "Y": -2180.1525777986776
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Spatial",
+        "Id": "6cc7232518f8404aa4c2c6e99f2aa50f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 839.6492400863242,
+        "Y": -1852.7562197817067
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "BuildInLayers.ConvBatchNormalizationLayer",
+        "Id": "35a53668a4194ba8b462592fb057153f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 461.84822722153172,
+        "Y": -2018.2084808452305
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "CMap 1",
+        "Id": "28da81efecd74f98917c806215da7fbe",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -266.15177277846828,
+        "Y": -1993.2084808452305
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "kernelWidth",
+        "Id": "05b586695d0349bbba4cf25011f74c3b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -266.15177277846828,
+        "Y": -1931.2084808452305
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "kernelHeight",
+        "Id": "c08e617d3c134de595f417c0297f0dec",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -266.15177277846828,
+        "Y": -1869.2084808452305
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "h Stride",
+        "Id": "4bd88cbfea6d45e4a7fd9190c2406d37",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -266.15177277846828,
+        "Y": -1809.2084808452305
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "v Stride",
+        "Id": "85531a2d2ee14f64bdf2b4a03aa57b0a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -267.15177277846828,
+        "Y": -1751.2084808452305
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "conv1WScale",
+        "Id": "6cc08ed3c292432c9b94a50b403fc9b4",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -61.151772778468285,
+        "Y": -1687.2084808452305
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "convBValue",
+        "Id": "2bcde8509e7f4942af472ebace14639b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -54.151772778468285,
+        "Y": -1627.2084808452305
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "convBValue",
+        "Id": "1c664911530b471783cef1f74ed68a93",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -57.151772778468285,
+        "Y": -1567.2084808452305
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "bnTimeConst",
+        "Id": "d588c8832ccc4482ac6c242da39315b1",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -270.15177277846828,
+        "Y": -1508.2084808452305
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Spatial",
+        "Id": "1a6aae60a0f1443ea5c3df55c43c2cf1",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -108.15177277846828,
+        "Y": -1450.2084808452305
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Constants.Device_GPU",
+        "Id": "017f2db8a97f429d88bf143d0b19e5ac",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -147.15177277846828,
+        "Y": -1382.2084808452305
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Integer Slider",
+        "Id": "ed6515e758ff41cd975018db64ee325f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -520.15177277846828,
+        "Y": -1380.2084808452305
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Constructors.CreateNdShape",
+        "Id": "4e54364d9bd34380a06e8eb097d65c2f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 7719.65346578017,
+        "Y": -1460.64121488648
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Constructors.CreateNdShape",
+        "Id": "7fdcf6ef100b4951bd33aa7e63190ab8",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 7716.7703798989878,
+        "Y": -1344.4900240964123
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Constructors.CreateNdShape",
+        "Id": "c9999fe33295459ebeab007313276fa2",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 8136.4025952581742,
+        "Y": -2216.3506799171691
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Constructors.CreateNdShape",
+        "Id": "e4c592d838914117aacda4fe653b576c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 8179.5930656990386,
+        "Y": -2033.9909158335124
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "BuildInLayers.ResNetNode",
+        "Id": "a69833f61fd14c489620b38a9c239240",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1090.5470130708964,
+        "Y": -1929.2212536315251
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "TensorConverter.FunctionToVariable",
+        "Id": "34bbe80692044fe59ef1441780097802",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 803.10570400785,
+        "Y": -1949.9377443748076
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "TensorConverter.FunctionToVariable",
+        "Id": "18687fc046eb4e3cb36789d6e2bfc566",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1438.8430136923344,
+        "Y": -1973.243796461001
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "BuildInLayers.ResNetNode",
+        "Id": "1478514ebd1f4241878e56c83148c44a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1778.0755496135866,
+        "Y": -1987.4863838470076
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "BuildInLayers.ResNetNode",
+        "Id": "60dc0ad74ac24943b623043383c7f0b3",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2358.1372904254995,
+        "Y": -2053.5201980912207
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "TensorConverter.FunctionToVariable",
+        "Id": "84c14b128c624af49e7c6fa91446179c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2087.5281300913707,
+        "Y": -2072.9419081630485
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "BuildInLayers.ResNetNodeInc",
+        "Id": "0c46744269534d8e85e7ec4c95e24853",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 3115.5839832267693,
+        "Y": -1703.9294167983269
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "TensorConverter.FunctionToVariable",
+        "Id": "16a4277138d844b5b69a1ce8e6e38a5e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2787.7112815699629,
+        "Y": -1946.9976634595362
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "BuildInLayers.ResNetNode",
+        "Id": "306f30eb4dea4f14b23c0904620df617",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 3676.7401702869215,
+        "Y": -1965.6613466219828
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "TensorConverter.FunctionToVariable",
+        "Id": "5b6c1a563670429ab012b0e2dafc2115",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 3234.5359217731279,
+        "Y": -1987.8835782493684
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "BuildInLayers.ResNetNode",
+        "Id": "cb2e3d9b1888485397986bb52ec28b70",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 4373.2609329565612,
+        "Y": -1936.4571217721027
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "TensorConverter.FunctionToVariable",
+        "Id": "c32747e82d134aca9c2bdb4eecab46f2",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 4073.9176282452909,
+        "Y": -2013.8483176242848
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "BuildInLayers.ResNetNodeInc",
+        "Id": "946dc2130c254e749d8ae064846b2ba8",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 5304.8757056677359,
+        "Y": -2005.0870501693207
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "TensorConverter.FunctionToVariable",
+        "Id": "6830bc04cbae4b0cb061139aae4ea7a6",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 4986.5496548040428,
+        "Y": -2314.6518335780497
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "BuildInLayers.ResNetNode",
+        "Id": "3f09729371d8460590e62c8debb6c863",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 6902.3468049561761,
+        "Y": -1778.7543075827502
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "BuildInLayers.ResNetNode",
+        "Id": "87097d79b42b4bf19d8877c48ba5be47",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 6039.36196064222,
+        "Y": -1694.0620555180978
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "TensorConverter.FunctionToVariable",
+        "Id": "daeec866db8947a68402d735c7fdd84e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 5598.37816540903,
+        "Y": -1660.4771969407359
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "TensorConverter.FunctionToVariable",
+        "Id": "8db8eda3d49f4c97a387b233aaa69ef8",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 6468.664065935458,
+        "Y": -1517.3764951763233
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "TensorConverter.FunctionToVariable",
+        "Id": "a28a1c5f53384059bc37cd98d191a6ab",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 7772.6327054826015,
+        "Y": -1764.1521951578102
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "TensorConverter.FunctionToVariable",
+        "Id": "ca49a863b95d44929d00017136043282",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 8521.7210728820264,
+        "Y": -1537.8194525712395
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "6db1c2455ff743f88d9b6e5e72e1438e",
+        "Title": "<Click here to edit the group title>",
+        "Nodes": [
+          "0d9c646ddd7d4664bc8518e674e0fa4c",
+          "df5b8de65ea8431a930ad7bac6276113",
+          "3e5de6434c334eb3a77ce403f8f1dbea",
+          "a25d8da33d314b2aaef9ce45fb493f6c",
+          "75de2294a56245738142dcc5e0d14135",
+          "78b34160aa0e4d498485c3f5e8f75711",
+          "db55a238a7614f0eaa83ff62afddb957",
+          "2741ff17c8ce44a6953b2c9b3d877a81",
+          "063599b470934c0b8776ca57608c4adc",
+          "458262f3652049abab24e971e5767801",
+          "a8e723bc067e435f9c9929becf730dcc",
+          "1f08ae1d940c44808334687fd6098160",
+          "3e4cd8a32f1044f5bc0a14bf6f8b7f51",
+          "0068eb7ce25a4db286b53f3444f4ebd4",
+          "e611dfbce38e4b92a24b83fd23b53633",
+          "45fa55563d044e18ae87bc2fa2c5d852",
+          "5886f023e19f4da8acc9d64b3f7e84f2",
+          "0a05436690da454683c654e16b142736",
+          "b4f685454ad74892a2e15d9b5932c050",
+          "15de53c4b44a4f4ba3cb9b54b5f8cbab",
+          "96b81c53db2b435b8aba1a53bf29eef9",
+          "a3d212ed9f984662886017e2eefdce76",
+          "6fd9dae20f814d05a7d954fa32d330ca",
+          "13f30d30ac5a4863a76e2949bdb8b6e3"
+        ],
+        "Left": 7011.51163788131,
+        "Top": -2361.8816669821722,
+        "Width": 2573.2223285741466,
+        "Height": 1280.55580303945,
+        "FontSize": 36.0,
+        "InitialTop": -2308.8816669821722,
+        "InitialHeight": 1304.55580303945,
+        "TextblockHeight": 43.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": -8528.3093831870247,
+    "Y": 2336.4256097816751,
+    "Zoom": 1.0827315249827747
+  }
+}

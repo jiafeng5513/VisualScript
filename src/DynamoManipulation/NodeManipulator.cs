@@ -304,7 +304,7 @@ namespace Dynamo.Manipulation
                 if (val != null)
                 {
                     inputNode = val.Item2;
-                    if (val.Item2 is DoubleSlider) manipulate = true;
+                    //if (val.Item2 is DoubleSlider) manipulate = true;
                 }
                 else
                 {
@@ -337,14 +337,14 @@ namespace Dynamo.Manipulation
 
             CommandExecutive.ExecuteCommand(command, UniqueId, ExtensionName);
 
-            var inputNode = WorkspaceModel.Nodes.FirstOrDefault(node => node.GUID == command.ModelGuid) as DoubleSlider;
+            var inputNode = WorkspaceModel.Nodes.FirstOrDefault(node => node.GUID == command.ModelGuid);
 
-            if (inputNode != null)
-            {
-                // Assign the input slider to the default value of the node's input port
-                var doubleNode = Node.InPorts[inputPortIndex].DefaultValue as DoubleNode;
-                if (doubleNode != null) inputNode.Value = doubleNode.Value;
-            }
+            //if (inputNode != null)
+            //{
+            //    // Assign the input slider to the default value of the node's input port
+            //    var doubleNode = Node.InPorts[inputPortIndex].DefaultValue as DoubleNode;
+            //    if (doubleNode != null) inputNode.Value = doubleNode.Value;
+            //}
             return inputNode;
         }
 

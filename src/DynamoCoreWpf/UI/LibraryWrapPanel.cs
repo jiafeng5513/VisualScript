@@ -292,7 +292,7 @@ namespace Dynamo.Controls
         }
 
         /// <summary>
-        /// Function counts prospective index of selected class in collection.
+        /// EFunction counts prospective index of selected class in collection.
         /// In case if index of selected class bigger then index of ClassInformation
         /// object it should be decreased by 1 because at next stages ClassInformation
         /// will free occupied index.
