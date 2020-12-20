@@ -21,4 +21,4 @@ Expressior is a node-based visual scripting application based on [Autodesk Dynam
 2. GitHub for Windows<br>
 3. Microsoft .NET Framework 4.7 and 4.8<br>
 4. Expressior can only run in x64 mode.<br>
-5. You can start the application from "Expressior.exe".<br>
+5. You can start the application from "Expressior.exe".<br> 
