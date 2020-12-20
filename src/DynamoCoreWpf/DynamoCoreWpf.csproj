@@ -1057,10 +1057,6 @@
       <Name>DynamoServices</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\Utilities\ConsoleView\ConsoleView.csproj">
-      <Project>{72F0CAE7-9DA5-452D-8FA8-07845D1CD5EC}</Project>
-      <Name>ConsoleView</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="UI\Images\StartPage\icon-customnode.png" />
